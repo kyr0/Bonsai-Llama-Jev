@@ -1,3 +1,5 @@
+![Bonsai-Llama-Jev](logo.png)
+
 # 🌳🦙 Bonsai-Llama-Jev
 
 **TL;DR:**
@@ -222,6 +224,8 @@ Copy `.env.example` to `.env`, then edit. The ones you might need:
 - `BONSAI_ALIAS` — model name shown in `/v1/models`
 - `BONSAI_MAX_TOKENS` — hard ceiling on generated tokens per request
 - `BONSAI_CTX` — context size (0 = auto)
+- `BONSAI_NP` — parallel slots (default 4; 8 or 20 for concurrent /v1/systemone load — note llama.cpp
+  splits `BONSAI_CTX` per slot, so raise it too: `BONSAI_CTX=262144` gives 20 slots × 13312 tokens)
 - `BONSAI_NGL` — GPU layers: `99` = everything (default), `0` = CPU only
 - `BONSAI_GGUF` — serve a different GGUF file instead
 - `BONSAI_MMPROJ` — image projector that belongs to it
@@ -231,6 +235,18 @@ Copy `.env.example` to `.env`, then edit. The ones you might need:
 
 - Server not answering? → `make status`, then `make logs`
 - Out of GPU memory? → put `BONSAI_NGL=40` in `.env` (fewer layers on the GPU) and `make stop && make start`
+- `/v1/systemone` timing out under load? → latency that climbs until requests time out means the
+  slots are saturated: raise `BONSAI_NP=8` (or 16) in `.env`, or lower your client's worker count
+- Slow even when idle? → the endpoint re-prefills the prompt per answer label, so cost is
+  ~`prompt_tokens × labels`; within-request prefix reuse is already on, and cross-request
+  `--cache-reuse` measured no gain here (`make start LLAMA_ARGS="--cache-reuse 256"`, 12.6s vs
+  12.5s baseline) — check `usage.input_tokens`, shorten the state or the question fan-out
+- "But my GPU is stronger than this!" → under one big request the GPU reads 100% util at ~350 W,
+  yet the ternary Q2_64 prefill kernel is compute-bound at ~3k tok/s — measured flat across
+  `-b/-ub` up to 16384/4096, FA already on, cache-reuse no-op, and a second instance on the same
+  GPU made it *worse* (contention). Slots stop mattering for the same reason. The one scaling
+  lever left is a second physical GPU: `CUDA_VISIBLE_DEVICES=0 PORT=5383 bash scripts/start_llama_server.sh &`
+  and split your eval workers across the two ports (~linear scaling per card).
 - Want a different model? → set `BONSAI_GGUF=/path/to/model.gguf` in `.env`
 
 MIT license. The underlying engine is [llama.cpp](https://github.com/ggml-org/llama.cpp);

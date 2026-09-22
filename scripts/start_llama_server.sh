@@ -116,6 +116,18 @@ if [ -n "${BONSAI_MAX_TOKENS:-}" ] && [ "$BONSAI_MAX_TOKENS" != "-1" ]; then
     MAX_TOKENS_ARGS="--n-predict ${BONSAI_MAX_TOKENS}"
     echo "  Cap:     --n-predict ${BONSAI_MAX_TOKENS} (BONSAI_MAX_TOKENS)"
 fi
+
+# Parallel slots: BONSAI_NP=N in .env maps to --parallel N. This is how many
+# requests (systemone readouts included) can be in flight before they queue;
+# the default 4 makes concurrent eval runs serialize into a timeout spiral.
+# With unified KV (default) all slots share one -c pool, so extra slots cost
+# no additional VRAM. 0/unset = llama.cpp default. Speculative decoding
+# overrides this to 1 (drafting forces a single slot).
+NP_ARGS=""
+if [ -n "${BONSAI_NP:-}" ] && [ "$BONSAI_NP" != "0" ]; then
+    NP_ARGS="-np ${BONSAI_NP}"
+    echo "  Slots:   -np ${BONSAI_NP} (BONSAI_NP)"
+fi
 echo ""
 
 # 27B: --jinja enables native OpenAI-style tool calling; --mmproj enables
@@ -197,7 +209,7 @@ if [ "$_full_profile" = "1" ]; then
     [ -n "$_mmproj_cpu" ] && echo "  Vision:  projector on CPU/RAM (BONSAI_MMPROJ_CPU=1)"
     # shellcheck disable=SC2086
     exec "$BIN" -m "$MODEL" --host "$HOST" --port "$PORT" -ngl "$NGL" -fa on -c "$_ctx" \
-        $SAMPLING $MAX_TOKENS_ARGS \
+        $SAMPLING $MAX_TOKENS_ARGS $NP_ARGS \
         --jinja \
         ${API_KEY:+--api-key "$API_KEY"} ${ALIAS:+--alias "$ALIAS"} \
         ${MMPROJ:+--mmproj "$MMPROJ"} $_mmproj_cpu \
@@ -210,7 +222,7 @@ fi
 echo "  Context: -c $CTX_SIZE_DEFAULT (override with BONSAI_CTX, 0 = auto)"
 exec "$BIN" -m "$MODEL" --host "$HOST" --port "$PORT" -ngl "$NGL" -fa on -c "$CTX_SIZE_DEFAULT" \
     ${API_KEY:+--api-key "$API_KEY"} ${ALIAS:+--alias "$ALIAS"} \
-    $MAX_TOKENS_ARGS \
+    $MAX_TOKENS_ARGS $NP_ARGS \
     --temp 0.5 --top-p 0.85 --top-k 20 --min-p 0 \
     --reasoning-budget 0 --reasoning-format none \
     --chat-template-kwargs '{"enable_thinking": false}' \

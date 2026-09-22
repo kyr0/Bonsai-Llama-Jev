@@ -11,7 +11,7 @@ CONFIGURE_STAMP := $(BUILD_DIR)/.configure-args
 # Extra llama-server flags via LLAMA_ARGS (e.g. LLAMA_ARGS="-ngl 99"),
 # a custom GGUF via BONSAI_GGUF, and HF cache/credentials through to the server.
 # BONSAI_MAX_TOKENS caps generation server-wide (--n-predict).
-export PORT BONSAI_HOST BONSAI_API_KEY BONSAI_ALIAS BONSAI_GGUF BONSAI_MAX_TOKENS HF_HOME HF_TOKEN
+export PORT BONSAI_HOST BONSAI_API_KEY BONSAI_ALIAS BONSAI_GGUF BONSAI_MAX_TOKENS BONSAI_NP HF_HOME HF_TOKEN
 .PHONY: setup build configure configure-cuda configure-h200 configure-rtx-pro-6000-ada configure-rtx-5050 configure-rtx-3090 llama llama-server start logs status stop e2e-openai e2e-jev e2e
 
 # One-command setup: deps, venv, build (skipped if build/bin/llama-server exists),
