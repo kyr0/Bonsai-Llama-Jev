@@ -1,0 +1,212 @@
+#!/bin/sh
+# Start an OpenAI-compatible chat server with the Bonsai model.
+# Usage: ./scripts/start_llama_server.sh
+# Then open http://localhost:8080 in your browser.
+set -e
+
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+. "$SCRIPT_DIR/common.sh"
+[ -n "${BONSAI_GGUF:-}" ] || assert_valid_model
+DEMO_DIR="$(resolve_demo_dir)"
+cd "$DEMO_DIR"
+[ -n "${BONSAI_GGUF:-}" ] || assert_gguf_downloaded start_mlx_server.sh
+
+# Bind to localhost by default; override with BONSAI_HOST=0.0.0.0 for LAN/remote.
+HOST="${BONSAI_HOST:-127.0.0.1}"
+PORT="${PORT:-8080}"
+# Optional: require an API key on the endpoints (llama-server --api-key), and
+# override the model name reported by /v1/models (--alias). Set in .env.
+API_KEY="${BONSAI_API_KEY:-}"
+ALIAS="${BONSAI_ALIAS:-}"
+
+# ── Check port is free ──
+if curl -s --max-time 2 "http://localhost:$PORT/health" >/dev/null 2>&1; then
+    warn "llama-server is already running on port $PORT."
+    echo "  Stop it first with:  kill \$(lsof -ti TCP:$PORT)"
+    exit 1
+fi
+
+# ── Find binary first (its backend decides the ternary quant; see common.sh) ──
+BIN=""
+for _d in build/bin bin/mac bin/cuda bin/rocm bin/hip bin/vulkan bin/cpu llama.cpp/build/bin llama.cpp/build-mac/bin llama.cpp/build-cuda/bin; do
+    [ -f "$DEMO_DIR/$_d/llama-server" ] && BIN="$DEMO_DIR/$_d/llama-server" && break
+done
+if [ -z "$BIN" ]; then
+    err "llama-server not found. Run ./setup.sh or ./build.sh first."
+    exit 1
+fi
+BACKEND="$(backend_from_bin "$BIN")"
+
+if [ -n "${BONSAI_GGUF:-}" ]; then
+    # ── Custom model: BONSAI_GGUF points at any GGUF, skipping the family/size
+    # lookup. BONSAI_MMPROJ optionally pairs a vision projector. Relative paths
+    # resolve against the demo dir. Drafters / kv-bias files are searched next
+    # to the model file, exactly like a normal model dir.
+    MODEL="$BONSAI_GGUF"
+    case "$MODEL" in /*) ;; *) MODEL="$DEMO_DIR/$MODEL" ;; esac
+    if [ ! -f "$MODEL" ]; then
+        err "BONSAI_GGUF=$BONSAI_GGUF does not exist."
+        exit 1
+    fi
+    MMPROJ="${BONSAI_MMPROJ:-}"
+    if [ -n "$MMPROJ" ]; then
+        case "$MMPROJ" in /*) ;; *) MMPROJ="$DEMO_DIR/$MMPROJ" ;; esac
+        if [ ! -f "$MMPROJ" ]; then
+            err "BONSAI_MMPROJ=$BONSAI_MMPROJ does not exist."
+            exit 1
+        fi
+    fi
+    GGUF_MODEL_DIR="$(dirname "$MODEL")"
+    BONSAI_DISPLAY="$(basename "$MODEL")"
+    # Custom models always get the full launch profile (jinja tool calling,
+    # projector, drafter and KV4 discovery), independent of BONSAI_MODEL.
+    _full_profile=1
+else
+    # ── Find model: backend-aware selection, never the deprecated legacy Q2_0 ──
+    MODEL="$(select_model_gguf "$GGUF_MODEL_DIR" "$BACKEND" || true)"
+    if [ -z "$MODEL" ]; then
+        err "No model file for ${BONSAI_DISPLAY} found in ${GGUF_MODEL_DIR}/."
+        echo "  Re-run ./scripts/download_models.sh to fetch the model weights."
+        exit 1
+    fi
+    MODEL="$DEMO_DIR/$MODEL"
+
+    # ── Vision: use the multimodal projector when present (27B is a VLM) ──
+    MMPROJ=""
+    for _mp in $GGUF_MODEL_DIR/*mmproj*.gguf; do
+        [ -f "$_mp" ] && MMPROJ="$DEMO_DIR/$_mp" && break
+    done
+    if [ "$BONSAI_MODEL" = "27B" ] && [ -z "$MMPROJ" ]; then
+        warn "No mmproj file found in ${GGUF_MODEL_DIR}/ — image input disabled."
+        echo "  Re-run ./scripts/download_models.sh to fetch it."
+    fi
+    _full_profile=0
+    if [ "$BONSAI_MODEL" = "27B" ]; then
+        _full_profile=1
+    fi
+fi
+
+BIN_DIR="$(cd "$(dirname "$BIN")" && pwd)"
+export LD_LIBRARY_PATH="$BIN_DIR${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+
+echo ""
+echo "=== llama.cpp server (GGUF) ==="
+echo "  Model:   $(basename "$MODEL")"
+[ -n "$MMPROJ" ] && echo "  Vision:  $(basename "$MMPROJ")"
+echo "  Binary:  $BIN"
+echo ""
+echo "  Open http://localhost:$PORT in your browser to chat."
+echo "  API:  http://localhost:$PORT/v1/chat/completions"
+[ -n "$API_KEY" ] && echo "  Auth:    API key required (BONSAI_API_KEY)"
+[ -n "$ALIAS" ] && echo "  Alias:   served as \"$ALIAS\" in /v1/models"
+echo "  Press Ctrl+C to stop."
+echo ""
+
+NGL=$(bonsai_llama_ngl)
+if [ -n "${BONSAI_NGL:-}" ]; then
+    echo "  GPU:     -ngl $NGL (set via BONSAI_NGL)"
+else
+    echo "  GPU:     -ngl $NGL (auto-detected; override with BONSAI_NGL, 0 = CPU-only)"
+fi
+echo ""
+
+# 27B: --jinja enables native OpenAI-style tool calling; --mmproj enables
+# image input. Sampling: Bonsai 2 uses the base model's own defaults (temp 1.0,
+# top-p 0.95, top-k 20); the earlier 27B keeps the reference demo's 0.7.
+if [ "$BONSAI_FAMILY" = "bonsai2" ]; then
+    SAMPLING="--temp 1.0 --top-p 0.95 --top-k 20"
+else
+    SAMPLING="--temp 0.7 --top-p 0.95 --top-k 20 --min-p 0"
+fi
+# The 27B is a thinking model and thinking stays on; use the web UI's
+# Reasoning-effort picker per chat, or pass llama-server flags (e.g.
+# --reasoning-budget N) as extra args to this script.
+# Older sizes keep the exact flag set they were tested with.
+if [ "$_full_profile" = "1" ]; then
+    _imt=$(bonsai_image_max_tokens)
+    # Default MCP tool servers for the built-in web UI (admin defaults — the
+    # user can still edit/disable them in Settings -> MCP Client).
+    _webui_cfg="$SCRIPT_DIR/webui-config.json"
+
+    # Speculative decoding (opt-in, BONSAI_SPECULATIVE=1): pair the target with
+    # its dspark drafter for ~1.8-2x decode on code/reasoning workloads. It
+    # disables prompt-cache reuse and forces a single slot (-np 1), so it is off
+    # by default and lives on this standalone server, not the agentic Open WebUI
+    # path (which relies on the prompt cache).
+    MD=""
+    _spec_flags=""
+    _ctx="$CTX_SIZE_DEFAULT"
+    if [ "${BONSAI_SPECULATIVE:-0}" = "1" ]; then
+        # v7 builds read only converted (arch=dflash) drafters; the published legacy
+        # *dspark-Q4_1/bf16 files must be run through gguf-dspark-to-dflash first.
+        # See SPECULATIVE.md for the two commands. Converted files keep "dspark-dflash"
+        # in their name so they are found here (and never picked as the main model).
+        for _md in "$GGUF_MODEL_DIR"/*dspark-dflash*.gguf; do
+            [ -f "$_md" ] || continue
+            case "$_md" in /*) MD="$_md" ;; *) MD="$DEMO_DIR/$_md" ;; esac
+            break
+        done
+        if [ -n "$MD" ]; then
+            _nmax="${BONSAI_SPEC_NMAX:-$(bonsai_dspark_block_size "$MD")}"
+            _spec_flags="--spec-type draft-dspark --spec-draft-n-max $_nmax -ngld 999 -np 1"
+            # dspark re-prefills every request; give the model room to think
+            # (it drafts 1.5-2k tokens; a small context truncates answers).
+            # Raise the auto floor to 16384 if the tiered default is smaller;
+            # an explicit non-zero BONSAI_CTX wins as usual.
+            [ "$_ctx" -lt 16384 ] 2>/dev/null && _ctx=16384
+            echo "  Speculative: $(basename "$MD") (draft-dspark, n-max $_nmax)"
+        else
+            warn "BONSAI_SPECULATIVE=1 but no converted *dspark-dflash*.gguf drafter in ${GGUF_MODEL_DIR}/; running without speculation."
+            echo "  Convert the published drafter once (see SPECULATIVE.md, section 'Converting the published drafter')."
+            echo "  Re-run ./scripts/download_models.sh to fetch it."
+        fi
+    fi
+
+    # 4-bit KV cache (opt-in, BONSAI_KV4=1): stores the KV cache in Q4_0 to cut
+    # KV memory for very long contexts on tight machines (decode is slightly
+    # slower than F16 KV). If a mean-centering bias built by
+    # scripts/make_kv_bias.sh is present it is applied automatically for
+    # better quality.
+    _kv_args=""
+    KV_BIAS=""
+    if [ "${BONSAI_KV4:-0}" = "1" ]; then
+        _kv_args="--cache-type-k q4_0 --cache-type-v q4_0"
+        for _kb in "$GGUF_MODEL_DIR"/*kv-bias*.gguf; do
+            [ -f "$_kb" ] || continue
+            case "$_kb" in /*) KV_BIAS="$_kb" ;; *) KV_BIAS="$DEMO_DIR/$_kb" ;; esac
+            break
+        done
+        if [ -n "$KV_BIAS" ]; then
+            # The bias is calibrated with K-rotation off; inference must match
+            # (the loader rejects a mismatch by design).
+            export LLAMA_ATTN_ROT_DISABLE=1
+            echo "  KV cache: q4_0 + mean-centering ($(basename "$KV_BIAS"))"
+        else
+            echo "  KV cache: q4_0 (no bias; run ./scripts/make_kv_bias.sh for better quality)"
+        fi
+    fi
+
+    echo "  Context: -c $_ctx (override with BONSAI_CTX, 0 = auto)"
+    _mmproj_cpu=""
+    [ -n "$MMPROJ" ] && _mmproj_cpu=$(bonsai_mmproj_offload_flag)
+    [ -n "$_mmproj_cpu" ] && echo "  Vision:  projector on CPU/RAM (BONSAI_MMPROJ_CPU=1)"
+    # shellcheck disable=SC2086
+    exec "$BIN" -m "$MODEL" --host "$HOST" --port "$PORT" -ngl "$NGL" -fa on -c "$_ctx" \
+        $SAMPLING \
+        --jinja \
+        ${API_KEY:+--api-key "$API_KEY"} ${ALIAS:+--alias "$ALIAS"} \
+        ${MMPROJ:+--mmproj "$MMPROJ"} $_mmproj_cpu \
+        ${_imt:+--image-max-tokens "$_imt"} \
+        ${MD:+-md "$MD"} $_spec_flags \
+        $_kv_args ${KV_BIAS:+--kv-mean-center "$KV_BIAS"} \
+        --webui-config-file "$_webui_cfg" \
+        "$@"
+fi
+
+echo "  Context: -c $CTX_SIZE_DEFAULT (override with BONSAI_CTX, 0 = auto)"
+exec "$BIN" -m "$MODEL" --host "$HOST" --port "$PORT" -ngl "$NGL" -fa on -c "$CTX_SIZE_DEFAULT" \
+    ${API_KEY:+--api-key "$API_KEY"} ${ALIAS:+--alias "$ALIAS"} \
+    --temp 0.5 --top-p 0.85 --top-k 20 --min-p 0 \
+    --reasoning-budget 0 --reasoning-format none \
+    --chat-template-kwargs '{"enable_thinking": false}' \
+    "$@"

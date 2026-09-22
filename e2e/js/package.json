@@ -1,0 +1,7 @@
+{
+  "name": "winzling-jev-typesafe-js-e2e",
+  "private": true,
+  "type": "module",
+  "scripts": {"test": "node test-sdk.mjs"},
+  "dependencies": {"@typesafe-ai/sdk": "0.6.0"}
+}

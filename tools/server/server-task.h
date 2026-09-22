@@ -16,6 +16,7 @@ enum server_task_type {
     SERVER_TASK_TYPE_COMPLETION,
     SERVER_TASK_TYPE_EMBEDDING,
     SERVER_TASK_TYPE_RERANK,
+    SERVER_TASK_TYPE_SYSTEMONE,
     SERVER_TASK_TYPE_INFILL,
     SERVER_TASK_TYPE_CANCEL,
     SERVER_TASK_TYPE_CONTROL,
@@ -152,6 +153,8 @@ struct server_task {
     // used by SERVER_TASK_TYPE_INFERENCE
     task_params   params;
     server_tokens tokens;
+    // used by SERVER_TASK_TYPE_SYSTEMONE: answer-label tokens to read logits for
+    llama_tokens  systemone_tokens;
 
     // only used by CLI, this allow tokenizing CLI inputs on server side
     // we need this because mtmd_context and vocab are not accessible outside of server_context
@@ -195,6 +198,7 @@ struct server_task {
 
     bool need_logits() const {
         switch (type) {
+            case SERVER_TASK_TYPE_SYSTEMONE:
             case SERVER_TASK_TYPE_COMPLETION:
             case SERVER_TASK_TYPE_INFILL:
                 return true;
@@ -472,6 +476,15 @@ struct server_task_result_rerank : server_task_result {
     int32_t n_tokens;
 
     virtual json to_json() override;
+};
+
+struct server_task_result_systemone : server_task_result {
+    std::vector<float> logits;
+    int32_t n_tokens = 0;
+
+    virtual json to_json() override {
+        return {{"logits", logits}, {"input_tokens", n_tokens}};
+    }
 };
 
 struct server_task_result_error : server_task_result {

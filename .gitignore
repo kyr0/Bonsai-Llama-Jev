@@ -27,6 +27,7 @@
 /.cache/
 /.ccls-cache/
 /.direnv/
+/.env
 /.envrc
 /.idea/
 /.swiftpm
@@ -153,3 +154,8 @@ a.out.*
 
 AGENTS.local.md
 .pi/SYSTEM.md
+
+# Server runtime artifacts (pid/log from make start)
+output/
+
+!build.sh

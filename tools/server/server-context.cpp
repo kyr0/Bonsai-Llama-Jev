@@ -19,8 +19,10 @@
 
 #include <algorithm>
 #include <cstddef>
+#include <cmath>
 #include <cinttypes>
 #include <exception>
+#include <functional>
 #include <memory>
 #include <filesystem>
 #include <utility>
@@ -2268,6 +2270,7 @@ private:
             case SERVER_TASK_TYPE_INFILL:
             case SERVER_TASK_TYPE_EMBEDDING:
             case SERVER_TASK_TYPE_RERANK:
+            case SERVER_TASK_TYPE_SYSTEMONE:
                 {
                     // special case: if input is provided via CLI, tokenize it first
                     // otherwise, no need to tokenize as it's already done inside the HTTP thread
@@ -3700,6 +3703,27 @@ private:
             }
 
             if (slot.state == SLOT_STATE_DONE_PROMPT) {
+                if (slot.task->type == SERVER_TASK_TYPE_SYSTEMONE) {
+                    // prompt evaluated for the systemone label readout: copy the
+                    // requested answer-token logits and release the slot immediately
+                    const float * logits = llama_get_logits_ith(ctx_tgt, slot.i_batch - off);
+                    if (!logits) {
+                        send_error(slot, "Failed to read systemone logits", ERROR_TYPE_SERVER);
+                    } else {
+                        auto result = std::make_unique<server_task_result_systemone>();
+                        result->id = slot.task->id;
+                        result->index = slot.task->index;
+                        result->n_tokens = slot.task->n_tokens();
+                        for (llama_token token : slot.task->systemone_tokens) {
+                            result->logits.push_back(logits[token]);
+                        }
+                        queue_results.send(std::move(result));
+                    }
+                    slot.release();
+                    slot.i_batch = -1;
+                    return;
+                }
+
                 if (slot.task->type == SERVER_TASK_TYPE_EMBEDDING) {
                     // prompt evaluated for embedding
                     send_embedding(slot, batch_view);
@@ -4435,31 +4459,329 @@ static json get_res_model_info(const server_context_meta & meta) {
     };
 }
 
+// Typed-decision question for the /v1/systemone endpoint (TypeSafe/Jev API).
+// Ports OpenJev's direct next-token readout: each question becomes one prompt
+// with letter-labelled options; probabilities come from the final position's
+// native logits over the answer-label tokens. No tokens are generated.
+struct systemone_question {
+    static constexpr char alphabet[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    static constexpr size_t alphabet_size = sizeof(alphabet) - 1;
+
+    std::string name;
+    std::string type;
+    json instructions;
+    std::vector<std::string> keys;
+    std::vector<json> descriptions;
+    std::vector<size_t> alphabet_sizes;
+
+    static void validate_value(const json & value, const std::string & field, bool allow_null = false) {
+        if (!value.is_string() && !value.is_object() && !value.is_array() && !(allow_null && value.is_null())) {
+            throw std::invalid_argument(field + " must be a string, object or array" + (allow_null ? ", or null" : ""));
+        }
+    }
+
+    static std::vector<systemone_question> parse(const json & body) {
+        if (!body.is_object()) {
+            throw std::invalid_argument("systemone request body must be an object");
+        }
+        for (const char * field : {"state", "model", "questions"}) {
+            if (!body.contains(field)) {
+                throw std::invalid_argument(std::string(field) + " is required");
+            }
+        }
+        validate_value(body.at("state"), "state");
+        if (!body.at("questions").is_object()) {
+            throw std::invalid_argument("questions must be an object");
+        }
+        if (!body.at("model").is_string() || body.at("model").get<std::string>().empty()) {
+            throw std::invalid_argument("model must be a non-empty string");
+        }
+        for (const auto & field : body.items()) {
+            if (field.key() != "state" && field.key() != "questions" && field.key() != "model") {
+                throw std::invalid_argument("Unknown systemone field: " + field.key());
+            }
+        }
+        std::vector<systemone_question> result;
+        for (const auto & item : body.at("questions").items()) {
+            const auto & value = item.value();
+            const std::string field = "questions." + item.key();
+            if (item.key().empty() || !value.is_object() || !value.contains("type") || !value.at("type").is_string() || !value.contains("instructions")) {
+                throw std::invalid_argument(field + " must be a named question with a string type and instructions");
+            }
+            for (const auto & question_field : value.items()) {
+                if (question_field.key() != "type" && question_field.key() != "instructions" && question_field.key() != "criteria") {
+                    throw std::invalid_argument("Unknown field in questions." + item.key() + ": " + question_field.key());
+                }
+            }
+            systemone_question question;
+            question.name = item.key();
+            question.type = value.at("type").get<std::string>();
+            question.instructions = value.at("instructions");
+            validate_value(question.instructions, field + ".instructions");
+            const json criteria = value.value("criteria", json());
+            if (question.type == "noul") {
+                if (!criteria.is_null() && !criteria.is_object()) {
+                    throw std::invalid_argument(field + ".criteria must be an object or null for noul");
+                }
+                if (criteria.is_object()) {
+                    for (const auto & criterion : criteria.items()) {
+                        if (criterion.key() != "true" && criterion.key() != "false") {
+                            throw std::invalid_argument(field + ".criteria accepts only true and false for noul");
+                        }
+                    }
+                }
+                question.keys = {"yes", "no"};
+                for (const auto & key : {"true", "false"}) {
+                    question.descriptions.push_back(criteria.is_object() ? criteria.value(key, json()) : json());
+                }
+            } else if (question.type == "choice" || question.type == "score") {
+                const bool score = question.type == "score";
+                if ((score && !criteria.is_array()) || (!score && !criteria.is_object()) || criteria.size() < (score ? 2u : 1u)) {
+                    throw std::invalid_argument(field + ".criteria must contain " + (score ? "at least 2 array entries for score" : "at least 1 object entry for choice"));
+                }
+                for (const auto & criterion : criteria.items()) {
+                    question.keys.push_back(score ? std::to_string(question.keys.size()) : criterion.key());
+                    question.descriptions.push_back(criterion.value());
+                }
+            } else {
+                throw std::invalid_argument(field + ".type must be choice, score or noul");
+            }
+            for (size_t i = 0; i < question.descriptions.size(); ++i) {
+                const std::string key = question.type == "noul" ? (i == 0 ? "true" : "false") : question.keys[i];
+                validate_value(question.descriptions[i], field + ".criteria." + key, true);
+            }
+            question.init_alphabet_sizes();
+            result.push_back(std::move(question));
+        }
+        return result;
+    }
+
+    // Choose fixed-width label alphabet sizes with the smallest product covering
+    // all candidates; among equal products, minimize prefix readouts by placing
+    // smaller alphabets first. This keeps multi-character labels cheap.
+    void init_alphabet_sizes() {
+        if (keys.size() <= alphabet_size) {
+            alphabet_sizes = {keys.size()};
+            return;
+        }
+        size_t width = 0;
+        for (size_t remaining = keys.size() - 1; remaining; remaining /= alphabet_size) {
+            ++width;
+        }
+        std::vector<size_t> current(width);
+        size_t best_product = SIZE_MAX;
+        size_t best_readouts = SIZE_MAX;
+        // Sorted alphabets minimize prefix readouts for the same product.
+        std::function<void(size_t, size_t, size_t, size_t)> search = [&](size_t depth, size_t minimum, size_t product, size_t readouts) {
+            if (depth == width) {
+                if (product >= keys.size() && (product < best_product || (product == best_product && readouts < best_readouts))) {
+                    alphabet_sizes = current;
+                    best_product = product;
+                    best_readouts = readouts;
+                }
+                return;
+            }
+            size_t needed = (keys.size() - 1) / product + 1;
+            for (size_t i = depth; i < width; ++i) {
+                needed = (needed - 1) / alphabet_size + 1;
+            }
+            if (needed > 1) {
+                return;
+            }
+            if (depth + 1 == width) {
+                minimum = std::max(minimum, (keys.size() - 1) / product + 1);
+            }
+            for (size_t count = minimum; count <= alphabet_size; ++count) {
+                if (product > best_product / count) {
+                    break;
+                }
+                current[depth] = count;
+                search(depth + 1, count, product * count, readouts + product);
+            }
+        };
+        search(0, 2, 1, 0);
+        if (alphabet_sizes.empty()) {
+            throw std::invalid_argument("systemone label capacity exceeds the supported size");
+        }
+    }
+
+    std::string label(size_t index) const {
+        std::string result;
+        for (size_t count : alphabet_sizes) {
+            result += alphabet[index % count];
+            index /= count;
+        }
+        return result;
+    }
+
+    json messages(const json & state, bool allow_image, bool allow_audio) const {
+        json evidence = state;
+        json content = json::array();
+        bool has_media = false;
+        if (state.is_object() && state.contains("content") && state.at("content").is_array()) {
+            for (const auto & part : state.at("content")) {
+                const std::string type = part.is_object() ? json_value(part, "type", std::string()) : "";
+                has_media |= type == "image_url" || type == "input_audio" || type == "input_video";
+            }
+        }
+        if (has_media) {
+            content = state.at("content");
+            // Keep text parts and their paths in evidence; do not send base64 as text.
+            for (auto & part : evidence["content"]) {
+                if (part.is_object() && json_value(part, "type", std::string()) != "text") {
+                    part = {{"type", json_value(part, "type", std::string())}};
+                }
+            }
+            for (const auto & part : content) {
+                if (!part.is_object() || !part.contains("type") || !part.at("type").is_string()) {
+                    throw std::invalid_argument("state.content requires typed content parts");
+                }
+                const std::string type = part.at("type");
+                if (type == "text") {
+                    if (!part.contains("text") || !part.at("text").is_string()) {
+                        throw std::invalid_argument("text content requires a text string");
+                    }
+                } else if (type == "image_url" || type == "input_audio") {
+                    if ((type == "image_url" && !allow_image) || (type == "input_audio" && !allow_audio)) {
+                        throw std::invalid_argument("state media is not supported by the loaded model; use a matching model and --mmproj");
+                    }
+                    if (!part.contains(type) || !part.at(type).is_object()) {
+                        throw std::invalid_argument("Media content requires an image_url or input_audio object");
+                    }
+                    const auto & media = part.at(type);
+                    const char * key = type == "input_audio" && media.contains("data") ? "data" : "url";
+                    if (!media.contains(key) || !media.at(key).is_string() || media.at(key).get<std::string>().empty()) {
+                        throw std::invalid_argument("Media content requires a non-empty URL or base64 data string");
+                    }
+                } else {
+                    throw std::invalid_argument("state.content supports text, image_url and input_audio only");
+                }
+            }
+        }
+        json options = json::array();
+        for (size_t i = 0; i < keys.size(); ++i) {
+            json description = descriptions[i];
+            if (type == "noul") {
+                description = {{"answer", keys[i]}, {"criterion", descriptions[i]}};
+            }
+            json option = {{"letter", label(i)}, {"description", description}};
+            if (type == "choice") {
+                option["name"] = keys[i];
+            }
+            options.push_back(option);
+        }
+        const json payload = {{"evidence", evidence}, {"criterion", instructions}, {"options", options}};
+        json user_content = payload.dump();
+        if (!content.empty()) {
+            content.push_back({{"type", "text"}, {"text", payload.dump()}});
+            user_content = std::move(content);
+        }
+        return json::array({
+            {{"role", "system"}, {"content", keys.size() <= 26
+                ? "Apply the supplied criterion to the supplied evidence. Choose exactly one listed option. Respond with only its uppercase letter, with no explanation or reasoning."
+                : "Apply the supplied criterion to the supplied evidence. Choose exactly one listed option. Respond with only its case-sensitive alphanumeric label, with no explanation or reasoning."}},
+            {{"role", "user"}, {"content", user_content}},
+        });
+    }
+
+    static std::vector<double> probabilities(const std::vector<float> & logits) {
+        if (logits.empty()) {
+            throw std::runtime_error("Invalid systemone logit count");
+        }
+        const size_t best = std::max_element(logits.begin(), logits.end()) - logits.begin();
+        std::vector<double> probabilities;
+        double total = 0.0;
+        for (float logit : logits) {
+            if (!std::isfinite(logit)) {
+                throw std::runtime_error("Non-finite systemone logits");
+            }
+            const double weight = std::exp(double(logit) - logits[best]);
+            probabilities.push_back(weight);
+            total += weight;
+        }
+        for (double & probability : probabilities) {
+            probability /= total;
+        }
+        return probabilities;
+    }
+
+    json answer(std::vector<double> probabilities) const {
+        double total = 0.0;
+        for (double probability : probabilities) {
+            total += probability;
+        }
+        if (!std::isfinite(total) || total <= 0.0) {
+            throw std::runtime_error("Invalid systemone probability total");
+        }
+        // renormalize over the listed candidates (unlisted label combinations
+        // participated in the per-position normalization)
+        for (double & probability : probabilities) {
+            probability /= total;
+        }
+        const size_t best = std::max_element(probabilities.begin(), probabilities.end()) - probabilities.begin();
+        if (type == "noul") {
+            return {{"type", type}, {"noul", (probabilities[0] + 1.0 - probabilities[1]) * 0.5}};
+        }
+        json output = {{"type", type}, {"probabilities", json::object()}};
+        double confidence = probabilities[best];
+        double score = 0.0;
+        for (size_t i = 0; i < keys.size(); ++i) {
+            output["probabilities"][keys[i]] = probabilities[i];
+            score += i * probabilities[i];
+            if (i != best) {
+                confidence *= 1.0 - probabilities[i];
+            }
+            if (type == "score") {
+                output["legend"][keys[i]] = descriptions[i].is_string() ? descriptions[i].get<std::string>() : descriptions[i].dump();
+            }
+        }
+        output["confidence"] = confidence;
+        if (type == "score") {
+            output["score"] = score;
+        } else {
+            output["choice"] = keys[best];
+        }
+        return output;
+    }
+};
+
 static json get_res_models(const server_context_meta & meta) {
     // note: do NOT use ctx_server here, otherwise it's not possible to use this during sleep
 
+    const bool multimodal = meta.has_mtmd;
+
+    // one entry per servable name: the loaded model plus the TypeSafe/Jev
+    // aliases accepted by /v1/systemone on a single-model server
+    auto entry = [&](const std::string & name, const std::string & description) {
+        return json{
+            {"name",  name},
+            {"model", name},
+            {"modified_at", ""},
+            {"size", ""},
+            {"digest", ""}, // dummy value, llama.cpp does not support managing model file's hash
+            {"type", "model"},
+            {"description", description},
+            {"release_date", "2026-09-20"}, // TypeSafe SDKs require a YYYY-MM-DD string here
+            {"tags", json::array({""})},
+            {"capabilities", multimodal ? json::array({"completion","multimodal"}) : json::array({"completion"})},
+            {"parameters", ""},
+            {"details", {
+                {"parent_model", ""},
+                {"format", "gguf"},
+                {"family", ""},
+                {"families", json::array({""})},
+                {"parameter_size", ""},
+                {"quantization_level", ""}
+            }}
+        };
+    };
+
     return json{
         {"models", json::array({
-            {
-                {"name",  meta.model_name},
-                {"model", meta.model_name},
-                {"modified_at", ""},
-                {"size", ""},
-                {"digest", ""}, // dummy value, llama.cpp does not support managing model file's hash
-                {"type", "model"},
-                {"description", ""},
-                {"tags", json::array({""})},
-                {"capabilities", meta.has_mtmd ? json::array({"completion","multimodal"}) : json::array({"completion"})},
-                {"parameters", ""},
-                {"details", {
-                    {"parent_model", ""},
-                    {"format", "gguf"},
-                    {"family", ""},
-                    {"families", json::array({""})},
-                    {"parameter_size", ""},
-                    {"quantization_level", ""}
-                }}
-            }
+            entry(meta.model_name, "Local GGUF model served by llama-server"),
+            entry("jev-latest", "TypeSafe Jev compatibility alias for the loaded model"),
+            entry("jev-preview", "TypeSafe Jev preview alias for the loaded model"),
+            entry("winzling-jev-a8m", "TypeSafe Jev Winzling alias for the loaded model"),
         })},
         {"object", "list"},
         {"data", json::array({
@@ -5093,6 +5415,107 @@ void server_routes::init_routes() {
             top_n);
 
         res->ok(root);
+        return res;
+    };
+
+    this->post_systemone = [this](const server_http_req & req) {
+        auto res = create_response();
+        if (params.embedding) {
+            res->error(format_error_response("systemone requires a causal language model without --embedding or --reranking", ERROR_TYPE_NOT_SUPPORTED));
+            return res;
+        }
+        const json body = json::parse(req.body);
+        const auto questions = systemone_question::parse(body);
+        auto & rd = res->rd;
+        std::vector<server_task> tasks;
+        struct readout {
+            size_t question;
+            size_t offset;
+            size_t stride;
+        };
+        std::vector<readout> readouts;
+        std::vector<std::vector<double>> probabilities;
+        for (const auto & question : questions) {
+            probabilities.emplace_back(question.keys.size(), 1.0);
+            json chat = {
+                {"messages", question.messages(body.at("state"), meta->has_inp_image, meta->has_inp_audio)},
+                {"chat_template_kwargs", {{"enable_thinking", false}}},
+            };
+            std::vector<raw_buffer> files;
+            const json parsed = oaicompat_chat_params_parse(chat, meta->chat_params, files);
+            const std::string prompt = parsed.at("prompt");
+            const auto prefix = common_tokenize(ctx_server.vocab, prompt, true, true);
+            llama_tokens letters;
+            for (size_t i = 0; i < question.alphabet_sizes.back(); ++i) {
+                const std::string label(1, systemone_question::alphabet[i]);
+                const auto extended = common_tokenize(ctx_server.vocab, prompt + label, true, true);
+                if (extended.size() != prefix.size() + 1 || !std::equal(prefix.begin(), prefix.end(), extended.begin()) ||
+                    common_token_to_piece(ctx_server.vocab, extended.back()) != label ||
+                    std::find(letters.begin(), letters.end(), extended.back()) != letters.end()) {
+                    throw std::invalid_argument("Answer label " + label + " is not a distinct single token at the answer boundary for this model and chat template");
+                }
+                letters.push_back(extended.back());
+            }
+            server_tokens tokens;
+            if (ctx_server.mctx) {
+                tokens = process_mtmd_prompt(ctx_server.mctx, prompt, files);
+            } else {
+                tokens = std::move(tokenize_input_prompts(ctx_server.vocab, nullptr, prompt, true, true)[0]);
+            }
+            const size_t width = question.alphabet_sizes.size();
+            if (tokens.empty() || tokens.size() + width - 1 >= size_t(meta->slot_n_ctx)) {
+                throw std::invalid_argument("systemone prompt is empty or exceeds the slot context; increase --ctx-size");
+            }
+            // one readout per label prefix; the first prefill is uncached, later
+            // depth readouts reuse the prompt KV cache in their assigned slot
+            size_t stride = 1;
+            for (size_t depth = 0; depth < width; ++depth) {
+                const size_t count = question.alphabet_sizes[depth];
+                for (size_t offset = 0; offset < stride && offset < question.keys.size(); ++offset) {
+                    server_task task(SERVER_TASK_TYPE_SYSTEMONE);
+                    task.id = rd.get_new_id();
+                    task.params.cache_prompt = depth > 0;
+                    task.tokens = tokens.clone();
+                    size_t index = offset;
+                    for (size_t i = 0; i < depth; ++i) {
+                        task.tokens.push_back(letters[index % question.alphabet_sizes[i]]);
+                        index /= question.alphabet_sizes[i];
+                    }
+                    task.systemone_tokens.assign(letters.begin(), letters.begin() + count);
+                    readouts.push_back({probabilities.size() - 1, offset, stride});
+                    tasks.push_back(std::move(task));
+                }
+                if (depth + 1 < width) {
+                    stride *= count;
+                }
+            }
+        }
+        rd.post_tasks(std::move(tasks));
+        auto results = rd.wait_for_all(req.should_stop);
+        if (results.is_terminated) {
+            return res;
+        }
+        if (results.error) {
+            res->error(results.error->to_json());
+            return res;
+        }
+        json answers = json::object();
+        int64_t input_tokens = 0;
+        for (const auto & result : results.results) {
+            const auto * scored = dynamic_cast<const server_task_result_systemone *>(result.get());
+            GGML_ASSERT(scored != nullptr);
+            const auto & readout = readouts[scored->index];
+            const auto conditional = systemone_question::probabilities(scored->logits);
+            auto & joint = probabilities[readout.question];
+            for (size_t i = readout.offset; i < joint.size(); i += readout.stride) {
+                joint[i] *= conditional[(i / readout.stride) % conditional.size()];
+            }
+            input_tokens += scored->n_tokens;
+        }
+        for (size_t i = 0; i < questions.size(); ++i) {
+            answers[questions[i].name] = questions[i].answer(probabilities[i]);
+        }
+        res->ok({{"model", meta->model_name}, {"answers", answers}, {"usage", {{"input_tokens", input_tokens}, {"output_tokens", 0}}}});
         return res;
     };
 

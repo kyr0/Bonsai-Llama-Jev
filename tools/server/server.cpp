@@ -51,15 +51,28 @@ void llama_server_terminate() {
 
 // wrapper function that handles exceptions and logs errors
 // this is to make sure handler_t never throws exceptions; instead, it returns an error response
-static server_http_context::handler_t ex_wrapper(server_http_context::handler_t func) {
-    return [func = std::move(func)](const server_http_req & req) -> server_http_res_ptr {
+// invalid_request_status lets TypeSafe-style endpoints report schema errors as 422 instead of 400
+static server_http_context::handler_t ex_wrapper(server_http_context::handler_t func, int invalid_request_status = 400) {
+    return [func = std::move(func), invalid_request_status](const server_http_req & req) -> server_http_res_ptr {
         std::string message;
         error_type error;
         try {
-            return func(req);
+            auto res = func(req);
+            if (res && res->status == 400 && invalid_request_status != 400) {
+                json body = json::parse(res->data);
+                if (body.contains("error") && body.at("error").is_object()) {
+                    body["error"]["code"] = invalid_request_status;
+                }
+                res->data = safe_json_to_str(body);
+                res->status = invalid_request_status;
+            }
+            return res;
         } catch (const std::invalid_argument & e) {
             // treat invalid_argument as invalid request (400)
             error = ERROR_TYPE_INVALID_REQUEST;
+            message = e.what();
+        } catch (const common_json_error & e) {
+            error = invalid_request_status == 422 ? ERROR_TYPE_INVALID_REQUEST : ERROR_TYPE_SERVER;
             message = e.what();
         } catch (const std::exception & e) {
             // treat other exceptions as server error (500)
@@ -74,6 +87,9 @@ static server_http_context::handler_t ex_wrapper(server_http_context::handler_t 
         res->status = 500;
         try {
             json error_data = format_error_response(message, error);
+            if (error == ERROR_TYPE_INVALID_REQUEST) {
+                error_data["code"] = invalid_request_status;
+            }
             res->status = json_value(error_data, "code", 500);
             res->data = safe_json_to_str({{ "error", error_data }});
             SRV_WRN("got exception: %s\n", res->data.c_str());
@@ -210,6 +226,7 @@ int llama_server(common_params & params, int argc, char ** argv) {
         routes.post_embeddings             = models_routes->proxy_post;
         routes.post_embeddings_oai         = models_routes->proxy_post;
         routes.post_rerank                 = models_routes->proxy_post;
+        routes.post_systemone              = models_routes->proxy_post;
         routes.post_tokenize               = models_routes->proxy_post;
         routes.post_detokenize             = models_routes->proxy_post;
         routes.post_apply_template         = models_routes->proxy_post;
@@ -255,8 +272,9 @@ int llama_server(common_params & params, int argc, char ** argv) {
     ctx_http.post("/v1/embeddings",            ex_wrapper(routes.post_embeddings_oai));
     ctx_http.post("/rerank",                   ex_wrapper(routes.post_rerank));
     ctx_http.post("/reranking",                ex_wrapper(routes.post_rerank));
-    ctx_http.post("/v1/rerank",                ex_wrapper(routes.post_rerank));
-    ctx_http.post("/v1/reranking",             ex_wrapper(routes.post_rerank));
+    ctx_http.post("/v1/rerank",                   ex_wrapper(routes.post_rerank));
+    ctx_http.post("/v1/systemone",                ex_wrapper(routes.post_systemone, 422));
+    ctx_http.post("/v1/reranking",                ex_wrapper(routes.post_rerank));
     ctx_http.post("/tokenize",                 ex_wrapper(routes.post_tokenize));
     ctx_http.post("/detokenize",               ex_wrapper(routes.post_detokenize));
     ctx_http.post("/apply-template",           ex_wrapper(routes.post_apply_template));
