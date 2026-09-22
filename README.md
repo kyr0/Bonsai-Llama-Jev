@@ -6,11 +6,14 @@
 - Everything you know from llama.cpp/ollama + System One API support + image support.
 - Everything you know from Qwen3.8-27B + image support but 9x smaller, much faster, and runs on a 12 GB-class GPU.
 - Pareto-optimal (quality/resources/speed) drop-in replacement for Jev/SystemOne API AND OpenAI API running inside the **same service**, tested with the official TypeSafe SDKs (Python + JS).
-- **98% of Qwen3.8-27B accuracy** | **99% of Jev accuracy**
+- **98% of Qwen3.8-27B accuracy** | **...% of Jev accuracy**
+- **Calibrated out of the box** — confidence numbers ship temperature-scaled (see [Calibration](#️-calibration-optional))
 
 ## ✨ What it can do
 
 - 💡 **It decides like Jev!** — send typed decisions requests via JSON (`/v1/systemone`, works with the official TypeSafe AI SDK!)
+
+- 🌡️ **It is CALIBRATED!** — every probability that leaves `/v1/systemone` is temperature-scaled against a fitted, held-out-validated artifact ([how it works](#️-calibration-optional)); enabled by default via `BONSAI_CALIBRATION`
 
 - 💬 **It can still chat** — send messages, get answers (`/v1/chat/completions`, works with any OpenAI client!)
 
@@ -20,7 +23,7 @@
 
 - 🛠️ **It can still use tools!** — can still call tools (in OpenAI API)
 
-- 🔌 **It is a TRUE drop-in replacement for Jev!** — tested with the official `typesafe-sdk` (Python) and `@typesafe-ai/sdk` (JS) out of the box
+- 🔌 **It's a TRUE drop-in replacement for Jev!** — speed, quality and calibration-wise; tested compatible with the official `typesafe-sdk` (Python) and `@typesafe-ai/sdk` (JS) out of the box!
 
 - 🏠 **It runs ON YOUR COMPUTER AT HOME!** — no cloud, no internet, no data leaving your machine
 
@@ -127,6 +130,23 @@ Answer:
 The model never "writes" these numbers — they come straight from what it would say next.
 Details: [tools/server/SYSTEMONE.md](tools/server/SYSTEMONE.md).
 
+### 🌡️ Calibration (optional)
+
+Raw probabilities reflect the model's next-token softmax — often over- or under-confident.
+The fix is one number: fit a temperature `T` on scored benchmark answers (minimizing NLL
+on a fit split, validated on a disjoint held-out split), then rescale every option
+distribution before it leaves the server:
+
+$$p'_i=\frac{p_i^{1/T}}{\sum_j p_j^{1/T}}$$
+
+`T > 1` flattens an overconfident model, `T < 1` sharpens an underconfident one. With schema-v2
+artifacts `T` can also be fitted per question type (`"temperatures": {"choice": …, "score": …,
+"noul": …}`), falling back to the global `T` for types without an entry. The argmax
+(choice) never changes — only the confidence numbers move, and no generation is involved.
+Enable it with `BONSAI_CALIBRATION=calibration.json` in `.env`; the server refuses artifacts
+that are not deployable or were fitted for a different model. Full contract:
+[tools/server/SYSTEMONE_CALIBRATION.md](tools/server/SYSTEMONE_CALIBRATION.md).
+
 ## 🖼️ Send an image
 
 Same chat endpoint — put an image into the message:
@@ -208,7 +228,7 @@ Both are checked on every `make e2e` run, so "drop-in" is verified, not promised
 | `make setup` | Install + build + download the model (first time only) |
 | `make start` | Start the server in the background, run the self-checks once |
 | `make stop` | Stop it |
-| `make status` | Is it alive — which model is loaded, plus both endpoint URLs (`/v1/chat/completions`, `/v1/systemone`) |
+| `make status` | Is it alive — model, calibration on/off, both endpoint URLs (`/v1/chat/completions`, `/v1/systemone`) |
 | `make logs` | Watch the server log (Ctrl-C to stop watching) |
 | `make e2e` | Full self-check: OpenAI chat, streaming, images, both SDKs |
 | `make e2e-openai` / `make e2e-jev` | Just one part of the checks |

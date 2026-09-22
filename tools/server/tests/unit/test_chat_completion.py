@@ -59,6 +59,65 @@ def test_systemone_answers(state):
     assert ordinary.body["tokens_predicted"] == 2
 
 
+def test_systemone_temperature_calibration(tmp_path):
+    """A loaded artifact must transform the final option distribution, not generation."""
+    import math
+
+    server.n_ctx = 4096
+    body = {
+        "model": server.model_alias,
+        "state": "A delayed payment has been failing for three days.",
+        "questions": {
+            "team": {"type": "choice", "instructions": "Choose a team",
+                     "criteria": {"billing": "Payments", "support": "Other", "sales": "Pricing"}},
+            "severity": {"type": "score", "instructions": "Rate severity",
+                         "criteria": ["Low", "Medium", "High"]},
+            "urgent": {"type": "noul", "instructions": "Is this urgent?"},
+        },
+    }
+
+    server.start()
+    raw = server.make_request("POST", "/v1/systemone", data=body)
+    assert raw.status_code == 200, raw.body
+    model_name = raw.body["model"]
+    server.stop()
+
+    artifact = {
+        "schema_version": 1,
+        "kind": "typed-decision-temperature-calibration",
+        "method": "temperature_scaling",
+        "scope": "global",
+        "deployable": True,
+        "status": "ok",
+        "temperature": 2.0,
+        "source": {"model": model_name},
+    }
+    artifact_path = tmp_path / "calibration.json"
+    artifact_path.write_text(json.dumps(artifact))
+    server.systemone_calibration = str(artifact_path)
+    server.start()
+
+    calibrated = server.make_request("POST", "/v1/systemone", data=body)
+    assert calibrated.status_code == 200, calibrated.body
+    assert calibrated.body["usage"]["output_tokens"] == 0
+
+    def scale(values):
+        weights = {k: math.sqrt(max(1e-12, float(v))) for k, v in values.items()}
+        z = sum(weights.values())
+        return {k: v / z for k, v in weights.items()}
+
+    for name in ("team", "severity"):
+        expected = scale(raw.body["answers"][name]["probabilities"])
+        got = calibrated.body["answers"][name]["probabilities"]
+        assert got == pytest.approx(expected, abs=1e-9)
+        assert max(got, key=got.get) == max(raw.body["answers"][name]["probabilities"],
+                                            key=raw.body["answers"][name]["probabilities"].get)
+
+    raw_yes = raw.body["answers"]["urgent"]["noul"]
+    expected_yes = scale({"false": 1.0 - raw_yes, "true": raw_yes})["true"]
+    assert calibrated.body["answers"]["urgent"]["noul"] == pytest.approx(expected_yes, abs=1e-9)
+
+
 @pytest.mark.parametrize("question", [
     {"type": "choice", "instructions": "Pick", "criteria": {}},
     {"type": "score", "instructions": "Rate", "criteria": ["Only"]},

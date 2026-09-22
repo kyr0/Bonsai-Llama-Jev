@@ -11,7 +11,7 @@ CONFIGURE_STAMP := $(BUILD_DIR)/.configure-args
 # Extra llama-server flags via LLAMA_ARGS (e.g. LLAMA_ARGS="-ngl 99"),
 # a custom GGUF via BONSAI_GGUF, and HF cache/credentials through to the server.
 # BONSAI_MAX_TOKENS caps generation server-wide (--n-predict).
-export PORT BONSAI_HOST BONSAI_API_KEY BONSAI_ALIAS BONSAI_GGUF BONSAI_MAX_TOKENS BONSAI_NP HF_HOME HF_TOKEN
+export PORT BONSAI_HOST BONSAI_API_KEY BONSAI_ALIAS BONSAI_GGUF BONSAI_MAX_TOKENS BONSAI_NP BONSAI_CALIBRATION HF_HOME HF_TOKEN
 .PHONY: setup build configure configure-cuda configure-h200 configure-rtx-pro-6000-ada configure-rtx-5050 configure-rtx-3090 llama llama-server start logs status stop e2e-openai e2e-jev e2e
 
 # One-command setup: deps, venv, build (skipped if build/bin/llama-server exists),
@@ -79,18 +79,22 @@ start:
 	echo "start: server listening on :$(PORT) (pid $$pid) — running e2e warmup"; \
 	$(MAKE) --no-print-directory e2e
 
-# Is it alive — which model is loaded and which endpoints it serves
-# (BONSAI_HOST from .env, default 127.0.0.1). Model name comes from /v1/models,
-# the same lookup the e2e suites use; the key header is ignored unless the
-# server was started with BONSAI_API_KEY.
+# Is it alive — model, calibration, default hyperparams per endpoint, URLs.
+# Chat sampling defaults come from /props (server truth); System One is a pure
+# logits readout (no sampling), its only knob is the calibration temperature.
 status:
 	@health=$$(curl -s -m 3 "http://$(BONSAI_HOST):$(PORT)/health" || true); \
 	case "$$health" in \
 	  *ok*) echo "alive: http://$(BONSAI_HOST):$(PORT)  (health: $$health)"; \
 	        model=$$(curl -s -m 3 -H "Authorization: Bearer $(BONSAI_API_KEY)" "http://$(BONSAI_HOST):$(PORT)/v1/models" | python3 -c 'import json,sys; d=json.load(sys.stdin); print((d.get("models") or d.get("data") or [{}])[0].get("name") or "unknown")' 2>/dev/null || echo "(unknown)"); \
 	        echo "  model: $$model"; \
-	        echo "  chat:  http://$(BONSAI_HOST):$(PORT)/v1/chat/completions"; \
-	        echo "  typed: http://$(BONSAI_HOST):$(PORT)/v1/systemone" ;; \
+	        pid=$$(lsof -ti TCP:$(PORT) | head -1); \
+	        calib=$$(ps -p $$pid -o command= 2>/dev/null | sed -n 's/.*--systemone-calibration \([^ ]*\).*/\1/p'); \
+	        ct=$$(CALIB="$$calib" python3 -c 'import json,os; d=json.load(open(os.environ["CALIB"])); per=d.get("temperatures") or {}; print(" ".join(["T=%g"%d["temperature"]]+["%s=%g"%(k,v) for k,v in sorted(per.items())]))' 2>/dev/null || true); \
+	        if [ -n "$$calib" ]; then echo "  calib: on  ($$ct, $$calib)"; else echo "  calib: off"; fi; \
+	        hyper=$$(curl -s -m 3 -H "Authorization: Bearer $(BONSAI_API_KEY)" "http://$(BONSAI_HOST):$(PORT)/props" | python3 -c 'import json,sys; p=json.load(sys.stdin).get("default_generation_settings",{}).get("params",{}); print("temp %g, top_p %g, top_k %g"%(p.get("temperature"),p.get("top_p"),p.get("top_k")))' 2>/dev/null || echo "(unavailable)"); \
+	        echo "  chat:  http://$(BONSAI_HOST):$(PORT)/v1/chat/completions  ($$hyper)"; \
+	        echo "  typed: http://$(BONSAI_HOST):$(PORT)/v1/systemone  (greedy logits, no sampling)" ;; \
 	  *)    echo "(not running or still warming up on :$(PORT))" ;; \
 	esac
 

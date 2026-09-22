@@ -3463,6 +3463,13 @@ common_params_context common_params_parser_init(common_params & params, llama_ex
         }
     ).set_examples({LLAMA_EXAMPLE_SERVER}).set_env("LLAMA_ARG_RERANKING"));
     add_opt(common_arg(
+        {"--systemone-calibration"}, "FNAME",
+        "path to a deployable typed-decision-bench calibration.json for /v1/systemone",
+        [](common_params & params, const std::string & value) {
+            params.systemone_calibration = value;
+        }
+    ).set_examples({LLAMA_EXAMPLE_SERVER}).set_env("LLAMA_ARG_SYSTEMONE_CALIBRATION"));
+    add_opt(common_arg(
         {"--api-key"}, "KEY",
         "API key to use for authentication, multiple keys can be provided as a comma-separated list (default: none)",
         [](common_params & params, const std::string & value) {

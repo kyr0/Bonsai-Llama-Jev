@@ -128,6 +128,22 @@ if [ -n "${BONSAI_NP:-}" ] && [ "$BONSAI_NP" != "0" ]; then
     NP_ARGS="-np ${BONSAI_NP}"
     echo "  Slots:   -np ${BONSAI_NP} (BONSAI_NP)"
 fi
+
+# Typed-decision calibration (tools/server/SYSTEMONE_CALIBRATION.md):
+# BONSAI_CALIBRATION points at a deployable calibration.json from the
+# typed-decision-bench harness and maps to llama-server
+# --systemone-calibration. Relative paths resolve against the demo dir.
+CAL_ARGS=""
+if [ -n "${BONSAI_CALIBRATION:-}" ]; then
+    CAL="$BONSAI_CALIBRATION"
+    case "$CAL" in /*) ;; *) CAL="$DEMO_DIR/$CAL" ;; esac
+    if [ ! -f "$CAL" ]; then
+        err "BONSAI_CALIBRATION=$BONSAI_CALIBRATION does not exist."
+        exit 1
+    fi
+    CAL_ARGS="--systemone-calibration $CAL"
+    echo "  Calib:   --systemone-calibration $CAL"
+fi
 echo ""
 
 # 27B: --jinja enables native OpenAI-style tool calling; --mmproj enables
@@ -209,7 +225,7 @@ if [ "$_full_profile" = "1" ]; then
     [ -n "$_mmproj_cpu" ] && echo "  Vision:  projector on CPU/RAM (BONSAI_MMPROJ_CPU=1)"
     # shellcheck disable=SC2086
     exec "$BIN" -m "$MODEL" --host "$HOST" --port "$PORT" -ngl "$NGL" -fa on -c "$_ctx" \
-        $SAMPLING $MAX_TOKENS_ARGS $NP_ARGS \
+        $SAMPLING $MAX_TOKENS_ARGS $NP_ARGS $CAL_ARGS \
         --jinja \
         ${API_KEY:+--api-key "$API_KEY"} ${ALIAS:+--alias "$ALIAS"} \
         ${MMPROJ:+--mmproj "$MMPROJ"} $_mmproj_cpu \
@@ -222,7 +238,7 @@ fi
 echo "  Context: -c $CTX_SIZE_DEFAULT (override with BONSAI_CTX, 0 = auto)"
 exec "$BIN" -m "$MODEL" --host "$HOST" --port "$PORT" -ngl "$NGL" -fa on -c "$CTX_SIZE_DEFAULT" \
     ${API_KEY:+--api-key "$API_KEY"} ${ALIAS:+--alias "$ALIAS"} \
-    $MAX_TOKENS_ARGS $NP_ARGS \
+    $MAX_TOKENS_ARGS $NP_ARGS $CAL_ARGS \
     --temp 0.5 --top-p 0.85 --top-k 20 --min-p 0 \
     --reasoning-budget 0 --reasoning-format none \
     --chat-template-kwargs '{"enable_thinking": false}' \

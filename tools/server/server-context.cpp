@@ -23,6 +23,7 @@
 #include <cinttypes>
 #include <exception>
 #include <functional>
+#include <limits>
 #include <memory>
 #include <filesystem>
 #include <utility>
@@ -4465,6 +4466,153 @@ static json get_res_model_info(const server_context_meta & meta) {
     };
 }
 
+struct systemone_calibration_config {
+    bool enabled = false;
+    double temperature = 1.0;
+    // schema v2: per-question-type temperature overrides ("choice"/"score"/"noul");
+    // a type without an entry falls back to the global temperature.
+    std::map<std::string, double> temperatures;
+    std::string model;
+    std::string path;
+
+    static systemone_calibration_config load(const std::string & path) {
+        systemone_calibration_config config;
+        if (path.empty()) {
+            return config;
+        }
+
+        std::ifstream input(path);
+        if (!input) {
+            throw std::runtime_error("failed to open systemone calibration file: " + path);
+        }
+
+        // this fork's common_json does not provide operator>>; parse from text
+        json data;
+        try {
+            const std::string content((std::istreambuf_iterator<char>(input)), std::istreambuf_iterator<char>());
+            data = json::parse(content);
+        } catch (const std::exception & e) {
+            throw std::runtime_error("failed to parse systemone calibration file " + path + ": " + e.what());
+        }
+
+        auto require_string = [&](const char * key, const char * expected) {
+            if (!data.contains(key) || !data.at(key).is_string() || data.at(key).get<std::string>() != expected) {
+                throw std::runtime_error("invalid systemone calibration " + std::string(key) + " in " + path);
+            }
+        };
+
+        if (!data.is_object() || !data.contains("schema_version") ||
+                !data.at("schema_version").is_number_integer() ||
+                (data.at("schema_version").get<int>() != 1 && data.at("schema_version").get<int>() != 2)) {
+            throw std::runtime_error("unsupported systemone calibration schema_version in " + path);
+        }
+        require_string("kind", "typed-decision-temperature-calibration");
+        require_string("method", "temperature_scaling");
+        // v1 artifacts are global-scope; v2 may narrow the fit per question type.
+        {
+            const int schema_version = data.at("schema_version").get<int>();
+            const std::string scope = data.contains("scope") && data.at("scope").is_string()
+                ? data.at("scope").get<std::string>() : std::string();
+            if (scope != "global" && !(schema_version == 2 && scope == "per_qtype")) {
+                throw std::runtime_error("invalid systemone calibration scope in " + path);
+            }
+        }
+        require_string("status", "ok");
+        if (!data.contains("deployable") || !data.at("deployable").is_boolean() || !data.at("deployable").get<bool>()) {
+            throw std::runtime_error("systemone calibration artifact is not deployable: " + path);
+        }
+        if (!data.contains("temperature") || !data.at("temperature").is_number()) {
+            throw std::runtime_error("systemone calibration temperature is missing or non-numeric: " + path);
+        }
+        const double temperature = data.at("temperature").get<double>();
+        if (!std::isfinite(temperature) || temperature <= 0.0) {
+            throw std::runtime_error("systemone calibration temperature must be finite and > 0: " + path);
+        }
+        // schema v2: optional per-question-type temperature overrides; values are
+        // validated with the same rules as the global temperature.
+        if (data.contains("temperatures") && !data.at("temperatures").is_object()) {
+            throw std::runtime_error("systemone calibration temperatures must be an object: " + path);
+        }
+        if (data.contains("temperatures")) {
+            for (const auto & entry : data.at("temperatures").items()) {
+                if (!entry.value().is_number()) {
+                    throw std::runtime_error("systemone calibration temperatures." + entry.key() + " must be numeric: " + path);
+                }
+                const double value = entry.value().get<double>();
+                if (!std::isfinite(value) || value <= 0.0) {
+                    throw std::runtime_error("systemone calibration temperatures." + entry.key() + " must be finite and > 0: " + path);
+                }
+            }
+        }
+        if (!data.contains("source") || !data.at("source").is_object() ||
+                !data.at("source").contains("model") || !data.at("source").at("model").is_string() ||
+                data.at("source").at("model").get<std::string>().empty()) {
+            throw std::runtime_error("systemone calibration source.model is required: " + path);
+        }
+
+        if (data.contains("temperatures")) {
+            for (const auto & entry : data.at("temperatures").items()) {
+                config.temperatures[entry.key()] = entry.value().get<double>();
+            }
+        }
+        config.enabled = true;
+        config.temperature = temperature;
+        config.model = data.at("source").at("model").get<std::string>();
+        config.path = path;
+        return config;
+    }
+
+    double temperature_for(const std::string & question_type) const {
+        const auto it = temperatures.find(question_type);
+        return it != temperatures.end() ? it->second : temperature;
+    }
+
+    std::vector<double> apply(std::vector<double> probabilities, const std::string & question_type) const {
+        if (!enabled) {
+            return probabilities;
+        }
+        double total = 0.0;
+        for (double probability : probabilities) {
+            if (!std::isfinite(probability) || probability < 0.0) {
+                throw std::runtime_error("invalid System One probability before calibration");
+            }
+            total += probability;
+        }
+        if (!std::isfinite(total) || total <= 0.0) {
+            throw std::runtime_error("invalid System One probability total before calibration");
+        }
+        for (double & probability : probabilities) {
+            probability /= total;
+        }
+        const double effective = temperature_for(question_type);
+        if (std::abs(effective - 1.0) <= 1e-15) {
+            return probabilities;
+        }
+
+        const double beta = 1.0 / effective;
+        std::vector<double> log_weights;
+        log_weights.reserve(probabilities.size());
+        double peak = -std::numeric_limits<double>::infinity();
+        for (double probability : probabilities) {
+            const double value = beta * std::log(std::max(1e-12, probability));
+            log_weights.push_back(value);
+            peak = std::max(peak, value);
+        }
+        double z = 0.0;
+        for (double & value : log_weights) {
+            value = std::exp(value - peak);
+            z += value;
+        }
+        if (!std::isfinite(z) || z <= 0.0) {
+            throw std::runtime_error("invalid System One calibrated probability total");
+        }
+        for (double & value : log_weights) {
+            value /= z;
+        }
+        return log_weights;
+    }
+};
+
 // Typed-decision question for the /v1/systemone endpoint (TypeSafe/Jev API).
 // Ports OpenJev's direct next-token readout: each question becomes one prompt
 // with letter-labelled options; probabilities come from the final position's
@@ -4848,6 +4996,8 @@ json server_routes::get_model_info() const {
 }
 
 void server_routes::init_routes() {
+    const auto systemone_calibration = systemone_calibration_config::load(params.systemone_calibration);
+
     // IMPORTANT: all lambda functions must start with create_response()
     // this is to ensure that the server_res_generator can handle sleeping case correctly
 
@@ -5424,10 +5574,16 @@ void server_routes::init_routes() {
         return res;
     };
 
-    this->post_systemone = [this](const server_http_req & req) {
+    this->post_systemone = [this, systemone_calibration](const server_http_req & req) {
         auto res = create_response();
         if (params.embedding) {
             res->error(format_error_response("systemone requires a causal language model without --embedding or --reranking", ERROR_TYPE_NOT_SUPPORTED));
+            return res;
+        }
+        if (systemone_calibration.enabled && systemone_calibration.model != meta->model_name) {
+            res->error(format_error_response(
+                "systemone calibration model mismatch: artifact is for '" + systemone_calibration.model +
+                "', loaded model is '" + meta->model_name + "'", ERROR_TYPE_INVALID_REQUEST));
             return res;
         }
         const json body = json::parse(req.body);
@@ -5519,7 +5675,7 @@ void server_routes::init_routes() {
             input_tokens += scored->n_tokens;
         }
         for (size_t i = 0; i < questions.size(); ++i) {
-            answers[questions[i].name] = questions[i].answer(probabilities[i]);
+            answers[questions[i].name] = questions[i].answer(systemone_calibration.apply(std::move(probabilities[i]), questions[i].type));
         }
         res->ok({{"model", meta->model_name}, {"answers", answers}, {"usage", {{"input_tokens", input_tokens}, {"output_tokens", 0}}}});
         return res;
