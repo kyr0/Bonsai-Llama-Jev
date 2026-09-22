@@ -1,8 +1,5 @@
 # Turning a Causal Language Model into a Typed-Decision Engine at Inference Time
 
-**Target file:** `IMPLEMENTATION_METHOD.md`
-**Implementation inspected:** `kyr0/Bonsai-Llama-Jev` through commit `9203183e6c54fda23872f230e33c1985b713c10c` (2026-09-22)
-
 > **Scope.** This document explains the inference method implemented by `kyr0/Bonsai-Llama-Jev`: how an ordinary causal language model (LM) can be exposed as a Jev-like typed-decision service without sampling, without generating an answer sentence, and without changing the model weights.
 >
 > The central idea is simple: **stop after prompt evaluation, read the model's native next-token logits for a small set of answer-label tokens, normalize those logits into a categorical distribution, and reduce that distribution into a typed result.**
