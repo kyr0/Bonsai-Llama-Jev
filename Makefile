@@ -12,7 +12,7 @@ CONFIGURE_STAMP := $(BUILD_DIR)/.configure-args
 # a custom GGUF via BONSAI_GGUF, and HF cache/credentials through to the server.
 # BONSAI_MAX_TOKENS caps generation server-wide (--n-predict).
 export PORT BONSAI_HOST BONSAI_API_KEY BONSAI_ALIAS BONSAI_GGUF BONSAI_MAX_TOKENS BONSAI_NP BONSAI_CALIBRATION HF_HOME HF_TOKEN
-.PHONY: setup build configure configure-cuda configure-h200 configure-rtx-pro-6000-ada configure-rtx-5050 configure-rtx-3090 llama llama-server start logs status stop e2e-openai e2e-jev e2e
+.PHONY: setup build configure configure-cuda configure-h200 configure-rtx-pro-6000-ada configure-rtx-5050 configure-rtx-3090 llama llama-server start logs status stop e2e-openai e2e-jev e2e vram
 
 # One-command setup: deps, venv, build (skipped if build/bin/llama-server exists),
 # and the Bonsai-2-27B model download.
@@ -119,3 +119,19 @@ e2e-jev:
 # documented cURL request, Python typesafe-sdk, JS @typesafe-ai/sdk.
 e2e:
 	@bash e2e/run.sh
+
+PID_FILE := output/llama-serve.pid
+
+vram:
+	@if [[ ! -f $(PID_FILE) ]] || ! kill -0 "$$(cat $(PID_FILE))" 2>/dev/null; then \
+		echo "not running"; exit 1; \
+	fi; \
+	pids="$$(cat $(PID_FILE))"; \
+	while :; do \
+		children=$$(pgrep -P "$$(echo $$pids | tr ' ' ',')" 2>/dev/null | tr '\n' ' '); \
+		new=""; for c in $$children; do [[ " $$pids " == *" $$c "* ]] || new="$$new $$c"; done; \
+		[[ -z "$$new" ]] && break; pids="$$pids$$new"; \
+	done; \
+	nvidia-smi --query-compute-apps=pid,used_memory --format=csv,noheader,nounits | \
+	awk -v pids="$$pids" -F', ' '{ split(pids, a, " "); for (i in a) if ($$1+0 == a[i]+0) s += $$2 } \
+	END { if (s > 0) printf "VRAM used (incl. KV cache): %d MB\n", s; else { print "no GPU memory reported for server pid(s) " pids; exit 1 } }'

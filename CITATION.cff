@@ -1,0 +1,23 @@
+cff-version: 1.2.0
+message: >-
+  If you use this benchmark, its split contract, or the calibration standard
+  defined in CALIBRATION.md, please cite the repository as below.
+title: >-
+  typed-decision-bench: A held-out benchmark and Qtype-Stratified Temperature Scaling
+  standard for System One typed decisions
+type: software
+authors:
+  - name: "Aron Homberg"
+    email: "info@aron-homberg.de"
+repository-code: "https://github.com/kyr0/typed-decision-bench"
+url: "https://www.aron-homberg.de"
+version: "5"
+date-released: "2026-09-21"
+license: MIT
+keywords:
+  - benchmark
+  - calibration
+  - temperature-scaling
+  - system-one
+  - typed-decisions
+  - probabilistic-forecasting
