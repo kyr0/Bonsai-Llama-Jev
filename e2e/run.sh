@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-# Runs the full TypeSafe SDK compatibility suite against the running
-# llama-server: documented cURL request, Python typesafe-sdk, JS @typesafe-ai/sdk.
+# Runs the full compatibility suite against the running llama-server:
+# OpenAI endpoints, documented cURL request, Python typesafe-sdk, JS @typesafe-ai/sdk.
 set -euo pipefail
 cd "$(dirname "$0")/.."
 PORT="${PORT:-5382}"
@@ -10,6 +10,9 @@ if ! curl -sf -m 5 "$BASE/health" >/dev/null; then
   echo "e2e: server not running on :${PORT} — start it with: make start (or BONSAI_GGUF=/path/model.gguf make start)" >&2
   exit 1
 fi
+
+echo "== OpenAI-compatible endpoints =="
+bash e2e/openai.sh
 
 # the SDKs assert the response model name; ask the server what it serves
 API_KEY="${BONSAI_API_KEY:-local-dev-key}"

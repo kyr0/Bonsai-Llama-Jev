@@ -8,6 +8,7 @@ PORT="${PORT:-5382}"
 API_KEY="${BONSAI_API_KEY:-local-dev-key}"
 BASE="http://127.0.0.1:${PORT}"
 AUTH="Authorization: Bearer ${API_KEY}"
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 
 if ! curl -sf -m 5 "$BASE/health" >/dev/null; then
   echo "e2e-jev: server not running on :${PORT} — start it with: make start (or BONSAI_GGUF=/path/model.gguf make start)" >&2
@@ -78,3 +79,6 @@ assert err["code"] == 422 and "model" in err["message"] and "required" in err["m
 print("e2e-jev: validation PASS (422, missing field named)")
 PY
 rm -f /tmp/e2e-jev-err.json
+
+# Multimodal checks (shared with the openai suite): chat image_url + systemone media state.
+bash "$SCRIPT_DIR/media.sh"

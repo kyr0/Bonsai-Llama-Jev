@@ -4214,6 +4214,12 @@ std::unique_ptr<server_res_generator> server_routes::handle_completions_impl(
                     meta->logit_bias_eog,
                     data);
 
+            // Server-wide generation cap (--n-predict >= 0): requests may lower
+            // their budget via max_tokens/n_predict but never exceed the cap.
+            if (params.n_predict >= 0 && task.params.n_predict > params.n_predict) {
+                task.params.n_predict = params.n_predict;
+            }
+
             task.params.message_spans = task.tokens.find_message_spans(delimiters);
 
             task.id_slot = json_value(data, "id_slot", -1);

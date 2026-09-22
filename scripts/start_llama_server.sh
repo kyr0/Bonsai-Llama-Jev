@@ -108,6 +108,14 @@ if [ -n "${BONSAI_NGL:-}" ]; then
 else
     echo "  GPU:     -ngl $NGL (auto-detected; override with BONSAI_NGL, 0 = CPU-only)"
 fi
+
+# Optional server-wide generation cap: BONSAI_MAX_TOKENS=N in .env maps to
+# --n-predict N. Per-request max_tokens can only lower it, never exceed it.
+MAX_TOKENS_ARGS=""
+if [ -n "${BONSAI_MAX_TOKENS:-}" ] && [ "$BONSAI_MAX_TOKENS" != "-1" ]; then
+    MAX_TOKENS_ARGS="--n-predict ${BONSAI_MAX_TOKENS}"
+    echo "  Cap:     --n-predict ${BONSAI_MAX_TOKENS} (BONSAI_MAX_TOKENS)"
+fi
 echo ""
 
 # 27B: --jinja enables native OpenAI-style tool calling; --mmproj enables
@@ -124,9 +132,6 @@ fi
 # Older sizes keep the exact flag set they were tested with.
 if [ "$_full_profile" = "1" ]; then
     _imt=$(bonsai_image_max_tokens)
-    # Default MCP tool servers for the built-in web UI (admin defaults — the
-    # user can still edit/disable them in Settings -> MCP Client).
-    _webui_cfg="$SCRIPT_DIR/webui-config.json"
 
     # Speculative decoding (opt-in, BONSAI_SPECULATIVE=1): pair the target with
     # its dspark drafter for ~1.8-2x decode on code/reasoning workloads. It
@@ -192,20 +197,20 @@ if [ "$_full_profile" = "1" ]; then
     [ -n "$_mmproj_cpu" ] && echo "  Vision:  projector on CPU/RAM (BONSAI_MMPROJ_CPU=1)"
     # shellcheck disable=SC2086
     exec "$BIN" -m "$MODEL" --host "$HOST" --port "$PORT" -ngl "$NGL" -fa on -c "$_ctx" \
-        $SAMPLING \
+        $SAMPLING $MAX_TOKENS_ARGS \
         --jinja \
         ${API_KEY:+--api-key "$API_KEY"} ${ALIAS:+--alias "$ALIAS"} \
         ${MMPROJ:+--mmproj "$MMPROJ"} $_mmproj_cpu \
         ${_imt:+--image-max-tokens "$_imt"} \
         ${MD:+-md "$MD"} $_spec_flags \
         $_kv_args ${KV_BIAS:+--kv-mean-center "$KV_BIAS"} \
-        --webui-config-file "$_webui_cfg" \
         "$@"
 fi
 
 echo "  Context: -c $CTX_SIZE_DEFAULT (override with BONSAI_CTX, 0 = auto)"
 exec "$BIN" -m "$MODEL" --host "$HOST" --port "$PORT" -ngl "$NGL" -fa on -c "$CTX_SIZE_DEFAULT" \
     ${API_KEY:+--api-key "$API_KEY"} ${ALIAS:+--alias "$ALIAS"} \
+    $MAX_TOKENS_ARGS \
     --temp 0.5 --top-p 0.85 --top-k 20 --min-p 0 \
     --reasoning-budget 0 --reasoning-format none \
     --chat-template-kwargs '{"enable_thinking": false}' \

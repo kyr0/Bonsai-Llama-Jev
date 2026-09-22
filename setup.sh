@@ -270,8 +270,8 @@ info "Base deps installed (cmake, ninja, setuptools, huggingface-cli)."
 if [ -x "$SCRIPT_DIR/build/bin/llama-server" ]; then
     info "llama-server already built at build/bin/ — skipping build."
 else
-    step "Building llama.cpp from this checkout (build.sh) ..."
-    bash "$SCRIPT_DIR/build.sh"
+    step "Building llama.cpp from this checkout (make build) ..."
+    make -C "$SCRIPT_DIR" build
 fi
 
 # ────────────────────────────────────────────────────

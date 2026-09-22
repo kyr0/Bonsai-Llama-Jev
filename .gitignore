@@ -159,3 +159,5 @@ AGENTS.local.md
 output/
 
 !build.sh
+
+node_modules/
