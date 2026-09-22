@@ -376,6 +376,24 @@ Copy `.env.example` to `.env`, then edit. The ones you might need:
 - "But my GPU is stronger than this!" → in the documented reference measurements, one large request reached ~100% GPU utilization at ~350 W and the ternary Q2_64 prefill path behaved compute-bound around ~3k tok/s. Changing `-b/-ub` through the tested range and enabling cross-request cache reuse did not materially improve that workload; a second process on the same GPU was slower because of contention. A second physical GPU is one tested way to scale independent requests, but do not assume perfectly linear scaling on different hardware or workloads.
 - Want a different model? → set `BONSAI_GGUF=/path/to/model.gguf`. If you change the model or materially change the inference configuration, refit and re-evaluate the calibration artifact rather than reusing the bundled temperatures unchanged.
 
+## Citation
+
+If you use this inference engine or implement the method for turning causal language models into a typed-decision engine at inference time as described in [IMPLEMENTATION_PAPER.md](IMPLEMENTATION_PAPER.md), please cite the repository (see [CITATION.cff](CITATION.cff)):
+
+```bibtex
+@software{homberg2026bonsaillamajev,
+  author    = {Homberg, Aron},
+  title     = {Bonsai-Llama-Jev: Turning causal language models into a typed-decision engine at inference time with improved calibration via Qtype-stratified temperature scaling},
+  year      = {2026},
+  version   = {5},
+  publisher = {GitHub},
+  url       = {https://github.com/kyr0/Bonsai-Llama-Jev},
+  license   = {MIT}
+}
+```
+
+## License
+
 MIT license. The underlying engine is [llama.cpp](https://github.com/ggml-org/llama.cpp);
 
 its [docs folder](docs/) has everything else.

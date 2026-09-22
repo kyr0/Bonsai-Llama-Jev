@@ -1,21 +1,20 @@
 cff-version: 1.2.0
 message: >-
-  If you use this benchmark, its split contract, or the calibration standard
-  defined in CALIBRATION.md, please cite the repository as below.
+  If you use this inference engine, implement the method for turning causal language models into a typed-decision engine at inference time as
+  described in IMPLEMENTATION_PAPER.md, please cite the repository as below.
 title: >-
-  typed-decision-bench: A held-out benchmark and Qtype-Stratified Temperature Scaling
-  standard for System One typed decisions
+  Bonsai-Llama-Jev: Turning causal language models into a typed-decision engine at inference time with improved calibration via Qtype-stratified temperature scaling.
 type: software
 authors:
   - name: "Aron Homberg"
     email: "info@aron-homberg.de"
-repository-code: "https://github.com/kyr0/typed-decision-bench"
+repository-code: "https://github.com/kyr0/Bonsai-Llama-Jev"
 url: "https://www.aron-homberg.de"
 version: "5"
-date-released: "2026-09-21"
+date-released: "2026-09-22"
 license: MIT
 keywords:
-  - benchmark
+  - inference-engine
   - calibration
   - temperature-scaling
   - system-one
