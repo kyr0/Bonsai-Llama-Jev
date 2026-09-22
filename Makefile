@@ -79,8 +79,20 @@ start:
 	echo "start: server listening on :$(PORT) (pid $$pid) — running e2e warmup"; \
 	$(MAKE) --no-print-directory e2e
 
+# Is it alive — which model is loaded and which endpoints it serves
+# (BONSAI_HOST from .env, default 127.0.0.1). Model name comes from /v1/models,
+# the same lookup the e2e suites use; the key header is ignored unless the
+# server was started with BONSAI_API_KEY.
 status:
-	@curl -s -m 3 "http://127.0.0.1:$(PORT)/health" || echo "(not running or still warming up)"
+	@health=$$(curl -s -m 3 "http://$(BONSAI_HOST):$(PORT)/health" || true); \
+	case "$$health" in \
+	  *ok*) echo "alive: http://$(BONSAI_HOST):$(PORT)  (health: $$health)"; \
+	        model=$$(curl -s -m 3 -H "Authorization: Bearer $(BONSAI_API_KEY)" "http://$(BONSAI_HOST):$(PORT)/v1/models" | python3 -c 'import json,sys; d=json.load(sys.stdin); print((d.get("models") or d.get("data") or [{}])[0].get("name") or "unknown")' 2>/dev/null || echo "(unknown)"); \
+	        echo "  model: $$model"; \
+	        echo "  chat:  http://$(BONSAI_HOST):$(PORT)/v1/chat/completions"; \
+	        echo "  typed: http://$(BONSAI_HOST):$(PORT)/v1/systemone" ;; \
+	  *)    echo "(not running or still warming up on :$(PORT))" ;; \
+	esac
 
 # Follow the background server log (Ctrl-C to stop watching).
 logs:

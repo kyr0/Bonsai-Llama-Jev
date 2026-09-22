@@ -1,143 +1,237 @@
-# llama.cpp
+# 🌳🦙 Bonsai-Llama-Jev
 
-> [!IMPORTANT]
-> **This is the PrismML fork of llama.cpp**, the main line behind the [Bonsai](https://huggingface.co/collections/prism-ml/bonsai) models (branch `prism`, developed as `prism-v7`). It tracks current mainline llama.cpp and adds the fork's low-bit formats and runtime features on top.
->
-> **New here? Start with the [Bonsai-demo](https://github.com/PrismML-Eng/Bonsai-demo) repo.** It downloads the right models and the correct prebuilt binaries for your hardware/backend automatically.
->
-> **Which ternary model file to use:**
->
-> - `*-PQ2_0.gguf` (fork group-128, ggml id 142): preferred on Metal, CUDA, HIP and CPU. About 6% smaller than group-64.
-> - `*-Q2_0_g64.gguf` / 27B `*-Q2_g64.gguf` (official group-64, ggml id 42): runs on every backend here AND on mainline llama.cpp. If unsure, use this. Newer model releases name this file plain `*-Q2_0.gguf`.
-> - `*-Q2_0.gguf` on OLDER model repos is the **deprecated legacy format** (group 128 stored as id 42). It does not load on these builds; the error tells you which file to get instead. If you must run it, use the frozen [`prism-v5`](https://github.com/PrismML-Eng/llama.cpp/tree/prism-v5) line and its final release [`prism-b9601`](https://github.com/PrismML-Eng/llama.cpp/releases/tag/prism-b9601-68faa14).
->
-> **Speculative decoding (dspark)** is supported via mainline's draft-dspark plus fork patches. Drafters published for older model releases need a one-time conversion with `gguf-dspark-to-dflash` (see [SPECULATIVE.md](https://github.com/PrismML-Eng/Bonsai-demo/blob/main/SPECULATIVE.md) in Bonsai-demo); newer releases ship ready-to-use drafters.
->
-> Do NOT build from `prism-v6` (stale mid-migration snapshot) and do NOT mix this fork's `ggml-*` libraries with a stock llama.cpp build.
+**TL;DR:**
+- Everything you know from llama.cpp/ollama + System One API support + image support.
+- Everything you know from Qwen3.8-27B + image support but 9x smaller, much faster, and runs on a 12 GB-class GPU.
+- Pareto-optimal (quality/resources/speed) drop-in replacement for Jev/SystemOne API AND OpenAI API running inside the **same service**, tested with the official TypeSafe SDKs (Python + JS).
+- **98% of Qwen3.8-27B accuracy** | **99% of Jev accuracy**
 
----
+## ✨ What it can do
 
-![llama](https://raw.githubusercontent.com/ggml-org/llama.brand/refs/heads/master/cover/llama-cpp/cover-llama-cpp-dark.svg)
+- 💡 **It decides like Jev!** — send typed decisions requests via JSON (`/v1/systemone`, works with the official TypeSafe AI SDK!)
 
-<div align="center">
+- 💬 **It can still chat** — send messages, get answers (`/v1/chat/completions`, works with any OpenAI client!)
 
-<b>LLM inference in C/C++</b>
+- 🖼️ **It works with images!** — send a photo along with your question - **also** works with Jev-like requests!
 
-[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-[![Release](https://img.shields.io/github/v/release/ggml-org/llama.cpp?filter=v*&color=brightgreen)](https://github.com/ggml-org/llama.cpp/releases?q=tag:v0)
-[![Nightly](https://img.shields.io/github/v/release/ggml-org/llama.cpp?label=nightly&filter=b*&color=orange)](https://github.com/ggml-org/llama.cpp/releases?q=b)
-[![Server](https://img.shields.io/github/actions/workflow/status/ggml-org/llama.cpp/server.yml?label=Server)](https://github.com/ggml-org/llama.cpp/actions/workflows/server.yml)
-[![Docker](https://img.shields.io/github/actions/workflow/status/ggml-org/llama.cpp/docker.yml?label=Docker)](https://github.com/ggml-org/llama.cpp/actions/workflows/docker.yml)
-[![Winget](https://img.shields.io/github/actions/workflow/status/ggml-org/llama.cpp/winget.yml?label=Winget)](https://github.com/ggml-org/llama.cpp/actions/workflows/winget.yml)
+- 🧠 **It still thinks, before it answers!** — it can still reason (in OpenAI API)
 
-[ggml](https://github.com/ggml-org/ggml) / [ops](https://github.com/ggml-org/llama.cpp/blob/master/docs/ops.md) / [maintainer PRs](https://github.com/ggml-org/llama.cpp/issues?q=is%3Apr%20is%3Aopen%20draft%3AFalse%20(author%3Argerganov%20OR%20author%3AKitaitiMakoto%20OR%20author%3Adanbev%20OR%20author%3Aaldehir%20OR%20author%3Amax-krasnyansky%20OR%20author%3ACISC%20OR%20author%3Aggerganov%20OR%20author%3Aam17an%20OR%20author%3Abartowski1182%20OR%20author%3Anikwen%20OR%20author%3Ahipudding%20OR%20author%3AServeurpersoCom%20OR%20author%3Apwilkin%20OR%20author%3Areeselevine%20OR%20author%3Angxson%20OR%20author%3Ajeffbolznv%20OR%20author%3Amarty1885%20OR%20author%3A0cc4m%20OR%20author%3ATitaniumtown%20OR%20author%3Aangt%20OR%20author%3AIMbackK%20OR%20author%3Aarthw%20OR%20author%3AJohannesGaessler%20OR%20author%3AORippler%20OR%20author%3Aruixiang63%20OR%20author%3Axctan%20OR%20author%3Aallozaur%20OR%20author%3Ayomaytk%20OR%20author%3Aaendk%20OR%20author%3Agaugarg-nv%20OR%20author%3Ataronaeo%20OR%20author%3Aforforever73%20OR%20author%3Alhez%20OR%20author%3Anetrunnereve%20OR%20author%3Afairydreaming)%20sort%3Aupdated-desc) / [dev stats](https://github.com/ggml-org/llama.cpp-dev) / [lib llama API](https://github.com/ggml-org/llama.cpp/issues/9289) / [llama-server REST API](https://github.com/ggml-org/llama.cpp/issues/9291)
+- 🛠️ **It can still use tools!** — can still call tools (in OpenAI API)
 
-</div>
+- 🔌 **It is a TRUE drop-in replacement for Jev!** — tested with the official `typesafe-sdk` (Python) and `@typesafe-ai/sdk` (JS) out of the box
 
-## Quick start
+- 🏠 **It runs ON YOUR COMPUTER AT HOME!** — no cloud, no internet, no data leaving your machine
 
-A few options to get `llama.cpp` installed on your machine:
+- 🏎️ **It is REALLY FAST!** — 
+  - SystemOne API ("Typed Decisions"): 
+  - OpenAI API ("Chat"): 143 tokens/second on NVIDIA GeForce RTX 5090; 46.8 tokens/second on M5 Max
 
-- Visit https://llama.app and follow the instructions
-- Run with Docker - see our [Docker documentation](docs/docker.md)
-- Download pre-built binaries from the [releases page](https://github.com/ggml-org/llama.cpp/releases)
-- Build from source by cloning this repository - check out [our build guide](docs/build.md)
+- 🧩 **Small!** — 10 GB GPU (VRAM) memory **including** KV cache; 9x smaller than Qwen3.8-27B; a 12 GB-class GPU is enough!
 
-Once installed:
+- 🏆 **It is REALLY GOOD!**
+  - SystemOne API ("Typed Decisions"): 
+  - OpenAI API ("Chat"): **98%** of the official Qwen3.8-27B performance on average on the same tasks [see benchmark](https://prismml.com/news/bonsai-2-27b)
+
+## 🏗️ What it consumes
+
+| | | |
+| --- | --- | --- |
+| 🎮 GPU memory | ~10 GB | weights 7 GB + image projector (mmproj) 0.6 GB + KV cache/compute (at 64k context window) ≈ 2.3 GB |
+| 💽 Disk | ~20 GB | model files ~17 GB (you only need 3 of the 4 GGUFs), code + build ~1.6 GB |
+
+A 12 GB graphics card is enough. Run it on CPU without a GPU too, just slowly.
+
+## But is it actually GOOD?
+
+
+
+## And is it really FAST?
+
+
+
+## 🚀 Run it
+
+You need: a Linux or Mac machine, an NVIDIA GPU (recommended), about 20 GB of free disk.
+
+**Step 1 — install everything** (builds the server, downloads the model):
 
 ```sh
-# Download and run a model directly from Hugging Face
-llama cli -hf ggml-org/Qwen3.5-0.8B-GGUF
-
-# Launch OpenAI-compatible API server
-llama serve -hf ggml-org/Qwen3.5-0.8B-GGUF
+make setup
 ```
 
-<table align="center">
-    <tr>
-        <td align="center" width=50%>
-            <img width="1310" height="888" alt="VLM session with `llama cli`" src="https://github.com/user-attachments/assets/88726b48-1713-48aa-a525-95a02e78afc4" />
-            <i>VLM session with <b>llama cli</b></i>
-        </td>
-        <td align="center">
-            <img width="1392" height="958" alt="Built-in web UI against `llama serve` running Qwen 3.6" src="https://github.com/user-attachments/assets/b402f972-2e32-4def-8771-8d849f08cf2e" />
-            <i>Built-in web UI against <b>llama serve</b></i>
-        </td>
-    </tr>
-<table>
+**Step 2 — start it:**
 
-## Description
+```sh
+make start
+```
 
-The main goal of `llama.cpp` is to enable LLM (and VLM) inference with minimal setup and state-of-the-art performance on
-a wide range of hardware - locally and in the cloud.
+That's it. The server runs in the background at `http://localhost:8080`.
+`make start` also runs a few self-checks and prints PASS for each one.
 
-- Plain C/C++ implementation without any dependencies
-- Apple silicon is a first-class citizen - optimized via ARM NEON, Accelerate and Metal frameworks
-- AVX, AVX2, AVX512 and AMX support for x86 architectures
-- RVV, ZVFH, ZFH, ZICBOP and ZIHINTPAUSE support for RISC-V architectures
-- 1.5-bit, 2-bit, 3-bit, 4-bit, 5-bit, 6-bit, and 8-bit integer quantization for faster inference and reduced memory use
-- Custom CUDA kernels for running LLMs on NVIDIA GPUs (support for AMD GPUs via HIP and Moore Threads GPUs via MUSA)
-- Vulkan and SYCL backend support
-- CPU+GPU hybrid inference to partially accelerate models larger than the total VRAM capacity
+## 🗨️ First message
 
-The `llama.cpp` project is build on top of the [ggml](https://github.com/ggml-org/ggml) library.
+```sh
+curl http://localhost:8080/v1/chat/completions \
+  -H "Content-Type: application/json" \
+  -d '{"messages": [{"role": "user", "content": "Hello!"}], "max_tokens": 200}'
+```
 
-## Supported backends
+The answer is in the JSON under `choices[0].message.content`. With the OpenAI SDK, just point it
+at the server (key only needed if you set `BONSAI_API_KEY`):
 
-| Backend | Target devices |
+```python
+# pip install openai
+from openai import OpenAI
+
+client = OpenAI(base_url="http://localhost:8080/v1", api_key="local-dev-key")
+r = client.chat.completions.create(
+    model="local-model",  # any name works unless you set BONSAI_ALIAS
+    messages=[{"role": "user", "content": "Hello!"}],
+)
+print(r.choices[0].message.content)
+```
+
+Same for `@openai/openai` / any other OpenAI-compatible client — set the base URL and it works.
+
+## 🧠 Typed questions (`POST /v1/systemone`)
+
+Ask many questions at once and get numbers back:
+
+```sh
+curl http://localhost:8080/v1/systemone -H "Content-Type: application/json" -d '{
+  "model": "local-model",
+  "state": "My payouts have failed for three days, please help today.",
+  "questions": {
+    "department":  {"type": "choice", "instructions": "Which team handles this?",
+                    "criteria": {"billing": "Payments", "technical": "Bugs"}},
+    "urgency":     {"type": "noul",   "instructions": "The message is time-sensitive"},
+    "frustration": {"type": "score",  "instructions": "How frustrated?",
+                    "criteria": ["Calm", "Frustrated", "Furious"]}
+  }
+}'
+```
+
+Answer:
+
+```json
+{"answers": {
+  "department":  {"choice": "technical", "probabilities": {"billing": 0.07, "technical": 0.93}},
+  "urgency":     {"noul": 0.99},
+  "frustration": {"score": 1.01, "probabilities": {"0": 0.01, "1": 0.96, "2": 0.03}}
+}}
+```
+
+`noul` is a yes/no confidence from 0 to 1. `score` is the weighted average of the scale levels.
+The model never "writes" these numbers — they come straight from what it would say next.
+Details: [tools/server/SYSTEMONE.md](tools/server/SYSTEMONE.md).
+
+## 🖼️ Send an image
+
+Same chat endpoint — put an image into the message:
+
+```json
+{"role": "user", "content": [
+  {"type": "text", "text": "What is in this picture?"},
+  {"type": "image_url", "image_url": {"url": "data:image/png;base64,...."}}
+]}
+```
+
+Works for `/v1/systemone` too — the state becomes an object with a `content` array instead of a
+plain string (checked end to end by `make e2e-jev`):
+
+```sh
+curl http://localhost:8080/v1/systemone -H "Content-Type: application/json" -d '{
+  "model": "local-model",
+  "state": {
+    "ticket": "color-check",
+    "content": [
+      {"type": "text", "text": "What color is the square?"},
+      {"type": "image_url", "image_url": {"url": "data:image/png;base64,...."}}
+    ]
+  },
+  "questions": {
+    "is_red": {"type": "noul", "instructions": "The dominant shape in the image is red"},
+    "color":  {"type": "choice", "instructions": "Primary color of the shape",
+               "criteria": {"red": "red", "blue": "blue", "green": "green"}}
+  }
+}'
+```
+
+```json
+{"answers": {
+  "is_red": {"noul": 0.98},
+  "color":  {"choice": "red", "probabilities": {"red": 0.97, "blue": 0.02, "green": 0.01}}
+}}
+```
+
+Image tokens count toward `usage.input_tokens` like any other input.
+
+## 🔌 From code (SDKs)
+
+The typed endpoint speaks the TypeSafe wire format, so the official SDKs work as-is:
+
+```python
+# pip install typesafe-sdk
+from typesafe_sdk import Choice, Noul, TypeSafeClient
+
+with TypeSafeClient(base_url="http://localhost:8080") as client:  # + api_key if you set one
+    r = client.system_one(
+        state="My payouts have failed for three days, please help today.",
+        questions={
+            "department": Choice(instructions="Which team?", criteria={"billing": "Payments", "technical": "Bugs"}),
+            "urgency": Noul(instructions="The message is time-sensitive"),
+        },
+    )
+print(r.choices["department"].choice, r.nouls["urgency"].noul)  # technical 0.99
+```
+
+```js
+// npm i @typesafe-ai/sdk
+import { TypeSafeClient, choice } from "@typesafe-ai/sdk";
+
+const client = new TypeSafeClient({ baseURL: "http://localhost:8080" });
+const r = await client.systemOne({
+  state: "I was charged twice. Please fix this ASAP.",
+  questions: { tone: choice("Customer tone?", { calm: null, angry: null }) },
+});
+console.log(r.answers.tone.choice);
+```
+
+Both are checked on every `make e2e` run, so "drop-in" is verified, not promised.
+
+## 🎛️ Commands
+
+| Command | What it does |
 | --- | --- |
-| [BLAS](docs/build.md#blas-build) | All |
-| [BLIS](docs/backend/BLIS.md) | All |
-| [CANN](docs/build.md#cann) | Ascend NPU |
-| [CUDA](docs/build.md#cuda) | Nvidia GPU |
-| [HIP](docs/build.md#hip) | AMD GPU |
-| [Hexagon [In Progress]](docs/backend/snapdragon/README.md) | Snapdragon |
-| [IBM zDNN](docs/backend/zDNN.md) | IBM Z & LinuxONE |
-| [MUSA](docs/build.md#musa) | Moore Threads GPU |
-| [Metal](docs/build.md#metal-build) | Apple Silicon |
-| [OpenCL](docs/backend/OPENCL.md) | Adreno GPU |
-| [OpenVINO [In Progress]](docs/backend/OPENVINO.md) | Intel CPUs, GPUs, and NPUs |
-| [RPC](https://github.com/ggml-org/llama.cpp/tree/master/tools/rpc) | All |
-| [SYCL](docs/backend/SYCL.md) | Intel GPU |
-| [VirtGPU](docs/backend/VirtGPU.md) | VirtGPU APIR |
-| [Vulkan](docs/build.md#vulkan) | GPU |
-| [WebGPU](docs/build.md#webgpu) | All |
-| [ZenDNN](docs/build.md#zendnn) | AMD CPU |
+| `make setup` | Install + build + download the model (first time only) |
+| `make start` | Start the server in the background, run the self-checks once |
+| `make stop` | Stop it |
+| `make status` | Is it alive — which model is loaded, plus both endpoint URLs (`/v1/chat/completions`, `/v1/systemone`) |
+| `make logs` | Watch the server log (Ctrl-C to stop watching) |
+| `make e2e` | Full self-check: OpenAI chat, streaming, images, both SDKs |
+| `make e2e-openai` / `make e2e-jev` | Just one part of the checks |
+| `make configure-h200` | Pick your GPU (also `-rtx-pro-6000-ada`, `-rtx-5050`, `-rtx-3090`, or plain `-cuda`), then `make build` |
+| `make llama-server ARGS="..."` | Run the server binary yourself with your own flags |
 
-## Documentation
+## ⚙️ Settings
 
-#### Tools
+Copy `.env.example` to `.env`, then edit. The ones you might need:
 
-- [cli](tools/cli/README.md)
-- [completion](tools/completion/README.md)
-- [server](tools/server/README.md)
-- [GBNF grammars](grammars/README.md)
+- `PORT` — which port (default 8080)
+- `BONSAI_API_KEY` — require this password; empty = no password
+- `BONSAI_ALIAS` — model name shown in `/v1/models`
+- `BONSAI_MAX_TOKENS` — hard ceiling on generated tokens per request
+- `BONSAI_CTX` — context size (0 = auto)
+- `BONSAI_NGL` — GPU layers: `99` = everything (default), `0` = CPU only
+- `BONSAI_GGUF` — serve a different GGUF file instead
+- `BONSAI_MMPROJ` — image projector that belongs to it
+- `CUDA_VISIBLE_DEVICES` — which GPU, e.g. `1`
 
-#### Development
+## ❓ Something wrong?
 
-- [How to build](docs/build.md)
-- [Running on Docker](docs/docker.md)
-- [Build on Android](docs/android.md)
-- [Multi-GPU usage](docs/multi-gpu.md)
-- [Performance troubleshooting](docs/development/token_generation_performance_tips.md)
-- [GGML tips & tricks](https://github.com/ggml-org/llama.cpp/wiki/GGML-Tips-&-Tricks)
-- [XCFramework](docs/xcframework.md)
-- [Completions](docs/completions.md)
-- [Models](docs/models.md)
-- [Release process](docs/release.md)
+- Server not answering? → `make status`, then `make logs`
+- Out of GPU memory? → put `BONSAI_NGL=40` in `.env` (fewer layers on the GPU) and `make stop && make start`
+- Want a different model? → set `BONSAI_GGUF=/path/to/model.gguf` in `.env`
 
-## Contributing
-
-- Contributors can open PRs
-- Collaborators will be invited based on contributions
-- Maintainers can push to branches in the `llama.cpp` repo and merge PRs into the `master` branch
-- Any help with managing issues, PRs and projects is very appreciated!
-- Read the [CONTRIBUTING.md](CONTRIBUTING.md) for more information
-
-## Acknowledgements
-
-- [yhirose/cpp-httplib](https://github.com/yhirose/cpp-httplib) - Single-header HTTP server, used by `llama-server` - MIT license
-- [nothings/stb](https://github.com/nothings/stb) - Single-header image format decoder, used by multimodal subsystem - Public domain
-- [nlohmann/json](https://github.com/nlohmann/json) - Single-header JSON library, used by various tools/examples - MIT License
-- [mackron/miniaudio](https://github.com/mackron/miniaudio) - Single-header audio format decoder, used by multimodal subsystem - Public domain
-- [sheredom/subprocess.h](https://github.com/sheredom/subprocess.h) - Single-header process launching solution for C and C++ - Public domain
+MIT license. The underlying engine is [llama.cpp](https://github.com/ggml-org/llama.cpp);
+its [docs folder](docs/) has everything else.
