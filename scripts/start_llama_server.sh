@@ -1,7 +1,7 @@
 #!/bin/sh
 # Start an OpenAI-compatible chat server with the Bonsai model.
 # Usage: ./scripts/start_llama_server.sh
-# Then open http://localhost:8080 in your browser.
+# Then open http://localhost:54100 in your browser.
 set -e
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
@@ -13,11 +13,11 @@ cd "$DEMO_DIR"
 
 # Bind to localhost by default; override with BONSAI_HOST=0.0.0.0 for LAN/remote.
 HOST="${BONSAI_HOST:-127.0.0.1}"
-PORT="${PORT:-8080}"
+PORT="${PORT:-54100}"
 # Optional: require an API key on the endpoints (llama-server --api-key), and
 # override the model name reported by /v1/models (--alias). Set in .env.
 API_KEY="${BONSAI_API_KEY:-}"
-ALIAS="${BONSAI_ALIAS:-}"
+ALIAS="${BONSAI_ALIAS:-bonsai-2-27b}"
 
 # ── Check port is free ──
 if curl -s --max-time 2 "http://localhost:$PORT/health" >/dev/null 2>&1; then
@@ -130,11 +130,12 @@ if [ -n "${BONSAI_NP:-}" ] && [ "$BONSAI_NP" != "0" ]; then
 fi
 
 # Typed-decision calibration (tools/server/SYSTEMONE_CALIBRATION.md):
-# BONSAI_CALIBRATION points at a deployable calibration.json from the
-# typed-decision-bench harness and maps to llama-server
-# --systemone-calibration. Relative paths resolve against the demo dir.
+# BONSAI_CALIBRATION defaults to the committed calibration.json and maps to
+# llama-server --systemone-calibration. Relative paths resolve against the
+# demo dir. Set to "off" for uncalibrated probabilities.
+BONSAI_CALIBRATION="${BONSAI_CALIBRATION:-calibration.json}"
 CAL_ARGS=""
-if [ -n "${BONSAI_CALIBRATION:-}" ]; then
+if [ "$BONSAI_CALIBRATION" != "off" ]; then
     CAL="$BONSAI_CALIBRATION"
     case "$CAL" in /*) ;; *) CAL="$DEMO_DIR/$CAL" ;; esac
     if [ ! -f "$CAL" ]; then

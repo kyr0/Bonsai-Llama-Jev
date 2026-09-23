@@ -22,11 +22,16 @@
 - 🧩 **Compact reference deployment** — the documented configuration uses about 10 GB VRAM including weights, image projector, KV cache, and compute buffers, so it fits on a 12 GB-class GPU in that configuration.
 - 🏆 **Benchmark-backed quality claims only** — see the linked benchmark for the exact evaluated tasks and configuration rather than treating one percentage as a universal model-quality score.
 
+![startup.png](startup.png)
+
+
 ## 📰 News 
 
 2026-09-22 - [Paper on the method rendered](https://kyr0.github.io/Bonsai-Llama-Jev/).
 
 ## 💧 What it consumes
+
+Measured:
 
 | | | |
 | --- | --- | --- |
@@ -34,6 +39,8 @@
 | 💽 Disk | ~20 GB | model files ~17 GB (you only need 3 of the 4 GGUFs), code + build ~1.6 GB |
 
 The documented reference configuration fits on a 12 GB-class GPU. Actual memory use depends on context size, parallel slots, image projector, backend, and other server settings. CPU inference is also supported, with substantially lower throughput.
+
+![gpu_consumption.png](gpu_consumption.png)
 
 ## 🏆 But is it actually GOOD?
 
@@ -72,13 +79,13 @@ make setup
 ```sh
 make start
 ```
-That's it. The server runs in the background at `http://localhost:8080`.
+That's it. The server runs in the background at `http://localhost:54100`.
 
 `make start` also runs a few self-checks and prints PASS for each one.
 
 ## 🗨️ First message
 ```sh
-curl http://localhost:8080/v1/chat/completions \
+curl http://localhost:54100/v1/chat/completions \
   -H "Content-Type: application/json" \
   -d '{"messages": [{"role": "user", "content": "Hello!"}], "max_tokens": 200}'
 ```
@@ -88,9 +95,9 @@ at the server (key only needed if you set `BONSAI_API_KEY`):
 ```python
 # pip install openai
 from openai import OpenAI
-client = OpenAI(base_url="http://localhost:8080/v1", api_key="local-dev-key")
+client = OpenAI(base_url="http://localhost:54100/v1")
 r = client.chat.completions.create(
-    model="local-model",  # any name works unless you set BONSAI_ALIAS
+    model="bonsai-2-27b",  # any name works unless you set BONSAI_ALIAS
     messages=[{"role": "user", "content": "Hello!"}],
 )
 print(r.choices[0].message.content)
@@ -101,8 +108,8 @@ Other OpenAI-compatible clients can work when they use the API subset implemente
 
 Ask many questions at once and get numbers back:
 ```sh
-curl http://localhost:8080/v1/systemone -H "Content-Type: application/json" -d '{
-  "model": "local-model",
+curl http://localhost:54100/v1/systemone -H "Content-Type: application/json" -d '{
+  "model": "bonsai-2-27b",
   "state": "My payouts have failed for three days, please help today.",
   "questions": {
     "department":  {"type": "choice", "instructions": "Which team handles this?",
@@ -148,10 +155,7 @@ Schema-v2 artifacts can fit separate temperatures for `choice`, `noul`, and `sco
   }
 }
 ```
-Enable an artifact with:
-```bash
-BONSAI_CALIBRATION=calibration.json
-```
+The committed `calibration.json` artifact is enabled by default (`BONSAI_CALIBRATION`); set it to `off` or point it at another artifact to change that.
 The server validates the artifact and refuses one marked non-deployable or fitted for a different model name. Calibration is applied to the **final composed candidate distribution** before the typed answer fields are derived. Full loader/runtime contract: [tools/server/SYSTEMONE_CALIBRATION.md](tools/server/SYSTEMONE_CALIBRATION.md). Full mathematical and statistical methodology: [typed-decision-bench/CALIBRATION.md](https://github.com/kyr0/typed-decision-bench/blob/main/CALIBRATION.md).
 
 #### Reference experiment: Bonsai-2-27B, 2026-09-22
@@ -274,8 +278,8 @@ Works for `/v1/systemone` too — the state becomes an object with a `content` a
 
 plain string (checked end to end by `make e2e-jev`):
 ```sh
-curl http://localhost:8080/v1/systemone -H "Content-Type: application/json" -d '{
-  "model": "local-model",
+curl http://localhost:54100/v1/systemone -H "Content-Type: application/json" -d '{
+  "model": "bonsai-2-27b",
   "state": {
     "ticket": "color-check",
     "content": [
@@ -305,7 +309,7 @@ The typed endpoint implements the TypeSafe/System One wire shape exercised by th
 ```python
 # pip install typesafe-sdk
 from typesafe_sdk import Choice, Noul, TypeSafeClient
-with TypeSafeClient(base_url="http://localhost:8080") as client:  # + api_key if you set one
+with TypeSafeClient(base_url="http://localhost:54100") as client:  # + api_key if you set one
     r = client.system_one(
         state="My payouts have failed for three days, please help today.",
         questions={
@@ -319,7 +323,7 @@ print(r.choices["department"].choice, r.nouls["urgency"].noul)  # technical 0.99
 ```js
 // npm i @typesafe-ai/sdk
 import { TypeSafeClient, choice } from "@typesafe-ai/sdk";
-const client = new TypeSafeClient({ baseURL: "http://localhost:8080" });
+const client = new TypeSafeClient({ baseURL: "http://localhost:54100" });
 const r = await client.systemOne({
   state: "I was charged twice. Please fix this ASAP.",
   questions: { tone: choice("Customer tone?", { calm: null, angry: null }) },
@@ -347,7 +351,7 @@ Both paths are exercised by `make e2e`. Passing those tests establishes compatib
 
 Copy `.env.example` to `.env`, then edit. The ones you might need:
 
-- `PORT` — which port (default 8080)
+- `PORT` — which port (default 54100)
 
 - `BONSAI_API_KEY` — require this password; empty = no password
 
@@ -363,7 +367,7 @@ Copy `.env.example` to `.env`, then edit. The ones you might need:
 
 - `BONSAI_NGL` — GPU layers: `99` = everything (default), `0` = CPU only
 
-- `BONSAI_CALIBRATION` — optional path to a deployable typed-decision calibration artifact; the bundled Bonsai-2-27B configuration can use the committed `calibration.json`
+- `BONSAI_CALIBRATION` — path to a deployable typed-decision calibration artifact (default: the committed `calibration.json`; `off` = uncalibrated probabilities)
 - `BONSAI_GGUF` — serve a different GGUF file instead
 
 - `BONSAI_MMPROJ` — image projector that belongs to it

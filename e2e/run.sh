@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
 # Runs the full compatibility suite against the running llama-server:
-# OpenAI endpoints, documented cURL request, Python typesafe-sdk, JS @typesafe-ai/sdk.
+# OpenAI endpoints, documented cURL request, README worked examples,
+# Python typesafe-sdk, JS @typesafe-ai/sdk.
 set -euo pipefail
 cd "$(dirname "$0")/.."
-PORT="${PORT:-5382}"
+PORT="${PORT:-54100}"
 BASE="http://127.0.0.1:${PORT}"
 
 if ! curl -sf -m 5 "$BASE/health" >/dev/null; then
@@ -23,6 +24,9 @@ export TYPESAFE_API_KEY="$API_KEY"
 
 echo "== cURL documented request =="
 bash e2e/curl.sh
+
+echo "== README worked examples =="
+bash e2e/readme.sh
 
 echo "== Python typesafe-sdk =="
 if [ ! -x e2e/python/.venv/bin/python ]; then

@@ -4,7 +4,7 @@
 # three primitives (choice+score+noul fan-out), usage accounting, and the
 # TypeSafe model list — without needing the SDK packages.
 set -euo pipefail
-PORT="${PORT:-5382}"
+PORT="${PORT:-54100}"
 API_KEY="${BONSAI_API_KEY:-local-dev-key}"
 BASE="http://127.0.0.1:${PORT}"
 AUTH="Authorization: Bearer ${API_KEY}"

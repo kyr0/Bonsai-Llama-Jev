@@ -2,7 +2,8 @@ SHELL := /bin/bash
 # Optional .env (see .env.example) configures PORT, BONSAI_HOST, BONSAI_API_KEY,
 # BONSAI_ALIAS, ... — the scripts load it too (scripts/common.sh).
 -include .env
-PORT ?= 8080
+PORT ?= 54100
+BONSAI_CALIBRATION ?= calibration.json
 BONSAI_HOST ?= 127.0.0.1
 BUILD_DIR ?= build
 CUDA_PATH ?= /usr/local/cuda
@@ -81,7 +82,8 @@ start:
 	  echo "start: timeout waiting for listen — see output/llama-serve.log" >&2; exit 1; \
 	fi; \
 	echo "start: server listening on :$(PORT) (pid $$pid) — running e2e warmup"; \
-	$(MAKE) --no-print-directory e2e
+	$(MAKE) --no-print-directory e2e; \
+	$(MAKE) --no-print-directory status
 
 # Is it alive — model, calibration, default hyperparams per endpoint, URLs.
 # Chat sampling defaults come from /props (server truth); System One is a pure
@@ -90,7 +92,7 @@ status:
 	@health=$$(curl -s -m 3 "http://$(BONSAI_HOST):$(PORT)/health" || true); \
 	case "$$health" in \
 	  *ok*) echo "alive: http://$(BONSAI_HOST):$(PORT)  (health: $$health)"; \
-	        model=$$(curl -s -m 3 -H "Authorization: Bearer $(BONSAI_API_KEY)" "http://$(BONSAI_HOST):$(PORT)/v1/models" | python3 -c 'import json,sys; d=json.load(sys.stdin); print((d.get("models") or d.get("data") or [{}])[0].get("name") or "unknown")' 2>/dev/null || echo "(unknown)"); \
+	        model=$$(curl -s -m 3 -H "Authorization: Bearer $(BONSAI_API_KEY)" "http://$(BONSAI_HOST):$(PORT)/props" | python3 -c 'import json,sys,os; p=json.load(sys.stdin); a=p.get("model_alias") or p.get("model_path") or "unknown"; print("%s [%s]" % (os.path.basename(a).removesuffix(".gguf"), p.get("model_ftype") or "?"))' 2>/dev/null || echo "(unknown)"); \
 	        echo "  model: $$model"; \
 	        pid=$$(lsof -ti TCP:$(PORT) | head -1); \
 	        calib=$$(ps -p $$pid -o command= 2>/dev/null | sed -n 's/.*--systemone-calibration \([^ ]*\).*/\1/p'); \

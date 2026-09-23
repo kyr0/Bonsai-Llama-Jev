@@ -4,7 +4,7 @@
 # the shared multimodal checks (media.sh) when the server advertises vision.
 # Why: proves the ordinary chat surface still behaves after the systemone port.
 set -euo pipefail
-PORT="${PORT:-5382}"
+PORT="${PORT:-54100}"
 API_KEY="${BONSAI_API_KEY:-local-dev-key}"
 BASE="http://127.0.0.1:${PORT}"
 AUTH="Authorization: Bearer ${API_KEY}"

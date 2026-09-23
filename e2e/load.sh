@@ -4,7 +4,7 @@
 # (slot starvation on small -np) and checks an over-long prompt fails with a
 # named 422 instead of hanging. Usage: bash e2e/load.sh [workers]
 set -euo pipefail
-PORT="${PORT:-5382}"
+PORT="${PORT:-54100}"
 API_KEY="${BONSAI_API_KEY:-local-dev-key}"
 BASE="http://127.0.0.1:${PORT}"
 WORKERS="${1:-20}"

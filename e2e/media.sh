@@ -4,7 +4,7 @@
 # media-state extension. Skips (green) when the server has no vision projector,
 # so text-only deployments stay unaffected.
 set -euo pipefail
-PORT="${PORT:-5382}"
+PORT="${PORT:-54100}"
 API_KEY="${BONSAI_API_KEY:-local-dev-key}"
 BASE="http://127.0.0.1:${PORT}"
 AUTH="Authorization: Bearer ${API_KEY}"
