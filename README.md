@@ -22,6 +22,10 @@
 - 🧩 **Compact reference deployment** — the documented configuration uses about 10 GB VRAM including weights, image projector, KV cache, and compute buffers, so it fits on a 12 GB-class GPU in that configuration.
 - 🏆 **Benchmark-backed quality claims only** — see the linked benchmark for the exact evaluated tasks and configuration rather than treating one percentage as a universal model-quality score.
 
+## 📰 News 
+
+2026-09-22 - [Paper on the method rendered](https://kyr0.github.io/Bonsai-Llama-Jev/).
+
 ## 🏗️ What it consumes
 
 | | | |
