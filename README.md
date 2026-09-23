@@ -24,7 +24,6 @@
 
 ![startup.png](startup.png)
 
-
 ## 📰 News 
 
 2026-09-22 - [Paper on the method rendered](https://kyr0.github.io/Bonsai-Llama-Jev/).
@@ -53,6 +52,10 @@ Bonsai is better than all of these models in `accuracy` **and** `calibration` [s
 | `spark-X2.5`  | 70.97% |  **+5.49 pp** | **+7.74%** |
 | `openjev-qwen3.5-4b` | 74.13% |  **+2.33 pp** | **+3.14%** |
 
+You can run the `typed-decision-bench` youself!
+
+![in_bench.png](in_bench.png)
+
 ## 🏎️ And is it really FAST?
 
 p50/p95 latency per decision request and VRAM at 8k KV, same measurement as above:
@@ -66,6 +69,8 @@ p50/p95 latency per decision request and VRAM at 8k KV, same measurement as abov
 | jev-1.13.0 | 716.4 | 778.8 | — |
 | kyr0/spark-X2.5 | 1,056.6 | 1,783.5 | 9813 MB @ BF16 |
 | openjev-qwen3.5-4b | 1,066.1 | 1,478.9 | 12866 MB @ BF16 |
+
+On an RTX 3090, 4 typed decision requests in parallel, are perfectly fine.
 
 ## 🚀 Run it
 
