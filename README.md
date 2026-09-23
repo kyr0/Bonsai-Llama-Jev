@@ -378,12 +378,12 @@ Copy `.env.example` to `.env`, then edit. The ones you might need:
 
 ## Citation
 
-If you use this inference engine or implement the method for turning causal language models into a typed-decision engine at inference time as described in [IMPLEMENTATION_PAPER.md](IMPLEMENTATION_PAPER.md), please cite the repository (see [CITATION.cff](CITATION.cff)):
+If you use the Bonsai-Llama-Jev inference engine, its method for turning causal language models into a typed-decision engine or its Qtype-stratified temperature scaling method, please cite my work (see [CITATION.cff](CITATION.cff)):
 
 ```bibtex
 @software{homberg2026bonsaillamajev,
   author    = {Homberg, Aron},
-  title     = {Bonsai-Llama-Jev: Turning causal language models into a typed-decision engine at inference time with improved calibration via Qtype-stratified temperature scaling},
+  title     = {Turning Causal Language Models Into Typed-Decision Engines},
   year      = {2026},
   version   = {5},
   publisher = {GitHub},

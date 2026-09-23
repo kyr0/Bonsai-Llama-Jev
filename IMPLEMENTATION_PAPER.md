@@ -1,28 +1,134 @@
-# Turning a Causal Language Model into a Typed-Decision Engine at Inference Time
+# Turning Causal Language Models Into Typed-Decision Engines
 
-> **Scope.** This document explains the inference method implemented by `kyr0/Bonsai-Llama-Jev`: how an ordinary causal language model (LM) can be exposed as a Jev-like typed-decision service without sampling, without generating an answer sentence, and without changing the model weights.
->
+_Aron Homberg - Independent Researcher - 2026_
+
+> **Scope.** This document explains the inference method implemented by `kyr0/Bonsai-Llama-Jev`: how an ordinary causal language model (LM) can be exposed as a Jev-like typed-decision engine and System One API service without sampling, without generating an answer sentence, and without changing the model weights.
+> 
 > The central idea is simple: **stop after prompt evaluation, read the model's native next-token logits for a small set of answer-label tokens, normalize those logits into a categorical distribution, and reduce that distribution into a typed result.**
->
+> 
 > This is an **inference/readout transformation**, not a new neural architecture and not, by itself, a calibration method. It reproduces the *shape* of a typed-decision API. It does **not** establish that the loaded model has Jev's weights, training procedure, or probability calibration.
 
-## 1. Repository provenance: what changed around the fork
+## Abstract
 
-The repository lineage matters because the typed-decision behavior is a server/runtime modification, not something inherited from the language-model backbone.
+Any causal language model already computes a categorical score over its vocabulary at every next-token boundary; a Jev-like typed-decision engine turns runtime-defined semantic answers into token verbalizers, stops inference after prefill, reads only those native logits, converts them with stable restricted softmax and chain-rule branch scoring, and deterministically reduces the resulting distribution into `choice`, `score`, or `noul` — **without sampling and without generating an answer token**. This paper breaks this method down. It explains, how any causal language model can be turned into a Type-Decision Engine. Demonstrated as a paper with code, the target audience of this paper is primarily: Applied AI engineers, AI research scientists and curious tech-affine readers.
 
-As inspected on 2026-09-22:
+---- 
 
-* `kyr0/Bonsai-Llama-Jev` was forked from `PrismML-Eng/llama.cpp`.
+## Table of Contents 
+
+- [1. Provenance](#1-provenance)
+- [2. Terminology and abbreviations](#2-terminology-and-abbreviations)
+- [3. What is actually being transformed?](#3-what-is-actually-being-transformed)
+	- [LM head and next-token distribution](#lm-head-and-next-token-distribution)
+- [4. The system-level transformation](#4-the-system-level-transformation)
+- [5. Generation vs. typed decision readout](#5-generation-vs-typed-decision-readout)
+	- [5.1 Ordinary autoregressive generation](#51-ordinary-autoregressive-generation)
+	- [5.2 Typed decision mode](#52-typed-decision-mode)
+	- [“No sampling” does not imply bitwise determinism](#no-sampling-does-not-imply-bitwise-determinism)
+- [6. Turning semantic answers into token labels](#6-turning-semantic-answers-into-token-labels)
+- [7. The critical tokenizer invariant](#7-the-critical-tokenizer-invariant)
+- [8. Restricted softmax: the central identity](#8-restricted-softmax-the-central-identity)
+	- [Why it is exactly the native LM distribution conditioned on allowed labels](#why-it-is-exactly-the-native-lm-distribution-conditioned-on-allowed-labels)
+	- [What the existing unit test proves](#what-the-existing-unit-test-proves)
+- [9. Numerical stability: subtract the maximum logit](#9-numerical-stability-subtract-the-maximum-logit)
+- [10. Worked one-token example](#10-worked-one-token-example)
+	- [11. Factorized multi-character labels](#11-factorized-multi-character-labels)
+	- [Why additional model evaluations are necessary](#why-additional-model-evaluations-are-necessary)
+	- [Important semantic nuance](#important-semantic-nuance)
+- [12. Readout-count complexity](#12-readout-count-complexity)
+- [13. KV-cache reuse makes prefix branches cheap](#13-kv-cache-reuse-makes-prefix-branches-cheap)
+- [14. Generalizing to arbitrary token verbalizers](#14-generalizing-to-arbitrary-token-verbalizers)
+- [15. Typed reducers](#15-typed-reducers)
+	- [15.1 Choice](#151-choice)
+	- [15.2 Score](#152-score)
+	- [15.3 Noul](#153-noul)
+- [16. The confidence field is a local heuristic](#16-the-confidence-field-is-a-local-heuristic)
+- [17. Conditional option probabilities are not automatically calibrated probabilities](#17-conditional-option-probabilities-are-not-automatically-calibrated-probabilities)
+- [18. Calibration can be added without changing model weights](#18-calibration-can-be-added-without-changing-model-weights)
+	- [Sampling temperature vs. calibration temperature](#sampling-temperature-vs-calibration-temperature)
+- [19. Prompt construction is part of the effective model](#19-prompt-construction-is-part-of-the-effective-model)
+	- [Candidate order can matter](#candidate-order-can-matter)
+	- [Chat template and tokenizer sensibility](#chat-template-and-tokenizer-sensibility)
+- [20. Exact implementation mapping](#20-exact-implementation-mapping)
+	- [Layer 1 — HTTP/type contract](#layer-1--httptype-contract)
+	- [Layer 2 — question compiler](#layer-2--question-compiler)
+	- [Layer 3 — verbalizer validation](#layer-3--verbalizer-validation)
+	- [Layer 4 — prefill-only inference](#layer-4--prefill-only-inference)
+	- [Layer 5 — deterministic probability reduction](#layer-5--deterministic-probability-reduction)
+- [21. Generic implementation pseudocode](#21-generic-implementation-pseudocode)
+- [22. Why this is faster than text generation](#22-why-this-is-faster-than-text-generation)
+- [23. Multiple questions: parallelism is not “one shared forward pass”](#23-multiple-questions-parallelism-is-not-one-shared-forward-pass)
+- [24. Model-family portability](#24-model-family-portability)
+	- [Causal decoder-only LM](#causal-decoder-only-lm)
+	- [Encoder-decoder LM](#encoder-decoder-lm)
+	- [Masked language model](#masked-language-model)
+	- [Embedding-only model](#embedding-only-model)
+- [25. Multimodal models](#25-multimodal-models)
+- [26. Correctness invariants](#26-correctness-invariants)
+	- [I1 — semantic mapping](#i1--semantic-mapping)
+	- [I2 — tokenizer correctness](#i2--tokenizer-correctness)
+	- [I3 — native-logit correctness](#i3--native-logit-correctness)
+	- [I4 — normalization](#i4--normalization)
+	- [I5 — no sampled generation](#i5--no-sampled-generation)
+	- [I6 — generation-parameter independence](#i6--generation-parameter-independence)
+	- [I7 — cache transparency](#i7--cache-transparency)
+	- [I8 — isolation](#i8--isolation)
+- [27. Verification strategy](#27-verification-strategy)
+	- [27.1 Native one-token oracle](#271-native-one-token-oracle)
+	- [27.2 Multi-character oracle](#272-multi-character-oracle)
+	- [27.3 Tokenizer adversarial cases](#273-tokenizer-adversarial-cases)
+	- [27.4 Sampling null test](#274-sampling-null-test)
+	- [27.5 Candidate permutation tests](#275-candidate-permutation-tests)
+	- [27.6 Cache equivalence](#276-cache-equivalence)
+	- [27.7 Repetition/concurrency](#277-repetitionconcurrency)
+	- [27.8 Calibration](#278-calibration)
+- [28. Common conceptual errors](#28-common-conceptual-errors)
+	- [“This is greedy decoding.”](#this-is-greedy-decoding)
+	- [“Temperature 0 is equivalent.”](#temperature-0-is-equivalent)
+	- [“0.9 probability means 90% real-world correctness.”](#09-probability-means-90-real-world-correctness)
+	- [“No training means all backbones work equally well.”](#no-training-means-all-backbones-work-equally-well)
+	- [“All questions use one forward pass.”](#all-questions-use-one-forward-pass)
+	- [“The neural architecture changed.”](#the-neural-architecture-changed)
+- [29. Recommended implementation architecture](#29-recommended-implementation-architecture)
+- [30. Minimal backend API required](#30-minimal-backend-api-required)
+- [31. Why the method is useful](#31-why-the-method-is-useful)
+- [32. What this method does not prove](#32-what-this-method-does-not-prove)
+- [33. Reference equations](#33-reference-equations)
+	- [LM head](#lm-head)
+	- [Native next-token probability](#native-next-token-probability)
+	- [Restricted candidate softmax](#restricted-candidate-softmax)
+	- [Stable softmax](#stable-softmax)
+	- [Multi-symbol path](#multi-symbol-path)
+	- [Candidate normalization](#candidate-normalization)
+	- [Choice](#choice)
+	- [Score](#score)
+	- [Noul](#noul)
+	- [Current local confidence heuristic](#current-local-confidence-heuristic)
+	- [Optional post-hoc temperature scaling](#optional-post-hoc-temperature-scaling)
+- [34. Implementation checklist](#34-implementation-checklist)
+- [35. References and further reading](#35-references-and-further-reading)
+	- [Implementation sources](#implementation-sources)
+	- [Open method](#open-method)
+	- [TypeSafe / Jev public semantics](#typesafe--jev-public-semantics)
+	- [Mathematical background](#mathematical-background)
+	- [Papers](#papers)
+- [Citation](#citation)
+---- 
+
+## 1. Provenance
+
+The reader should be able to follow the code. Therefore, the repository lineage matters as  the typed-decision behavior implementation at hand is a server/runtime modification to a fork of llama.cpp.
+
+Provenance as of 2026-09-22:
+
+* [`kyr0/Bonsai-Llama-Jev` ](https://github.com/kyr0/Bonsai-Llama-Jev)was forked from `PrismML-Eng/llama.cpp`.
 * Its merge base immediately before the fork-local work is commit `3ae4f51087d8d9292eda16ee00cec54e798ea576`.
-* That inherited commit is a Prism/llama.cpp Vulkan optimization for PTQ/PQ2 kernels; it is **not** the typed-decision implementation.
 * The typed-decision implementation first appears in fork-local commit:
-
   * `8b1bb68f41a2a78e1e9ca5bd6155694e6a74ed7f` — `works`
-* The next fork-local commit:
-
+* The next (first) fork-local commit:
   * `9203183e6c54fda23872f230e33c1985b713c10c` — server/runtime hardening, generation-cap handling, build/start/e2e work.
 
-So the important code archaeology is:
+The important code archaeology is:
 
 ```text
 PrismML llama.cpp
@@ -40,7 +146,7 @@ PrismML llama.cpp
 9203183...
 ```
 
-The core files introduced or changed for typed decisions are:
+The core files introduced / changed for typed decisions are:
 
 ```text
 tools/server/SYSTEMONE.md
@@ -53,47 +159,47 @@ tools/server/tests/unit/test_chat_completion.py
 
 The decisive implementation is in `server-context.cpp`: a new `SERVER_TASK_TYPE_SYSTEMONE` runs the normal model prompt forward pass, extracts selected logits at `SLOT_STATE_DONE_PROMPT`, sends those logits back to the HTTP-side decision logic, releases the inference slot, and returns **before normal token generation starts**.
 
----
+---- 
 
 ## 2. Terminology and abbreviations
 
 This method crosses language-model, probability, and inference-runtime terminology. The terms below are used precisely throughout this document.
 
-| Term                           | Meaning here                                                                                                                                                                            |
-| ------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **LM**                         | Language model.                                                                                                                                                                         |
-| **LLM**                        | Large language model. Size is irrelevant to the method; the same readout principle applies to smaller causal LMs.                                                                       |
-| **Causal / autoregressive LM** | A model trained/inferred so token position $t$ predicts a distribution for the next token from earlier tokens.                                                                        |
-| **Token**                      | Integer symbol consumed/emitted by the model. A token is **not** necessarily one character or one word.                                                                                 |
-| **Tokenizer**                  | Deterministic mapping between text and token IDs. Its context-sensitive segmentation is why answer-label validation is required.                                                        |
-| **Vocabulary $V$**           | Finite set of token IDs the LM can predict.                                                                                                                                             |
-| **Hidden state $h_T$**       | Final internal vector at prompt position $T$, before the LM output head.                                                                                                              |
-| **LM head**                    | Existing output projection that maps a hidden state to one score per vocabulary token.                                                                                                  |
-| **Logit**                      | Pre-softmax model score. In neural-network usage this usually means an unnormalized score; it should not be confused with the strict binary-statistics definition of log-odds.          |
-| **Softmax**                    | Function converting real-valued scores into positive normalized weights summing to 1.                                                                                                   |
-| **Restricted softmax**         | Softmax computed only over the answer-token subset rather than over the whole vocabulary.                                                                                               |
-| **Verbalizer**                 | Mapping from a semantic class such as `technical` to one or more model tokens such as `B`.                                                                                              |
-| **Prefill**                    | Evaluation of the known input prompt. It produces model state/KV cache and logits at the prompt boundary before any generated continuation token.                                       |
-| **Decode**                     | Repeated continuation phase in which new output tokens are selected/appended and the model advances from them.                                                                          |
-| **Sampler**                    | Generation component that transforms/selects from logits using operations such as temperature, top-$k$, top-$p$, penalties, random sampling, or greedy selection.                   |
-| **KV cache**                   | Cached attention **K**ey/**V**alue tensors for already-evaluated prefix tokens, allowing suffix continuations to avoid recomputing the full prefix.                                     |
-| **Argmax**                     | Index of the largest value. Used here to select the highest-probability semantic candidate after probability computation.                                                               |
-| **System One**                 | TypeSafe API surface for asking typed questions over supplied state. “System One compatible” here refers to the request/response contract, not a claim about proprietary Jev internals. |
-| **Choice**                     | Unordered finite-class primitive: return one selected semantic option and a distribution across options.                                                                                |
-| **Score**                      | Ordered finite-level primitive: return the probability-weighted expected level plus the distribution.                                                                                   |
-| **Noul**                       | TypeSafe yes/no primitive: return the probability of “yes”.                                                                                                                             |
-| **Calibration**                | Empirical property that predicted probabilities correspond to observed frequencies/correctness rates on a defined population.                                                           |
-| **NLL**                        | Negative log-likelihood, a proper probabilistic scoring rule used when evaluating predicted class probabilities.                                                                        |
-| **Brier score**                | Squared-error proper scoring rule for probabilistic predictions.                                                                                                                        |
-| **ECE**                        | Expected Calibration Error: a binned summary of the gap between predicted probability and observed frequency; its value depends on the binning scheme.                                  |
-| **GGUF**                       | Model/container format used by llama.cpp-family runtimes. It is not part of the decision mathematics.                                                                                   |
+| Term                           | Meaning here                                                                                                                                                                                                                   |
+| ------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **LM**                         | Language model.                                                                                                                                                                                                                |
+| **LLM**                        | Large language model. Size is irrelevant to the method; the same readout principle applies to smaller causal LMs.                                                                                                              |
+| **Causal / autoregressive LM** | A model trained/inferred so token position $t$ predicts a distribution for the next token from earlier tokens.                                                                                                                 |
+| **Token**                      | Integer symbol consumed/emitted by the model. A token is **not** necessarily one character or one word.                                                                                                                        |
+| **Tokenizer**                  | Deterministic mapping between text and token IDs. Its context-sensitive segmentation is why answer-label validation is required.                                                                                               |
+| **Vocabulary $V$**             | Finite set of token IDs the LM can predict.                                                                                                                                                                                    |
+| **Hidden state $h_T$**         | Final internal vector at prompt position $T$, before the LM output head.                                                                                                                                                       |
+| **LM head**                    | Existing output projection that maps a hidden state to one score per vocabulary token.                                                                                                                                         |
+| **Logit**                      | Pre-softmax model score. In neural-network usage this usually means an unnormalized score; it should not be confused with the strict binary-statistics definition of log-odds.                                                 |
+| **Softmax**                    | Function converting real-valued scores into positive normalized weights summing to 1.                                                                                                                                          |
+| **Restricted softmax**         | Softmax computed only over the answer-token subset rather than over the whole vocabulary.                                                                                                                                      |
+| **Verbalizer**                 | Mapping from a semantic class such as `technical` to one or more model tokens such as `B`.                                                                                                                                     |
+| **Prefill**                    | Evaluation of the known input prompt. It produces model state/KV cache and logits at the prompt boundary before any generated continuation token.                                                                              |
+| **Decode**                     | Repeated continuation phase in which new output tokens are selected/appended and the model advances from them.                                                                                                                 |
+| **Sampler**                    | Generation component that transforms/selects from logits using operations such as temperature, top-$k$, top-$p$, penalties, random sampling, or greedy selection.                                                              |
+| **KV cache**                   | Cached attention **K**ey/**V**alue tensors for already-evaluated prefix tokens, allowing suffix continuations to avoid recomputing the full prefix.                                                                            |
+| **Argmax**                     | Index of the largest value. Used here to select the highest-probability semantic candidate after probability computation.                                                                                                      |
+| **System One**                 | [TypeSafe API surface](http://api.typesafe.ai/openapi.json) for asking typed questions over supplied state. “System One compatible” here refers to the request/response contract, not a claim about proprietary Jev internals. |
+| **Choice**                     | Unordered finite-class primitive: return one selected semantic option and a distribution across options.                                                                                                                       |
+| **Score**                      | Ordered finite-level primitive: return the probability-weighted expected level plus the distribution.                                                                                                                          |
+| **Noul**                       | TypeSafe yes/no primitive: return the probability of “yes”.                                                                                                                                                                    |
+| **Calibration**                | Empirical property that predicted probabilities correspond to observed frequencies/correctness rates on a defined population.                                                                                                  |
+| **NLL**                        | Negative log-likelihood, a proper probabilistic scoring rule used when evaluating predicted class probabilities.                                                                                                               |
+| **Brier score**                | Squared-error proper scoring rule for probabilistic predictions.                                                                                                                                                               |
+| **ECE**                        | Expected Calibration Error: a binned summary of the gap between predicted probability and observed frequency; its value depends on the binning scheme.                                                                         |
+| **GGUF**                       | Model/container format used by llama.cpp-family runtimes. It is not part of the decision mathematics.                                                                                                                          |
 
 Two distinctions are especially important:
 
 1. **prefill is not decoding**: the model can compute next-token logits at the end of a prompt without emitting any token;
 2. **deterministic readout is not calibration**: a mathematically exact transformation of model logits can still be statistically miscalibrated against real outcomes.
 
----
+---- 
 
 ## 3. What is actually being transformed?
 
@@ -101,17 +207,13 @@ An ordinary causal LM is already a next-token classifier over its vocabulary.
 
 Given a tokenized prefix
 
-$$
-x_{1:T}=(x_1,x_2,\ldots,x_T),
-$$
+$$x_{1:T}=(x_1,x_2,\ldots,x_T),$$
 
 the model computes a final hidden representation $h_T$. Its language-model output head maps that hidden vector into one real-valued score for every vocabulary token:
 
-$$
-\mathbf z=Wh_T+\mathbf b,
+$$\mathbf z=Wh_T+\mathbf b,
 \qquad
-\mathbf z\in\mathbb R^{|V|}.
-$$
+\mathbf z\in\mathbb R^{|V|}.$$
 
 Where:
 
@@ -125,27 +227,21 @@ Where:
 
 The ordinary next-token distribution is:
 
-$$
-P_\theta(v\mid x_{1:T})
+$$P_\theta(v\mid x_{1:T})
 =
 \frac{\exp(z_v)}
-{\sum_{u\in V}\exp(z_u)}.
-$$
+{\sum_{u\in V}\exp(z_u)}.$$
 
 Transformer decoders conventionally end in an output projection and softmax over possible symbols.
 
-### MathML: LM head and next-token distribution
+### LM head and next-token distribution
 
-$$
-\mathbf z=Wh_T+\mathbf b
-$$
+$$\mathbf z=Wh_T+\mathbf b$$
 
-$$
-P(v\mid x_{1:T})
+$$P(v\mid x_{1:T})
 =
 \frac{\exp(z_v)}
-{\sum_{u\in V}\exp(z_u)}
-$$
+{\sum_{u\in V}\exp(z_u)}$$
 
 The typed-decision engine exploits a consequence that is easy to miss:
 
@@ -153,7 +249,7 @@ The typed-decision engine exploits a consequence that is easy to miss:
 
 This is related to the **verbalizer** idea in prompt-based classification: semantic classes are mapped to token-level labels that the LM can score. PET (*Pattern-Exploiting Training*, Schick & Schütze, EACL 2021) is a well-known example of this general class-to-token interface.
 
----
+---- 
 
 ## 4. The system-level transformation
 
@@ -170,23 +266,20 @@ Let:
 
 Then:
 
-$$
-D_\theta(s,q,C)
+$$D_\theta(s,q,C)
 =
 A\!\left(
 R\!\left(
 f_\theta(\Phi(s,q,C)),
 g(C)
 \right)
-\right).
-$$
+\right).$$
 
 The model parameters $\theta$ are unchanged.
 
 Thus:
 
-$$
-\boxed{
+$$\boxed{
 \text{typed decision engine}
 =
 \text{ordinary LM}
@@ -196,8 +289,7 @@ $$
 \text{logit readout}
 +
 \text{deterministic probability math}
-}
-$$
+}$$
 
 No classifier head must be trained. No adapter must be attached. No sampler is necessary.
 
@@ -210,7 +302,7 @@ Saying “we implemented a different neural forward pass” is therefore slightl
 5. exit before decoding;
 6. produce the typed answer with deterministic CPU-side math.
 
----
+---- 
 
 ## 5. Generation vs. typed decision readout
 
@@ -242,12 +334,10 @@ select y₂
 
 Generated text follows the autoregressive factorization:
 
-$$
-P(y_{1:K}\mid x)
+$$P(y_{1:K}\mid x)
 =
 \prod_{t=1}^{K}
-P(y_t\mid x,y_{<t}).
-$$
+P(y_t\mid x,y_{<t}).$$
 
 A generation engine therefore contains a serial **decode loop**.
 
@@ -323,7 +413,7 @@ Removing sampling removes an explicit stochastic operation. It does not guarante
 
 Cross-backend equivalence still requires numerical tolerances.
 
----
+---- 
 
 ## 6. Turning semantic answers into token labels
 
@@ -374,7 +464,7 @@ ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789
 
 giving 62 single-character labels.
 
----
+---- 
 
 ## 7. The critical tokenizer invariant
 
@@ -388,11 +478,9 @@ Let:
 
 Require:
 
-$$
-\tau(P\Vert c)
+$$\tau(P\Vert c)
 =
-\tau(P)\Vert[t_c].
-$$
+\tau(P)\Vert[t_c].$$
 
 That means:
 
@@ -435,30 +523,24 @@ Hence “any LM” should be qualified:
 
 A generalized prefix-trie implementation can remove that restriction.
 
----
+---- 
 
 ## 8. Restricted softmax: the central identity
 
 Assume $N$ candidates use one-token verbalizers:
 
-$$
-A=\{t_1,\ldots,t_N\}.
-$$
+$$A=\{t_1,\ldots,t_N\}.$$
 
 The LM returns full-vocabulary logits $\mathbf z$. We copy only:
 
-$$
-z_{t_1},z_{t_2},\ldots,z_{t_N}.
-$$
+$$z_{t_1},z_{t_2},\ldots,z_{t_N}.$$
 
 Compute:
 
-$$
-q_i
+$$q_i
 =
 \frac{\exp(z_{t_i})}
-{\sum_{j=1}^{N}\exp(z_{t_j})}.
-$$
+{\sum_{j=1}^{N}\exp(z_{t_j})}.$$
 
 This is a **restricted softmax** over answer tokens. Softmax converts arbitrary real scores into positive normalized weights summing to one.
 
@@ -466,70 +548,49 @@ This is a **restricted softmax** over answer tokens. Softmax converts arbitrary 
 
 Full-vocabulary probability:
 
-$$
-P(t_i\mid P)
+$$P(t_i\mid P)
 =
 \frac{\exp(z_{t_i})}
-{\sum_{u\in V}\exp(z_u)}.
-$$
+{\sum_{u\in V}\exp(z_u)}.$$
 
 Condition on the next token being one of the allowed candidate labels $A$:
 
-$$
-P(t_i\mid P,t\in A)
+$$P(t_i\mid P,t\in A)
 =
 \frac{P(t_i\mid P)}
-{\sum_{j=1}^{N}P(t_j\mid P)}.
-$$
+{\sum_{j=1}^{N}P(t_j\mid P)}.$$
 
 Substitute full softmax:
 
-$$
-P(t_i\mid P,t\in A)
+$$P(t_i\mid P,t\in A)
 =
 \frac{
 \frac{\exp(z_{t_i})}{Z_V}
 }{
 \sum_j
 \frac{\exp(z_{t_j})}{Z_V}
-},
-$$
+},$$
 
 where:
 
-$$
-Z_V=\sum_{u\in V}\exp(z_u).
-$$
+$$Z_V=\sum_{u\in V}\exp(z_u).$$
 
 The vocabulary denominator cancels:
 
-$$
-P(t_i\mid P,t\in A)
+$$P(t_i\mid P,t\in A)
 =
 \frac{\exp(z_{t_i})}
 {\sum_j\exp(z_{t_j})}
 =
-q_i.
-$$
+q_i.$$
 
 Therefore:
 
-$$
-\boxed{
+$$\boxed{
 \text{restricted softmax over selected logits}
 =
 \text{native next-token distribution conditioned on the supplied labels}
-}
-$$
-
-### MathML
-
-$$
-q_i
-=
-\frac{\exp(z_{t_i})}
-{\sum_{j=1}^{N}\exp(z_{t_j})}
-$$
+}$$
 
 ### What the existing unit test proves
 
@@ -546,7 +607,7 @@ Agreement is checked to approximately $10^{-5}$.
 
 Thus, for single-token candidates, System One is exposing the backbone's existing probability geometry under a restricted label space.
 
----
+---- 
 
 ## 9. Numerical stability: subtract the maximum logit
 
@@ -554,18 +615,14 @@ Naive exponentiation can overflow.
 
 Use:
 
-$$
-m=\max_jz_j
-$$
+$$m=\max_jz_j$$
 
 and:
 
-$$
-q_i
+$$q_i
 =
 \frac{\exp(z_i-m)}
-{\sum_j\exp(z_j-m)}.
-$$
+{\sum_j\exp(z_j-m)}.$$
 
 The result is unchanged because the common factor $\exp(-m)$ cancels.
 
@@ -573,7 +630,7 @@ This is the standard max-subtraction/log-sum-exp stabilization technique.
 
 The current implementation performs probability arithmetic in `double`, although copied logits arrive as `float`.
 
----
+---- 
 
 ## 10. Worked one-token example
 
@@ -587,61 +644,47 @@ C / sales:     -0.1
 
 Subtract $m=2.1$:
 
-$$
-[2.1,0.9,-0.1]-2.1
+$$[2.1,0.9,-0.1]-2.1
 =
-[0,-1.2,-2.2].
-$$
+[0,-1.2,-2.2].$$
 
 Exponentiate:
 
-$$
-[e^0,e^{-1.2},e^{-2.2}]
+$$[e^0,e^{-1.2},e^{-2.2}]
 \approx
-[1,0.3010,0.1108].
-$$
+[1,0.3010,0.1108].$$
 
 Normalize:
 
-$$
-Z=1+0.3010+0.1108=1.4118.
-$$
+$$Z=1+0.3010+0.1108=1.4118.$$
 
 Therefore:
 
-$$
-\mathbf p
+$$\mathbf p
 \approx
-[0.7082,0.2133,0.0785].
-$$
+[0.7082,0.2133,0.0785].$$
 
 The `choice` is candidate `A`.
 
 No answer token was generated.
 
----
+---- 
 
-## 11. More than 62 candidates: factorized multi-character labels
+### 11. Factorized multi-character labels
 
-For $N>62$, labels use multiple characters.
+For  $N>62$, labels use multiple characters, because the set of single-character labels is exceeded (see 6.).
 
 Let the label width be $D$, with radix sizes:
 
-$$
-r_0,r_1,\ldots,r_{D-1}.
-$$
+$$r_0,r_1,\ldots,r_{D-1}.$$
 
 Capacity:
 
-$$
-C=\prod_{d=0}^{D-1}r_d.
-$$
+$$C=\prod_{d=0}^{D-1}r_d.$$
 
 Require:
 
-$$
-C\ge N.
-$$
+$$C\ge N.$$
 
 The implementation searches for radix sizes that minimize capacity and then prefix-readout cost.
 
@@ -658,39 +701,32 @@ For label `BA`, the second character must be scored conditional on `B`.
 
 By the probability chain rule:
 
-$$
-P(BA\mid P)
+$$P(BA\mid P)
 =
-P(B\mid P)P(A\mid P,B).
-$$
+P(B\mid P)P(A\mid P,B).$$
 
 More generally:
 
-$$
-P(\ell_0\ell_1\cdots\ell_{D-1}\mid P)
+$$P(\ell_0\ell_1\cdots\ell_{D-1}\mid P)
 =
 \prod_{d=0}^{D-1}
-P(\ell_d\mid P,\ell_{<d}).
-$$
+P(\ell_d\mid P,\ell_{<d}).$$
 
 This is the standard probability chain rule.
 
 The current engine uses a **restricted categorical probability at every branch**:
 
-$$
-q_d(c\mid\pi)
+$$q_d(c\mid\pi)
 =
 \frac{
 \exp(z_c(P,\pi))
 }{
 \sum_{a\in A_d}\exp(z_a(P,\pi))
-}.
-$$
+}.$$
 
 For candidate $i$:
 
-$$
-w_i
+$$w_i
 =
 \prod_{d=0}^{D-1}
 q_d
@@ -698,31 +734,14 @@ q_d
 \ell_i[d]
 \mid
 \ell_i[:d]
-\right).
-$$
+\right).$$
 
 Finally:
 
-$$
-p_i
+$$p_i
 =
 \frac{w_i}
-{\sum_{j=1}^{N}w_j}.
-$$
-
-### MathML
-
-$$
-w_i
-=
-\prod_{d=0}^{D-1}
-q_d
-\left(
-\ell_i[d]
-\mid
-\ell_i[:d]
-\right)
-$$
+{\sum_{j=1}^{N}w_j}.$$
 
 ### Important semantic nuance
 
@@ -730,11 +749,9 @@ For multi-character labels this is best understood as a **forced categorical dec
 
 It is not exactly the raw unrestricted language-model probability of the complete label string, because every branch is renormalized over valid answer symbols:
 
-$$
-q_d(c\mid\pi)
+$$q_d(c\mid\pi)
 =
-P_\theta(c\mid P,\pi,c\in A_d).
-$$
+P_\theta(c\mid P,\pi,c\in A_d).$$
 
 The engine asks:
 
@@ -742,42 +759,40 @@ The engine asks:
 
 That is the desired quantity for a typed classifier.
 
----
+---- 
 
 ## 12. Readout-count complexity
 
 For radices $r_0,\ldots,r_{D-1}$:
 
-$$
-R
+$$R
 =
 \sum_{d=0}^{D-1}
-\prod_{k=0}^{d-1}r_k,
-$$
+\prod_{k=0}^{d-1}r_k,$$
 
 with empty product $=1$.
 
 Examples from the implementation:
 
-| Candidates |     Radices | Capacity | Readouts |
+| Candidates | Radices     | Capacity | Readouts |
 | ---------: | ----------: | -------: | -------: |
-|         27 |          27 |       27 |        1 |
-|         53 |          53 |       53 |        1 |
-|         62 |          62 |       62 |        1 |
-|         63 |      3 × 21 |       63 |        4 |
-|         67 |      2 × 34 |       68 |        3 |
-|        100 |      2 × 50 |      100 |        3 |
-|        677 |     17 × 40 |      680 |       18 |
-|       3844 |     62 × 62 |     3844 |       63 |
-|       3845 | 2 × 37 × 52 |     3848 |       77 |
+| 27         | 27          | 27       | 1        |
+| 53         | 53          | 53       | 1        |
+| 62         | 62          | 62       | 1        |
+| 63         | 3 × 21      | 63       | 4        |
+| 67         | 2 × 34      | 68       | 3        |
+| 100        | 2 × 50      | 100      | 3        |
+| 677        | 17 × 40     | 680      | 18       |
+| 3844       | 62 × 62     | 3844     | 63       |
+| 3845       | 2 × 37 × 52 | 3848     | 77       |
 
 Therefore “no decoding” does **not** mean “one neural evaluation for arbitrary candidate counts.”
 
-For $N\le62$, one final-position readout is enough per question.
+For $N\le62$ (single-character label case), one final-position readout is enough per question.
 
 For wider labels, deterministic prefix branches require additional suffix evaluations. They are still not sampled/generated outputs.
 
----
+---- 
 
 ## 13. KV-cache reuse makes prefix branches cheap
 
@@ -813,7 +828,7 @@ for deeper label-prefix readouts.
 
 Cache reuse changes performance, not probability semantics. Cache eviction or slot scheduling can still force reevaluation.
 
----
+---- 
 
 ## 14. Generalizing to arbitrary token verbalizers
 
@@ -861,27 +876,23 @@ SelectedLogits score_next(
     span<const llama_token> allowed_tokens);
 ```
 
----
+---- 
 
 ## 15. Typed reducers
 
 After obtaining:
 
-$$
-\mathbf p=(p_0,\ldots,p_{N-1}),
+$$\mathbf p=(p_0,\ldots,p_{N-1}),
 \qquad
-\sum_i p_i=1,
-$$
+\sum_i p_i=1,$$
 
 the API primitives are deterministic reductions.
 
 ### 15.1 Choice
 
-$$
-i^*
+$$i^*
 =
-\operatorname*{arg\,max}_i p_i.
-$$
+\operatorname*{arg\,max}_i p_i.$$
 
 TypeSafe's public Choice contract similarly exposes the selected option, a probability per supplied option, and confidence.
 
@@ -889,27 +900,15 @@ TypeSafe's public Choice contract similarly exposes the selected option, a proba
 
 For ordered levels $0,\ldots,N-1$:
 
-$$
-\operatorname{score}
+$$\operatorname{score}
 =
 \mathbb E[L]
 =
-\sum_{i=0}^{N-1}i\,p_i.
-$$
+\sum_{i=0}^{N-1}i\,p_i.$$
 
 This is ordinary statistical expected value.
 
 TypeSafe documents exactly this probability-weighted-level interpretation; for example, probabilities $0,0.57,0.43$ over levels $0,1,2$ yield score $1.43$.
-
-### MathML
-
-$$
-\operatorname{score}
-=
-\mathbb E[L]
-=
-\sum_{i=0}^{N-1}i\,p_i
-$$
 
 ### 15.3 Noul
 
@@ -924,83 +923,63 @@ no
 
 with:
 
-$$
-p_{\text{yes}}+p_{\text{no}}=1.
-$$
+$$p_{\text{yes}}+p_{\text{no}}=1.$$
 
 The current implementation computes:
 
-$$
-\operatorname{noul}
+$$\operatorname{noul}
 =
 \frac{
 p_{\text{yes}}+(1-p_{\text{no}})
-}{2}.
-$$
+}{2}.$$
 
 Since:
 
-$$
-1-p_{\text{no}}=p_{\text{yes}},
-$$
+$$1-p_{\text{no}}=p_{\text{yes}},$$
 
 this simplifies to:
 
-$$
-\boxed{
+$$\boxed{
 \operatorname{noul}=p_{\text{yes}}
-}
-$$
+}$$
 
----
+---- 
 
-## 16. The current `confidence` field is a local heuristic, not calibration
+## 16. The `confidence` field is a local heuristic
 
-The repository computes:
+Lacking any better known option, we currently compute:
 
-$$
-C
+$$C
 =
 p_{i^*}
-\prod_{i\ne i^*}(1-p_i).
-$$
+\prod_{i\ne i^*}(1-p_i).$$
 
 This is a deterministic concentration heuristic.
 
 It is **not** a theorem that:
 
-$$
-C=P(\text{decision is correct}).
-$$
+$$C=P(\text{decision is correct}).$$
 
 For binary winner probability $p$:
 
-$$
-C=p^2.
-$$
+$$C=p^2.$$
 
 Thus:
 
-$$
-p=0.8\Rightarrow C=0.64.
-$$
+$$p=0.8\Rightarrow C=0.64.$$
 
 For the previous three-class example:
 
-$$
-\mathbf p\approx[0.7082,0.2133,0.0785],
-$$
+$$\mathbf p\approx[0.7082,0.2133,0.0785],$$
 
 so:
 
-$$
-C
+$$C
 \approx
 0.7082(1-0.2133)(1-0.0785)
-\approx0.5134.
-$$
+\approx0.5134.$$
 
-TypeSafe's public docs describe `confidence` as derived from how spread/peaked the probability distribution is; that does not establish this local formula as Jev's production formula.
+TypeSafe's public docs describe `confidence` as derived from how spread/peaked the probability distribution is; with no further information about Jev’s implementation, we cannot establish this local formula as Jev's production formula.
 
 Downstream systems should distinguish:
 
@@ -1008,34 +987,30 @@ Downstream systems should distinguish:
 2. distribution-concentration confidence;
 3. calibrated probability of correctness.
 
----
+---- 
 
 ## 17. Conditional option probabilities are not automatically calibrated probabilities
 
 The direct readout is exact relative to the model and prompt:
 
-$$
-p_i
+$$p_i
 =
 P_\theta(
 \text{label }i
 \mid
 \text{prompt},
 \text{allowed labels}
-).
-$$
+).$$
 
 That does not imply:
 
-$$
-p_i
+$$p_i
 =
 P(
 \text{semantic class }i\text{ is objectively correct}
 \mid
 \text{real task}
-).
-$$
+).$$
 
 The readout inherits:
 
@@ -1048,12 +1023,10 @@ The readout inherits:
 * overlapping criteria;
 * quantization/backend effects.
 
-OpenJev's `docs/METHOD.md` makes the same interpretive distinction: softmax over allowed answer tokens is conditional on supplied alternatives and is not automatically operationally calibrated confidence.
+Thus, Softmax over allowed answer tokens is conditional on supplied alternatives and is not automatically operationally calibrated confidence.
 
-Zhao et al. show that language-model classification can be highly sensitive to prompt format, example ordering, and answer biases, motivating contextual calibration.
-
-### Closed-world interpretation
-
+Zhao et al. show that language-model classification can be highly sensitive to prompt format, example ordering, and answer biases, motivating contextual calibration. This should be considered as well.  
+  
 The safest interpretation is:
 
 > Given this prompt and these alternatives, how does this backbone distribute its answer preference among them?
@@ -1062,18 +1035,16 @@ If the candidate set is incomplete, the probabilities still sum to one.
 
 Use `other`, `none`, `insufficient evidence`, or an abstention class when the task is genuinely open-set.
 
----
+---- 
 
 ## 18. Calibration can be added without changing model weights
 
 Suppose the engine produces scores $s_i$. A post-hoc temperature parameter $T>0$ can transform them:
 
-$$
-p_i(T)
+$$p_i(T)
 =
 \frac{\exp(s_i/T)}
-{\sum_j\exp(s_j/T)}.
-$$
+{\sum_j\exp(s_j/T)}.$$
 
 * $T=1$: unchanged.
 * $T>1$: flatter.
@@ -1117,21 +1088,17 @@ calibration/validation split
 untouched test split
 ```
 
----
+---- 
 
 ## 19. Prompt construction is part of the effective model
 
 Operationally the decision function is not only:
 
-$$
-f_\theta,
-$$
+$$f_\theta,$$
 
 but:
 
-$$
-f_\theta\circ\Phi,
-$$
+$$f_\theta\circ\Phi,$$
 
 where $\Phi$ includes:
 
@@ -1166,21 +1133,25 @@ Mapping a semantic candidate to `A` instead of `B` changes the rendered prompt.
 
 Thus candidate permutations should be treated as a semantic-stability test.
 
-### The chat template is not cosmetic
+### Chat template and tokenizer sensibility
 
-It changes:
+Control tokens, whitespace and the chat template itself remain important. 
 
-* control tokens;
-* whitespace;
+They determine:
+
+* control token definition;
+* whitespace definition;
 * role separators;
 * the answer boundary;
 * tokenization of verbalizers.
 
 Tokenizer validation must therefore operate on the **fully rendered prompt**.
 
----
+---- 
 
-## 20. Exact implementation mapping in Bonsai-Llama-Jev
+## 20. Exact implementation mapping
+
+In Bonsai-Llama-Jev, the System One API is added alongside the existing OpenAI API and llama.cpp native HTTP APIs:
 
 ### Layer 1 — HTTP/type contract
 
@@ -1264,7 +1235,7 @@ The HTTP-side path:
 5. applies the typed reducer;
 6. returns JSON with `output_tokens = 0`.
 
----
+---- 
 
 ## 21. Generic implementation pseudocode
 
@@ -1330,31 +1301,27 @@ function decide(state, questions):
     }
 ```
 
----
+---- 
 
-## 22. Why this can be faster than text generation
+## 22. Why this is faster than text generation
 
 Normal generation of $K$ output tokens costs approximately:
 
-$$
-t_{\text{generation}}
+$$t_{\text{generation}}
 \approx
 t_{\text{prefill}}
 +
-\sum_{k=1}^{K}t_{\text{decode},k}.
-$$
+\sum_{k=1}^{K}t_{\text{decode},k}.$$
 
 One-token typed decision:
 
-$$
-t_{\text{decision}}
+$$t_{\text{decision}}
 \approx
 t_{\text{prefill}}
 +
 t_{\text{gather}}
 +
-t_{\text{softmax}}.
-$$
+t_{\text{softmax}}.$$
 
 `gather + softmax + reducer` is tiny relative to a large Transformer forward.
 
@@ -1368,7 +1335,7 @@ The system also avoids:
 
 For independent questions, tasks can also be batched by the server.
 
----
+---- 
 
 ## 23. Multiple questions: parallelism is not “one shared forward pass”
 
@@ -1398,7 +1365,7 @@ For multi-character labels:
 * root readout;
 * additional required prefix branches.
 
----
+---- 
 
 ## 24. Model-family portability
 
@@ -1450,7 +1417,7 @@ Thus “any LM” more precisely means:
 
 > any model exposing an appropriate token-prediction distribution through its inference runtime.
 
----
+---- 
 
 ## 25. Multimodal models
 
@@ -1472,7 +1439,7 @@ The current repo's System One media extension uses the existing multimodal parse
 
 A text-only model remains text-only.
 
----
+---- 
 
 ## 26. Correctness invariants
 
@@ -1490,11 +1457,9 @@ For every selected token $t$, decision mode returns the model's native $z_t$.
 
 ### I4 — normalization
 
-$$
-p_i\ge0,
+$$p_i\ge0,
 \qquad
-\sum_i p_i=1.
-$$
+\sum_i p_i=1.$$
 
 ### I5 — no sampled generation
 
@@ -1522,7 +1487,7 @@ Cache reuse may change latency but not semantic output beyond numerical toleranc
 
 Typed-decision support must not alter ordinary chat/completion behavior.
 
----
+---- 
 
 ## 27. Verification strategy
 
@@ -1530,15 +1495,13 @@ Typed-decision support must not alter ordinary chat/completion behavior.
 
 Verify:
 
-$$
-p_i^{\text{decision}}
+$$p_i^{\text{decision}}
 \approx
 \frac{
 p_i^{\text{native LM}}
 }{
 \sum_{j\in A}p_j^{\text{native LM}}
-}.
-$$
+}.$$
 
 Test across:
 
@@ -1614,7 +1577,7 @@ On untouched labeled data report:
 * accuracy/F1 where relevant;
 * risk/coverage if thresholds gate actions.
 
----
+---- 
 
 ## 28. Common conceptual errors
 
@@ -1658,7 +1621,7 @@ No.
 
 The model weights/graph stay intact. The runtime exposes a different readout and termination point.
 
----
+---- 
 
 ## 29. Recommended implementation architecture
 
@@ -1667,14 +1630,12 @@ The model weights/graph stay intact. The runtime exposes a different readout and
 │ 1. Typed API / validation                  │
 │    state, model, questions                 │
 └──────────────────┬─────────────────────────┘
-                   │
                    v
 ┌────────────────────────────────────────────┐
 │ 2. Decision compiler                       │
 │    semantics -> prompt + verbalizers       │
 │    tokenizer validation                    │
 └──────────────────┬─────────────────────────┘
-                   │
                    v
 ┌────────────────────────────────────────────┐
 │ 3. Inference primitive                     │
@@ -1682,7 +1643,6 @@ The model weights/graph stay intact. The runtime exposes a different readout and
 │    selected native logits                  │
 │    NO sampler / NO decode loop             │
 └──────────────────┬─────────────────────────┘
-                   │
                    v
 ┌────────────────────────────────────────────┐
 │ 4. Probability + reducer                   │
@@ -1691,8 +1651,7 @@ The model weights/graph stay intact. The runtime exposes a different readout and
 │    optional calibration                    │
 └────────────────────────────────────────────┘
 ```
-
----
+---- 
 
 ## 30. Minimal backend API required
 
@@ -1730,17 +1689,15 @@ llama_get_logits_ith(...)
 
 The implementation task is exposing it at the correct server lifecycle boundary.
 
----
+---- 
 
 ## 31. Why the method is useful
 
 It transforms:
 
-$$
-\text{unstructured state}
+$$\text{unstructured state}
 \longrightarrow
-\text{typed probability distribution}.
-$$
+\text{typed probability distribution}.$$
 
 Properties:
 
@@ -1759,7 +1716,11 @@ The most accurate description is:
 
 rather than “prompting an LLM to output JSON.”
 
----
+Energy consumption and time spent is reduced. Therefore, also cost is reduced.  
+  
+The method is useful for every non-open question format. If a question can be formulated or re-formulated as a closed question, the method applies.
+
+---- 
 
 ## 32. What this method does not prove
 
@@ -1786,105 +1747,82 @@ Cloudflare currently describes Jev as a structured evaluation model that answers
 
 The local engine should therefore be described as **Jev-like / System-One-compatible**, not as a reproduction of undisclosed Jev internals.
 
----
+---- 
 
 ## 33. Reference equations
 
 ### LM head
 
-$$
-\mathbf z=Wh_T+\mathbf b
-$$
+$$\mathbf z=Wh_T+\mathbf b$$
 
 ### Native next-token probability
 
-$$
-P(v\mid x)
+$$P(v\mid x)
 =
 \frac{e^{z_v}}
-{\sum_{u\in V}e^{z_u}}
-$$
+{\sum_{u\in V}e^{z_u}}$$
 
 ### Restricted candidate softmax
 
-$$
-p_i
+$$p_i
 =
 \frac{e^{z_{t_i}}}
-{\sum_j e^{z_{t_j}}}
-$$
+{\sum_j e^{z_{t_j}}}$$
 
 ### Stable softmax
 
-$$
-m=\max_jz_{t_j}
-$$
+$$m=\max_jz_{t_j}$$
 
-$$
-p_i
+$$p_i
 =
 \frac{e^{z_{t_i}-m}}
-{\sum_j e^{z_{t_j}-m}}
-$$
+{\sum_j e^{z_{t_j}-m}}$$
 
 ### Multi-symbol path
 
-$$
-w_i
+$$w_i
 =
-\prod_dq_d(\ell_i[d]\mid\ell_i[:d])
-$$
+\prod_dq_d(\ell_i[d]\mid\ell_i[:d])$$
 
 ### Candidate normalization
 
-$$
-p_i
+$$p_i
 =
-\frac{w_i}{\sum_jw_j}
-$$
+\frac{w_i}{\sum_jw_j}$$
 
 ### Choice
 
-$$
-i^*=\arg\max_ip_i
-$$
+$$i^*=\arg\max_ip_i$$
 
 ### Score
 
-$$
-\operatorname{score}
+$$\operatorname{score}
 =
-\sum_iip_i
-$$
+\sum_iip_i$$
 
 ### Noul
 
-$$
-\operatorname{noul}=p_{\text{yes}}
-$$
+$$\operatorname{noul}=p_{\text{yes}}$$
 
 ### Current local confidence heuristic
 
-$$
-C
+$$C
 =
 p_{i^*}
-\prod_{i\ne i^*}(1-p_i)
-$$
+\prod_{i\ne i^*}(1-p_i)$$
 
 ### Optional post-hoc temperature scaling
 
-$$
-p_i(T)
+$$p_i(T)
 =
 \frac{e^{s_i/T}}
-{\sum_je^{s_j/T}}
-$$
+{\sum_je^{s_j/T}}$$
 
----
+---- 
 
 ## 34. Implementation checklist
 
+Should you plan to implement this method in any inference engine, the following tasks need to be done:
 * [ ] Add typed-decision request schema.
 * [ ] Define `choice`, `score`, `noul`.
 * [ ] Compile each question into deterministic prompt + candidates.
@@ -1909,9 +1847,8 @@ $$
 * [ ] Evaluate semantic quality on labeled data.
 * [ ] Fit calibration only on held-out calibration data.
 * [ ] Evaluate calibration on untouched test data.
-* [ ] Document that direct-readout probabilities are not automatically Jev-calibrated.
 
----
+---- 
 
 ## 35. References and further reading
 
@@ -1952,8 +1889,18 @@ $$
 
 The downloadable Markdown version contains conventional direct links for these references.
 
----
+## Citation
 
-## 36. One-sentence summary
+If you use the Bonsai-Llama-Jev inference engine, it’s method for turning causal language models into a typed-decision engine or it’s Qtype-stratified temperature scaling method, please cite my work:
 
-A causal language model already computes a categorical score over its vocabulary at every next-token boundary; a Jev-like typed-decision engine turns runtime-defined semantic answers into token verbalizers, stops inference after prefill, reads only those native logits, converts them with stable restricted softmax and chain-rule branch scoring, and deterministically reduces the resulting distribution into `choice`, `score`, or `noul` — **without sampling and without generating an answer token**.
+```bibtex
+@software{homberg2026bonsaillamajev,
+  author    = {Homberg, Aron},
+  title     = {Turning Causal Language Models Into Typed-Decision Engines},
+  year      = {2026},
+  version   = {5},
+  publisher = {GitHub},
+  url       = {https://github.com/kyr0/Bonsai-Llama-Jev},
+  license   = {MIT}
+}
+```
