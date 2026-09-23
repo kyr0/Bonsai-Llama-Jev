@@ -392,17 +392,6 @@ P_\theta(v\mid x_{1:T})
 
 <h3 id="lm-head-and-next-token-distribution">LM head and next-token distribution</h3>
 
-<p><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi mathvariant="bold">z</mi><mo>=</mo><mi>W</mi><msub><mi>h</mi><mi>T</mi></msub><mo>+</mo><mi mathvariant="bold">b</mi></mrow><annotation encoding="application/x-tex">
-\mathbf z=Wh_T+\mathbf b
-</annotation></semantics></math></p>
-
-<p><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>P</mi><mo stretchy="false">(</mo><mi>v</mi><mo>∣</mo><msub><mi>x</mi><mrow><mn>1</mn><mo>:</mo><mi>T</mi></mrow></msub><mo stretchy="false">)</mo><mo>=</mo><mfrac><mrow><mi>exp</mi><mo>⁡</mo><mo stretchy="false">(</mo><msub><mi>z</mi><mi>v</mi></msub><mo stretchy="false">)</mo></mrow><mrow><munder><mo>∑</mo><mrow><mi>u</mi><mo>∈</mo><mi>V</mi></mrow></munder><mi>exp</mi><mo>⁡</mo><mo stretchy="false">(</mo><msub><mi>z</mi><mi>u</mi></msub><mo stretchy="false">)</mo></mrow></mfrac></mrow><annotation encoding="application/x-tex">
-P(v\mid x_{1:T})
-=
-\frac{\exp(z_v)}
-{\sum_{u\in V}\exp(z_u)}
-</annotation></semantics></math></p>
-
 <p>The typed-decision engine exploits a consequence that is easy to miss:</p>
 
 <blockquote>
