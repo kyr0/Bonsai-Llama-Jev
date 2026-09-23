@@ -8,6 +8,8 @@ BUILD_DIR ?= build
 CUDA_PATH ?= /usr/local/cuda
 NPROC ?= $(shell getconf _NPROCESSORS_ONLN 2>/dev/null || sysctl -n hw.ncpu)
 CONFIGURE_STAMP := $(BUILD_DIR)/.configure-args
+# setup.sh installs cmake/ninja into the venv; make them visible to all recipes.
+export PATH := $(CURDIR)/.venv/bin:$(PATH)
 # Extra llama-server flags via LLAMA_ARGS (e.g. LLAMA_ARGS="-ngl 99"),
 # a custom GGUF via BONSAI_GGUF, and HF cache/credentials through to the server.
 # BONSAI_MAX_TOKENS caps generation server-wide (--n-predict).
@@ -34,7 +36,8 @@ configure-cuda configure-h200 configure-rtx-pro-6000-ada configure-rtx-5050 conf
 	if [ -n "$$arch" ]; then args="$$args -DCMAKE_CUDA_ARCHITECTURES=$$arch"; fi; \
 	printf '%s\n' "$$args" > $(CONFIGURE_STAMP); \
 	echo "configure: cmake -S . -B $(BUILD_DIR) $$args"; \
-	PATH="$(CUDA_PATH)/bin:$$PATH" cmake -S . -B $(BUILD_DIR) $$args
+	PATH="$(CUDA_PATH)/bin:$$PATH" cmake -S . -B $(BUILD_DIR) $$args || \
+	  { rm -f $(CONFIGURE_STAMP) $(BUILD_DIR)/CMakeCache.txt; exit 1; }
 
 # Re-apply the persisted configuration after build/ was wiped.
 configure:
@@ -43,7 +46,8 @@ configure:
 	  $(MAKE) configure-cuda; \
 	else \
 	  echo "configure: re-applying saved configuration: $$(cat $(CONFIGURE_STAMP))"; \
-	  PATH="$(CUDA_PATH)/bin:$$PATH" cmake -S . -B $(BUILD_DIR) $$(cat $(CONFIGURE_STAMP)); \
+	  PATH="$(CUDA_PATH)/bin:$$PATH" cmake -S . -B $(BUILD_DIR) $$(cat $(CONFIGURE_STAMP)) || \
+	  { rm -f $(BUILD_DIR)/CMakeCache.txt; exit 1; }; \
 	fi
 
 # Build llama-server + llama-cli with the configuration last configured

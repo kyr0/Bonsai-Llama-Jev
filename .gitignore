@@ -161,3 +161,6 @@ output/
 !build.sh
 
 node_modules/
+
+hub/
+.bonsai_token

@@ -109,13 +109,73 @@ _version_ge() {
     return 0
 }
 
+# CUDA toolkit install, only when the build targets CUDA and nvcc is missing
+# (PATH or /usr/local/cuda, the Makefile's CUDA_PATH). Picks the package for
+# the distro's package manager; with sudo when not root.
+_ensure_cuda_toolkit() {
+    _stamp="$SCRIPT_DIR/build/.configure-args"
+    [ -f "$_stamp" ] && ! grep -q 'GGML_CUDA=ON' "$_stamp" && return 0
+    command -v nvcc >/dev/null 2>&1 && return 0
+    [ -x /usr/local/cuda/bin/nvcc ] && return 0
+
+    _pm=""
+    for _c in apt-get dnf yum pacman zypper; do
+        command -v "$_c" >/dev/null 2>&1 && { _pm="$_c"; break; }
+    done
+    # Only distros whose official repos package the toolkit are automated;
+    # Fedora/openSUSE need NVIDIA's own repo, so they get the manual pointer.
+    case "$_pm" in
+        apt-get) _su_cmd="apt-get install -y nvidia-cuda-toolkit" ;;
+        pacman)  _su_cmd="pacman -Sy --noconfirm cuda" ;;
+        *)
+            err "No official CUDA toolkit package for $_pm; install it manually."
+            echo "  https://developer.nvidia.com/cuda-downloads" >&2
+            exit 1
+            ;;
+    esac
+    _os=$(. /etc/os-release 2>/dev/null && echo "${PRETTY_NAME:-$_pm}")
+    step "CUDA toolkit missing - installing via $_pm on $_os (several GB, a few minutes) ..."
+    if [ "$(id -u)" = 0 ]; then
+        _su=""
+    elif command -v sudo >/dev/null 2>&1; then
+        _su="sudo"
+    else
+        err "Need root to install. Run: sudo $_su_cmd" >&2
+        exit 1
+    fi
+    [ "$_pm" = apt-get ] && $_su apt-get update -y </dev/null || true
+    $_su $_su_cmd </dev/null || {
+        err "CUDA toolkit install failed. Run manually: sudo $_su_cmd" >&2
+        exit 1
+    }
+    command -v nvcc >/dev/null 2>&1 || [ -x /usr/local/cuda/bin/nvcc ] || {
+        err "Install reported success but nvcc is still missing."
+        exit 1
+    }
+
+    # Toolkits < 12.8 cannot emit sm_120 (Blackwell) kernels. If a newer GPU is
+    # present, pin the configure archs to what this toolkit can actually build.
+    _rel=$(nvcc --version 2>/dev/null | sed -n 's/.*release \([0-9][0-9.]*\).*/\1/p')
+    if [ -n "$_rel" ] && ! _version_ge "$_rel" 12.8; then
+        _archs=$(nvidia-smi --query-gpu=compute_cap --format=csv,noheader 2>/dev/null \
+            | awk -F. '{c=$1*10+$2; if (c>0 && c<120) { printf "%s%d", s, c; s=";" }}')
+        if [ -n "$_archs" ]; then
+            info "CUDA $_rel has no sm_120 kernels - pinning build to GPUs: $_archs"
+            mkdir -p "$SCRIPT_DIR/build"
+            printf '%s\n' "-DCMAKE_BUILD_TYPE=Release -DLLAMA_CURL=OFF -DGGML_CUDA=ON -DCMAKE_CUDA_ARCHITECTURES=$_archs" \
+                > "$_stamp"
+        fi
+    fi
+    info "CUDA toolkit installed: $(nvcc --version | sed -n 's/.*release \([0-9][0-9.]*\).*/\1/p')"
+}
+
 # ── Model selection ──
 BONSAI_MODEL="${BONSAI_MODEL:-27B}"
 BONSAI_FAMILY="${BONSAI_FAMILY:-bonsai2}"
 
 echo ""
 echo "========================================="
-echo "   Bonsai Demo Setup"
+echo "   Bonsai-Llama-Jev Demo Setup"
 echo "   Family: ${BONSAI_FAMILY}"
 echo "   Model:  ${BONSAI_MODEL}"
 echo "========================================="
@@ -257,6 +317,8 @@ fi
 # ────────────────────────────────────────────────────
 step "Installing base Python dependencies ..."
 uv sync
+# uv sync only installs the locked project deps; the build toolchain goes on top.
+uv pip install --python "$VENV_PY" cmake ninja setuptools
 info "Base deps installed (cmake, ninja, setuptools, huggingface-cli)."
 
 # ────────────────────────────────────────────────────
@@ -271,7 +333,9 @@ if [ -x "$SCRIPT_DIR/build/bin/llama-server" ]; then
     info "llama-server already built at build/bin/ — skipping build."
 else
     step "Building llama.cpp from this checkout (make build) ..."
-    make -C "$SCRIPT_DIR" build
+    _ensure_cuda_toolkit
+    # venv first on PATH: cmake/ninja come from the venv installed in step 5
+    PATH="$VENV_DIR/bin:$PATH" make -C "$SCRIPT_DIR" build
 fi
 
 # ────────────────────────────────────────────────────
