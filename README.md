@@ -4,7 +4,7 @@
 
 🏆 As of 2026-09-22, the best open typed decision model (Jev-like) in [typed-decision-bench](https://kyr0.github.io/typed-decision-bench/) ([GitHub Repo](https://github.com/kyr0/typed-decision-bench)) with Pareto-optimal VRAM requirements (<= 10 GB) and latency.
 
-🏆 First typed decision model to reach **76.46% accuracy** vs. **88% Jev-1.13** and **13% calibration error** vs. **8,4% Jev-1.13** also thanks to my idea to post-hoc calibrate based on 20% held.out data probability distribution data via [Qtype-stratified temperature scaling](https://github.com/kyr0/typed-decision-bench/blob/main/CALIBRATION.md#9-why-fit-separate-temperatures-by-question-type).
+🏆 First typed decision model to reach **76.46% accuracy** vs. **88% Jev-1.13** and **13% calibration error** vs. **8,4% Jev-1.13** also thanks to post-hoc calibration based on 20% held-out calibration  data in `typed-decision-bench` via my new method: [Qtype-stratified temperature scaling](https://github.com/kyr0/typed-decision-bench/blob/main/CALIBRATION.md#9-why-fit-separate-temperatures-by-question-type).
 
 🏆 First typed decision inference with [🖼️ multimodal/image support](https://github.com/kyr0/Bonsai-Llama-Jev/blob/prism/e2e/media.sh#L61).
 
