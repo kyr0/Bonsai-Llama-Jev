@@ -2,7 +2,7 @@
 
 # 🌳🦙 Bonsai-Llama-Jev
 
-🏆 As of 2026-09-22, the best open typed decision model (Jev-like) in [typed-decision-bench](https://kyr0.github.io/typed-decision-bench/) ([GitHub Repo](https://github.com/kyr0/typed-decision-bench)) with Pareto-optimal VRAM requirements and latency.
+🏆 As of 2026-09-22, the best open typed decision model (Jev-like) in [typed-decision-bench](https://kyr0.github.io/typed-decision-bench/) ([GitHub Repo](https://github.com/kyr0/typed-decision-bench)) with Pareto-optimal VRAM requirements (<= 10 GB) and latency.
 
 🏆 First typed decision model to reach **76.46% accuracy** vs. **88% Jev-1.13** and **13% calibration error** vs. **8,4% Jev-1.13** also thanks to my idea to post-hoc calibrate based on 20% held.out data probability distribution data via [Qtype-stratified temperature scaling](https://github.com/kyr0/typed-decision-bench/blob/main/CALIBRATION.md#9-why-fit-separate-temperatures-by-question-type).
 
@@ -26,7 +26,7 @@
 
 2026-09-22 - [Paper on the method rendered](https://kyr0.github.io/Bonsai-Llama-Jev/).
 
-## 🏗️ What it consumes
+## 💧 What it consumes
 
 | | | |
 | --- | --- | --- |
@@ -35,7 +35,7 @@
 
 The documented reference configuration fits on a 12 GB-class GPU. Actual memory use depends on context size, parallel slots, image projector, backend, and other server settings. CPU inference is also supported, with substantially lower throughput.
 
-## But is it actually GOOD?
+## 🏆 But is it actually GOOD?
 
 Bonsai is better than all of these models in `accuracy` **and** `calibration` [see benchmark](https://kyr0.github.io/typed-decision-bench/).
 
@@ -46,7 +46,7 @@ Bonsai is better than all of these models in `accuracy` **and** `calibration` [s
 | `spark-X2.5`  | 70.97% |  **+5.49 pp** | **+7.74%** |
 | `openjev-qwen3.5-4b` | 74.13% |  **+2.33 pp** | **+3.14%** |
 
-## And is it really FAST?
+## 🏎️ And is it really FAST?
 
 p50/p95 latency per decision request and VRAM at 8k KV, same measurement as above:
 
@@ -55,7 +55,7 @@ p50/p95 latency per decision request and VRAM at 8k KV, same measurement as abov
 | laya | 36.7 | 44.4 | 1426 MB @ FP32 |
 | von-1.1 | 38.5 | 46.5 | 3888 MB @ FP32 |
 | kyr0/bonsai-2-27b-calibration-init | 165.0 | 362.0 | 9242 MB @ Q2_64 |
-| kyr0/bonsai-2-27b-calibrated | 170.9 | 448.0 | 9242 MB @ Q2_64 |
+| **kyr0/bonsai-2-27b-calibrated** | **170.9** | **448.0** | **9242 MB @ Q2_64** |
 | jev-1.13.0 | 716.4 | 778.8 | — |
 | kyr0/spark-X2.5 | 1,056.6 | 1,783.5 | 9813 MB @ BF16 |
 | openjev-qwen3.5-4b | 1,066.1 | 1,478.9 | 12866 MB @ BF16 |
