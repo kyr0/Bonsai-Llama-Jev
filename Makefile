@@ -15,7 +15,7 @@ export PATH := $(CURDIR)/.venv/bin:$(PATH)
 # a custom GGUF via BONSAI_GGUF, and HF cache/credentials through to the server.
 # BONSAI_MAX_TOKENS caps generation server-wide (--n-predict).
 export PORT BONSAI_HOST BONSAI_API_KEY BONSAI_ALIAS BONSAI_GGUF BONSAI_MAX_TOKENS BONSAI_NP BONSAI_CALIBRATION HF_HOME HF_TOKEN
-.PHONY: setup build configure configure-cuda configure-h200 configure-rtx-pro-6000-ada configure-rtx-5050 configure-rtx-3090 llama llama-server start logs status stop e2e-openai e2e-jev e2e vram
+.PHONY: setup build configure configure-cuda configure-h200 configure-rtx-pro-6000-ada configure-rtx-5050 configure-rtx-3090 llama llama-server start logs status stop metrics e2e-openai e2e-jev e2e-concurrent e2e vram
 
 # One-command setup: deps, venv, build (skipped if build/bin/llama-server exists),
 # and the Bonsai-2-27B model download.
@@ -109,6 +109,10 @@ logs:
 	@touch output/llama-serve.log
 	@tail -n 50 -f output/llama-serve.log
 
+# Live probe: current decode tok/s (one chat) and decisions/sec (8-way burst).
+metrics:
+	@bash scripts/metrics.sh
+
 stop:
 	@kill $$(lsof -ti TCP:$(PORT)) 2>/dev/null && echo "stopped port $(PORT)" || echo "not running"
 	@rm -f output/llama-serve.pid
@@ -120,6 +124,16 @@ e2e-openai:
 # Jev-like typed-decision query against the running server (/v1/systemone).
 e2e-jev:
 	@bash e2e/systemone.sh
+
+# Typed-decision requests fired mid-chat-generation must finish before the
+# still-running chats — proves concurrent use and decision priority.
+e2e-concurrent:
+	@bash e2e/concurrent.sh
+
+# OCR the invoice fixture into Markdown, then typed decisions find and
+# classify the PII words in it (/v1/systemone).
+e2e-pii:
+	@bash e2e/pii.sh
 
 # Full compatibility suite against the running server: OpenAI endpoints,
 # documented cURL request, Python typesafe-sdk, JS @typesafe-ai/sdk.

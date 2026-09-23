@@ -2868,10 +2868,24 @@ private:
         std::vector<server_slot *> generating;
         std::vector<server_slot *> drafting;
 
+        // systemone readouts are single-pass and cheap: while one is pending,
+        // chats yield the batch so decisions always go first
+        bool systemone_pending = false;
+        iterate(slots, [&](server_slot & slot) {
+            if ((slot.state == SLOT_STATE_STARTED || slot.state == SLOT_STATE_PROCESSING_PROMPT) &&
+                slot.task->type == SERVER_TASK_TYPE_SYSTEMONE) {
+                systemone_pending = true;
+            }
+        });
+
         // determine which slots are generating and drafting
         iterate(slots, [&](server_slot & slot) {
             if (slot.state != SLOT_STATE_GENERATING) {
                 return;
+            }
+
+            if (systemone_pending) {
+                return; // chat decode pauses for this round; the pending sampled token stays unconsumed
             }
 
             // check if we can batch this slot with the previous one
@@ -3016,6 +3030,13 @@ private:
                 // check if this is a child slot
                 if (slot.state == SLOT_STATE_WAIT_OTHER) {
                     SLT_DBG(slot, "%s", "waiting for parent slot to complete\n");
+                    return;
+                }
+
+                // chats yield the batch while a systemone readout is pending; this
+                // must also skip generating chats, else they claim slot_batched and
+                // block the systemone (different task type never batches with them)
+                if (systemone_pending && slot.task->type != SERVER_TASK_TYPE_SYSTEMONE) {
                     return;
                 }
 

@@ -9,19 +9,13 @@
 <body>
 <h1 id="turning-causal-language-models-into-typed-decision-engines">Turning Causal Language Models Into Typed-Decision Engines</h1>
 
-<p><em>Aron Homberg - Independent Researcher - 2026</em></p>
+<p><center><em>Aron Homberg - Independent Researcher - 2026</em></center></p>
 
-<blockquote>
-<p><strong>Scope.</strong> This document explains the inference method implemented by <code>kyr0/Bonsai-Llama-Jev</code>: how an ordinary causal language model (LM) can be exposed as a Jev-like typed-decision engine and System One API service without sampling, without generating an answer sentence, and without changing the model weights.</p>
-
-<p>The central idea is simple: <strong>stop after prompt evaluation, read the model&#39;s native next-token logits for a small set of answer-label tokens, normalize those logits into a categorical distribution, and reduce that distribution into a typed result.</strong></p>
-
-<p>This is an <strong>inference/readout transformation</strong>, not a new neural architecture and not, by itself, a calibration method. It reproduces the <em>shape</em> of a typed-decision API. It does <strong>not</strong> establish that the loaded model has Jev&#39;s weights, training procedure, or probability calibration.</p>
-</blockquote>
+<br />
 
 <h2 id="abstract">Abstract</h2>
 
-<p>Any causal language model already computes a categorical score over its vocabulary at every next-token boundary; a Jev-like typed-decision engine turns runtime-defined semantic answers into token verbalizers, stops inference after prefill, reads only those native logits, converts them with stable restricted softmax and chain-rule branch scoring, and deterministically reduces the resulting distribution into <code>choice</code>, <code>score</code>, or <code>noul</code> — <strong>without sampling and without generating an answer token</strong>. This paper breaks this method down. It explains, how any causal language model can be turned into a Type-Decision Engine. Demonstrated as a paper with code, the target audience of this paper is primarily: Applied AI engineers, AI research scientists and curious tech-affine readers.</p>
+<p>Any causal language model already computes a categorical score over its vocabulary at every next-token boundary; a Jev-like typed-decision engine turns runtime-defined semantic answers into token verbalizers, stops inference after prefill, reads only those native logits, converts them with stable restricted softmax and chain-rule branch scoring, and deterministically reduces the resulting distribution into <code>choice</code>, <code>score</code>, or <code>noul</code> - without sampling and without generating an answer token. This paper breaks this method down. It explains how any causal language model can be turned into a typed-decision engine. Demonstrated as a paper with code, it addresses primarily applied AI engineers, AI research scientists, and curious tech-affine readers.</p>
 
 <hr />
 
@@ -50,7 +44,7 @@
 		<li><a href="#20-exact-implementation-mapping">20. Exact implementation mapping</a></li>
 		<li><a href="#21-generic-implementation-pseudocode">21. Generic implementation pseudocode</a></li>
 		<li><a href="#22-why-this-is-faster-than-text-generation">22. Why this is faster than text generation</a></li>
-		<li><a href="#23-multiple-questions-parallelism-is-not-one-shared-forward-pass">23. Multiple questions: parallelism is not “one shared forward pass”</a></li>
+		<li><a href="#23-multiple-questions-parallelism-is-not-one-shared-forward-pass">23. Multiple questions: parallelism is not "one shared forward pass"</a></li>
 		<li><a href="#24-model-family-portability">24. Model-family portability</a></li>
 		<li><a href="#25-multimodal-models">25. Multimodal models</a></li>
 		<li><a href="#26-correctness-invariants">26. Correctness invariants</a></li>
@@ -71,34 +65,13 @@
 
 <h2 id="1-provenance">1. Provenance</h2>
 
-<p>The reader should be able to follow the code. Therefore, the repository lineage matters as the typed-decision behavior implementation at hand is a server/runtime modification to a fork of llama.cpp.</p>
+<p>The reader should be able to follow the code, so the repository lineage matters as the typed-decision behavior implementation at hand is a server/runtime modification to a fork of llama.cpp.</p>
 
 <p>Provenance as of 2026-09-22:</p>
 
 <ul>
-	<li><a href="https://github.com/kyr0/Bonsai-Llama-Jev"><code>kyr0/Bonsai-Llama-Jev</code> </a>was forked from <code>PrismML-Eng/llama.cpp</code>.</li>
-	<li>Its merge base immediately before the fork-local work is commit <code>3ae4f51087d8d9292eda16ee00cec54e798ea576</code>.</li>
-	<li>The typed-decision implementation first appears in fork-local commit:</li>
-	<li><code>8b1bb68f41a2a78e1e9ca5bd6155694e6a74ed7f</code> — <code>works</code></li>
-	<li>The next (first) fork-local commit:</li>
-	<li><code>9203183e6c54fda23872f230e33c1985b713c10c</code> — server/runtime hardening, generation-cap handling, build/start/e2e work.</li>
+	<li><a href="https://github.com/kyr0/Bonsai-Llama-Jev" target="_blank" rel="noopener"><code>kyr0/Bonsai-Llama-Jev</code> </a>was forked from <code>PrismML-Eng/llama.cpp</code>.</li>
 </ul>
-
-<p>The important code archaeology is:</p>
-
-<pre><code class="code-highlighted code-text">PrismML llama.cpp
-      |
-      | inherited model/runtime implementation
-      v
-3ae4f510...
-      |
-      | fork-local typed-decision implementation
-      v
-8b1bb68...
-      |
-      | runtime/e2e hardening
-      v
-9203183...</code></pre>
 
 <p>The core files introduced / changed for typed decisions are:</p>
 
@@ -109,7 +82,7 @@ tools/server/server-task.h
 tools/server/server.cpp
 tools/server/tests/unit/test_chat_completion.py</code></pre>
 
-<p>The decisive implementation is in <code>server-context.cpp</code>: a new <code>SERVER_TASK_TYPE_SYSTEMONE</code> runs the normal model prompt forward pass, extracts selected logits at <code>SLOT_STATE_DONE_PROMPT</code>, sends those logits back to the HTTP-side decision logic, releases the inference slot, and returns <strong>before normal token generation starts</strong>.</p>
+<p>The decisive implementation is in <code>server-context.cpp</code>: a new <code>SERVER_TASK_TYPE_SYSTEMONE</code> runs the normal model prompt forward pass, extracts selected logits at <code>SLOT_STATE_DONE_PROMPT</code>, sends those logits back to the HTTP-side decision logic, releases the inference slot, and returns before normal token generation starts.</p>
 
 <hr />
 
@@ -158,7 +131,7 @@ tools/server/tests/unit/test_chat_completion.py</code></pre>
 				<strong>Token</strong>
 			</td>
 			<td>
-				Integer symbol consumed/emitted by the model. A token is <strong>not</strong> necessarily one character or one word.
+				Integer symbol consumed/emitted by the model. A token is not necessarily one character or one word.
 			</td>
 		</tr>
 		<tr>
@@ -270,7 +243,7 @@ tools/server/tests/unit/test_chat_completion.py</code></pre>
 				<strong>System One</strong>
 			</td>
 			<td>
-				<a href="http://api.typesafe.ai/openapi.json">TypeSafe API surface</a> for asking typed questions over supplied state. “System One compatible” here refers to the request/response contract, not a claim about proprietary Jev internals.
+				<a href="http://api.typesafe.ai/openapi.json" target="_blank" rel="noopener">TypeSafe API surface</a> for asking typed questions over supplied state. "System One compatible" here refers to the request/response contract, not a claim about proprietary Jev internals.
 			</td>
 		</tr>
 		<tr>
@@ -294,7 +267,7 @@ tools/server/tests/unit/test_chat_completion.py</code></pre>
 				<strong>Noul</strong>
 			</td>
 			<td>
-				TypeSafe yes/no primitive: return the probability of “yes”.
+				TypeSafe yes/no primitive: return the probability of "yes".
 			</td>
 		</tr>
 		<tr>
@@ -343,8 +316,8 @@ tools/server/tests/unit/test_chat_completion.py</code></pre>
 <p>Two distinctions are especially important:</p>
 
 <ol>
-	<li><strong>prefill is not decoding</strong>: the model can compute next-token logits at the end of a prompt without emitting any token;</li>
-	<li><strong>deterministic readout is not calibration</strong>: a mathematically exact transformation of model logits can still be statistically miscalibrated against real outcomes.</li>
+	<li>prefill is not decoding: the model can compute next-token logits at the end of a prompt without emitting any token;</li>
+	<li>deterministic readout is not calibration: a mathematically exact transformation of model logits can still be statistically miscalibrated against real outcomes.</li>
 </ol>
 
 <hr />
@@ -379,7 +352,12 @@ x_{1:T}=(x_1,x_2,\ldots,x_T),
 	<li><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>z</mi><mi>v</mi></msub></mrow><annotation encoding="application/x-tex">z_v</annotation></semantics></math> = score assigned to vocabulary token <math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>v</mi></mrow><annotation encoding="application/x-tex">v</annotation></semantics></math>.</li>
 </ul>
 
-<p>The ordinary next-token distribution is:</p>
+<p>In practice (<a href="https://github.com/kyr0/Bonsai-Llama-Jev/blob/7a4cf234c/tools/server/server-context.cpp#L3707-L3726" target="_blank" rel="noopener"><code>tools/server/server-context.cpp</code>, logit readout at slot release</a>):</p>
+
+<pre><code class="code-highlighted code-text">z = lm_head(hidden_state[last_prompt_position])
+# one logit per vocabulary token; the engine reads only the few it needs</code></pre>
+
+<p>The ordinary next-token distribution of the model with parameters <math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>θ</mi></mrow><annotation encoding="application/x-tex">\theta</annotation></semantics></math> is:</p>
 
 <p><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>P</mi><mi>θ</mi></msub><mo stretchy="false">(</mo><mi>v</mi><mo>∣</mo><msub><mi>x</mi><mrow><mn>1</mn><mo>:</mo><mi>T</mi></mrow></msub><mo stretchy="false">)</mo><mo>=</mo><mfrac><mrow><mi>exp</mi><mo>⁡</mo><mo stretchy="false">(</mo><msub><mi>z</mi><mi>v</mi></msub><mo stretchy="false">)</mo></mrow><mrow><munder><mo>∑</mo><mrow><mi>u</mi><mo>∈</mo><mi>V</mi></mrow></munder><mi>exp</mi><mo>⁡</mo><mo stretchy="false">(</mo><msub><mi>z</mi><mi>u</mi></msub><mo stretchy="false">)</mo></mrow></mfrac><mi mathvariant="normal">.</mi></mrow><annotation encoding="application/x-tex">
 P_\theta(v\mid x_{1:T})
@@ -398,7 +376,7 @@ P_\theta(v\mid x_{1:T})
 <p>The LM already computed scores for <em>every possible next token</em>. If we encode each semantic answer as a known answer token, classification is already present in the final logits. We do not need the model to generate text explaining its choice.</p>
 </blockquote>
 
-<p>This is related to the <strong>verbalizer</strong> idea in prompt-based classification: semantic classes are mapped to token-level labels that the LM can score. PET (<em>Pattern-Exploiting Training</em>, Schick &amp; Schütze, EACL 2021) is a well-known example of this general class-to-token interface.</p>
+<p>This mirrors the <strong>verbalizer</strong> idea in prompt-based classification: semantic classes are mapped to token-level labels that the LM can score. PET (<em>Pattern-Exploiting Training</em>, Schick &amp; Schütze, EACL 2021) is a well-known example of this general class-to-token interface.</p>
 
 <hr />
 
@@ -417,7 +395,7 @@ P_\theta(v\mid x_{1:T})
 	<li><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math> = typed reducer (<code>choice</code>, <code>score</code>, or <code>noul</code>).</li>
 </ul>
 
-<p>Then:</p>
+<p>Composing these:</p>
 
 <p><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>D</mi><mi>θ</mi></msub><mo stretchy="false">(</mo><mi>s</mi><mo separator="true">,</mo><mi>q</mi><mo separator="true">,</mo><mi>C</mi><mo stretchy="false">)</mo><mo>=</mo><mi>A</mi><mtext> ⁣</mtext><mrow><mo fence="true">(</mo><mi>R</mi><mtext> ⁣</mtext><mrow><mo fence="true">(</mo><msub><mi>f</mi><mi>θ</mi></msub><mo stretchy="false">(</mo><mi mathvariant="normal">Φ</mi><mo stretchy="false">(</mo><mi>s</mi><mo separator="true">,</mo><mi>q</mi><mo separator="true">,</mo><mi>C</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo separator="true">,</mo><mi>g</mi><mo stretchy="false">(</mo><mi>C</mi><mo stretchy="false">)</mo><mo fence="true">)</mo></mrow><mo fence="true">)</mo></mrow><mi mathvariant="normal">.</mi></mrow><annotation encoding="application/x-tex">
 D_\theta(s,q,C)
@@ -430,27 +408,30 @@ g(C)
 \right).
 </annotation></semantics></math></p>
 
+<p>In practice (<a href="https://github.com/kyr0/Bonsai-Llama-Jev/blob/7a4cf234c/tools/server/server-context.cpp#L5577" target="_blank" rel="noopener"><code>tools/server/server-context.cpp</code>, request handler</a>):</p>
+
+<pre><code class="code-highlighted code-text">prompt = compile(state, question, candidates)   # Phi: deterministic prompt + label map
+logits = prefill(prompt)                        # f_theta: forward pass, stops before decode
+q      = softmax(logits[label_tokens])          # R: restricted readout
+answer = reduce(q)                              # A: choice | score | noul</code></pre>
+
 <p>The model parameters <math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>θ</mi></mrow><annotation encoding="application/x-tex">\theta</annotation></semantics></math> are unchanged.</p>
 
-<p>Thus:</p>
+<p>Put together:</p>
 
-<p><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><menclose notation="box"><mstyle scriptlevel="0" displaystyle="false"><mstyle scriptlevel="0" displaystyle="false"><mstyle scriptlevel="0" displaystyle="true"><mrow><mtext>typed decision engine</mtext><mo>=</mo><mtext>ordinary LM</mtext><mo>+</mo><mtext>prompt compiler</mtext><mo>+</mo><mtext>logit readout</mtext><mo>+</mo><mtext>deterministic probability math</mtext></mrow></mstyle></mstyle></mstyle></menclose></mrow><annotation encoding="application/x-tex">
-\boxed{
-\text{typed decision engine}
-=
-\text{ordinary LM}
-+
-\text{prompt compiler}
-+
-\text{logit readout}
-+
-\text{deterministic probability math}
-}
+<p><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><menclose notation="box"><mstyle scriptlevel="0" displaystyle="true"><mtable style="text-align: left"><mtr><mtd style="text-align: left"><mtext>typed decision engine</mtext></mtd></mtr><mtr><mtd style="text-align: left"><mo>=</mo><mspace width="0.33em"/><mtext>ordinary LM</mtext></mtd></mtr><mtr><mtd style="text-align: left"><mo>+</mo><mspace width="0.33em"/><mtext>prompt compiler</mtext></mtd></mtr><mtr><mtd style="text-align: left"><mo>+</mo><mspace width="0.33em"/><mtext>logit readout</mtext></mtd></mtr><mtr><mtd style="text-align: left"><mo>+</mo><mspace width="0.33em"/><mtext>deterministic probability math</mtext></mtd></mtr></mtable></mstyle></menclose></mrow><annotation encoding="application/x-tex">
+\boxed{\begin{array}{l}
+\text{typed decision engine} \\
+= \text{ordinary LM} \\
++ \text{prompt compiler} \\
++ \text{logit readout} \\
++ \text{deterministic probability math}
+\end{array}}
 </annotation></semantics></math></p>
 
 <p>No classifier head must be trained. No adapter must be attached. No sampler is necessary.</p>
 
-<p>Saying “we implemented a different neural forward pass” is therefore slightly imprecise. The <strong>neural forward graph remains the same</strong>. What changes is the <strong>server execution path</strong>:</p>
+<p>Saying "we implemented a different neural forward pass" is therefore slightly imprecise. The neural forward graph remains the same. What changes is the server execution path:</p>
 
 <ol>
 	<li>compile request into classification prompt;</li>
@@ -470,23 +451,23 @@ g(C)
 <p>A normal generation engine conceptually performs:</p>
 
 <pre><code class="code-highlighted code-text">prompt
-  ↓
+  v
 prefill
-  ↓
-logits z₀
-  ↓
+  v
+logits z0
+  v
 temperature / top-k / top-p / penalties / ...
-  ↓
-sample or argmax y₁
-  ↓
-append y₁
-  ↓
+  v
+sample or argmax y1
+  v
+append y1
+  v
 decode forward
-  ↓
-logits z₁
-  ↓
-select y₂
-  ↓
+  v
+logits z1
+  v
+select y2
+  v
 ...</code></pre>
 
 <p>Generated text follows the autoregressive factorization:</p>
@@ -498,26 +479,26 @@ P(y_{1:K}\mid x)
 P(y_t\mid x,y_{&lt;t}).
 </annotation></semantics></math></p>
 
-<p>A generation engine therefore contains a serial <strong>decode loop</strong>.</p>
+<p>A generation engine therefore contains a serial decode loop.</p>
 
 <h3 id="52-typed-decision-mode">5.2 Typed decision mode</h3>
 
 <p>For a one-token label set:</p>
 
 <pre><code class="code-highlighted code-text">state + question + candidates
-  ↓
+  v
 deterministic prompt
-  ↓
+  v
 prefill
-  ↓
+  v
 final-position logits z
-  ↓
+  v
 gather z[A], z[B], z[C], ...
-  ↓
+  v
 restricted softmax
-  ↓
+  v
 typed reduction
-  ↓
+  v
 JSON response</code></pre>
 
 <p>There is no generated token between the model and the typed answer.</p>
@@ -525,19 +506,19 @@ JSON response</code></pre>
 <p>In the current implementation:</p>
 
 <pre><code class="code-highlighted code-text">SERVER_TASK_TYPE_SYSTEMONE
-    ↓
+    v
 normal prompt evaluation
-    ↓
+    v
 SLOT_STATE_DONE_PROMPT
-    ↓
+    v
 llama_get_logits_ith(...)
-    ↓
+    v
 copy logits for task.systemone_tokens
-    ↓
+    v
 queue result
-    ↓
+    v
 slot.release()
-    ↓
+    v
 return</code></pre>
 
 <p>The normal sampler chain is never entered.</p>
@@ -557,7 +538,7 @@ return</code></pre>
 
 <p>The only <code>argmax</code> is later applied to the semantic candidate probability vector. That is classification, not greedy text decoding.</p>
 
-<h3 id="no-sampling-does-not-imply-bitwise-determinism">“No sampling” does not imply bitwise determinism</h3>
+<h3 id="no-sampling-does-not-imply-bitwise-determinism">"No sampling" does not imply bitwise determinism</h3>
 
 <p>Removing sampling removes an explicit stochastic operation. It does not guarantee bit-identical outputs across:</p>
 
@@ -619,7 +600,7 @@ sales                C</code></pre>
 
 <h2 id="7-the-critical-tokenizer-invariant">7. The critical tokenizer invariant</h2>
 
-<p>The direct readout is exact only if an answer character really is one token <strong>at the exact prompt boundary</strong>.</p>
+<p>The direct readout is exact only if an answer character really is one token at the exact prompt boundary.</p>
 
 <p>Let:</p>
 
@@ -658,7 +639,9 @@ extended = tokenize(prompt + <span class="syntax-all syntax-string">&quot;A&quot
 <span class="syntax-all syntax-entity">require</span>(piece(extended.back()) == &quot;A&quot;);
 <span class="syntax-all syntax-entity">require</span>(token_id_for_A_is_unique);</code></pre>
 
-<p>This matters because BPE/unigram tokenizers can merge punctuation, whitespace, and following text. It is possible that:</p>
+<p>In code: <a href="https://github.com/kyr0/Bonsai-Llama-Jev/blob/7a4cf234c/tools/server/server-context.cpp#L5608-L5619" target="_blank" rel="noopener"><code>tools/server/server-context.cpp</code>, answer-label validation</a>.</p>
+
+<p>This matters because BPE (byte-pair encoding) and unigram tokenizers can merge punctuation, whitespace, and following text. It is possible that:</p>
 
 <pre><code class="code-highlighted code-text">tokenize(&quot;answer:&quot;)</code></pre>
 
@@ -668,7 +651,7 @@ extended = tokenize(prompt + <span class="syntax-all syntax-string">&quot;A&quot
 
 <p>The current engine therefore fails with HTTP 422 rather than silently scoring the wrong token.</p>
 
-<p>Hence “any LM” should be qualified:</p>
+<p>Hence "any LM" should be qualified:</p>
 
 <blockquote>
 <p>The current implementation supports a <strong>causal next-token LM whose tokenizer/chat-template combination provides usable singleton answer tokens at the output boundary</strong>.</p>
@@ -702,6 +685,11 @@ q_i
 </annotation></semantics></math></p>
 
 <p>This is a <strong>restricted softmax</strong> over answer tokens. Softmax converts arbitrary real scores into positive normalized weights summing to one.</p>
+
+<p>In practice (<a href="https://github.com/kyr0/Bonsai-Llama-Jev/blob/7a4cf234c/tools/server/server-context.cpp#L4841-L4860" target="_blank" rel="noopener"><code>tools/server/server-context.cpp</code>, probabilities()</a>):</p>
+
+<pre><code class="code-highlighted code-text">z = prefill(prompt)                    # one forward pass, no decode
+q = softmax([z[t] for t in answer_token_ids])</code></pre>
 
 <h3 id="why-it-is-exactly-the-native-lm-distribution-conditioned-on-allowed-labels">Why it is exactly the native LM distribution conditioned on allowed labels</h3>
 
@@ -753,14 +741,13 @@ P(t_i\mid P,t\in A)
 q_i.
 </annotation></semantics></math></p>
 
-<p>Therefore:</p>
+<p>In words:</p>
 
-<p><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><menclose notation="box"><mstyle scriptlevel="0" displaystyle="false"><mstyle scriptlevel="0" displaystyle="false"><mstyle scriptlevel="0" displaystyle="true"><mrow><mtext>restricted softmax over selected logits</mtext><mo>=</mo><mtext>native next-token distribution conditioned on the supplied labels</mtext></mrow></mstyle></mstyle></mstyle></menclose></mrow><annotation encoding="application/x-tex">
-\boxed{
-\text{restricted softmax over selected logits}
-=
-\text{native next-token distribution conditioned on the supplied labels}
-}
+<p><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><menclose notation="box"><mstyle scriptlevel="0" displaystyle="true"><mtable style="text-align: left"><mtr><mtd style="text-align: left"><mtext>restricted softmax over selected logits</mtext></mtd></mtr><mtr><mtd style="text-align: left"><mo>=</mo><mspace width="0.33em"/><mtext>native next-token distribution conditioned on the supplied labels</mtext></mtd></mtr></mtable></mstyle></menclose></mrow><annotation encoding="application/x-tex">
+\boxed{\begin{array}{l}
+\text{restricted softmax over selected logits} \\
+= \text{native next-token distribution conditioned on the supplied labels}
+\end{array}}
 </annotation></semantics></math></p>
 
 <h3 id="what-the-existing-unit-test-proves">What the existing unit test proves</h3>
@@ -778,21 +765,21 @@ q_i.
 
 <p>Agreement is checked to approximately <math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>10</mn><mrow><mo>−</mo><mn>5</mn></mrow></msup></mrow><annotation encoding="application/x-tex">10^{-5}</annotation></semantics></math>.</p>
 
-<p>Thus, for single-token candidates, System One is exposing the backbone&#39;s existing probability geometry under a restricted label space.</p>
+<p>For single-token candidates, System One exposes the backbone&#39;s existing probability geometry under a restricted label space.</p>
 
 <hr />
 
 <h2 id="9-numerical-stability-subtract-the-maximum-logit">9. Numerical stability: subtract the maximum logit</h2>
 
-<p>Naive exponentiation can overflow.</p>
+<p>Naive exponentiation can overflow for large logits.</p>
 
-<p>Use:</p>
+<p>Shift every logit by the largest logit <math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>m</mi></mrow><annotation encoding="application/x-tex">m</annotation></semantics></math> first:</p>
 
 <p><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>m</mi><mo>=</mo><munder><mrow><mi>max</mi><mo>⁡</mo></mrow><mi>j</mi></munder><msub><mi>z</mi><mi>j</mi></msub></mrow><annotation encoding="application/x-tex">
 m=\max_jz_j
 </annotation></semantics></math></p>
 
-<p>and:</p>
+<p>and exponentiate the shifted scores instead:</p>
 
 <p><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>q</mi><mi>i</mi></msub><mo>=</mo><mfrac><mrow><mi>exp</mi><mo>⁡</mo><mo stretchy="false">(</mo><msub><mi>z</mi><mi>i</mi></msub><mo>−</mo><mi>m</mi><mo stretchy="false">)</mo></mrow><mrow><munder><mo>∑</mo><mi>j</mi></munder><mi>exp</mi><mo>⁡</mo><mo stretchy="false">(</mo><msub><mi>z</mi><mi>j</mi></msub><mo>−</mo><mi>m</mi><mo stretchy="false">)</mo></mrow></mfrac><mi mathvariant="normal">.</mi></mrow><annotation encoding="application/x-tex">
 q_i
@@ -803,7 +790,12 @@ q_i
 
 <p>The result is unchanged because the common factor <math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>exp</mi><mo>⁡</mo><mo stretchy="false">(</mo><mo>−</mo><mi>m</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\exp(-m)</annotation></semantics></math> cancels.</p>
 
-<p>This is the standard max-subtraction/log-sum-exp stabilization technique.</p>
+<p>The standard max-subtraction/log-sum-exp stabilization technique.</p>
+
+<p>In practice (<a href="https://github.com/kyr0/Bonsai-Llama-Jev/blob/7a4cf234c/tools/server/server-context.cpp#L4841-L4860" target="_blank" rel="noopener"><code>tools/server/server-context.cpp</code>, probabilities()</a>):</p>
+
+<pre><code class="code-highlighted code-text">m    = max(z)
+q[i] = exp(z[i] - m) / sum(exp(z[j] - m))   # same result, no overflow</code></pre>
 
 <p>The current implementation performs probability arithmetic in <code>double</code>, although copied logits arrive as <code>float</code>.</p>
 
@@ -811,7 +803,7 @@ q_i
 
 <h2 id="10-worked-one-token-example">10. Worked one-token example</h2>
 
-<p>Suppose:</p>
+<p>Suppose the copied answer-token logits for three candidates <code>A</code>, <code>B</code>, <code>C</code> are:</p>
 
 <pre><code class="code-highlighted code-text">A / billing:    2.1
 B / technical:  0.9
@@ -839,7 +831,7 @@ C / sales:     -0.1</code></pre>
 Z=1+0.3010+0.1108=1.4118.
 </annotation></semantics></math></p>
 
-<p>Therefore:</p>
+<p>Dividing each weight by Z:</p>
 
 <p><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi mathvariant="bold">p</mi><mo>≈</mo><mo stretchy="false">[</mo><mn>0.7082</mn><mo separator="true">,</mo><mn>0.2133</mn><mo separator="true">,</mo><mn>0.0785</mn><mo stretchy="false">]</mo><mi mathvariant="normal">.</mi></mrow><annotation encoding="application/x-tex">
 \mathbf p
@@ -851,13 +843,19 @@ Z=1+0.3010+0.1108=1.4118.
 
 <p>No answer token was generated.</p>
 
+<p>In practice (<a href="https://github.com/kyr0/Bonsai-Llama-Jev/blob/7a4cf234c/tools/server/server-context.cpp#L4841-L4860" target="_blank" rel="noopener"><code>tools/server/server-context.cpp</code>, probabilities()</a>):</p>
+
+<pre><code class="code-highlighted code-text">logits = [2.1, 0.9, -0.1]      # copied z values at the A/B/C token positions
+p      = softmax(logits)       # [0.7082, 0.2133, 0.0785]
+choice = candidates[argmax(p)] # "A" - no token generated</code></pre>
+
 <hr />
 
 <h3 id="11-factorized-multi-character-labels">11. Factorized multi-character labels</h3>
 
 <p>For <math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi><mo>&gt;</mo><mn>62</mn></mrow><annotation encoding="application/x-tex">N&gt;62</annotation></semantics></math>, labels use multiple characters, because the set of single-character labels is exceeded (see 6.).</p>
 
-<p>Let the label width be <math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>D</mi></mrow><annotation encoding="application/x-tex">D</annotation></semantics></math>, with radix sizes:</p>
+<p>Let the label width be <math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>D</mi></mrow><annotation encoding="application/x-tex">D</annotation></semantics></math> (characters per label), and let <math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>r</mi><mi>d</mi></msub></mrow><annotation encoding="application/x-tex">r_d</annotation></semantics></math> be the number of distinct symbols allowed at label position <math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi></mrow><annotation encoding="application/x-tex">d</annotation></semantics></math> (its radix):</p>
 
 <p><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>r</mi><mn>0</mn></msub><mo separator="true">,</mo><msub><mi>r</mi><mn>1</mn></msub><mo separator="true">,</mo><mo>…</mo><mo separator="true">,</mo><msub><mi>r</mi><mrow><mi>D</mi><mo>−</mo><mn>1</mn></mrow></msub><mi mathvariant="normal">.</mi></mrow><annotation encoding="application/x-tex">
 r_0,r_1,\ldots,r_{D-1}.
@@ -879,7 +877,7 @@ C\ge N.
 
 <p>For 67 candidates:</p>
 
-<pre><code class="code-highlighted code-text">radices  = 2 × 34
+<pre><code class="code-highlighted code-text">radices  = 2 x 34
 capacity = 68</code></pre>
 
 <h3 id="why-additional-model-evaluations-are-necessary">Why additional model evaluations are necessary</h3>
@@ -903,9 +901,9 @@ P(\ell_0\ell_1\cdots\ell_{D-1}\mid P)
 P(\ell_d\mid P,\ell_{&lt;d}).
 </annotation></semantics></math></p>
 
-<p>This is the standard probability chain rule.</p>
+<p>The standard probability chain rule, applied to label characters.</p>
 
-<p>The current engine uses a <strong>restricted categorical probability at every branch</strong>:</p>
+<p>The current engine uses a restricted categorical probability at every branch:</p>
 
 <p><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>q</mi><mi>d</mi></msub><mo stretchy="false">(</mo><mi>c</mi><mo>∣</mo><mi>π</mi><mo stretchy="false">)</mo><mo>=</mo><mfrac><mrow><mi>exp</mi><mo>⁡</mo><mo stretchy="false">(</mo><msub><mi>z</mi><mi>c</mi></msub><mo stretchy="false">(</mo><mi>P</mi><mo separator="true">,</mo><mi>π</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><mrow><munder><mo>∑</mo><mrow><mi>a</mi><mo>∈</mo><msub><mi>A</mi><mi>d</mi></msub></mrow></munder><mi>exp</mi><mo>⁡</mo><mo stretchy="false">(</mo><msub><mi>z</mi><mi>a</mi></msub><mo stretchy="false">(</mo><mi>P</mi><mo separator="true">,</mo><mi>π</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow></mfrac><mi mathvariant="normal">.</mi></mrow><annotation encoding="application/x-tex">
 q_d(c\mid\pi)
@@ -917,7 +915,9 @@ q_d(c\mid\pi)
 }.
 </annotation></semantics></math></p>
 
-<p>For candidate <math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math>:</p>
+<p>Where: <math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>π</mi></mrow><annotation encoding="application/x-tex">\pi</annotation></semantics></math> = the label characters already chosen before branch <math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi></mrow><annotation encoding="application/x-tex">d</annotation></semantics></math>; <math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>A</mi><mi>d</mi></msub></mrow><annotation encoding="application/x-tex">A_d</annotation></semantics></math> = the allowed symbols at branch <math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi></mrow><annotation encoding="application/x-tex">d</annotation></semantics></math>; <math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>z</mi><mi>c</mi></msub><mo stretchy="false">(</mo><mi>P</mi><mo separator="true">,</mo><mi>π</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">z_c(P,\pi)</annotation></semantics></math> = the model's logit for symbol <math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>c</mi></mrow><annotation encoding="application/x-tex">c</annotation></semantics></math> at the prompt extended by <math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>π</mi></mrow><annotation encoding="application/x-tex">\pi</annotation></semantics></math>.</p>
+
+<p>For candidate <math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math> with label <math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi mathvariant="normal">ℓ</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">\ell_i</annotation></semantics></math>, multiply the branch probabilities along the label's character path (<math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi mathvariant="normal">ℓ</mi><mi>i</mi></msub><mo stretchy="false">[</mo><mi>d</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">\ell_i[d]</annotation></semantics></math> is the character at position <math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi></mrow><annotation encoding="application/x-tex">d</annotation></semantics></math>, <math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi mathvariant="normal">ℓ</mi><mi>i</mi></msub><mo stretchy="false">[</mo><mo>:</mo><mi>d</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">\ell_i[:d]</annotation></semantics></math> the characters before it):</p>
 
 <p><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>w</mi><mi>i</mi></msub><mo>=</mo><munderover><mo>∏</mo><mrow><mi>d</mi><mo>=</mo><mn>0</mn></mrow><mrow><mi>D</mi><mo>−</mo><mn>1</mn></mrow></munderover><msub><mi>q</mi><mi>d</mi></msub><mrow><mo fence="true">(</mo><msub><mi mathvariant="normal">ℓ</mi><mi>i</mi></msub><mo stretchy="false">[</mo><mi>d</mi><mo stretchy="false">]</mo><mo>∣</mo><msub><mi mathvariant="normal">ℓ</mi><mi>i</mi></msub><mo stretchy="false">[</mo><mo>:</mo><mi>d</mi><mo stretchy="false">]</mo><mo fence="true">)</mo></mrow><mi mathvariant="normal">.</mi></mrow><annotation encoding="application/x-tex">
 w_i
@@ -931,7 +931,7 @@ q_d
 \right).
 </annotation></semantics></math></p>
 
-<p>Finally:</p>
+<p>Finally, normalize these path weights over all candidates:</p>
 
 <p><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>p</mi><mi>i</mi></msub><mo>=</mo><mfrac><msub><mi>w</mi><mi>i</mi></msub><mrow><munderover><mo>∑</mo><mrow><mi>j</mi><mo>=</mo><mn>1</mn></mrow><mi>N</mi></munderover><msub><mi>w</mi><mi>j</mi></msub></mrow></mfrac><mi mathvariant="normal">.</mi></mrow><annotation encoding="application/x-tex">
 p_i
@@ -940,9 +940,16 @@ p_i
 {\sum_{j=1}^{N}w_j}.
 </annotation></semantics></math></p>
 
+<p>In practice (<a href="https://github.com/kyr0/Bonsai-Llama-Jev/blob/7a4cf234c/tools/server/server-context.cpp#L5634" target="_blank" rel="noopener"><code>tools/server/server-context.cpp</code>, depth readout loop</a>):</p>
+
+<pre><code class="code-highlighted code-text">for d in range(D):                       # one readout per chosen label prefix
+    q[d] = softmax(logits_at(prompt + label[:d]))   # over allowed symbols at position d
+w[i] = prod(q[d][label_i[d]] for d in range(D))
+p    = w / sum(w)</code></pre>
+
 <h3 id="important-semantic-nuance">Important semantic nuance</h3>
 
-<p>For multi-character labels this is best understood as a <strong>forced categorical decision tree</strong>.</p>
+<p>For multi-character labels this is best understood as a forced categorical decision tree.</p>
 
 <p>It is not exactly the raw unrestricted language-model probability of the complete label string, because every branch is renormalized over valid answer symbols:</p>
 
@@ -964,7 +971,7 @@ P_\theta(c\mid P,\pi,c\in A_d).
 
 <h2 id="12-readout-count-complexity">12. Readout-count complexity</h2>
 
-<p>For radices <math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>r</mi><mn>0</mn></msub><mo separator="true">,</mo><mo>…</mo><mo separator="true">,</mo><msub><mi>r</mi><mrow><mi>D</mi><mo>−</mo><mn>1</mn></mrow></msub></mrow><annotation encoding="application/x-tex">r_0,\ldots,r_{D-1}</annotation></semantics></math>:</p>
+<p>For radices <math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>r</mi><mn>0</mn></msub><mo separator="true">,</mo><mo>…</mo><mo separator="true">,</mo><msub><mi>r</mi><mrow><mi>D</mi><mo>−</mo><mn>1</mn></mrow></msub></mrow><annotation encoding="application/x-tex">r_0,\ldots,r_{D-1}</annotation></semantics></math>, the total number of model readout evaluations <math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math> is:</p>
 
 <p><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>R</mi><mo>=</mo><munderover><mo>∑</mo><mrow><mi>d</mi><mo>=</mo><mn>0</mn></mrow><mrow><mi>D</mi><mo>−</mo><mn>1</mn></mrow></munderover><munderover><mo>∏</mo><mrow><mi>k</mi><mo>=</mo><mn>0</mn></mrow><mrow><mi>d</mi><mo>−</mo><mn>1</mn></mrow></munderover><msub><mi>r</mi><mi>k</mi></msub><mo separator="true">,</mo></mrow><annotation encoding="application/x-tex">
 R
@@ -974,6 +981,11 @@ R
 </annotation></semantics></math></p>
 
 <p>with empty product <math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">=1</annotation></semantics></math>.</p>
+
+<p>In practice (<a href="https://github.com/kyr0/Bonsai-Llama-Jev/blob/7a4cf234c/tools/server/server-context.cpp#L5634" target="_blank" rel="noopener"><code>tools/server/server-context.cpp</code>, readout loop over label depths</a>):</p>
+
+<pre><code class="code-highlighted code-text">R = sum(prod(radix[:d]) for d in range(D))
+# e.g. radices 2x34: 1 + 2 = 3 logit readouts per request</code></pre>
 
 <p>Examples from the implementation:</p>
 
@@ -1042,7 +1054,7 @@ R
 				63
 			</td>
 			<td style="text-align: right;">
-				3 × 21
+				3 x 21
 			</td>
 			<td style="text-align: right;">
 				63
@@ -1056,7 +1068,7 @@ R
 				67
 			</td>
 			<td style="text-align: right;">
-				2 × 34
+				2 x 34
 			</td>
 			<td style="text-align: right;">
 				68
@@ -1070,7 +1082,7 @@ R
 				100
 			</td>
 			<td style="text-align: right;">
-				2 × 50
+				2 x 50
 			</td>
 			<td style="text-align: right;">
 				100
@@ -1084,7 +1096,7 @@ R
 				677
 			</td>
 			<td style="text-align: right;">
-				17 × 40
+				17 x 40
 			</td>
 			<td style="text-align: right;">
 				680
@@ -1098,7 +1110,7 @@ R
 				3844
 			</td>
 			<td style="text-align: right;">
-				62 × 62
+				62 x 62
 			</td>
 			<td style="text-align: right;">
 				3844
@@ -1112,7 +1124,7 @@ R
 				3845
 			</td>
 			<td style="text-align: right;">
-				2 × 37 × 52
+				2 x 37 x 52
 			</td>
 			<td style="text-align: right;">
 				3848
@@ -1124,7 +1136,7 @@ R
 	</tbody>
 </table>
 
-<p>Therefore “no decoding” does <strong>not</strong> mean “one neural evaluation for arbitrary candidate counts.”</p>
+<p>"No decoding" does not mean "one neural evaluation for arbitrary candidate counts."</p>
 
 <p>For <math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi><mo>≤</mo><mn>62</mn></mrow><annotation encoding="application/x-tex">N\le62</annotation></semantics></math> (single-character label case), one final-position readout is enough per question.</p>
 
@@ -1220,6 +1232,8 @@ branch C -&gt; suffix only</code></pre>
 
 <h3 id="151-choice">15.1 Choice</h3>
 
+<p>Choice returns the index of the most probable candidate:</p>
+
 <p><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msup><mi>i</mi><mo>∗</mo></msup><mo>=</mo><munder><mrow><mi mathvariant="normal">arg max</mi><mo>⁡</mo></mrow><mi>i</mi></munder><msub><mi>p</mi><mi>i</mi></msub><mi mathvariant="normal">.</mi></mrow><annotation encoding="application/x-tex">
 i^*
 =
@@ -1228,9 +1242,13 @@ i^*
 
 <p>TypeSafe&#39;s public Choice contract similarly exposes the selected option, a probability per supplied option, and confidence.</p>
 
+<p>In practice (<a href="https://github.com/kyr0/Bonsai-Llama-Jev/blob/7a4cf234c/tools/server/server-context.cpp#L4862-L4900" target="_blank" rel="noopener"><code>tools/server/server-context.cpp</code>, answer()</a>):</p>
+
+<pre><code class="code-highlighted code-text">choice = candidates[argmax(p)]</code></pre>
+
 <h3 id="152-score">15.2 Score</h3>
 
-<p>For ordered levels <math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo separator="true">,</mo><mo>…</mo><mo separator="true">,</mo><mi>N</mi><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">0,\ldots,N-1</annotation></semantics></math>:</p>
+<p>For ordered levels <math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo separator="true">,</mo><mo>…</mo><mo separator="true">,</mo><mi>N</mi><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">0,\ldots,N-1</annotation></semantics></math>, the score is the expected level index (a probability-weighted average):</p>
 
 <p><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi mathvariant="normal">score</mi><mo>⁡</mo><mo>=</mo><mi mathvariant="double-struck">E</mi><mo stretchy="false">[</mo><mi>L</mi><mo stretchy="false">]</mo><mo>=</mo><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>0</mn></mrow><mrow><mi>N</mi><mo>−</mo><mn>1</mn></mrow></munderover><mi>i</mi><mtext> </mtext><msub><mi>p</mi><mi>i</mi></msub><mi mathvariant="normal">.</mi></mrow><annotation encoding="application/x-tex">
 \operatorname{score}
@@ -1240,13 +1258,15 @@ i^*
 \sum_{i=0}^{N-1}i\,p_i.
 </annotation></semantics></math></p>
 
-<p>This is ordinary statistical expected value.</p>
-
 <p>TypeSafe documents exactly this probability-weighted-level interpretation; for example, probabilities <math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo separator="true">,</mo><mn>0.57</mn><mo separator="true">,</mo><mn>0.43</mn></mrow><annotation encoding="application/x-tex">0,0.57,0.43</annotation></semantics></math> over levels <math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo separator="true">,</mo><mn>1</mn><mo separator="true">,</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">0,1,2</annotation></semantics></math> yield score <math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1.43</mn></mrow><annotation encoding="application/x-tex">1.43</annotation></semantics></math>.</p>
+
+<p>In practice (<a href="https://github.com/kyr0/Bonsai-Llama-Jev/blob/7a4cf234c/tools/server/server-context.cpp#L4862-L4899" target="_blank" rel="noopener"><code>tools/server/server-context.cpp</code>, answer()</a>):</p>
+
+<pre><code class="code-highlighted code-text">score = sum(i * p[i] for i in range(N))   # expected level index</code></pre>
 
 <h3 id="153-noul">15.3 Noul</h3>
 
-<p>TypeSafe defines Noul as a yes/no question returning the probability of “yes”.</p>
+<p>TypeSafe defines Noul as a yes/no question returning the probability of "yes".</p>
 
 <p>Internally:</p>
 
@@ -1283,11 +1303,15 @@ p_{\text{yes}}+(1-p_{\text{no}})
 }
 </annotation></semantics></math></p>
 
+<p>In practice (<a href="https://github.com/kyr0/Bonsai-Llama-Jev/blob/7a4cf234c/tools/server/server-context.cpp#L4862-L4899" target="_blank" rel="noopener"><code>tools/server/server-context.cpp</code>, answer()</a>):</p>
+
+<pre><code class="code-highlighted code-text">noul = p["yes"]   # binary labels: p_no = 1 - p_yes</code></pre>
+
 <hr />
 
 <h2 id="16-the-confidence-field-is-a-local-heuristic">16. The <code>confidence</code> field is a local heuristic</h2>
 
-<p>Lacking any better known option, we currently compute:</p>
+<p>Lacking any better known option, we currently compute the returned confidence <math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math> as the probability of the winning candidate multiplied by the probability that every other candidate loses:</p>
 
 <p><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>C</mi><mo>=</mo><msub><mi>p</mi><msup><mi>i</mi><mo>∗</mo></msup></msub><munder><mo>∏</mo><mrow><mi>i</mi><mo mathvariant="normal">≠</mo><msup><mi>i</mi><mo>∗</mo></msup></mrow></munder><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><msub><mi>p</mi><mi>i</mi></msub><mo stretchy="false">)</mo><mi mathvariant="normal">.</mi></mrow><annotation encoding="application/x-tex">
 C
@@ -1296,9 +1320,13 @@ p_{i^*}
 \prod_{i\ne i^*}(1-p_i).
 </annotation></semantics></math></p>
 
-<p>This is a deterministic concentration heuristic.</p>
+<p>A deterministic concentration heuristic.</p>
 
-<p>It is <strong>not</strong> a theorem that:</p>
+<p>In practice (<a href="https://github.com/kyr0/Bonsai-Llama-Jev/blob/7a4cf234c/tools/server/server-context.cpp#L4862-L4899" target="_blank" rel="noopener"><code>tools/server/server-context.cpp</code>, answer()</a>):</p>
+
+<pre><code class="code-highlighted code-text">confidence = p[argmax(p)] * prod(1 - p[i] for i in candidates if i != argmax(p))</code></pre>
+
+<p>It is not a theorem that:</p>
 
 <p><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>C</mi><mo>=</mo><mi>P</mi><mo stretchy="false">(</mo><mtext>decision is correct</mtext><mo stretchy="false">)</mo><mi mathvariant="normal">.</mi></mrow><annotation encoding="application/x-tex">
 C=P(\text{decision is correct}).
@@ -1310,7 +1338,7 @@ C=P(\text{decision is correct}).
 C=p^2.
 </annotation></semantics></math></p>
 
-<p>Thus:</p>
+<p>Numerically:</p>
 
 <p><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>p</mi><mo>=</mo><mn>0.8</mn><mo>⇒</mo><mi>C</mi><mo>=</mo><mn>0.64.</mn></mrow><annotation encoding="application/x-tex">
 p=0.8\Rightarrow C=0.64.
@@ -1331,7 +1359,7 @@ C
 \approx0.5134.
 </annotation></semantics></math></p>
 
-<p>TypeSafe&#39;s public docs describe <code>confidence</code> as derived from how spread/peaked the probability distribution is; with no further information about Jev’s implementation, we cannot establish this local formula as Jev&#39;s production formula.</p>
+<p>TypeSafe&#39;s public docs describe <code>confidence</code> as derived from how spread/peaked the probability distribution is; with no further information about Jev's implementation, we cannot establish this local formula as Jev&#39;s production formula.</p>
 
 <p>Downstream systems should distinguish:</p>
 
@@ -1383,7 +1411,7 @@ P(
 	<li>quantization/backend effects.</li>
 </ul>
 
-<p>Thus, Softmax over allowed answer tokens is conditional on supplied alternatives and is not automatically operationally calibrated confidence.</p>
+<p>Softmax over allowed answer tokens is conditional on the supplied alternatives and is not automatically operationally calibrated confidence.</p>
 
 <p>Zhao et al. show that language-model classification can be highly sensitive to prompt format, example ordering, and answer biases, motivating contextual calibration. This should be considered as well.<br/><br/>The safest interpretation is:</p>
 
@@ -1414,7 +1442,11 @@ p_i(T)
 	<li><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>&lt;</mo><mi>T</mi><mo>&lt;</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">0&lt;T&lt;1</annotation></semantics></math>: sharper.</li>
 </ul>
 
-<p>Fit <math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi></mrow><annotation encoding="application/x-tex">T</annotation></semantics></math> on a held-out calibration set by minimizing NLL.</p>
+<p>In practice (<a href="https://github.com/kyr0/Bonsai-Llama-Jev/blob/7a4cf234c/tools/server/server-context.cpp#L4570" target="_blank" rel="noopener"><code>tools/server/server-context.cpp</code>, calibration apply()</a>):</p>
+
+<pre><code class="code-highlighted code-text">p[i] = exp(s[i] / T) / sum(exp(s[j] / T))   # fitted on held-out data; T = 1 changes nothing</code></pre>
+
+<p>Fit <math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi></mrow><annotation encoding="application/x-tex">T</annotation></semantics></math> on a held-out calibration set by minimizing the negative log-likelihood (NLL) of the correct labels.</p>
 
 <p>Guo et al. found temperature scaling to be a simple and often effective post-hoc calibration method for neural classifiers.</p>
 
@@ -1434,16 +1466,16 @@ p_i(T)
 
 <p>is a deterministic probability mapping.</p>
 
-<p>Therefore a calibrated decision engine can still correctly claim <strong>no sampling</strong>.</p>
+<p>A calibrated decision engine can still correctly claim no sampling.</p>
 
 <p>Do not fit calibration parameters on the final test set.</p>
 
-<p>Use:</p>
+<p>Keep the splits separate:</p>
 
 <pre><code class="code-highlighted code-text">training/model data
-       ↓
+       v
 calibration/validation split
-       ↓
+       v
 untouched test split</code></pre>
 
 <hr />
@@ -1493,7 +1525,7 @@ f_\theta\circ\Phi,
 
 <p>Mapping a semantic candidate to <code>A</code> instead of <code>B</code> changes the rendered prompt.</p>
 
-<p>Thus candidate permutations should be treated as a semantic-stability test.</p>
+<p>Treat candidate permutations as a semantic-stability test.</p>
 
 <h3 id="chat-template-and-tokenizer-sensibility">Chat template and tokenizer sensibility</h3>
 
@@ -1509,7 +1541,7 @@ f_\theta\circ\Phi,
 	<li>tokenization of verbalizers.</li>
 </ul>
 
-<p>Tokenizer validation must therefore operate on the <strong>fully rendered prompt</strong>.</p>
+<p>Tokenizer validation must therefore operate on the fully rendered prompt.</p>
 
 <hr />
 
@@ -1517,7 +1549,7 @@ f_\theta\circ\Phi,
 
 <p>In Bonsai-Llama-Jev, the System One API is added alongside the existing OpenAI API and llama.cpp native HTTP APIs:</p>
 
-<h3 id="layer-1-httptype-contract">Layer 1 — HTTP/type contract</h3>
+<h3 id="layer-1-httptype-contract">Layer 1 - HTTP/type contract</h3>
 
 <p><code>server.cpp</code> registers:</p>
 
@@ -1531,7 +1563,7 @@ f_\theta\circ\Phi,
 score
 noul</code></pre>
 
-<h3 id="layer-2-question-compiler">Layer 2 — question compiler</h3>
+<h3 id="layer-2-question-compiler">Layer 2 - question compiler</h3>
 
 <p><code>systemone_question</code> in <code>server-context.cpp</code>:</p>
 
@@ -1544,7 +1576,7 @@ noul</code></pre>
 	<li>reduces probability vectors into responses.</li>
 </ul>
 
-<h3 id="layer-3-verbalizer-validation">Layer 3 — verbalizer validation</h3>
+<h3 id="layer-3-verbalizer-validation">Layer 3 - verbalizer validation</h3>
 
 <p>Each used answer character must:</p>
 
@@ -1555,7 +1587,7 @@ noul</code></pre>
 	<li>have a distinct token ID.</li>
 </ul>
 
-<h3 id="layer-4-prefill-only-inference">Layer 4 — prefill-only inference</h3>
+<h3 id="layer-4-prefill-only-inference">Layer 4 - prefill-only inference</h3>
 
 <p><code>server-task.h</code> introduces:</p>
 
@@ -1582,7 +1614,7 @@ slot.release();
 
 <p>That <code>return</code> is the decisive boundary.</p>
 
-<h3 id="layer-5-deterministic-probability-reduction">Layer 5 — deterministic probability reduction</h3>
+<h3 id="layer-5-deterministic-probability-reduction">Layer 5 - deterministic probability reduction</h3>
 
 <p>The HTTP-side path:</p>
 
@@ -1603,7 +1635,7 @@ slot.release();
 
 <pre><code class="code-highlighted code-text">score_allowed_next_tokens(prefix, allowed_token_ids) -&gt; logits[]</code></pre>
 
-<p>Then:</p>
+<p>With it:</p>
 
 <pre><code class="code-highlighted code-text">function decide(state, questions):
     answers = {}
@@ -1671,7 +1703,7 @@ t_{\text{prefill}}
 \sum_{k=1}^{K}t_{\text{decode},k}.
 </annotation></semantics></math></p>
 
-<p>One-token typed decision:</p>
+<p>A one-token typed decision replaces those <math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>K</mi></mrow><annotation encoding="application/x-tex">K</annotation></semantics></math> decode steps with a single logit readout (<math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>t</mi><mtext>gather</mtext></msub></mrow><annotation encoding="application/x-tex">t_{\text{gather}}</annotation></semantics></math>) and the restricted softmax (<math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>t</mi><mtext>softmax</mtext></msub></mrow><annotation encoding="application/x-tex">t_{\text{softmax}}</annotation></semantics></math>), so it costs approximately:</p>
 
 <p><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>t</mi><mtext>decision</mtext></msub><mo>≈</mo><msub><mi>t</mi><mtext>prefill</mtext></msub><mo>+</mo><msub><mi>t</mi><mtext>gather</mtext></msub><mo>+</mo><msub><mi>t</mi><mtext>softmax</mtext></msub><mi mathvariant="normal">.</mi></mrow><annotation encoding="application/x-tex">
 t_{\text{decision}}
@@ -1684,6 +1716,11 @@ t_{\text{softmax}}.
 </annotation></semantics></math></p>
 
 <p><code>gather + softmax + reducer</code> is tiny relative to a large Transformer forward.</p>
+
+<p>In practice (<a href="https://github.com/kyr0/Bonsai-Llama-Jev/blob/7a4cf234c/tools/server/server-context.cpp#L3707-L3726" target="_blank" rel="noopener"><code>tools/server/server-context.cpp</code>, readout at slot release</a>):</p>
+
+<pre><code class="code-highlighted code-text"># generation: prefill + K x decode_step   (K serial rounds)
+# decision:   prefill + read_logits(answer_tokens)   # slot freed before generation</code></pre>
 
 <p>The system also avoids:</p>
 
@@ -1699,13 +1736,13 @@ t_{\text{softmax}}.
 
 <hr />
 
-<h2 id="23-multiple-questions-parallelism-is-not-one-shared-forward-pass">23. Multiple questions: parallelism is not “one shared forward pass”</h2>
+<h2 id="23-multiple-questions-parallelism-is-not-one-shared-forward-pass">23. Multiple questions: parallelism is not "one shared forward pass"</h2>
 
 <p>A request may contain many questions.</p>
 
 <p>The current server can schedule/batch their work together, but each question has its own criterion/options and therefore its own compiled prompt.</p>
 
-<p>Thus:</p>
+<p>In particular:</p>
 
 <pre><code class="code-highlighted code-text">parallel/batched inference</code></pre>
 
@@ -1733,22 +1770,22 @@ t_{\text{softmax}}.
 
 <h3 id="causal-decoder-only-lm">Causal decoder-only LM</h3>
 
-<p>Use:</p>
+<p>Read the final prompt position:</p>
 
 <pre><code class="code-highlighted code-text">final prompt position
-  ↓
+  v
 next-token logits</code></pre>
 
-<p>This is the current implementation.</p>
+<p>The current implementation.</p>
 
 <h3 id="encoder-decoder-lm">Encoder-decoder LM</h3>
 
-<p>Use:</p>
+<p>The flow becomes:</p>
 
 <pre><code class="code-highlighted code-text">encoder(state/question/options)
   +
 decoder start state
-  ↓
+  v
 decoder token logits</code></pre>
 
 <p>The restricted-softmax logic still applies.</p>
@@ -1758,18 +1795,18 @@ decoder token logits</code></pre>
 <p>For a BERT-like model:</p>
 
 <pre><code class="code-highlighted code-text">prompt containing [MASK]
-  ↓
+  v
 hidden state at [MASK]
-  ↓
+  v
 vocabulary logits
-  ↓
+  v
 restricted verbalizer softmax</code></pre>
 
 <h3 id="embedding-only-model">Embedding-only model</h3>
 
 <p>An embedding model has no token-prediction head, so this exact method does not apply. It requires a classifier, reranker, or similarity rule.</p>
 
-<p>Thus “any LM” more precisely means:</p>
+<p>More precisely, "any LM" means:</p>
 
 <blockquote>
 <p>any model exposing an appropriate token-prediction distribution through its inference runtime.</p>
@@ -1782,13 +1819,13 @@ restricted verbalizer softmax</code></pre>
 <p>For multimodal causal models:</p>
 
 <pre><code class="code-highlighted code-text">image/audio/text state
-      ↓
+      v
 multimodal prefill
-      ↓
+      v
 final LM logits
-      ↓
+      v
 same selected-token readout
-      ↓
+      v
 same typed math</code></pre>
 
 <p>The current repo&#39;s System One media extension uses the existing multimodal parser/projector.</p>
@@ -1799,19 +1836,19 @@ same typed math</code></pre>
 
 <h2 id="26-correctness-invariants">26. Correctness invariants</h2>
 
-<h3 id="i1-semantic-mapping">I1 — semantic mapping</h3>
+<h3 id="i1-semantic-mapping">I1 - semantic mapping</h3>
 
 <p>Every semantic candidate has exactly one verbalizer path.</p>
 
-<h3 id="i2-tokenizer-correctness">I2 — tokenizer correctness</h3>
+<h3 id="i2-tokenizer-correctness">I2 - tokenizer correctness</h3>
 
 <p>Every verbalizer is exactly the token path evaluated at the real prompt boundary.</p>
 
-<h3 id="i3-native-logit-correctness">I3 — native-logit correctness</h3>
+<h3 id="i3-native-logit-correctness">I3 - native-logit correctness</h3>
 
 <p>For every selected token <math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi></mrow><annotation encoding="application/x-tex">t</annotation></semantics></math>, decision mode returns the model&#39;s native <math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>z</mi><mi>t</mi></msub></mrow><annotation encoding="application/x-tex">z_t</annotation></semantics></math>.</p>
 
-<h3 id="i4-normalization">I4 — normalization</h3>
+<h3 id="i4-normalization">I4 - normalization</h3>
 
 <p><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>p</mi><mi>i</mi></msub><mo>≥</mo><mn>0</mn><mo separator="true">,</mo><mspace width="2em"/><munder><mo>∑</mo><mi>i</mi></munder><msub><mi>p</mi><mi>i</mi></msub><mo>=</mo><mn>1.</mn></mrow><annotation encoding="application/x-tex">
 p_i\ge0,
@@ -1819,11 +1856,11 @@ p_i\ge0,
 \sum_i p_i=1.
 </annotation></semantics></math></p>
 
-<h3 id="i5-no-sampled-generation">I5 — no sampled generation</h3>
+<h3 id="i5-no-sampled-generation">I5 - no sampled generation</h3>
 
 <p>Decision mode emits no sampled model token.</p>
 
-<h3 id="i6-generation-parameter-independence">I6 — generation-parameter independence</h3>
+<h3 id="i6-generation-parameter-independence">I6 - generation-parameter independence</h3>
 
 <p>Changing:</p>
 
@@ -1835,11 +1872,11 @@ penalties</code></pre>
 
 <p>must not alter decision probabilities.</p>
 
-<h3 id="i7-cache-transparency">I7 — cache transparency</h3>
+<h3 id="i7-cache-transparency">I7 - cache transparency</h3>
 
 <p>Cache reuse may change latency but not semantic output beyond numerical tolerance.</p>
 
-<h3 id="i8-isolation">I8 — isolation</h3>
+<h3 id="i8-isolation">I8 - isolation</h3>
 
 <p>Typed-decision support must not alter ordinary chat/completion behavior.</p>
 
@@ -1949,7 +1986,7 @@ different compute cost</code></pre>
 
 <h2 id="28-common-conceptual-errors">28. Common conceptual errors</h2>
 
-<h3 id="this-is-greedy-decoding">“This is greedy decoding.”</h3>
+<h3 id="this-is-greedy-decoding">"This is greedy decoding."</h3>
 
 <p>No.</p>
 
@@ -1957,7 +1994,7 @@ different compute cost</code></pre>
 
 <p>Decision mode reads scores and returns structured data.</p>
 
-<h3 id="temperature-0-is-equivalent">“Temperature 0 is equivalent.”</h3>
+<h3 id="temperature-0-is-equivalent">"Temperature 0 is equivalent."</h3>
 
 <p>No.</p>
 
@@ -1965,25 +2002,25 @@ different compute cost</code></pre>
 
 <p>This method bypasses the generation sampler.</p>
 
-<h3 id="09-probability-means-90-real-world-correctness">“0.9 probability means 90% real-world correctness.”</h3>
+<h3 id="09-probability-means-90-real-world-correctness">"0.9 probability means 90% real-world correctness."</h3>
 
 <p>Not without calibration evidence.</p>
 
 <p>It is a restricted model probability under a particular prompt/candidate set.</p>
 
-<h3 id="no-training-means-all-backbones-work-equally-well">“No training means all backbones work equally well.”</h3>
+<h3 id="no-training-means-all-backbones-work-equally-well">"No training means all backbones work equally well."</h3>
 
 <p>No.</p>
 
 <p>Structural compatibility and semantic decision quality are separate.</p>
 
-<h3 id="all-questions-use-one-forward-pass">“All questions use one forward pass.”</h3>
+<h3 id="all-questions-use-one-forward-pass">"All questions use one forward pass."</h3>
 
 <p>Not necessarily.</p>
 
 <p>They are separately compiled readouts that can be batched.</p>
 
-<h3 id="the-neural-architecture-changed">“The neural architecture changed.”</h3>
+<h3 id="the-neural-architecture-changed">"The neural architecture changed."</h3>
 
 <p>No.</p>
 
@@ -1993,30 +2030,30 @@ different compute cost</code></pre>
 
 <h2 id="29-recommended-implementation-architecture">29. Recommended implementation architecture</h2>
 
-<pre><code class="code-highlighted code-text">┌────────────────────────────────────────────┐
-│ 1. Typed API / validation                  │
-│    state, model, questions                 │
-└──────────────────┬─────────────────────────┘
+<pre><code class="code-highlighted code-text">+--------------------------------------------+
+| 1. Typed API / validation                  |
+|    state, model, questions                 |
++------------------+-------------------------+
                    v
-┌────────────────────────────────────────────┐
-│ 2. Decision compiler                       │
-│    semantics -&gt; prompt + verbalizers       │
-│    tokenizer validation                    │
-└──────────────────┬─────────────────────────┘
++--------------------------------------------+
+| 2. Decision compiler                       |
+|    semantics -&gt; prompt + verbalizers       |
+|    tokenizer validation                    |
++------------------+-------------------------+
                    v
-┌────────────────────────────────────────────┐
-│ 3. Inference primitive                     │
-│    prefill / cached suffix                 │
-│    selected native logits                  │
-│    NO sampler / NO decode loop             │
-└──────────────────┬─────────────────────────┘
++--------------------------------------------+
+| 3. Inference primitive                     |
+|    prefill / cached suffix                 |
+|    selected native logits                  |
+|    NO sampler / NO decode loop             |
++------------------+-------------------------+
                    v
-┌────────────────────────────────────────────┐
-│ 4. Probability + reducer                   │
-│    stable softmax / chain rule             │
-│    choice | score | noul                   │
-│    optional calibration                    │
-└────────────────────────────────────────────┘</code></pre>
++--------------------------------------------+
+| 4. Probability + reducer                   |
+|    stable softmax / chain rule             |
+|    choice | score | noul                   |
+|    optional calibration                    |
++--------------------------------------------+</code></pre>
 
 <hr />
 
@@ -2078,12 +2115,12 @@ return z[token_id] for requested token IDs</code></pre>
 <p>The most accurate description is:</p>
 
 <blockquote>
-<p><strong>a discriminative readout layer over a generative language-model backbone</strong></p>
+<p>a discriminative readout layer over a generative language-model backbone</p>
 </blockquote>
 
-<p>rather than “prompting an LLM to output JSON.”</p>
+<p>rather than "prompting an LLM to output JSON."</p>
 
-<p>Energy consumption and time spent is reduced. Therefore, also cost is reduced.<br/><br/>The method is useful for every non-open question format. If a question can be formulated or re-formulated as a closed question, the method applies.</p>
+<p>Energy consumption and time spent are reduced, and with them the cost.<br/><br/>The method is useful for every non-open question format. If a question can be formulated or re-formulated as a closed question, the method applies.</p>
 
 <hr />
 
@@ -2114,7 +2151,7 @@ return z[token_id] for requested token IDs</code></pre>
 
 <p>Cloudflare currently describes Jev as a structured evaluation model that answers typed Noul/Choice/Score questions with calibrated answers, probabilities, and confidence. That is a product-level contract/claim, not a public architectural specification.</p>
 
-<p>The local engine should therefore be described as <strong>Jev-like / System-One-compatible</strong>, not as a reproduction of undisclosed Jev internals.</p>
+<p>The local engine should therefore be described as Jev-like / System-One-compatible, not as a reproduction of undisclosed Jev internals.</p>
 
 <hr />
 
@@ -2122,11 +2159,15 @@ return z[token_id] for requested token IDs</code></pre>
 
 <h3 id="lm-head">LM head</h3>
 
+<p>The LM head maps the hidden state at the final prompt position to one logit per vocabulary token. This projection already exists in every causal LM; the engine only reads the entries it needs (see 3.).</p>
+
 <p><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi mathvariant="bold">z</mi><mo>=</mo><mi>W</mi><msub><mi>h</mi><mi>T</mi></msub><mo>+</mo><mi mathvariant="bold">b</mi></mrow><annotation encoding="application/x-tex">
 \mathbf z=Wh_T+\mathbf b
 </annotation></semantics></math></p>
 
 <h3 id="native-next-token-probability">Native next-token probability</h3>
+
+<p>The ordinary softmax over the full vocabulary: the model's native next-token distribution. The typed-decision readout is this distribution conditioned on the allowed answer labels (see 8.).</p>
 
 <p><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>P</mi><mo stretchy="false">(</mo><mi>v</mi><mo>∣</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mfrac><msup><mi>e</mi><msub><mi>z</mi><mi>v</mi></msub></msup><mrow><munder><mo>∑</mo><mrow><mi>u</mi><mo>∈</mo><mi>V</mi></mrow></munder><msup><mi>e</mi><msub><mi>z</mi><mi>u</mi></msub></msup></mrow></mfrac></mrow><annotation encoding="application/x-tex">
 P(v\mid x)
@@ -2137,6 +2178,8 @@ P(v\mid x)
 
 <h3 id="restricted-candidate-softmax">Restricted candidate softmax</h3>
 
+<p>Softmax restricted to the logits of the answer tokens. the central identity of the method, equal to the native next-token distribution conditioned on the supplied labels (see 8.).</p>
+
 <p><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>p</mi><mi>i</mi></msub><mo>=</mo><mfrac><msup><mi>e</mi><msub><mi>z</mi><msub><mi>t</mi><mi>i</mi></msub></msub></msup><mrow><munder><mo>∑</mo><mi>j</mi></munder><msup><mi>e</mi><msub><mi>z</mi><msub><mi>t</mi><mi>j</mi></msub></msub></msup></mrow></mfrac></mrow><annotation encoding="application/x-tex">
 p_i
 =
@@ -2145,6 +2188,8 @@ p_i
 </annotation></semantics></math></p>
 
 <h3 id="stable-softmax">Stable softmax</h3>
+
+<p>Subtracting the largest logit before exponentiation prevents floating-point overflow without changing the result (see 9.).</p>
 
 <p><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>m</mi><mo>=</mo><munder><mrow><mi>max</mi><mo>⁡</mo></mrow><mi>j</mi></munder><msub><mi>z</mi><msub><mi>t</mi><mi>j</mi></msub></msub></mrow><annotation encoding="application/x-tex">
 m=\max_jz_{t_j}
@@ -2159,6 +2204,8 @@ p_i
 
 <h3 id="multi-symbol-path">Multi-symbol path</h3>
 
+<p>For multi-character labels, the restricted branch probabilities along the label's character path are multiplied (chain rule, see 11.).</p>
+
 <p><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>w</mi><mi>i</mi></msub><mo>=</mo><munder><mo>∏</mo><mi>d</mi></munder><msub><mi>q</mi><mi>d</mi></msub><mo stretchy="false">(</mo><msub><mi mathvariant="normal">ℓ</mi><mi>i</mi></msub><mo stretchy="false">[</mo><mi>d</mi><mo stretchy="false">]</mo><mo>∣</mo><msub><mi mathvariant="normal">ℓ</mi><mi>i</mi></msub><mo stretchy="false">[</mo><mo>:</mo><mi>d</mi><mo stretchy="false">]</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
 w_i
 =
@@ -2166,6 +2213,8 @@ w_i
 </annotation></semantics></math></p>
 
 <h3 id="candidate-normalization">Candidate normalization</h3>
+
+<p>The path weights are normalized over all candidates so the resulting probabilities sum to one (see 11.).</p>
 
 <p><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>p</mi><mi>i</mi></msub><mo>=</mo><mfrac><msub><mi>w</mi><mi>i</mi></msub><mrow><munder><mo>∑</mo><mi>j</mi></munder><msub><mi>w</mi><mi>j</mi></msub></mrow></mfrac></mrow><annotation encoding="application/x-tex">
 p_i
@@ -2175,11 +2224,15 @@ p_i
 
 <h3 id="choice">Choice</h3>
 
+<p>The <code>choice</code> answer is the candidate with the highest probability (see 15.1).</p>
+
 <p><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msup><mi>i</mi><mo>∗</mo></msup><mo>=</mo><mi>arg</mi><mo>⁡</mo><munder><mrow><mi>max</mi><mo>⁡</mo></mrow><mi>i</mi></munder><msub><mi>p</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">
 i^*=\arg\max_ip_i
 </annotation></semantics></math></p>
 
 <h3 id="score">Score</h3>
+
+<p>The <code>score</code> answer is the probability-weighted average of the ordered level indices (see 15.2).</p>
 
 <p><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi mathvariant="normal">score</mi><mo>⁡</mo><mo>=</mo><munder><mo>∑</mo><mi>i</mi></munder><mi>i</mi><msub><mi>p</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">
 \operatorname{score}
@@ -2189,11 +2242,15 @@ i^*=\arg\max_ip_i
 
 <h3 id="noul">Noul</h3>
 
+<p>The <code>noul</code> answer is the probability of "yes"; for binary yes/no labels the averaged form reduces to this (see 15.3).</p>
+
 <p><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi mathvariant="normal">noul</mi><mo>⁡</mo><mo>=</mo><msub><mi>p</mi><mtext>yes</mtext></msub></mrow><annotation encoding="application/x-tex">
 \operatorname{noul}=p_{\text{yes}}
 </annotation></semantics></math></p>
 
 <h3 id="current-local-confidence-heuristic">Current local confidence heuristic</h3>
+
+<p>The current local confidence heuristic: the winner's probability multiplied by the probability that every other candidate loses. A deterministic heuristic, not a calibrated guarantee (see 16.).</p>
 
 <p><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>C</mi><mo>=</mo><msub><mi>p</mi><msup><mi>i</mi><mo>∗</mo></msup></msub><munder><mo>∏</mo><mrow><mi>i</mi><mo mathvariant="normal">≠</mo><msup><mi>i</mi><mo>∗</mo></msup></mrow></munder><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><msub><mi>p</mi><mi>i</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
 C
@@ -2203,6 +2260,8 @@ p_{i^*}
 </annotation></semantics></math></p>
 
 <h3 id="optional-post-hoc-temperature-scaling">Optional post-hoc temperature scaling</h3>
+
+<p>Optional post-hoc temperature scaling flattens (T &gt; 1) or sharpens (T &lt; 1) the distribution without changing model weights; T is fitted on held-out data (see 18.).</p>
 
 <p><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>p</mi><mi>i</mi></msub><mo stretchy="false">(</mo><mi>T</mi><mo stretchy="false">)</mo><mo>=</mo><mfrac><msup><mi>e</mi><mrow><msub><mi>s</mi><mi>i</mi></msub><mi mathvariant="normal">/</mi><mi>T</mi></mrow></msup><mrow><munder><mo>∑</mo><mi>j</mi></munder><msup><mi>e</mi><mrow><msub><mi>s</mi><mi>j</mi></msub><mi mathvariant="normal">/</mi><mi>T</mi></mrow></msup></mrow></mfrac></mrow><annotation encoding="application/x-tex">
 p_i(T)
@@ -2252,18 +2311,6 @@ p_i(T)
 
 <ul>
 	<li><code>kyr0/Bonsai-Llama-Jev</code></li>
-	<li>typed-decision implementation: commit <code>8b1bb68f41a2a78e1e9ca5bd6155694e6a74ed7f</code></li>
-	<li>runtime/e2e hardening: commit <code>9203183e6c54fda23872f230e33c1985b713c10c</code></li>
-	<li><code>tools/server/SYSTEMONE.md</code></li>
-	<li><code>tools/server/server-context.cpp</code></li>
-	<li><code>tools/server/server-task.h</code></li>
-	<li><code>tools/server/tests/unit/test_chat_completion.py</code></li>
-</ul>
-
-<h3 id="open-method">Open method</h3>
-
-<ul>
-	<li><code>bonsai/openjev</code>, <code>docs/METHOD.md</code> — generation-free direct final-position answer-token readout.</li>
 </ul>
 
 <h3 id="typesafe-jev-public-semantics">TypeSafe / Jev public semantics</h3>
@@ -2272,16 +2319,15 @@ p_i(T)
 	<li>TypeSafe <strong>Choice</strong>: fixed-option selection, complete option probability vector, confidence.</li>
 	<li>TypeSafe <strong>Score</strong>: ordered levels and probability-weighted expected score.</li>
 	<li>TypeSafe <strong>Noul</strong>: yes/no probability.</li>
-	<li>Cloudflare <strong>Jev</strong> model page.</li>
 </ul>
 
 <h3 id="mathematical-background">Mathematical background</h3>
 
 <ul>
-	<li>Wikipedia — <strong>Softmax function</strong>.</li>
-	<li>Wikipedia — <strong>Chain rule (probability)</strong>.</li>
-	<li>Wikipedia — <strong>LogSumExp</strong>.</li>
-	<li>Wikipedia — <strong>Expected value</strong>.</li>
+	<li>Wikipedia - <strong>Softmax function</strong>.</li>
+	<li>Wikipedia - <strong>Chain rule (probability)</strong>.</li>
+	<li>Wikipedia - <strong>LogSumExp</strong>.</li>
+	<li>Wikipedia - <strong>Expected value</strong>.</li>
 </ul>
 
 <h3 id="papers">Papers</h3>
@@ -2297,7 +2343,7 @@ p_i(T)
 
 <h2 id="citation">Citation</h2>
 
-<p>If you use the Bonsai-Llama-Jev inference engine, it’s method for turning causal language models into a typed-decision engine or it’s Qtype-stratified temperature scaling method, please cite my work:</p>
+<p>If you use the Bonsai-Llama-Jev inference engine, its method for turning causal language models into a typed-decision engine, or its Qtype-stratified temperature scaling, please cite this work:</p>
 
 <pre><code class="code-highlighted code-bibtex"><span class="syntax-all syntax-keyword">@software</span>{<span class="syntax-all syntax-entity">homberg2026bonsaillamajev</span>,
   <span class="syntax-all syntax-string">author</span>    = <span class="syntax-all syntax-string">{Homberg, Aron}</span>,

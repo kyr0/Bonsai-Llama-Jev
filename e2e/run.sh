@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Runs the full compatibility suite against the running llama-server:
-# OpenAI endpoints, documented cURL request, README worked examples,
-# Python typesafe-sdk, JS @typesafe-ai/sdk.
+# OpenAI endpoints, documented cURL request, README worked examples, concurrent
+# chat+decision overlap, Python typesafe-sdk, JS @typesafe-ai/sdk.
 set -euo pipefail
 cd "$(dirname "$0")/.."
 PORT="${PORT:-54100}"
@@ -27,6 +27,12 @@ bash e2e/curl.sh
 
 echo "== README worked examples =="
 bash e2e/readme.sh
+
+echo "== Concurrent chat + decision =="
+bash e2e/concurrent.sh
+
+echo "== OCR + typed PII pipeline =="
+bash e2e/pii.sh
 
 echo "== Python typesafe-sdk =="
 if [ ! -x e2e/python/.venv/bin/python ]; then
