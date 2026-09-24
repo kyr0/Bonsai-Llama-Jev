@@ -20,7 +20,7 @@ case "${1:-status}" in
       exit 0
     fi
     if [ ! -x "$SERVER" ]; then
-      echo "no server binary at $SERVER — build it first: make build" >&2
+      echo "no server binary at $SERVER - build it first: make build" >&2
       exit 1
     fi
     if [ -z "${MODEL:-}" ] || [ ! -f "$MODEL" ]; then
@@ -39,7 +39,7 @@ case "${1:-status}" in
   status)
     if alive; then
       echo "pid $(cat "$PIDFILE") alive; health:"
-      curl -s -m 3 "http://127.0.0.1:${PORT}/health" || echo "(still warming up — model load)"
+      curl -s -m 3 "http://127.0.0.1:${PORT}/health" || echo "(still warming up - model load)"
     else
       echo "not running"
       exit 1

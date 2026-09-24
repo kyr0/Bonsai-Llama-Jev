@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Build PrismML llama.cpp (llama-server + llama-cli) from this checkout.
-# Why: pins nothing by default — this tree carries the typed-decisions work, so
+# Why: pins nothing by default - this tree carries the typed-decisions work, so
 # we build it in place; fetching/checking out a tag would detach the branch.
 # Set LLAMA_DEST to build a pristine external clone at a pinned tag instead.
 # Env: LLAMA_BACKEND (metal|cuda|vulkan|cpu), LLAMA_REPO, LLAMA_TAG, LLAMA_DEST.

@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 # Jev-like typed-decision query against the running llama-server (/v1/systemone).
-# Why: proves the TypeSafe-compatible endpoint end to end — wire format, all
+# Why: proves the TypeSafe-compatible endpoint end to end - wire format, all
 # three primitives (choice+score+noul fan-out), usage accounting, and the
-# TypeSafe model list — without needing the SDK packages.
+# TypeSafe model list - without needing the SDK packages.
 set -euo pipefail
 PORT="${PORT:-54100}"
 API_KEY="${BONSAI_API_KEY:-local-dev-key}"
@@ -11,7 +11,7 @@ AUTH="Authorization: Bearer ${API_KEY}"
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 
 if ! curl -sf -m 5 "$BASE/health" >/dev/null; then
-  echo "e2e-jev: server not running on :${PORT} — start it with: make start (or BONSAI_GGUF=/path/model.gguf make start)" >&2
+  echo "e2e-jev: server not running on :${PORT} - start it with: make start (or BONSAI_GGUF=/path/model.gguf make start)" >&2
   exit 1
 fi
 

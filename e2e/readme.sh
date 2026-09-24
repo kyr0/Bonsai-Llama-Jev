@@ -10,7 +10,7 @@ BASE="http://127.0.0.1:${PORT}"
 AUTH="Authorization: Bearer ${API_KEY}"
 
 if ! curl -sf -m 5 "$BASE/health" >/dev/null; then
-  echo "e2e-readme: server not running on :${PORT} — start it with: make start" >&2
+  echo "e2e-readme: server not running on :${PORT} - start it with: make start" >&2
   exit 1
 fi
 

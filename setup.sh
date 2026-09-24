@@ -1,5 +1,5 @@
 #!/bin/sh
-# Bonsai Demo — One-command setup for macOS and Linux.
+# Bonsai Demo - One-command setup for macOS and Linux.
 # Installs all dependencies, downloads models and binaries.
 #
 # Usage:
@@ -330,7 +330,7 @@ info "Base deps installed (cmake, ninja, setuptools, huggingface-cli)."
 # tree in place with build.sh rather than downloading pre-built binaries; an
 # existing binary is reused, never rebuilt.
 if [ -x "$SCRIPT_DIR/build/bin/llama-server" ]; then
-    info "llama-server already built at build/bin/ — skipping build."
+    info "llama-server already built at build/bin/ - skipping build."
 else
     step "Building llama.cpp from this checkout (make build) ..."
     _ensure_cuda_toolkit
@@ -350,13 +350,13 @@ echo ""
 if [ "$OS" = "Darwin" ] && ! bonsai_should_skip_mlx; then
     info "llama.cpp is ready! You can start using it now while MLX builds."
 elif [ "$OS" = "Darwin" ]; then
-    info "llama.cpp is ready! (MLX skipped — Intel Mac or BONSAI_SKIP_MLX=1; use ./scripts/run_llama.sh)"
+    info "llama.cpp is ready! (MLX skipped - Intel Mac or BONSAI_SKIP_MLX=1; use ./scripts/run_llama.sh)"
 else
     info "llama.cpp is ready!"
 fi
 
 # ────────────────────────────────────────────────────
-#  8. MLX (macOS only, Apple Silicon) — clone and build from source
+#  8. MLX (macOS only, Apple Silicon) - clone and build from source
 # ────────────────────────────────────────────────────
 if [ "$OS" = "Darwin" ] && ! bonsai_should_skip_mlx; then
     step "Setting up MLX (Apple Silicon) ..."
@@ -413,7 +413,7 @@ import mlx, mlx_lm
 v = tuple(int(x) for x in mlx_lm.__version__.split('.')[:2])
 raise SystemExit(0 if v >= (0, 31) else 1)
 " 2>/dev/null; then
-        info "MLX already installed in the venv — skipping build."
+        info "MLX already installed in the venv - skipping build."
     else
         step "Building MLX from source (this takes 2-5 minutes on first install) ..."
         # --no-build-isolation required: MLX's C++/Metal build needs pre-installed setuptools
@@ -421,7 +421,7 @@ raise SystemExit(0 if v >= (0, 31) else 1)
         step "Installing MLX Python deps (mlx-lm, torch, transformers, ...) ..."
         # mlx-lm >= 0.31 is required for the 27B (qwen3_5) architecture. The
         # released 27B configs are plain dense (no num_experts field), and stock
-        # mlx-lm builds a SparseMoeBlock only when num_experts > 0 — so it loads
+        # mlx-lm builds a SparseMoeBlock only when num_experts > 0 - so it loads
         # them as dense out of the box, no source patch needed.
         uv pip install --python "$VENV_PY" \
             "mlx-lm==0.31.2" "torch==2.10.0" "transformers==5.2.0" \
@@ -449,7 +449,7 @@ raise SystemExit(0 if v >= (0, 31) else 1)
             && "$VLM_VENV/bin/python" -c "import mlx_vlm" 2>/dev/null; then
             info "mlx-vlm venv ready (.venv-vlm)."
         else
-            warn "mlx-vlm venv setup failed — MLX will run text-only (no image input)."
+            warn "mlx-vlm venv setup failed - MLX will run text-only (no image input)."
         fi
     fi
 fi
@@ -466,7 +466,7 @@ if [ "${BONSAI_OPENWEBUI:-1}" != "0" ]; then
         if uv pip install --python "$VENV_PY" ".[webui]"; then
             info "Open WebUI installed."
         else
-            warn "Open WebUI install failed — install it manually with 'uv pip install \".[webui]\"' before running scripts/start_openwebui.sh."
+            warn "Open WebUI install failed - install it manually with 'uv pip install \".[webui]\"' before running scripts/start_openwebui.sh."
         fi
     fi
 fi
@@ -485,7 +485,7 @@ if [ "${BONSAI_CODE_INTERPRETER:-1}" != "0" ]; then
             jupyter-server ipykernel matplotlib numpy pandas scipy sympy pillow requests yfinance; then
         info "code-interpreter venv ready (.venv-jupyter)."
     else
-        warn "code-interpreter venv setup failed — Open WebUI code execution will be unavailable."
+        warn "code-interpreter venv setup failed - Open WebUI code execution will be unavailable."
     fi
 fi
 

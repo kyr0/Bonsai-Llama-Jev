@@ -394,7 +394,7 @@ struct server_slot {
 
     // if the context does not have a memory module then all embeddings have to be computed within a single ubatch
     // also we cannot split if the pooling would require any past tokens
-    // (MTP supports splitting — uses task->need_embd() not need_embd())
+    // (MTP supports splitting - uses task->need_embd() not need_embd())
     bool can_split() const {
         GGML_ASSERT(task);
 
@@ -3728,6 +3728,7 @@ private:
                 if (slot.task->type == SERVER_TASK_TYPE_SYSTEMONE) {
                     // prompt evaluated for the systemone label readout: copy the
                     // requested answer-token logits and release the slot immediately
+                    // (prefill-only inference, https://kyr0.github.io/Bonsai-Llama-Jev/#layer-4-prefill-only-inference)
                     const float * logits = llama_get_logits_ith(ctx_tgt, slot.i_batch - off);
                     if (!logits) {
                         send_error(slot, "Failed to read systemone logits", ERROR_TYPE_SERVER);
@@ -4487,11 +4488,13 @@ static json get_res_model_info(const server_context_meta & meta) {
     };
 }
 
+// Deployable temperature-scaling artifact for typed decisions; see
+// tools/server/SYSTEMONE_CALIBRATION.md and
+// https://kyr0.github.io/Bonsai-Llama-Jev/#18-calibration-can-be-added-without-changing-model-weights
 struct systemone_calibration_config {
     bool enabled = false;
     double temperature = 1.0;
-    // schema v2: per-question-type temperature overrides ("choice"/"score"/"noul");
-    // a type without an entry falls back to the global temperature.
+    // schema v2: per-question-type fitted temperatures
     std::map<std::string, double> temperatures;
     std::string model;
     std::string path;
@@ -4583,11 +4586,16 @@ struct systemone_calibration_config {
         return config;
     }
 
+    // per-type fitted temperature when the artifact carries one ("choice",
+    // "score", "noul"), otherwise the top-level temperature; schema v1
+    // artifacts have no per-type entries, so they always land in the fallback
     double temperature_for(const std::string & question_type) const {
         const auto it = temperatures.find(question_type);
         return it != temperatures.end() ? it->second : temperature;
     }
 
+    // temperature scaling p_i^(1/T) with renormalization, computed in log
+    // space with max-subtraction; T = 1 returns the input unchanged
     std::vector<double> apply(std::vector<double> probabilities, const std::string & question_type) const {
         if (!enabled) {
             return probabilities;
@@ -4638,6 +4646,7 @@ struct systemone_calibration_config {
 // Ports OpenJev's direct next-token readout: each question becomes one prompt
 // with letter-labelled options; probabilities come from the final position's
 // native logits over the answer-label tokens. No tokens are generated.
+// Method and proofs: https://kyr0.github.io/Bonsai-Llama-Jev/
 struct systemone_question {
     static constexpr char alphabet[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
     static constexpr size_t alphabet_size = sizeof(alphabet) - 1;
@@ -5595,6 +5604,9 @@ void server_routes::init_routes() {
         return res;
     };
 
+    // typed-decision entry point: compiles questions, posts one readout task
+    // per label prefix, reduces the collected logits into typed answers
+    // (https://kyr0.github.io/Bonsai-Llama-Jev/)
     this->post_systemone = [this, systemone_calibration](const server_http_req & req) {
         auto res = create_response();
         if (params.embedding) {

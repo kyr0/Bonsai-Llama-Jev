@@ -1,6 +1,6 @@
 SHELL := /bin/bash
 # Optional .env (see .env.example) configures PORT, BONSAI_HOST, BONSAI_API_KEY,
-# BONSAI_ALIAS, ... — the scripts load it too (scripts/common.sh).
+# BONSAI_ALIAS, ... - the scripts load it too (scripts/common.sh).
 -include .env
 PORT ?= 54100
 BONSAI_CALIBRATION ?= calibration.json
@@ -43,7 +43,7 @@ configure-cuda configure-h200 configure-rtx-pro-6000-ada configure-rtx-5050 conf
 # Re-apply the persisted configuration after build/ was wiped.
 configure:
 	@if [ ! -f $(CONFIGURE_STAMP) ]; then \
-	  echo "configure: nothing configured yet — defaulting to generic CUDA"; \
+	  echo "configure: nothing configured yet - defaulting to generic CUDA"; \
 	  $(MAKE) configure-cuda; \
 	else \
 	  echo "configure: re-applying saved configuration: $$(cat $(CONFIGURE_STAMP))"; \
@@ -75,17 +75,17 @@ start:
 	pid=$$!; echo $$pid > output/llama-serve.pid; \
 	for i in $$(seq 1 120); do \
 	  grep -q "llama_server: listening on" output/llama-serve.log 2>/dev/null && break; \
-	  kill -0 $$pid 2>/dev/null || { echo "start: server died early — last log lines:" >&2; tail -n 3 output/llama-serve.log >&2; exit 1; }; \
+	  kill -0 $$pid 2>/dev/null || { echo "start: server died early - last log lines:" >&2; tail -n 3 output/llama-serve.log >&2; exit 1; }; \
 	  sleep 1; \
 	done; \
 	if ! grep -q "llama_server: listening on" output/llama-serve.log 2>/dev/null; then \
-	  echo "start: timeout waiting for listen — see output/llama-serve.log" >&2; exit 1; \
+	  echo "start: timeout waiting for listen - see output/llama-serve.log" >&2; exit 1; \
 	fi; \
-	echo "start: server listening on :$(PORT) (pid $$pid) — running e2e warmup"; \
+	echo "start: server listening on :$(PORT) (pid $$pid) - running e2e warmup"; \
 	$(MAKE) --no-print-directory e2e; \
 	$(MAKE) --no-print-directory status
 
-# Is it alive — model, calibration, default hyperparams per endpoint, URLs.
+# Is it alive - model, calibration, default hyperparams per endpoint, URLs.
 # Chat sampling defaults come from /props (server truth); System One is a pure
 # logits readout (no sampling), its only knob is the calibration temperature.
 status:
@@ -126,7 +126,7 @@ e2e-jev:
 	@bash e2e/systemone.sh
 
 # Typed-decision requests fired mid-chat-generation must finish before the
-# still-running chats — proves concurrent use and decision priority.
+# still-running chats - proves concurrent use and decision priority.
 e2e-concurrent:
 	@bash e2e/concurrent.sh
 

@@ -11,7 +11,7 @@ AUTH="Authorization: Bearer ${API_KEY}"
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 
 if ! curl -sf -m 5 "$BASE/health" >/dev/null; then
-  echo "e2e-openai: server not running on :${PORT} — start it with: make start" >&2
+  echo "e2e-openai: server not running on :${PORT} - start it with: make start" >&2
   exit 1
 fi
 

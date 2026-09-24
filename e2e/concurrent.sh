@@ -2,7 +2,7 @@
 # Fires long chat generations and then, mid-generation, typed-decision requests
 # (/v1/systemone) at the running server.
 # Why: proves the two endpoints run concurrently and that decisions are
-# prioritized — the decision requests arrive staggered (not at the same time
+# prioritized - the decision requests arrive staggered (not at the same time
 # as the chats) yet must finish before the still-running chats complete.
 set -euo pipefail
 export LC_ALL=C  # dot decimals for EPOCHREALTIME / curl %{time_total}
@@ -14,7 +14,7 @@ TMP="$(mktemp -d)"
 trap 'rm -rf "$TMP"' EXIT
 
 if ! curl -sf -m 5 "$BASE/health" >/dev/null; then
-  echo "e2e-concurrent: server not running on :${PORT} — start it with: make start" >&2
+  echo "e2e-concurrent: server not running on :${PORT} - start it with: make start" >&2
   exit 1
 fi
 
@@ -47,7 +47,7 @@ print(json.dumps({
 PY
 )
 
-req_bg() { # $1=out.json  $2=endpoint  $3=body — records absolute end time in $1.end
+req_bg() { # $1=out.json  $2=endpoint  $3=body - records absolute end time in $1.end
   ( curl -sf -m "$CHAT_TIMEOUT" -o "$1" -X POST "$BASE/$2" -H "$AUTH" -H "Content-Type: application/json" -d "$3"
     echo "$EPOCHREALTIME" > "$1.end" ) &
 }

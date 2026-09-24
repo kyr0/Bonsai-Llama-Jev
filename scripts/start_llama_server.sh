@@ -77,7 +77,7 @@ else
         [ -f "$_mp" ] && MMPROJ="$DEMO_DIR/$_mp" && break
     done
     if [ "$BONSAI_MODEL" = "27B" ] && [ -z "$MMPROJ" ]; then
-        warn "No mmproj file found in ${GGUF_MODEL_DIR}/ — image input disabled."
+        warn "No mmproj file found in ${GGUF_MODEL_DIR}/ - image input disabled."
         echo "  Re-run ./scripts/download_models.sh to fetch it."
     fi
     _full_profile=0

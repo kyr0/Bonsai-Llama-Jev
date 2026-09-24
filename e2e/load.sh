@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Why: load probe for /v1/systemone — long states, long instructions, wide
+# Why: load probe for /v1/systemone - long states, long instructions, wide
 # fan-out, N concurrent workers. Reproduces the eval timeout failure mode
 # (slot starvation on small -np) and checks an over-long prompt fails with a
 # named 422 instead of hanging. Usage: bash e2e/load.sh [workers]
@@ -10,7 +10,7 @@ BASE="http://127.0.0.1:${PORT}"
 WORKERS="${1:-20}"
 
 if ! curl -sf -m 5 "$BASE/health" >/dev/null; then
-  echo "load: server not running on :${PORT} — start it with: make start" >&2
+  echo "load: server not running on :${PORT} - start it with: make start" >&2
   exit 1
 fi
 

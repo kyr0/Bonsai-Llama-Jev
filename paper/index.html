@@ -13,6 +13,23 @@
 
 <br />
 
+<div class="disclaimer">
+<p><strong>Disclaimer on AI-assisted preparation</strong></p>
+<p>Out of respect for the reader and in the interest of full methodological transparency, I disclose that this manuscript was produced with substantial AI assistance within a verified, agentic engineering workflow. AI systems were used for research support, critical review, code generation and review, mathematical typesetting, and prose drafting and editing. Responsibility for the manuscript, its claims, and its conclusions remains with the author.
+
+No substantive claim, measurement, or reported data point was accepted solely as the output of an autoregressive generative text-completion process. The workflow was deliberately evidence-first. The initial hypotheses were formulated by the author. AI-assisted research-using Consensus and systems from OpenAI/GPT, Anthropic/Claude, Google/Gemini, Qwen and Moonshot/Kimi-was then used to identify relevant concepts, principles, prior art, and research that the author had not previously considered.
+
+Benchmark cases were generated synthetically and manually reviewed. The reported benchmark results themselves were obtained by executing those cases against real, functioning inference systems and models, with repeated runs used to assess reproducibility and stability. The resulting evidence was critically reviewed by the author for plausibility, internal consistency, compatibility with prior art and published research, and agreement with the observed behavior of the implemented systems.
+
+The methodology and claims were developed from this evidence, not from model-generated prose. AI systems were additionally used as critics to search for inconsistencies, unsupported claims, methodological weaknesses, and plausible alternative interpretations. Agreement among these systems was treated as a review signal instead of proof. Code supporting the work was verified through unit, integration, and end-to-end testing where applicable.
+
+Only after the empirical and engineering evidence had been assembled and critically reviewed was AI used to help draft and edit the manuscript's prose under direct, aware, and detailed instructions from the author. AI assistance was also used to render mathematical formulas efficiently in MathML. The resulting manuscript, together with its supporting evidence and provenance records, was subsequently subjected to further multi-model review and criticism in agentic evaluation harnesses. Where such controls were available, inference systems were configured for low-temperature sampling and the highest available reasoning setting.
+
+The author then reviewed the manuscript again and conducted a separate AI-assisted editing pass focused exclusively on writing quality. Finally, the author proofread the complete manuscript and verified its contents, evidence, and presentation to the best of his knowledge and understanding.
+
+The use of AI described above should therefore not be understood as a substitute for empirical validation, source criticism, reproducibility, or authorial responsibility but as a part of a careful research, engineering, verification, and editorial workflow under efficiency goals.</p>
+</div>
+
 <h2 id="abstract">Abstract</h2>
 
 <p>Any causal language model already computes a categorical score over its vocabulary at every next-token boundary; a Jev-like typed-decision engine turns runtime-defined semantic answers into token verbalizers, stops inference after prefill, reads only those native logits, converts them with stable restricted softmax and chain-rule branch scoring, and deterministically reduces the resulting distribution into <code>choice</code>, <code>score</code>, or <code>noul</code> - without sampling and without generating an answer token. This paper breaks this method down. It explains how any causal language model can be turned into a typed-decision engine. Demonstrated as a paper with code, it addresses primarily applied AI engineers, AI research scientists, and curious tech-affine readers.</p>
@@ -54,9 +71,10 @@
 		<li><a href="#30-minimal-backend-api-required">30. Minimal backend API required</a></li>
 		<li><a href="#31-why-the-method-is-useful">31. Why the method is useful</a></li>
 		<li><a href="#32-what-this-method-does-not-prove">32. What this method does not prove</a></li>
-		<li><a href="#33-reference-equations">33. Reference equations</a></li>
-		<li><a href="#34-implementation-checklist">34. Implementation checklist</a></li>
-		<li><a href="#35-references-and-further-reading">35. References and further reading</a></li>
+		<li><a href="#33-future-research">33. Future research</a></li>
+		<li><a href="#34-reference-equations">34. Reference equations</a></li>
+		<li><a href="#35-implementation-checklist">35. Implementation checklist</a></li>
+		<li><a href="#36-references-and-further-reading">36. References and further reading</a></li>
 		<li><a href="#citation">Citation</a></li>
 	</ul>
 </nav>
@@ -82,7 +100,7 @@ tools/server/server-task.h
 tools/server/server.cpp
 tools/server/tests/unit/test_chat_completion.py</code></pre>
 
-<p>The decisive implementation is in <code>server-context.cpp</code>: a new <code>SERVER_TASK_TYPE_SYSTEMONE</code> runs the normal model prompt forward pass, extracts selected logits at <code>SLOT_STATE_DONE_PROMPT</code>, sends those logits back to the HTTP-side decision logic, releases the inference slot, and returns before normal token generation starts.</p>
+<p>The decisive implementation is in <a href="https://github.com/kyr0/Bonsai-Llama-Jev/blob/7a4cf234c/tools/server/server-context.cpp#L3707-L3726" target="_blank" rel="noopener"><code>server-context.cpp</code></a>: a new <code>SERVER_TASK_TYPE_SYSTEMONE</code> runs the normal model prompt forward pass, extracts selected logits at <code>SLOT_STATE_DONE_PROMPT</code>, sends those logits back to the HTTP-side decision logic, releases the inference slot, and returns before normal token generation starts.</p>
 
 <hr />
 
@@ -352,10 +370,13 @@ x_{1:T}=(x_1,x_2,\ldots,x_T),
 	<li><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>z</mi><mi>v</mi></msub></mrow><annotation encoding="application/x-tex">z_v</annotation></semantics></math> = score assigned to vocabulary token <math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>v</mi></mrow><annotation encoding="application/x-tex">v</annotation></semantics></math>.</li>
 </ul>
 
-<p>In practice (<a href="https://github.com/kyr0/Bonsai-Llama-Jev/blob/7a4cf234c/tools/server/server-context.cpp#L3707-L3726" target="_blank" rel="noopener"><code>tools/server/server-context.cpp</code>, logit readout at slot release</a>):</p>
+<p>The implementation (<a href="https://github.com/kyr0/Bonsai-Llama-Jev/blob/7a4cf234c/tools/server/server-context.cpp#L3707-L3726" target="_blank" rel="noopener"><code>tools/server/server-context.cpp</code>, logit readout at slot release</a>):</p>
 
-<pre><code class="code-highlighted code-text">z = lm_head(hidden_state[last_prompt_position])
-# one logit per vocabulary token; the engine reads only the few it needs</code></pre>
+<pre><code class="code-highlighted code-cpp"><span class="syntax-all syntax-keyword">const</span> <span class="syntax-all syntax-keyword">float</span> * logits = <span class="syntax-all syntax-entity">llama_get_logits_ith</span>(ctx_tgt, slot.i_batch - off);
+<span class="syntax-all syntax-keyword">for</span> (llama_token token : slot.task-&gt;systemone_tokens) {
+    result-&gt;logits.<span class="syntax-all syntax-entity">push_back</span>(logits[token]);
+}
+slot.<span class="syntax-all syntax-entity">release</span>();</code></pre>
 
 <p>The ordinary next-token distribution of the model with parameters <math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>θ</mi></mrow><annotation encoding="application/x-tex">\theta</annotation></semantics></math> is:</p>
 
@@ -629,15 +650,15 @@ sales                C</code></pre>
 
 <p>The repository explicitly verifies these properties.</p>
 
-<p>Conceptually:</p>
+<p>The implementation enforces this directly:</p>
 
-<pre><code class="code-highlighted code-cpp">prefix   = tokenize(prompt);
-extended = tokenize(prompt + <span class="syntax-all syntax-string">&quot;A&quot;</span>);
-
-<span class="syntax-all syntax-entity">require</span>(extended.size() == prefix.size() + 1);
-<span class="syntax-all syntax-entity">require</span>(extended[<span class="syntax-all syntax-constant">0</span>:prefix.size()] == prefix);
-<span class="syntax-all syntax-entity">require</span>(piece(extended.back()) == &quot;A&quot;);
-<span class="syntax-all syntax-entity">require</span>(token_id_for_A_is_unique);</code></pre>
+<pre><code class="code-highlighted code-cpp"><span class="syntax-all syntax-keyword">const</span> <span class="syntax-all syntax-keyword">auto</span> prefix   = <span class="syntax-all syntax-entity">common_tokenize</span>(ctx_server.vocab, prompt, <span class="syntax-all syntax-keyword">true</span>, <span class="syntax-all syntax-keyword">true</span>);
+<span class="syntax-all syntax-keyword">const</span> <span class="syntax-all syntax-keyword">auto</span> extended = <span class="syntax-all syntax-entity">common_tokenize</span>(ctx_server.vocab, prompt + label, <span class="syntax-all syntax-keyword">true</span>, <span class="syntax-all syntax-keyword">true</span>);
+<span class="syntax-all syntax-keyword">if</span> (extended.<span class="syntax-all syntax-entity">size</span>() != prefix.<span class="syntax-all syntax-entity">size</span>() + <span class="syntax-all syntax-constant">1</span> || !std::<span class="syntax-all syntax-entity">equal</span>(prefix.<span class="syntax-all syntax-entity">begin</span>(), prefix.<span class="syntax-all syntax-entity">end</span>(), extended.<span class="syntax-all syntax-entity">begin</span>()) ||
+    <span class="syntax-all syntax-entity">common_token_to_piece</span>(ctx_server.vocab, extended.<span class="syntax-all syntax-entity">back</span>()) != label ||
+    std::<span class="syntax-all syntax-entity">find</span>(letters.<span class="syntax-all syntax-entity">begin</span>(), letters.<span class="syntax-all syntax-entity">end</span>(), extended.<span class="syntax-all syntax-entity">back</span>()) != letters.<span class="syntax-all syntax-entity">end</span>()) {
+    <span class="syntax-all syntax-keyword">throw</span> std::<span class="syntax-all syntax-entity">invalid_argument</span>(<span class="syntax-all syntax-string">"Answer label "</span> + label + <span class="syntax-all syntax-string">" is not a distinct single token at the answer boundary ..."</span>);
+}</code></pre>
 
 <p>In code: <a href="https://github.com/kyr0/Bonsai-Llama-Jev/blob/7a4cf234c/tools/server/server-context.cpp#L5608-L5619" target="_blank" rel="noopener"><code>tools/server/server-context.cpp</code>, answer-label validation</a>.</p>
 
@@ -686,10 +707,19 @@ q_i
 
 <p>This is a <strong>restricted softmax</strong> over answer tokens. Softmax converts arbitrary real scores into positive normalized weights summing to one.</p>
 
-<p>In practice (<a href="https://github.com/kyr0/Bonsai-Llama-Jev/blob/7a4cf234c/tools/server/server-context.cpp#L4841-L4860" target="_blank" rel="noopener"><code>tools/server/server-context.cpp</code>, probabilities()</a>):</p>
+<p>The implementation (<a href="https://github.com/kyr0/Bonsai-Llama-Jev/blob/7a4cf234c/tools/server/server-context.cpp#L4841-L4860" target="_blank" rel="noopener"><code>tools/server/server-context.cpp</code>, probabilities()</a>):</p>
 
-<pre><code class="code-highlighted code-text">z = prefill(prompt)                    # one forward pass, no decode
-q = softmax([z[t] for t in answer_token_ids])</code></pre>
+<pre><code class="code-highlighted code-cpp"><span class="syntax-all syntax-keyword">const</span> <span class="syntax-all syntax-keyword">size_t</span> best = std::<span class="syntax-all syntax-entity">max_element</span>(logits.<span class="syntax-all syntax-entity">begin</span>(), logits.<span class="syntax-all syntax-entity">end</span>()) - logits.<span class="syntax-all syntax-entity">begin</span>();
+std::vector&lt;<span class="syntax-all syntax-keyword">double</span>&gt; probabilities;
+<span class="syntax-all syntax-keyword">double</span> total = <span class="syntax-all syntax-constant">0.0</span>;
+<span class="syntax-all syntax-keyword">for</span> (<span class="syntax-all syntax-keyword">float</span> logit : logits) {
+    <span class="syntax-all syntax-keyword">const</span> <span class="syntax-all syntax-keyword">double</span> weight = std::<span class="syntax-all syntax-entity">exp</span>(<span class="syntax-all syntax-keyword">double</span>(logit) - logits[best]);
+    probabilities.<span class="syntax-all syntax-entity">push_back</span>(weight);
+    total += weight;
+}
+<span class="syntax-all syntax-keyword">for</span> (<span class="syntax-all syntax-keyword">double</span> &amp; probability : probabilities) {
+    probability /= total;
+}</code></pre>
 
 <h3 id="why-it-is-exactly-the-native-lm-distribution-conditioned-on-allowed-labels">Why it is exactly the native LM distribution conditioned on allowed labels</h3>
 
@@ -940,12 +970,27 @@ p_i
 {\sum_{j=1}^{N}w_j}.
 </annotation></semantics></math></p>
 
-<p>In practice (<a href="https://github.com/kyr0/Bonsai-Llama-Jev/blob/7a4cf234c/tools/server/server-context.cpp#L5634" target="_blank" rel="noopener"><code>tools/server/server-context.cpp</code>, depth readout loop</a>):</p>
+<p>The implementation (<a href="https://github.com/kyr0/Bonsai-Llama-Jev/blob/7a4cf234c/tools/server/server-context.cpp#L5634" target="_blank" rel="noopener"><code>tools/server/server-context.cpp</code>, depth readout loop</a>):</p>
 
-<pre><code class="code-highlighted code-text">for d in range(D):                       # one readout per chosen label prefix
-    q[d] = softmax(logits_at(prompt + label[:d]))   # over allowed symbols at position d
-w[i] = prod(q[d][label_i[d]] for d in range(D))
-p    = w / sum(w)</code></pre>
+<pre><code class="code-highlighted code-cpp"><span class="syntax-all syntax-keyword">size_t</span> stride = <span class="syntax-all syntax-constant">1</span>;
+<span class="syntax-all syntax-keyword">for</span> (<span class="syntax-all syntax-keyword">size_t</span> depth = <span class="syntax-all syntax-constant">0</span>; depth &lt; width; ++depth) {
+    <span class="syntax-all syntax-keyword">const</span> <span class="syntax-all syntax-keyword">size_t</span> count = question.alphabet_sizes[depth];
+    <span class="syntax-all syntax-keyword">for</span> (<span class="syntax-all syntax-keyword">size_t</span> offset = <span class="syntax-all syntax-constant">0</span>; offset &lt; stride &amp;&amp; offset &lt; question.keys.<span class="syntax-all syntax-entity">size</span>(); ++offset) {
+        server_task <span class="syntax-all syntax-entity">task</span>(<span class="syntax-all syntax-constant">SERVER_TASK_TYPE_SYSTEMONE</span>);
+        task.params.cache_prompt = depth &gt; <span class="syntax-all syntax-constant">0</span>;   <span class="syntax-all syntax-comment">// later prefixes reuse the slot KV</span>
+        task.tokens = tokens.<span class="syntax-all syntax-entity">clone</span>();
+        <span class="syntax-all syntax-keyword">size_t</span> index = offset;
+        <span class="syntax-all syntax-keyword">for</span> (<span class="syntax-all syntax-keyword">size_t</span> i = <span class="syntax-all syntax-constant">0</span>; i &lt; depth; ++i) {
+            task.tokens.<span class="syntax-all syntax-entity">push_back</span>(letters[index % question.alphabet_sizes[i]]);
+            index /= question.alphabet_sizes[i];
+        }
+        task.systemone_tokens.<span class="syntax-all syntax-entity">assign</span>(letters.<span class="syntax-all syntax-entity">begin</span>(), letters.<span class="syntax-all syntax-entity">begin</span>() + count);
+        <span class="syntax-all syntax-comment">// ...</span>
+    }
+    <span class="syntax-all syntax-keyword">if</span> (depth + <span class="syntax-all syntax-constant">1</span> &lt; width) {
+        stride *= count;
+    }
+}</code></pre>
 
 <h3 id="important-semantic-nuance">Important semantic nuance</h3>
 
@@ -1242,9 +1287,11 @@ i^*
 
 <p>TypeSafe&#39;s public Choice contract similarly exposes the selected option, a probability per supplied option, and confidence.</p>
 
-<p>In practice (<a href="https://github.com/kyr0/Bonsai-Llama-Jev/blob/7a4cf234c/tools/server/server-context.cpp#L4862-L4900" target="_blank" rel="noopener"><code>tools/server/server-context.cpp</code>, answer()</a>):</p>
+<p>The implementation (<a href="https://github.com/kyr0/Bonsai-Llama-Jev/blob/7a4cf234c/tools/server/server-context.cpp#L4862-L4900" target="_blank" rel="noopener"><code>tools/server/server-context.cpp</code>, answer()</a>):</p>
 
-<pre><code class="code-highlighted code-text">choice = candidates[argmax(p)]</code></pre>
+<pre><code class="code-highlighted code-cpp"><span class="syntax-all syntax-keyword">const</span> <span class="syntax-all syntax-keyword">size_t</span> best = std::<span class="syntax-all syntax-entity">max_element</span>(probabilities.<span class="syntax-all syntax-entity">begin</span>(), probabilities.<span class="syntax-all syntax-entity">end</span>()) - probabilities.<span class="syntax-all syntax-entity">begin</span>();
+<span class="syntax-all syntax-comment">// ...</span>
+output[<span class="syntax-all syntax-string">"choice"</span>] = keys[best];</code></pre>
 
 <h3 id="152-score">15.2 Score</h3>
 
@@ -1260,9 +1307,15 @@ i^*
 
 <p>TypeSafe documents exactly this probability-weighted-level interpretation; for example, probabilities <math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo separator="true">,</mo><mn>0.57</mn><mo separator="true">,</mo><mn>0.43</mn></mrow><annotation encoding="application/x-tex">0,0.57,0.43</annotation></semantics></math> over levels <math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo separator="true">,</mo><mn>1</mn><mo separator="true">,</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">0,1,2</annotation></semantics></math> yield score <math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1.43</mn></mrow><annotation encoding="application/x-tex">1.43</annotation></semantics></math>.</p>
 
-<p>In practice (<a href="https://github.com/kyr0/Bonsai-Llama-Jev/blob/7a4cf234c/tools/server/server-context.cpp#L4862-L4899" target="_blank" rel="noopener"><code>tools/server/server-context.cpp</code>, answer()</a>):</p>
+<p>The implementation (<a href="https://github.com/kyr0/Bonsai-Llama-Jev/blob/7a4cf234c/tools/server/server-context.cpp#L4862-L4899" target="_blank" rel="noopener"><code>tools/server/server-context.cpp</code>, answer()</a>):</p>
 
-<pre><code class="code-highlighted code-text">score = sum(i * p[i] for i in range(N))   # expected level index</code></pre>
+<pre><code class="code-highlighted code-cpp"><span class="syntax-all syntax-keyword">double</span> score = <span class="syntax-all syntax-constant">0.0</span>;
+<span class="syntax-all syntax-keyword">for</span> (<span class="syntax-all syntax-keyword">size_t</span> i = <span class="syntax-all syntax-constant">0</span>; i &lt; keys.<span class="syntax-all syntax-entity">size</span>(); ++i) {
+    <span class="syntax-all syntax-comment">// ...</span>
+    score += i * probabilities[i];
+}
+<span class="syntax-all syntax-comment">// ...</span>
+output[<span class="syntax-all syntax-string">"score"</span>] = score;</code></pre>
 
 <h3 id="153-noul">15.3 Noul</h3>
 
@@ -1303,9 +1356,9 @@ p_{\text{yes}}+(1-p_{\text{no}})
 }
 </annotation></semantics></math></p>
 
-<p>In practice (<a href="https://github.com/kyr0/Bonsai-Llama-Jev/blob/7a4cf234c/tools/server/server-context.cpp#L4862-L4899" target="_blank" rel="noopener"><code>tools/server/server-context.cpp</code>, answer()</a>):</p>
+<p>The implementation (<a href="https://github.com/kyr0/Bonsai-Llama-Jev/blob/7a4cf234c/tools/server/server-context.cpp#L4862-L4899" target="_blank" rel="noopener"><code>tools/server/server-context.cpp</code>, answer()</a>):</p>
 
-<pre><code class="code-highlighted code-text">noul = p["yes"]   # binary labels: p_no = 1 - p_yes</code></pre>
+<pre><code class="code-highlighted code-cpp"><span class="syntax-all syntax-keyword">return</span> {{<span class="syntax-all syntax-string">"type"</span>, type}, {<span class="syntax-all syntax-string">"noul"</span>, (probabilities[<span class="syntax-all syntax-constant">0</span>] + <span class="syntax-all syntax-constant">1.0</span> - probabilities[<span class="syntax-all syntax-constant">1</span>]) * <span class="syntax-all syntax-constant">0.5</span>}};</code></pre>
 
 <hr />
 
@@ -1322,9 +1375,15 @@ p_{i^*}
 
 <p>A deterministic concentration heuristic.</p>
 
-<p>In practice (<a href="https://github.com/kyr0/Bonsai-Llama-Jev/blob/7a4cf234c/tools/server/server-context.cpp#L4862-L4899" target="_blank" rel="noopener"><code>tools/server/server-context.cpp</code>, answer()</a>):</p>
+<p>The implementation (<a href="https://github.com/kyr0/Bonsai-Llama-Jev/blob/7a4cf234c/tools/server/server-context.cpp#L4862-L4899" target="_blank" rel="noopener"><code>tools/server/server-context.cpp</code>, answer()</a>):</p>
 
-<pre><code class="code-highlighted code-text">confidence = p[argmax(p)] * prod(1 - p[i] for i in candidates if i != argmax(p))</code></pre>
+<pre><code class="code-highlighted code-cpp"><span class="syntax-all syntax-keyword">double</span> confidence = probabilities[best];
+<span class="syntax-all syntax-keyword">for</span> (<span class="syntax-all syntax-keyword">size_t</span> i = <span class="syntax-all syntax-constant">0</span>; i &lt; keys.<span class="syntax-all syntax-entity">size</span>(); ++i) {
+    <span class="syntax-all syntax-comment">// ...</span>
+    <span class="syntax-all syntax-keyword">if</span> (i != best) {
+        confidence *= <span class="syntax-all syntax-constant">1.0</span> - probabilities[i];
+    }
+}</code></pre>
 
 <p>It is not a theorem that:</p>
 
@@ -1442,9 +1501,21 @@ p_i(T)
 	<li><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>&lt;</mo><mi>T</mi><mo>&lt;</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">0&lt;T&lt;1</annotation></semantics></math>: sharper.</li>
 </ul>
 
-<p>In practice (<a href="https://github.com/kyr0/Bonsai-Llama-Jev/blob/7a4cf234c/tools/server/server-context.cpp#L4570" target="_blank" rel="noopener"><code>tools/server/server-context.cpp</code>, calibration apply()</a>):</p>
+<p>The implementation (<a href="https://github.com/kyr0/Bonsai-Llama-Jev/blob/7a4cf234c/tools/server/server-context.cpp#L4570" target="_blank" rel="noopener"><code>tools/server/server-context.cpp</code>, calibration apply()</a>):</p>
 
-<pre><code class="code-highlighted code-text">p[i] = exp(s[i] / T) / sum(exp(s[j] / T))   # fitted on held-out data; T = 1 changes nothing</code></pre>
+<pre><code class="code-highlighted code-cpp"><span class="syntax-all syntax-keyword">const</span> <span class="syntax-all syntax-keyword">double</span> effective = <span class="syntax-all syntax-entity">temperature_for</span>(question_type);
+<span class="syntax-all syntax-comment">// ...</span>
+<span class="syntax-all syntax-keyword">const</span> <span class="syntax-all syntax-keyword">double</span> beta = <span class="syntax-all syntax-constant">1.0</span> / effective;
+<span class="syntax-all syntax-keyword">for</span> (<span class="syntax-all syntax-keyword">double</span> probability : probabilities) {
+    <span class="syntax-all syntax-keyword">const</span> <span class="syntax-all syntax-keyword">double</span> value = beta * std::<span class="syntax-all syntax-entity">log</span>(std::<span class="syntax-all syntax-entity">max</span>(<span class="syntax-all syntax-constant">1e-12</span>, probability));
+    log_weights.<span class="syntax-all syntax-entity">push_back</span>(value);
+    peak = std::<span class="syntax-all syntax-entity">max</span>(peak, value);
+}
+<span class="syntax-all syntax-keyword">for</span> (<span class="syntax-all syntax-keyword">double</span> &amp; value : log_weights) {
+    value = std::<span class="syntax-all syntax-entity">exp</span>(value - peak);   <span class="syntax-all syntax-comment">// p_i^(1/T), max-shifted</span>
+    z += value;
+}
+<span class="syntax-all syntax-comment">// ... then value /= z to renormalize</span></code></pre>
 
 <p>Fit <math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi></mrow><annotation encoding="application/x-tex">T</annotation></semantics></math> on a held-out calibration set by minimizing the negative log-likelihood (NLL) of the correct labels.</p>
 
@@ -1836,6 +1907,8 @@ same typed math</code></pre>
 
 <h2 id="26-correctness-invariants">26. Correctness invariants</h2>
 
+<p>The method makes eight claims that can be checked mechanically. Each invariant below is a contract: it names one property every correct implementation must have. Section 27 turns them into executable tests.</p>
+
 <h3 id="i1-semantic-mapping">I1 - semantic mapping</h3>
 
 <p>Every semantic candidate has exactly one verbalizer path.</p>
@@ -1849,6 +1922,8 @@ same typed math</code></pre>
 <p>For every selected token <math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi></mrow><annotation encoding="application/x-tex">t</annotation></semantics></math>, decision mode returns the model&#39;s native <math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>z</mi><mi>t</mi></msub></mrow><annotation encoding="application/x-tex">z_t</annotation></semantics></math>.</p>
 
 <h3 id="i4-normalization">I4 - normalization</h3>
+
+<p>The returned candidate probabilities always form a proper probability distribution over the supplied candidates:</p>
 
 <p><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>p</mi><mi>i</mi></msub><mo>≥</mo><mn>0</mn><mo separator="true">,</mo><mspace width="2em"/><munder><mo>∑</mo><mi>i</mi></munder><msub><mi>p</mi><mi>i</mi></msub><mo>=</mo><mn>1.</mn></mrow><annotation encoding="application/x-tex">
 p_i\ge0,
@@ -1884,6 +1959,8 @@ penalties</code></pre>
 
 <h2 id="27-verification-strategy">27. Verification strategy</h2>
 
+<p>Every invariant of section 26 maps to a test, and every test follows the same pattern: the typed-decision path is compared against an oracle, and any disagreement beyond numerical tolerance is a defect. The oracle is the model's ordinary completion path, which computes full-vocabulary next-token probabilities through the regular API.</p>
+
 <h3 id="271-native-one-token-oracle">27.1 Native one-token oracle</h3>
 
 <p>Verify:</p>
@@ -1898,6 +1975,8 @@ p_i^{\text{native LM}}
 }.
 </annotation></semantics></math></p>
 
+<p>The right-hand side is the oracle: the same label probabilities from the ordinary completion path, renormalized over the allowed answer set. Agreement within numerical tolerance shows that the readout adds no distortion of its own.</p>
+
 <p>Test across:</p>
 
 <ul>
@@ -1909,7 +1988,7 @@ p_i^{\text{native LM}}
 
 <h3 id="272-multi-character-oracle">27.2 Multi-character oracle</h3>
 
-<p>For every prefix:</p>
+<p>Multi-character labels are verified against the same oracle, depth by depth: at every label prefix, the engine's restricted softmax must match the native distribution at that prefix, renormalized over the allowed next characters. For every prefix:</p>
 
 <ol>
 	<li>native forward at exact prefix;</li>
@@ -1921,7 +2000,7 @@ p_i^{\text{native LM}}
 
 <h3 id="273-tokenizer-adversarial-cases">27.3 Tokenizer adversarial cases</h3>
 
-<p>Test:</p>
+<p>Tokenizers merge characters across boundaries, so probe the label alphabet where this is most likely:</p>
 
 <ul>
 	<li>whitespace;</li>
@@ -1935,9 +2014,7 @@ p_i^{\text{native LM}}
 
 <h3 id="274-sampling-null-test">27.4 Sampling null test</h3>
 
-<p>Vary all sampler controls.</p>
-
-<p>Result should remain unchanged.</p>
+<p>Run the same decision request under many sampler settings: temperature, top-k, top-p, penalties. The sampler is never entered in decision mode, so the answers must not change at all.</p>
 
 <h3 id="275-candidate-permutation-tests">27.5 Candidate permutation tests</h3>
 
@@ -1951,7 +2028,7 @@ p_i^{\text{native LM}}
 
 <h3 id="276-cache-equivalence">27.6 Cache equivalence</h3>
 
-<p>Compare cache reuse on/off.</p>
+<p>Compare identical requests with prefix-cache reuse on and off.</p>
 
 <p>Expected:</p>
 
@@ -1960,7 +2037,7 @@ different compute cost</code></pre>
 
 <h3 id="277-repetitionconcurrency">27.7 Repetition/concurrency</h3>
 
-<p>Stress:</p>
+<p>Repeat and overlap requests to shake out slot and cache cross-talk:</p>
 
 <ul>
 	<li>repeated identical requests;</li>
@@ -1971,7 +2048,7 @@ different compute cost</code></pre>
 
 <h3 id="278-calibration">27.8 Calibration</h3>
 
-<p>On untouched labeled data report:</p>
+<p>When calibration is enabled, measure it on untouched labeled data (no fitting, no tuning on these rows) and report:</p>
 
 <ul>
 	<li>NLL;</li>
@@ -1985,6 +2062,8 @@ different compute cost</code></pre>
 <hr />
 
 <h2 id="28-common-conceptual-errors">28. Common conceptual errors</h2>
+
+<p>Recurring misunderstandings about the method, and why each is wrong:</p>
 
 <h3 id="this-is-greedy-decoding">"This is greedy decoding."</h3>
 
@@ -2029,6 +2108,8 @@ different compute cost</code></pre>
 <hr />
 
 <h2 id="29-recommended-implementation-architecture">29. Recommended implementation architecture</h2>
+
+<p>For new implementations, the method splits into four independent layers. Each layer can be replaced or reused on its own; only the interfaces between them are fixed:</p>
 
 <pre><code class="code-highlighted code-text">+--------------------------------------------+
 | 1. Typed API / validation                  |
@@ -2155,7 +2236,33 @@ return z[token_id] for requested token IDs</code></pre>
 
 <hr />
 
-<h2 id="33-reference-equations">33. Reference equations</h2>
+<h2 id="33-future-research">33. Future research</h2>
+
+<h3 id="colliding-prefixes-and-multi-token-labels">Colliding prefixes and multi-token labels instead of HTTP 422</h3>
+
+<p>The current engine rejects a question with HTTP 422 when an answer label is not a distinct single token at the rendered prompt boundary (see 7.). That restriction is an implementation convenience, not a property of the method.</p>
+
+<p>A generalized prefix-trie readout removes it. The compiler builds a trie over the tokenizations of all candidate labels; the engine then walks the trie and, at every node, reads a restricted softmax over the child tokens. This extends the chain-rule machinery of section 11 from fixed positional alphabets to arbitrary token sequences:</p>
+
+<ul>
+	<li>shared token prefixes are traversed once - with KV-cache prefix reuse (see 13.), the shared part is computed a single time;</li>
+	<li>colliding labels branch at their divergence node, and probability mass is assigned at terminal nodes;</li>
+	<li>a label whose first token merges with the prompt suffix (a boundary collision) is either scored through a boundary-safe prompt variant or reassigned a different verbalizer by the compiler, instead of failing the request.</li>
+</ul>
+
+<p>The 422 then becomes the exception for labels that are genuinely unscorable, the 62 single-character label limit (see 6.) disappears, and the radix construction of section 11 becomes the special case of a balanced trie. Open questions are the per-branch renormalization semantics for labels of unequal token depth (a potential depth bias to study) and the readout budget: the readout-count formula of section 12 generalizes from radices to trie nodes, and deep or wide tries need the same cost analysis.</p>
+
+<h3 id="finer-calibration-bins">Finer calibration bins: towards a schema v3 artifact</h3>
+
+<p>The deployable calibration artifact currently fits one temperature per question type (<code>choice</code>, <code>score</code>, <code>noul</code>) with a top-level fallback: Qtype-stratified temperature scaling, specified in the <a href="https://kyr0.github.io/typed-decision-bench/paper/" target="_blank" rel="noopener">calibration protocol paper</a>. The Bonsai-2-27B reference experiment found clearly different per-type temperatures (see 18.), which suggests residual miscalibration inside the types as well.</p>
+
+<p>A schema v3 artifact could stratify further: bins by candidate count, label width, capability or domain, or predicted-confidence band, each with its own fitted temperature. A hierarchical fallback (bin -&gt; question type -&gt; global temperature) keeps low-count bins safe: when a bin has too little calibration data, its estimate falls back to the coarser level instead of overfitting a handful of cases.</p>
+
+<p>The guardrails from the calibration protocol carry over unchanged: fit on a disjoint calibration split, recompute every derived answer field after scaling, judge the bins on held-out NLL, Brier score, and ECE, and keep estimator capacity low. More bins buy granularity at the price of overfitting risk; the convexity of the objective in the inverse temperature holds per bin, so each fitted bin temperature remains a well-behaved optimization.</p>
+
+<hr />
+
+<h2 id="34-reference-equations">34. Reference equations</h2>
 
 <h3 id="lm-head">LM head</h3>
 
@@ -2272,7 +2379,7 @@ p_i(T)
 
 <hr />
 
-<h2 id="34-implementation-checklist">34. Implementation checklist</h2>
+<h2 id="35-implementation-checklist">35. Implementation checklist</h2>
 
 <p>Should you plan to implement this method in any inference engine, the following tasks need to be done:</p>
 
@@ -2305,7 +2412,7 @@ p_i(T)
 
 <hr />
 
-<h2 id="35-references-and-further-reading">35. References and further reading</h2>
+<h2 id="36-references-and-further-reading">36. References and further reading</h2>
 
 <h3 id="implementation-sources">Implementation sources</h3>
 

@@ -9,13 +9,13 @@
 #   BONSAI_FAMILY=ternary BONSAI_MODEL=all ./scripts/download_models.sh  # All sizes of that family
 #   BONSAI_FAMILY=all ./scripts/download_models.sh                       # Every family, 27B size
 #   BONSAI_FAMILY=all BONSAI_MODEL=all ./scripts/download_models.sh      # Full matrix (sizes without a build are skipped)
-#   BONSAI_SKIP_GGUF=1 ./scripts/download_models.sh                      # MLX only (macOS) — saves disk space
+#   BONSAI_SKIP_GGUF=1 ./scripts/download_models.sh                      # MLX only (macOS) - saves disk space
 #
 # Set BONSAI_TOKEN (a read-only HF token) if you need to pull a repo that is
 # still private; public repos download anonymously with no token.
 #
 # Set BONSAI_SKIP_GGUF=1 to skip the GGUF download entirely (llama.cpp backend
-# won't be usable afterwards — only makes sense if you only run the MLX
+# won't be usable afterwards - only makes sense if you only run the MLX
 # backend on Apple Silicon). Set BONSAI_SKIP_MLX=1 for the inverse.
 set -e
 
@@ -62,7 +62,7 @@ if [ -z "$PY" ] || ! "$PY" -c "import huggingface_hub" 2>/dev/null; then
 fi
 
 # ── Helper: download a HF repo via Python ──
-# Third arg (optional) is a comma-separated allow_patterns filter — when set,
+# Third arg (optional) is a comma-separated allow_patterns filter - when set,
 # only files matching any of those glob patterns are downloaded.
 hf_download() {
     _repo="$1"
@@ -152,7 +152,7 @@ download_one() {
         _dl_patterns="$_gguf_pattern,$_mmproj_pattern,$_drafter_pattern"
     fi
 
-    # GGUF — stderr flows to the user so auth/network errors are visible.
+    # GGUF - stderr flows to the user so auth/network errors are visible.
     # Fast-path and post-download checks both filter on the target quant pattern
     # (not just any *.gguf) so a leftover F16 or other quant from an earlier
     # download doesn't get picked up at runtime. For 27B the fast-path also
@@ -198,7 +198,7 @@ download_one() {
                 touch "$_gguf_dir/.official-q2_0"
             fi
             if [ -n "$_mmproj_pattern" ] && ! ls "$_gguf_dir"/$_mmproj_pattern >/dev/null 2>&1; then
-                warn "No ${_mmproj_pattern} file in ${_gguf_repo} — image input will be disabled for ${_display}."
+                warn "No ${_mmproj_pattern} file in ${_gguf_repo} - image input will be disabled for ${_display}."
             fi
             if [ -n "$_drafter_pattern" ] && ! ls "$_gguf_dir"/$_drafter_pattern >/dev/null 2>&1; then
                 warn "No ${_drafter_pattern} file in ${_gguf_repo}; speculative decoding (BONSAI_SPECULATIVE=1) will be unavailable for ${_display}."

@@ -5,7 +5,7 @@
 # ── .env (optional, gitignored) ──
 # Loaded before any defaults below, so it can also set BONSAI_MODEL etc.
 # Already-exported env vars win over .env values. setup.sh lives in the demo
-# dir, the other scripts in scripts/ — check both for the file.
+# dir, the other scripts in scripts/ - check both for the file.
 _bonsai_env_file=""
 for _d in "$(cd "$(dirname "$0")" && pwd)" "$(cd "$(dirname "$0")/.." 2>/dev/null && pwd)"; do
     if [ -f "$_d/.env" ]; then
@@ -30,13 +30,13 @@ fi
 # ── Model selection ──
 # Set BONSAI_MODEL to choose size:   27B (default), 8B, 4B, 1.7B, or all
 # Set BONSAI_FAMILY to choose family: bonsai2 (default), ternary, bonsai (1-bit), or all
-# "all" is only meaningful for setup/download — it expands to every size / every family.
+# "all" is only meaningful for setup/download - it expands to every size / every family.
 BONSAI_MODEL="${BONSAI_MODEL:-27B}"
 BONSAI_FAMILY="${BONSAI_FAMILY:-bonsai2}"
 
 # Derived paths default to empty so an invalid family or "all" never produces
 # a stale/glob-able path (e.g. `ls /*.gguf`). Concrete paths are only set when
-# the (family, size) pair is a valid concrete combination — runtime scripts
+# the (family, size) pair is a valid concrete combination - runtime scripts
 # call assert_*_downloaded which validates and gives a clear error.
 GGUF_MODEL_DIR=""
 MLX_MODEL_DIR=""
@@ -83,7 +83,7 @@ bonsai2_size_available() {
     return 1
 }
 
-# Validate BONSAI_MODEL + BONSAI_FAMILY — call at the top of every run/server script
+# Validate BONSAI_MODEL + BONSAI_FAMILY - call at the top of every run/server script
 assert_valid_model() {
     case "$BONSAI_MODEL" in
         27B|8B|4B|1.7B|all) ;;
@@ -210,7 +210,7 @@ bonsai_mlx_usable() {
 #
 # The two optional args let the error also offer the MLX backend when the GGUF
 # is missing but a usable MLX model is already on disk (the BONSAI_SKIP_GGUF=1
-# case) — so the user is told what they *can* run now, not just to download
+# case) - so the user is told what they *can* run now, not just to download
 # several GB of GGUF they may not want:
 #   $1  MLX-equivalent script to suggest, e.g. "run_mlx.sh"
 #   $2  env prefix, for callers where the MLX path is the *same* script driven
@@ -235,7 +235,7 @@ assert_gguf_downloaded() {
     exit 1
 }
 
-# Check MLX model is downloaded — prompts to download if missing
+# Check MLX model is downloaded - prompts to download if missing
 assert_mlx_downloaded() {
     _assert_concrete_model
     if ! bonsai_mlx_present; then
@@ -321,7 +321,7 @@ bonsai_llama_ngl() {
     if [ -n "${BONSAI_NGL:-}" ]; then
         echo "$BONSAI_NGL"
     elif [ "$(uname -s)" = "Darwin" ] && [ "$(uname -m)" = "x86_64" ]; then
-        echo 0  # Intel Mac — no Metal
+        echo 0  # Intel Mac - no Metal
     elif command -v nvidia-smi >/dev/null 2>&1 || command -v nvcc >/dev/null 2>&1; then
         echo 99  # CUDA
     elif command -v rocminfo >/dev/null 2>&1 || command -v hipcc >/dev/null 2>&1; then
@@ -329,7 +329,7 @@ bonsai_llama_ngl() {
     elif command -v vulkaninfo >/dev/null 2>&1; then
         echo 99  # Vulkan
     elif [ "$(uname -s)" = "Darwin" ]; then
-        echo 99  # Apple Silicon — Metal
+        echo 99  # Apple Silicon - Metal
     else
         echo 0   # CPU only
     fi
@@ -345,11 +345,11 @@ bonsai_image_max_tokens() {
     if [ -n "${BONSAI_IMAGE_MAX_TOKENS:-}" ]; then
         [ "$BONSAI_IMAGE_MAX_TOKENS" = "0" ] || echo "$BONSAI_IMAGE_MAX_TOKENS"
     elif command -v nvidia-smi >/dev/null 2>&1 || command -v nvcc >/dev/null 2>&1; then
-        :  # CUDA — uncapped
+        :  # CUDA - uncapped
     elif command -v rocminfo >/dev/null 2>&1 || command -v hipcc >/dev/null 2>&1; then
-        :  # ROCm/HIP — uncapped
+        :  # ROCm/HIP - uncapped
     else
-        echo 1024  # Metal / Vulkan / CPU — cap for latency
+        echo 1024  # Metal / Vulkan / CPU - cap for latency
     fi
 }
 

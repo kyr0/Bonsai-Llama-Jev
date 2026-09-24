@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Live performance probe against the running llama-server: current decode tok/s
 # from one chat request, and decisions/sec from a burst of typed-decision
-# requests. This measures right-now throughput on the live server — under load
+# requests. This measures right-now throughput on the live server - under load
 # it reflects the loaded rate, on an idle server the idle rate.
 set -euo pipefail
 export LC_ALL=C  # dot decimals for curl %{time_total}
@@ -13,7 +13,7 @@ TMP="$(mktemp -d)"
 trap 'rm -rf "$TMP"' EXIT
 
 if ! curl -sf -m 5 "$BASE/health" >/dev/null; then
-  echo "metrics: server not running on :${PORT} — start it with: make start" >&2
+  echo "metrics: server not running on :${PORT} - start it with: make start" >&2
   exit 1
 fi
 

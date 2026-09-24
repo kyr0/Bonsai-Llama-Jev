@@ -1,7 +1,7 @@
 cff-version: 1.2.0
 message: >-
   If you use this inference engine, implement the method for turning causal language models into a typed-decision engine at inference time as
-  described in IMPLEMENTATION_PAPER.md, please cite the repository as below.
+  described in https://kyr0.github.io/Bonsai-Llama-Jev/, please cite the repository as below.
 title: >-
   Bonsai-Llama-Jev: Turning causal language models into a typed-decision engine at inference time with improved calibration via Qtype-stratified temperature scaling.
 type: software

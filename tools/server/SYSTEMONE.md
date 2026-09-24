@@ -1,5 +1,7 @@
 # System One API
 
+Method description and proofs: [Turning Causal Language Models Into Typed-Decision Engines](https://kyr0.github.io/Bonsai-Llama-Jev/).
+
 `POST /v1/systemone` evaluates typed questions against one state. The request and response follow the [TypeSafe API reference](https://docs.typesafe.ai/api) and [Cloudflare Jev API](https://developers.cloudflare.com/ai/models/typesafe/jev/), with the extensions and probability rules below. This is an API and scoring implementation, not Jev model weights or Jev's probability calibration.
 
 ## Running

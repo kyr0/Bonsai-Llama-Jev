@@ -2,7 +2,8 @@
 
 `llama-server` can optionally load a v1 calibration artifact produced by
 `typed-decision-bench` and apply its scalar temperature to the **final candidate
-probability vector** returned by `/v1/systemone`.
+probability vector** returned by `/v1/systemone`. Background:
+[the paper, section 18](https://kyr0.github.io/Bonsai-Llama-Jev/#18-calibration-can-be-added-without-changing-model-weights).
 
 ```bash
 llama-server ... --systemone-calibration /path/to/run_calibration.json

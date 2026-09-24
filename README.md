@@ -10,17 +10,17 @@
 
 ## ✨ What it can do
 
-- 💡 **Typed decisions** — send structured `choice`, `noul`, and `score` questions to `/v1/systemone`.
-- 🌡️ **Deployment-specific post-hoc calibration** — the bundled Bonsai-2-27B configuration can load the committed `calibration.json`; the exact evidence and scope are documented below.
-- 💬 **OpenAI-compatible chat** — `/v1/chat/completions` supports the subset exercised by this repository's end-to-end tests, including non-streaming and streaming chat.
-- 🖼️ **Image input** — image requests are exercised end to end for both chat and System One paths.
-- 🧠 **Reasoning-capable chat path** — the underlying model/server can use reasoning features through the OpenAI-compatible endpoint when enabled.
-- 🛠️ **Tool calling** — supported through the OpenAI-compatible chat path where the underlying llama.cpp/template support applies.
-- 🔌 **Tested TypeSafe SDK compatibility** — the repository's E2E suite currently passes with `typesafe-sdk` 0.7.0 and `@typesafe-ai/sdk` 0.6.0. This establishes compatibility for the exercised API surface, not every possible Jev/TypeSafe behavior.
-- 🏠 **Local inference** — after model/setup downloads, inference can run entirely on your machine; requests stay local unless you explicitly configure external services.
-- 🏎️ **Measured chat throughput** — the README records 143 generated tokens/s on an NVIDIA GeForce RTX 5090 and 46.8 tokens/s on an M5 Max for the referenced chat setup. Throughput depends on hardware, context, backend, quantization, and workload.
-- 🧩 **Compact reference deployment** — the documented configuration uses about 10 GB VRAM including weights, image projector, KV cache, and compute buffers, so it fits on a 12 GB-class GPU in that configuration.
-- 🏆 **Benchmark-backed quality claims only** — see the linked benchmark for the exact evaluated tasks and configuration rather than treating one percentage as a universal model-quality score.
+- 💡 **Typed decisions** - send structured `choice`, `noul`, and `score` questions to `/v1/systemone`.
+- 🌡️ **Deployment-specific post-hoc calibration** - the bundled Bonsai-2-27B configuration can load the committed `calibration.json`; the exact evidence and scope are documented below.
+- 💬 **OpenAI-compatible chat** - `/v1/chat/completions` supports the subset exercised by this repository's end-to-end tests, including non-streaming and streaming chat.
+- 🖼️ **Image input** - image requests are exercised end to end for both chat and System One paths.
+- 🧠 **Reasoning-capable chat path** - the underlying model/server can use reasoning features through the OpenAI-compatible endpoint when enabled.
+- 🛠️ **Tool calling** - supported through the OpenAI-compatible chat path where the underlying llama.cpp/template support applies.
+- 🔌 **Tested TypeSafe SDK compatibility** - the repository's E2E suite currently passes with `typesafe-sdk` 0.7.0 and `@typesafe-ai/sdk` 0.6.0. This establishes compatibility for the exercised API surface, not every possible Jev/TypeSafe behavior.
+- 🏠 **Local inference** - after model/setup downloads, inference can run entirely on your machine; requests stay local unless you explicitly configure external services.
+- 🏎️ **Measured chat throughput** - the README records 143 generated tokens/s on an NVIDIA GeForce RTX 5090 and 46.8 tokens/s on an M5 Max for the referenced chat setup. Throughput depends on hardware, context, backend, quantization, and workload.
+- 🧩 **Compact reference deployment** - the documented configuration uses about 10 GB VRAM including weights, image projector, KV cache, and compute buffers, so it fits on a 12 GB-class GPU in that configuration.
+- 🏆 **Benchmark-backed quality claims only** - see the linked benchmark for the exact evaluated tasks and configuration rather than treating one percentage as a universal model-quality score.
 
 ![startup.png](startup.png)
 
@@ -66,7 +66,7 @@ p50/p95 latency per decision request and VRAM at 8k KV, same measurement as abov
 | von-1.1 | 38.5 | 46.5 | 3888 MB @ FP32 |
 | kyr0/bonsai-2-27b-calibration-init | 165.0 | 362.0 | 9242 MB @ Q2_64 |
 | **kyr0/bonsai-2-27b-calibrated** | **170.9** | **448.0** | **9242 MB @ Q2_64** |
-| jev-1.13.0 | 716.4 | 778.8 | — |
+| jev-1.13.0 | 716.4 | 778.8 | - |
 | kyr0/spark-X2.5 | 1,056.6 | 1,783.5 | 9813 MB @ BF16 |
 | openjev-qwen3.5-4b | 1,066.1 | 1,478.9 | 12866 MB @ BF16 |
 
@@ -76,11 +76,11 @@ On an RTX 3090, 4 typed decision requests in parallel, are perfectly fine.
 
 You need: a Linux or Mac machine, an NVIDIA GPU (recommended), about 20 GB of free disk.
 
-**Step 1 — install everything** (builds the server, downloads the model):
+**Step 1 - install everything** (builds the server, downloads the model):
 ```sh
 make setup
 ```
-**Step 2 — start it:**
+**Step 2 - start it:**
 ```sh
 make start
 ```
@@ -195,7 +195,7 @@ The same frozen artifact was then loaded into the C++ server and the benchmark w
 
 The independently executed runtime therefore lands essentially where the offline temperature transform predicted. ECE differs more because fixed-width binning is discontinuous: a tiny probability change can move cases across bin boundaries.
 
-The independently rerun server reported hard accuracy `0.8330076` versus `0.8329621` in the raw reference run — a difference of one held-out test case. Positive temperature scaling cannot change the argmax of an identical probability vector, so this should be interpreted as cross-run numerical variation near a decision boundary, not as an accuracy effect caused by the calibration transform.
+The independently rerun server reported hard accuracy `0.8330076` versus `0.8329621` in the raw reference run - a difference of one held-out test case. Positive temperature scaling cannot change the argmax of an identical probability vector, so this should be interpreted as cross-run numerical variation near a decision boundary, not as an accuracy effect caused by the calibration transform.
 
 **3. The residual temperature fit reached the expected near-identity fixed point.**
 
@@ -272,14 +272,14 @@ Chat completions are different because they normally sample. A fixed `seed` can 
 
 ## 🖼️ Send an image
 
-Same chat endpoint — put an image into the message:
+Same chat endpoint - put an image into the message:
 ```json
 {"role": "user", "content": [
   {"type": "text", "text": "What is in this picture?"},
   {"type": "image_url", "image_url": {"url": "data:image/png;base64,...."}}
 ]}
 ```
-Works for `/v1/systemone` too — the state becomes an object with a `content` array instead of a
+Works for `/v1/systemone` too - the state becomes an object with a `content` array instead of a
 
 plain string (checked end to end by `make e2e-jev`):
 ```sh
@@ -345,7 +345,7 @@ Both paths are exercised by `make e2e`. Passing those tests establishes compatib
 | `make setup` | Install + build + download the model (first time only) |
 | `make start` | Start the server in the background, run the self-checks once |
 | `make stop` | Stop it |
-| `make status` | Is it alive — model, calibration on/off, both endpoint URLs (`/v1/chat/completions`, `/v1/systemone`) |
+| `make status` | Is it alive - model, calibration on/off, both endpoint URLs (`/v1/chat/completions`, `/v1/systemone`) |
 | `make logs` | Watch the server log (Ctrl-C to stop watching) |
 | `make e2e` | Full self-check: OpenAI chat, streaming, images, both SDKs |
 | `make e2e-openai` / `make e2e-jev` | Just one part of the checks |
@@ -356,28 +356,28 @@ Both paths are exercised by `make e2e`. Passing those tests establishes compatib
 
 Copy `.env.example` to `.env`, then edit. The ones you might need:
 
-- `PORT` — which port (default 54100)
+- `PORT` - which port (default 54100)
 
-- `BONSAI_API_KEY` — require this password; empty = no password
+- `BONSAI_API_KEY` - require this password; empty = no password
 
-- `BONSAI_ALIAS` — model name shown in `/v1/models`
+- `BONSAI_ALIAS` - model name shown in `/v1/models`
 
-- `BONSAI_MAX_TOKENS` — hard ceiling on generated tokens per request
+- `BONSAI_MAX_TOKENS` - hard ceiling on generated tokens per request
 
-- `BONSAI_CTX` — context size (0 = auto)
+- `BONSAI_CTX` - context size (0 = auto)
 
-- `BONSAI_NP` — parallel slots (default 4; 8 or 20 for concurrent /v1/systemone load — note llama.cpp
+- `BONSAI_NP` - parallel slots (default 4; 8 or 20 for concurrent /v1/systemone load - note llama.cpp
 
   splits `BONSAI_CTX` per slot, so raise it too: `BONSAI_CTX=262144` gives 20 slots × 13312 tokens)
 
-- `BONSAI_NGL` — GPU layers: `99` = everything (default), `0` = CPU only
+- `BONSAI_NGL` - GPU layers: `99` = everything (default), `0` = CPU only
 
-- `BONSAI_CALIBRATION` — path to a deployable typed-decision calibration artifact (default: the committed `calibration.json`; `off` = uncalibrated probabilities)
-- `BONSAI_GGUF` — serve a different GGUF file instead
+- `BONSAI_CALIBRATION` - path to a deployable typed-decision calibration artifact (default: the committed `calibration.json`; `off` = uncalibrated probabilities)
+- `BONSAI_GGUF` - serve a different GGUF file instead
 
-- `BONSAI_MMPROJ` — image projector that belongs to it
+- `BONSAI_MMPROJ` - image projector that belongs to it
 
-- `CUDA_VISIBLE_DEVICES` — which GPU, e.g. `1`
+- `CUDA_VISIBLE_DEVICES` - which GPU, e.g. `1`
 
 ## ❓ Something wrong?
 
