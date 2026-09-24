@@ -1,0 +1,6 @@
+{
+  "invoice_part1": "# Rechnung · R26/04009\n\n> Dokumentreferenz: R26/04009\n\nAusgestellt am 26.02.26 durch Mainblick Consulting AG.\n\nRechnungsanschrift:\nDatenhafen Analytics UG (haftungsbeschränkt)\nBahnhofstraße 21\n66111 Saarbrücken\nSaarland\nDeutschland\n\nAnsprechperson: Daniel Hartmann\nKundennummer: `KTO/700171`\nLeistungszeitpunkt: 24-02-2026\nSteuerliche Angaben: DE100205894 / 19/163/10873",
+  "sub": {
+    "invoice_part2": "## Abrechnung\n\n| Pos. | Leistung | Menge | Einzelpreis | Betrag |\n|---:|---|---:|---:|---:|\n| 1 | KI-Integration und Tests | 10 Std. | 145,00 € | 1.450,00 € |\n| 2 | Technische Beratung | 3 Std. | 130,00 € | 390,00 € |\n\n**Zwischensumme:** 1.840,00 €  \n**19 % USt.:** 349,60 €  \n**Gesamt:** 2.189,60 €\n\nZahlungsziel: 12.03.2026\nAuftragsreferenz: PO-26-08009\nBitte bei Rückfragen Marlene Wolf angeben.\n\nRechnungssteller: Mainblick Consulting AG"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "invoice_part1": "# Reparaturbericht\n\nDokumentiert am: 28.03.26\nAuftrag: AB-60255\nKunden-ID: DEB 90465\nEinsatz-/Leistungsdatum: 20 / 03 / 2026\n\nDienstleister:\nSignalraum Kommunikation GmbH\nSophienblatt 86b\n24103 Kiel\nSchleswig-Holstein\nDeutschland\nTechniker/in: Johanna Lorenz\n\nKunde:\nWellenform Audio e.K.\nBerliner Straße 87b\n60311 Frankfurt am Main\nHessen\nDeutschland",
+  "sub": {
+    "invoice_part2": "## Ausgeführte Arbeiten\n\n- Messung und Dokumentation\n- Systemprüfung und Funktionskontrolle\n- Fehleranalyse\n\nAbnahme durch: Martin Becker\nNächster empfohlener Termin: 24-09-2026\nSteuernummer Dienstleister: 25/205/11455\nUSt-ID Dienstleister: DE100253408\nDienstleister: Signalraum Kommunikation GmbH"
+  }
+}

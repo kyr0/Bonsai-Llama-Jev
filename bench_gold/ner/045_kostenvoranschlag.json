@@ -1,0 +1,369 @@
+{
+  "document_id": "de-business-045",
+  "document_type": "Kostenvoranschlag",
+  "entities": [
+    {
+      "label": "ORDER_NUMBER",
+      "text": "AUF-2026-3044",
+      "source_path": "$.invoice_part1",
+      "start": 48,
+      "end": 61
+    },
+    {
+      "label": "DOCUMENT_DATE",
+      "text": "2026-08-20",
+      "source_path": "$.invoice_part1",
+      "start": 81,
+      "end": 91
+    },
+    {
+      "label": "DATE",
+      "text": "19.09.26",
+      "source_path": "$.invoice_part1",
+      "start": 108,
+      "end": 116
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "Mainblick Consulting AG",
+      "source_path": "$.invoice_part1",
+      "start": 131,
+      "end": 154
+    },
+    {
+      "label": "POSTAL_ADDRESS",
+      "text": "Bilker Straße 57\n40213 Düsseldorf\nNordrhein-Westfalen\nDeutschland",
+      "source_path": "$.invoice_part1",
+      "start": 155,
+      "end": 220
+    },
+    {
+      "label": "STREET_ADDRESS",
+      "text": "Bilker Straße 57",
+      "source_path": "$.invoice_part1",
+      "start": 155,
+      "end": 171
+    },
+    {
+      "label": "POSTAL_CODE",
+      "text": "40213",
+      "source_path": "$.invoice_part1",
+      "start": 172,
+      "end": 177
+    },
+    {
+      "label": "CITY",
+      "text": "Düsseldorf",
+      "source_path": "$.invoice_part1",
+      "start": 178,
+      "end": 188
+    },
+    {
+      "label": "STATE_OR_REGION",
+      "text": "Nordrhein-Westfalen",
+      "source_path": "$.invoice_part1",
+      "start": 189,
+      "end": 208
+    },
+    {
+      "label": "COUNTRY",
+      "text": "Deutschland",
+      "source_path": "$.invoice_part1",
+      "start": 209,
+      "end": 220
+    },
+    {
+      "label": "PERSON_NAME",
+      "text": "David Becker",
+      "source_path": "$.invoice_part1",
+      "start": 230,
+      "end": 242
+    },
+    {
+      "label": "TAX_ID",
+      "text": "DE100483059",
+      "source_path": "$.invoice_part1",
+      "start": 254,
+      "end": 265
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "Datenhafen Analytics UG (haftungsbeschränkt)",
+      "source_path": "$.invoice_part1",
+      "start": 280,
+      "end": 324
+    },
+    {
+      "label": "POSTAL_ADDRESS",
+      "text": "Charlottenstraße 58\n14467 Potsdam\nBrandenburg\nDeutschland",
+      "source_path": "$.invoice_part1",
+      "start": 325,
+      "end": 382
+    },
+    {
+      "label": "STREET_ADDRESS",
+      "text": "Charlottenstraße 58",
+      "source_path": "$.invoice_part1",
+      "start": 325,
+      "end": 344
+    },
+    {
+      "label": "POSTAL_CODE",
+      "text": "14467",
+      "source_path": "$.invoice_part1",
+      "start": 345,
+      "end": 350
+    },
+    {
+      "label": "CITY",
+      "text": "Potsdam",
+      "source_path": "$.invoice_part1",
+      "start": 351,
+      "end": 358
+    },
+    {
+      "label": "STATE_OR_REGION",
+      "text": "Brandenburg",
+      "source_path": "$.invoice_part1",
+      "start": 359,
+      "end": 370
+    },
+    {
+      "label": "COUNTRY",
+      "text": "Deutschland",
+      "source_path": "$.invoice_part1",
+      "start": 371,
+      "end": 382
+    },
+    {
+      "label": "ACCOUNT_ID",
+      "text": "KD-13212",
+      "source_path": "$.invoice_part1",
+      "start": 396,
+      "end": 404
+    },
+    {
+      "label": "SERVICE_DATE",
+      "text": "25 / 08 / 2026",
+      "source_path": "$.sub.invoice_part2",
+      "start": 282,
+      "end": 296
+    },
+    {
+      "label": "DELIVERY_DATE",
+      "text": "04-09-2026",
+      "source_path": "$.sub.invoice_part2",
+      "start": 320,
+      "end": 330
+    },
+    {
+      "label": "TAX_NUMBER",
+      "text": "54 408 14268",
+      "source_path": "$.sub.invoice_part2",
+      "start": 353,
+      "end": 365
+    },
+    {
+      "label": "PERSON_NAME",
+      "text": "David Becker",
+      "source_path": "$.sub.invoice_part2",
+      "start": 389,
+      "end": 401
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "Mainblick Consulting AG",
+      "source_path": "$.sub.invoice_part2",
+      "start": 412,
+      "end": 435
+    }
+  ],
+  "by_label": {
+    "COMPANY_NAME": [
+      {
+        "text": "Mainblick Consulting AG",
+        "source_path": "$.invoice_part1",
+        "start": 131,
+        "end": 154
+      },
+      {
+        "text": "Datenhafen Analytics UG (haftungsbeschränkt)",
+        "source_path": "$.invoice_part1",
+        "start": 280,
+        "end": 324
+      },
+      {
+        "text": "Mainblick Consulting AG",
+        "source_path": "$.sub.invoice_part2",
+        "start": 412,
+        "end": 435
+      }
+    ],
+    "PERSON_NAME": [
+      {
+        "text": "David Becker",
+        "source_path": "$.invoice_part1",
+        "start": 230,
+        "end": 242
+      },
+      {
+        "text": "David Becker",
+        "source_path": "$.sub.invoice_part2",
+        "start": 389,
+        "end": 401
+      }
+    ],
+    "POSTAL_ADDRESS": [
+      {
+        "text": "Bilker Straße 57\n40213 Düsseldorf\nNordrhein-Westfalen\nDeutschland",
+        "source_path": "$.invoice_part1",
+        "start": 155,
+        "end": 220
+      },
+      {
+        "text": "Charlottenstraße 58\n14467 Potsdam\nBrandenburg\nDeutschland",
+        "source_path": "$.invoice_part1",
+        "start": 325,
+        "end": 382
+      }
+    ],
+    "STREET_ADDRESS": [
+      {
+        "text": "Bilker Straße 57",
+        "source_path": "$.invoice_part1",
+        "start": 155,
+        "end": 171
+      },
+      {
+        "text": "Charlottenstraße 58",
+        "source_path": "$.invoice_part1",
+        "start": 325,
+        "end": 344
+      }
+    ],
+    "POSTAL_CODE": [
+      {
+        "text": "40213",
+        "source_path": "$.invoice_part1",
+        "start": 172,
+        "end": 177
+      },
+      {
+        "text": "14467",
+        "source_path": "$.invoice_part1",
+        "start": 345,
+        "end": 350
+      }
+    ],
+    "CITY": [
+      {
+        "text": "Düsseldorf",
+        "source_path": "$.invoice_part1",
+        "start": 178,
+        "end": 188
+      },
+      {
+        "text": "Potsdam",
+        "source_path": "$.invoice_part1",
+        "start": 351,
+        "end": 358
+      }
+    ],
+    "STATE_OR_REGION": [
+      {
+        "text": "Nordrhein-Westfalen",
+        "source_path": "$.invoice_part1",
+        "start": 189,
+        "end": 208
+      },
+      {
+        "text": "Brandenburg",
+        "source_path": "$.invoice_part1",
+        "start": 359,
+        "end": 370
+      }
+    ],
+    "COUNTRY": [
+      {
+        "text": "Deutschland",
+        "source_path": "$.invoice_part1",
+        "start": 209,
+        "end": 220
+      },
+      {
+        "text": "Deutschland",
+        "source_path": "$.invoice_part1",
+        "start": 371,
+        "end": 382
+      }
+    ],
+    "ACCOUNT_ID": [
+      {
+        "text": "KD-13212",
+        "source_path": "$.invoice_part1",
+        "start": 396,
+        "end": 404
+      }
+    ],
+    "INVOICE_NUMBER": [],
+    "INVOICE_DATE": [],
+    "DUE_DATE": [],
+    "SERVICE_DATE": [
+      {
+        "text": "25 / 08 / 2026",
+        "source_path": "$.sub.invoice_part2",
+        "start": 282,
+        "end": 296
+      }
+    ],
+    "DELIVERY_DATE": [
+      {
+        "text": "04-09-2026",
+        "source_path": "$.sub.invoice_part2",
+        "start": 320,
+        "end": 330
+      }
+    ],
+    "ORDER_NUMBER": [
+      {
+        "text": "AUF-2026-3044",
+        "source_path": "$.invoice_part1",
+        "start": 48,
+        "end": 61
+      }
+    ],
+    "DOCUMENT_DATE": [
+      {
+        "text": "2026-08-20",
+        "source_path": "$.invoice_part1",
+        "start": 81,
+        "end": 91
+      }
+    ],
+    "TRANSACTION_DATE": [],
+    "DATE": [
+      {
+        "text": "19.09.26",
+        "source_path": "$.invoice_part1",
+        "start": 108,
+        "end": 116
+      }
+    ],
+    "TAX_ID": [
+      {
+        "text": "DE100483059",
+        "source_path": "$.invoice_part1",
+        "start": 254,
+        "end": 265
+      }
+    ],
+    "TAX_NUMBER": [
+      {
+        "text": "54 408 14268",
+        "source_path": "$.sub.invoice_part2",
+        "start": 353,
+        "end": 365
+      }
+    ]
+  }
+}

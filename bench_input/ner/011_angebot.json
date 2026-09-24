@@ -1,0 +1,6 @@
+{
+  "invoice_part1": "# Angebot\n\n**Angebot-Nr.:** BEST/2026/710\n**Dokumentdatum:** 03 / 03 / 2026\n**Gültig bis:** 02-04-2026\n\n### Anbieter\nSüdwerk Elektrotechnik GmbH\nSögestraße 31a\n28195 Bremen\nBremen\nDeutschland\nKontakt: Simon Hartmann\nUSt-IdNr.: DE100213813\n\n### Adressat\nVectora Engineering e.K.\nAm Vögenteich 32a\n18055 Rostock\nMecklenburg-Vorpommern\nDeutschland\nKundenkonto: CUST-202610",
+  "sub": {
+    "invoice_part2": "# Positionen zum Angebot\n\n1. **Softwareentwicklung** — 8 Std. × 118,00 € = 944,00 €\n2. **Lizenzpaket Business** — 4 Stk. × 690,00 € = 2.760,00 €\n3. **Netzwerkinstallation** — 8 Std. × 108,00 € = 864,00 €\n\nVoraussichtlicher Nettobetrag: **4.568,00 €**\nVorgesehener Leistungsbeginn: 10.03.2026\nGeplantes Lieferdatum: 14. März 2026\nInterne Steuernummer: 210/5530/1170\nProjektverantwortlich: Simon Hartmann\nAnbieter: Südwerk Elektrotechnik GmbH"
+  }
+}

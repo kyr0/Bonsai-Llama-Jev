@@ -1,0 +1,6 @@
+{
+  "invoice_part1": "# Rechnung · RG-03-202626\n\n> Dokumentreferenz: RG-03-202626\n\nAusgestellt am 2026-05-22 durch Codegarten GmbH & Co. KG.\n\nRechnungsanschrift:\nHanseKontor IT AG\nFleethörn 34a\n24103 Kiel\nSchleswig-Holstein\nDeutschland\n\nAnsprechperson: Sophie Lorenz\nKundennummer: `CUST-202626`\nLeistungszeitpunkt: 19 / 05 / 2026\nSteuerliche Angaben: DE100340517 / 36 282 12522",
+  "sub": {
+    "invoice_part2": "## Abrechnung\n\n| Pos. | Leistung | Menge | Einzelpreis | Betrag |\n|---:|---|---:|---:|---:|\n| 1 | KI-Integration und Tests | 1 Std. | 145,00 € | 145,00 € |\n| 2 | Lizenzpaket Business | 12 Stk. | 690,00 € | 8.280,00 € |\n| 3 | Ersatzteilmodul | 5 Stk. | 289,00 € | 1.445,00 € |\n| 4 | Cloud-Migration | 1 Std. | 138,00 € | 138,00 € |\n\n**Zwischensumme:** 10.008,00 €  \n**19 % USt.:** 1.901,52 €  \n**Gesamt:** 11.909,52 €\n\nZahlungsziel: 19-06-2026\nAuftragsreferenz: BEST/2026/726\nBitte bei Rückfragen Fabian Hartmann angeben.\n\nRechnungssteller: Codegarten GmbH & Co. KG"
+  }
+}

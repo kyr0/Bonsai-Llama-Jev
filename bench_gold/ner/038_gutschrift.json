@@ -1,0 +1,291 @@
+{
+  "document_id": "de-business-038",
+  "document_type": "Gutschrift",
+  "entities": [
+    {
+      "label": "INVOICE_NUMBER",
+      "text": "R26/04037",
+      "source_path": "$.invoice_part1",
+      "start": 46,
+      "end": 55
+    },
+    {
+      "label": "INVOICE_DATE",
+      "text": "16. Juli 2026",
+      "source_path": "$.invoice_part1",
+      "start": 72,
+      "end": 85
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "Rheinwerk Digital UG (haftungsbeschränkt)",
+      "source_path": "$.invoice_part1",
+      "start": 92,
+      "end": 133
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "Signalraum Kommunikation GmbH",
+      "source_path": "$.invoice_part1",
+      "start": 156,
+      "end": 185
+    },
+    {
+      "label": "POSTAL_ADDRESS",
+      "text": "Grimmaische Straße 68\n04109 Leipzig\nSachsen\nDeutschland",
+      "source_path": "$.invoice_part1",
+      "start": 186,
+      "end": 241
+    },
+    {
+      "label": "STREET_ADDRESS",
+      "text": "Grimmaische Straße 68",
+      "source_path": "$.invoice_part1",
+      "start": 186,
+      "end": 207
+    },
+    {
+      "label": "POSTAL_CODE",
+      "text": "04109",
+      "source_path": "$.invoice_part1",
+      "start": 208,
+      "end": 213
+    },
+    {
+      "label": "CITY",
+      "text": "Leipzig",
+      "source_path": "$.invoice_part1",
+      "start": 214,
+      "end": 221
+    },
+    {
+      "label": "STATE_OR_REGION",
+      "text": "Sachsen",
+      "source_path": "$.invoice_part1",
+      "start": 222,
+      "end": 229
+    },
+    {
+      "label": "COUNTRY",
+      "text": "Deutschland",
+      "source_path": "$.invoice_part1",
+      "start": 230,
+      "end": 241
+    },
+    {
+      "label": "PERSON_NAME",
+      "text": "Daniel Hartmann",
+      "source_path": "$.invoice_part1",
+      "start": 259,
+      "end": 274
+    },
+    {
+      "label": "ACCOUNT_ID",
+      "text": "KTO/700703",
+      "source_path": "$.invoice_part1",
+      "start": 290,
+      "end": 300
+    },
+    {
+      "label": "SERVICE_DATE",
+      "text": "10.07.26",
+      "source_path": "$.invoice_part1",
+      "start": 322,
+      "end": 330
+    },
+    {
+      "label": "TAX_ID",
+      "text": "DE100427626",
+      "source_path": "$.invoice_part1",
+      "start": 352,
+      "end": 363
+    },
+    {
+      "label": "TAX_NUMBER",
+      "text": "507/6961/1629",
+      "source_path": "$.invoice_part1",
+      "start": 366,
+      "end": 379
+    },
+    {
+      "label": "DUE_DATE",
+      "text": "06 / 08 / 2026",
+      "source_path": "$.sub.invoice_part2",
+      "start": 363,
+      "end": 377
+    },
+    {
+      "label": "ORDER_NUMBER",
+      "text": "PO-26-08037",
+      "source_path": "$.sub.invoice_part2",
+      "start": 396,
+      "end": 407
+    },
+    {
+      "label": "PERSON_NAME",
+      "text": "Marlene Wolf",
+      "source_path": "$.sub.invoice_part2",
+      "start": 429,
+      "end": 441
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "Rheinwerk Digital UG (haftungsbeschränkt)",
+      "source_path": "$.sub.invoice_part2",
+      "start": 470,
+      "end": 511
+    }
+  ],
+  "by_label": {
+    "COMPANY_NAME": [
+      {
+        "text": "Rheinwerk Digital UG (haftungsbeschränkt)",
+        "source_path": "$.invoice_part1",
+        "start": 92,
+        "end": 133
+      },
+      {
+        "text": "Signalraum Kommunikation GmbH",
+        "source_path": "$.invoice_part1",
+        "start": 156,
+        "end": 185
+      },
+      {
+        "text": "Rheinwerk Digital UG (haftungsbeschränkt)",
+        "source_path": "$.sub.invoice_part2",
+        "start": 470,
+        "end": 511
+      }
+    ],
+    "PERSON_NAME": [
+      {
+        "text": "Daniel Hartmann",
+        "source_path": "$.invoice_part1",
+        "start": 259,
+        "end": 274
+      },
+      {
+        "text": "Marlene Wolf",
+        "source_path": "$.sub.invoice_part2",
+        "start": 429,
+        "end": 441
+      }
+    ],
+    "POSTAL_ADDRESS": [
+      {
+        "text": "Grimmaische Straße 68\n04109 Leipzig\nSachsen\nDeutschland",
+        "source_path": "$.invoice_part1",
+        "start": 186,
+        "end": 241
+      }
+    ],
+    "STREET_ADDRESS": [
+      {
+        "text": "Grimmaische Straße 68",
+        "source_path": "$.invoice_part1",
+        "start": 186,
+        "end": 207
+      }
+    ],
+    "POSTAL_CODE": [
+      {
+        "text": "04109",
+        "source_path": "$.invoice_part1",
+        "start": 208,
+        "end": 213
+      }
+    ],
+    "CITY": [
+      {
+        "text": "Leipzig",
+        "source_path": "$.invoice_part1",
+        "start": 214,
+        "end": 221
+      }
+    ],
+    "STATE_OR_REGION": [
+      {
+        "text": "Sachsen",
+        "source_path": "$.invoice_part1",
+        "start": 222,
+        "end": 229
+      }
+    ],
+    "COUNTRY": [
+      {
+        "text": "Deutschland",
+        "source_path": "$.invoice_part1",
+        "start": 230,
+        "end": 241
+      }
+    ],
+    "ACCOUNT_ID": [
+      {
+        "text": "KTO/700703",
+        "source_path": "$.invoice_part1",
+        "start": 290,
+        "end": 300
+      }
+    ],
+    "INVOICE_NUMBER": [
+      {
+        "text": "R26/04037",
+        "source_path": "$.invoice_part1",
+        "start": 46,
+        "end": 55
+      }
+    ],
+    "INVOICE_DATE": [
+      {
+        "text": "16. Juli 2026",
+        "source_path": "$.invoice_part1",
+        "start": 72,
+        "end": 85
+      }
+    ],
+    "DUE_DATE": [
+      {
+        "text": "06 / 08 / 2026",
+        "source_path": "$.sub.invoice_part2",
+        "start": 363,
+        "end": 377
+      }
+    ],
+    "SERVICE_DATE": [
+      {
+        "text": "10.07.26",
+        "source_path": "$.invoice_part1",
+        "start": 322,
+        "end": 330
+      }
+    ],
+    "DELIVERY_DATE": [],
+    "ORDER_NUMBER": [
+      {
+        "text": "PO-26-08037",
+        "source_path": "$.sub.invoice_part2",
+        "start": 396,
+        "end": 407
+      }
+    ],
+    "DOCUMENT_DATE": [],
+    "TRANSACTION_DATE": [],
+    "DATE": [],
+    "TAX_ID": [
+      {
+        "text": "DE100427626",
+        "source_path": "$.invoice_part1",
+        "start": 352,
+        "end": 363
+      }
+    ],
+    "TAX_NUMBER": [
+      {
+        "text": "507/6961/1629",
+        "source_path": "$.invoice_part1",
+        "start": 366,
+        "end": 379
+      }
+    ]
+  }
+}

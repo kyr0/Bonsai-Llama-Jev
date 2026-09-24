@@ -1,0 +1,6 @@
+{
+  "invoice_part1": "# Leistungsnachweis\n\nDokumentiert am: 16. Juni 2026\nAuftrag: AB-60527\nKunden-ID: DEB 90961\nEinsatz-/Leistungsdatum: 2026-06-08\n\nDienstleister:\nPapierhafen Verlag GmbH & Co. KG\nSchusterstraße 88b\n79098 Freiburg im Breisgau\nBaden-Württemberg\nDeutschland\nTechniker/in: Theresa Lorenz\n\nKunde:\nMainblick Consulting AG\nLeipziger Straße 89b\n10117 Berlin\nBerlin\nDeutschland",
+  "sub": {
+    "invoice_part2": "## Ausgeführte Arbeiten\n\n- Systemprüfung und Funktionskontrolle\n- Firmware-/Softwareaktualisierung\n- Austausch einer Baugruppe\n\nAbnahme durch: Jonas Becker\nNächster empfohlener Termin: 13.12.26\nSteuernummer Dienstleister: 441/6643/1527\nUSt-ID Dienstleister: DE100380112\nDienstleister: Papierhafen Verlag GmbH & Co. KG"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "invoice_part1": "# Wartungsprotokoll\n\nDokumentiert am: 26.06.26\nAuftrag: PO-26-08033\nKunden-ID: KTO/700627\nEinsatz-/Leistungsdatum: 24 / 06 / 2026\n\nDienstleister:\nMerkur Netztechnik e.K.\nBrandenburger Straße 23\n14467 Potsdam\nBrandenburg\nDeutschland\nTechniker/in: Anna Wolf\n\nKunde:\nKüstenCloud GmbH & Co. KG\nHohe Straße 24\n50667 Köln\nNordrhein-Westfalen\nDeutschland",
+  "sub": {
+    "invoice_part2": "## Ausgeführte Arbeiten\n\n- Systemprüfung und Funktionskontrolle\n- Austausch einer Baugruppe\n- Firmware-/Softwareaktualisierung\n\nAbnahme durch: Lukas Hartmann\nNächster empfohlener Termin: 23-12-2026\nSteuernummer Dienstleister: 43/331/13201\nUSt-ID Dienstleister: DE100395950\nDienstleister: Merkur Netztechnik e.K."
+  }
+}

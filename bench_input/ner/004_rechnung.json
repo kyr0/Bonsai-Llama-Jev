@@ -1,0 +1,6 @@
+{
+  "invoice_part1": "# Rechnung · 2026-50039\n\n> Dokumentreferenz: 2026-50039\n\nAusgestellt am 27.01.26 durch Spreebogen Medien e.K..\n\nRechnungsanschrift:\nWerkhalle Maschinenbau GmbH & Co. KG\nSchillerstraße 42b\n30159 Hannover\nNiedersachsen\nDeutschland\n\nAnsprechperson: Jonas Becker\nKundennummer: `DEB 90093`\nLeistungszeitpunkt: 23-01-2026\nSteuerliche Angaben: DE100158380 / 13/121/10291",
+  "sub": {
+    "invoice_part2": "## Abrechnung\n\n| Pos. | Leistung | Menge | Einzelpreis | Betrag |\n|---:|---|---:|---:|---:|\n| 1 | Sensorbaugruppe | 10 Stk. | 164,50 € | 1.645,00 € |\n| 2 | Technische Beratung | 12 Std. | 130,00 € | 1.560,00 € |\n\n**Zwischensumme:** 3.205,00 €  \n**19 % USt.:** 608,95 €  \n**Gesamt:** 3.813,95 €\n\nZahlungsziel: 10.02.2026\nAuftragsreferenz: AB-60051\nBitte bei Rückfragen Theresa Lorenz angeben.\n\nRechnungssteller: Spreebogen Medien e.K."
+  }
+}

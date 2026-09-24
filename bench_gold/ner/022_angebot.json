@@ -1,0 +1,369 @@
+{
+  "document_id": "de-business-022",
+  "document_type": "Angebot",
+  "entities": [
+    {
+      "label": "ORDER_NUMBER",
+      "text": "PO-26-08021",
+      "source_path": "$.invoice_part1",
+      "start": 28,
+      "end": 39
+    },
+    {
+      "label": "DOCUMENT_DATE",
+      "text": "27.04.26",
+      "source_path": "$.invoice_part1",
+      "start": 59,
+      "end": 67
+    },
+    {
+      "label": "DATE",
+      "text": "27 / 05 / 2026",
+      "source_path": "$.invoice_part1",
+      "start": 84,
+      "end": 98
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "Lichtbogen Veranstaltungstechnik GmbH & Co. KG",
+      "source_path": "$.invoice_part1",
+      "start": 113,
+      "end": 159
+    },
+    {
+      "label": "POSTAL_ADDRESS",
+      "text": "Mönckebergstraße 65\n20095 Hamburg\nHamburg\nDeutschland",
+      "source_path": "$.invoice_part1",
+      "start": 160,
+      "end": 213
+    },
+    {
+      "label": "STREET_ADDRESS",
+      "text": "Mönckebergstraße 65",
+      "source_path": "$.invoice_part1",
+      "start": 160,
+      "end": 179
+    },
+    {
+      "label": "POSTAL_CODE",
+      "text": "20095",
+      "source_path": "$.invoice_part1",
+      "start": 180,
+      "end": 185
+    },
+    {
+      "label": "CITY",
+      "text": "Hamburg",
+      "source_path": "$.invoice_part1",
+      "start": 186,
+      "end": 193
+    },
+    {
+      "label": "STATE_OR_REGION",
+      "text": "Hamburg",
+      "source_path": "$.invoice_part1",
+      "start": 194,
+      "end": 201
+    },
+    {
+      "label": "COUNTRY",
+      "text": "Deutschland",
+      "source_path": "$.invoice_part1",
+      "start": 202,
+      "end": 213
+    },
+    {
+      "label": "PERSON_NAME",
+      "text": "Laura Wolf",
+      "source_path": "$.invoice_part1",
+      "start": 223,
+      "end": 233
+    },
+    {
+      "label": "TAX_ID",
+      "text": "DE100300922",
+      "source_path": "$.invoice_part1",
+      "start": 245,
+      "end": 256
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "Weitblick Forschung AG",
+      "source_path": "$.invoice_part1",
+      "start": 271,
+      "end": 293
+    },
+    {
+      "label": "POSTAL_ADDRESS",
+      "text": "Obernstraße 66\n28195 Bremen\nBremen\nDeutschland",
+      "source_path": "$.invoice_part1",
+      "start": 294,
+      "end": 340
+    },
+    {
+      "label": "STREET_ADDRESS",
+      "text": "Obernstraße 66",
+      "source_path": "$.invoice_part1",
+      "start": 294,
+      "end": 308
+    },
+    {
+      "label": "POSTAL_CODE",
+      "text": "28195",
+      "source_path": "$.invoice_part1",
+      "start": 309,
+      "end": 314
+    },
+    {
+      "label": "CITY",
+      "text": "Bremen",
+      "source_path": "$.invoice_part1",
+      "start": 315,
+      "end": 321
+    },
+    {
+      "label": "STATE_OR_REGION",
+      "text": "Bremen",
+      "source_path": "$.invoice_part1",
+      "start": 322,
+      "end": 328
+    },
+    {
+      "label": "COUNTRY",
+      "text": "Deutschland",
+      "source_path": "$.invoice_part1",
+      "start": 329,
+      "end": 340
+    },
+    {
+      "label": "ACCOUNT_ID",
+      "text": "KTO/700399",
+      "source_path": "$.invoice_part1",
+      "start": 354,
+      "end": 364
+    },
+    {
+      "label": "SERVICE_DATE",
+      "text": "01-05-2026",
+      "source_path": "$.sub.invoice_part2",
+      "start": 334,
+      "end": 344
+    },
+    {
+      "label": "DELIVERY_DATE",
+      "text": "09.05.2026",
+      "source_path": "$.sub.invoice_part2",
+      "start": 368,
+      "end": 378
+    },
+    {
+      "label": "TAX_NUMBER",
+      "text": "31/247/12037",
+      "source_path": "$.sub.invoice_part2",
+      "start": 401,
+      "end": 413
+    },
+    {
+      "label": "PERSON_NAME",
+      "text": "Laura Wolf",
+      "source_path": "$.sub.invoice_part2",
+      "start": 437,
+      "end": 447
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "Lichtbogen Veranstaltungstechnik GmbH & Co. KG",
+      "source_path": "$.sub.invoice_part2",
+      "start": 458,
+      "end": 504
+    }
+  ],
+  "by_label": {
+    "COMPANY_NAME": [
+      {
+        "text": "Lichtbogen Veranstaltungstechnik GmbH & Co. KG",
+        "source_path": "$.invoice_part1",
+        "start": 113,
+        "end": 159
+      },
+      {
+        "text": "Weitblick Forschung AG",
+        "source_path": "$.invoice_part1",
+        "start": 271,
+        "end": 293
+      },
+      {
+        "text": "Lichtbogen Veranstaltungstechnik GmbH & Co. KG",
+        "source_path": "$.sub.invoice_part2",
+        "start": 458,
+        "end": 504
+      }
+    ],
+    "PERSON_NAME": [
+      {
+        "text": "Laura Wolf",
+        "source_path": "$.invoice_part1",
+        "start": 223,
+        "end": 233
+      },
+      {
+        "text": "Laura Wolf",
+        "source_path": "$.sub.invoice_part2",
+        "start": 437,
+        "end": 447
+      }
+    ],
+    "POSTAL_ADDRESS": [
+      {
+        "text": "Mönckebergstraße 65\n20095 Hamburg\nHamburg\nDeutschland",
+        "source_path": "$.invoice_part1",
+        "start": 160,
+        "end": 213
+      },
+      {
+        "text": "Obernstraße 66\n28195 Bremen\nBremen\nDeutschland",
+        "source_path": "$.invoice_part1",
+        "start": 294,
+        "end": 340
+      }
+    ],
+    "STREET_ADDRESS": [
+      {
+        "text": "Mönckebergstraße 65",
+        "source_path": "$.invoice_part1",
+        "start": 160,
+        "end": 179
+      },
+      {
+        "text": "Obernstraße 66",
+        "source_path": "$.invoice_part1",
+        "start": 294,
+        "end": 308
+      }
+    ],
+    "POSTAL_CODE": [
+      {
+        "text": "20095",
+        "source_path": "$.invoice_part1",
+        "start": 180,
+        "end": 185
+      },
+      {
+        "text": "28195",
+        "source_path": "$.invoice_part1",
+        "start": 309,
+        "end": 314
+      }
+    ],
+    "CITY": [
+      {
+        "text": "Hamburg",
+        "source_path": "$.invoice_part1",
+        "start": 186,
+        "end": 193
+      },
+      {
+        "text": "Bremen",
+        "source_path": "$.invoice_part1",
+        "start": 315,
+        "end": 321
+      }
+    ],
+    "STATE_OR_REGION": [
+      {
+        "text": "Hamburg",
+        "source_path": "$.invoice_part1",
+        "start": 194,
+        "end": 201
+      },
+      {
+        "text": "Bremen",
+        "source_path": "$.invoice_part1",
+        "start": 322,
+        "end": 328
+      }
+    ],
+    "COUNTRY": [
+      {
+        "text": "Deutschland",
+        "source_path": "$.invoice_part1",
+        "start": 202,
+        "end": 213
+      },
+      {
+        "text": "Deutschland",
+        "source_path": "$.invoice_part1",
+        "start": 329,
+        "end": 340
+      }
+    ],
+    "ACCOUNT_ID": [
+      {
+        "text": "KTO/700399",
+        "source_path": "$.invoice_part1",
+        "start": 354,
+        "end": 364
+      }
+    ],
+    "INVOICE_NUMBER": [],
+    "INVOICE_DATE": [],
+    "DUE_DATE": [],
+    "SERVICE_DATE": [
+      {
+        "text": "01-05-2026",
+        "source_path": "$.sub.invoice_part2",
+        "start": 334,
+        "end": 344
+      }
+    ],
+    "DELIVERY_DATE": [
+      {
+        "text": "09.05.2026",
+        "source_path": "$.sub.invoice_part2",
+        "start": 368,
+        "end": 378
+      }
+    ],
+    "ORDER_NUMBER": [
+      {
+        "text": "PO-26-08021",
+        "source_path": "$.invoice_part1",
+        "start": 28,
+        "end": 39
+      }
+    ],
+    "DOCUMENT_DATE": [
+      {
+        "text": "27.04.26",
+        "source_path": "$.invoice_part1",
+        "start": 59,
+        "end": 67
+      }
+    ],
+    "TRANSACTION_DATE": [],
+    "DATE": [
+      {
+        "text": "27 / 05 / 2026",
+        "source_path": "$.invoice_part1",
+        "start": 84,
+        "end": 98
+      }
+    ],
+    "TAX_ID": [
+      {
+        "text": "DE100300922",
+        "source_path": "$.invoice_part1",
+        "start": 245,
+        "end": 256
+      }
+    ],
+    "TAX_NUMBER": [
+      {
+        "text": "31/247/12037",
+        "source_path": "$.sub.invoice_part2",
+        "start": 401,
+        "end": 413
+      }
+    ]
+  }
+}

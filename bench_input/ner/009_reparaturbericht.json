@@ -1,0 +1,6 @@
+{
+  "invoice_part1": "# Reparaturbericht\n\nDokumentiert am: 2026-02-21\nAuftrag: AUF-2026-3008\nKunden-ID: KD-10584\nEinsatz-/Leistungsdatum: 20.02.26\n\nDienstleister:\nTaunus Werktechnik e.K.\nOstra-Allee 9\n01067 Dresden\nSachsen\nDeutschland\nTechniker/in: Robert Becker\n\nKunde:\nLichtbogen Veranstaltungstechnik GmbH & Co. KG\nBahnhofstraße 10\n99084 Erfurt\nThüringen\nDeutschland",
+  "sub": {
+    "invoice_part2": "## Ausgeführte Arbeiten\n\n- Messung und Dokumentation\n- Konfigurationsprüfung\n- Firmware-/Softwareaktualisierung\n\nAbnahme durch: Miriam Wolf\nNächster empfohlener Termin: 20 / 08 / 2026\nSteuernummer Dienstleister: 18 156 10776\nUSt-ID Dienstleister: DE100197975\nDienstleister: Taunus Werktechnik e.K."
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "invoice_part1": "# Kostenvoranschlag\n\n**Kostenvoranschlag-Nr.:** PO-26-08017\n**Dokumentdatum:** 07-04-2026\n**Gültig bis:** 07.05.2026\n\n### Anbieter\nOrbis Büroservice UG (haftungsbeschränkt)\nBahnhofstraße 21\n66111 Saarbrücken\nSaarland\nDeutschland\nKontakt: Miriam Wolf\nUSt-IdNr.: DE100269246\n\n### Adressat\nRoutenwerk Transport GmbH\nKönigsallee 22\n40213 Düsseldorf\nNordrhein-Westfalen\nDeutschland\nKundenkonto: KTO/700323",
+  "sub": {
+    "invoice_part2": "# Positionen zum Kostenvoranschlag\n\n1. **Ersatzteilmodul** — 10 Stk. × 289,00 € = 2.890,00 €\n2. **Datenanalyse** — 6 Std. × 126,00 € = 756,00 €\n3. **Prüfung und Abnahme** — 8 Pausch. × 740,00 € = 5.920,00 €\n4. **Systemwartung** — 6 Std. × 96,00 € = 576,00 €\n\nVoraussichtlicher Nettobetrag: **10.142,00 €**\nVorgesehener Leistungsbeginn: 15. April 2026\nGeplantes Lieferdatum: 2026-04-20\nInterne Steuernummer: 27 219 11649\nProjektverantwortlich: Miriam Wolf\nAnbieter: Orbis Büroservice UG (haftungsbeschränkt)"
+  }
+}

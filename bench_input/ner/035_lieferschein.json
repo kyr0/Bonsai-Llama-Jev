@@ -1,0 +1,6 @@
+{
+  "invoice_part1": "# Lieferschein\n\nBelegdatum: 01 / 07 / 2026\nAuftrag: BEST/2026/734\nKundennummer: CUST-202634\nLiefer-/Transaktionsdatum: 07-07-2026\n\nAbsender:\nWeitblick Forschung AG\nFleethörn 34a\n24103 Kiel\nSchleswig-Holstein\nDeutschland\n\nEmpfänger:\nBerg & Tal Architektur UG (haftungsbeschränkt)\nKaiserstraße 35a\n60311 Frankfurt am Main\nHessen\nDeutschland",
+  "sub": {
+    "invoice_part2": "## Sendungsdetails\n\nGeplante / bestätigte Lieferung: 06.07.2026\nDisposition: Felix Hartmann\nErfasst am: 13. Juni 2026\nVersender: Weitblick Forschung AG\nUSt-IdNr.: DE100403869\n"
+  }
+}

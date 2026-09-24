@@ -1,0 +1,6 @@
+{
+  "invoice_part1": "# Vertragsnachtrag\n\nNachtragsdatum: 09.09.2026\nVertrags-/Auftragsreferenz: AUF-2026-3048\nWirksam ab: 23. September 2026\n\nVertragspartner A\nMosaik Software e.K.\nMartinistraße 14\n28195 Bremen\nBremen\nDeutschland\nVertreten durch Andreas Becker\n\nVertragspartner B\nCodegarten GmbH & Co. KG\nLange Straße 15\n18055 Rostock\nMecklenburg-Vorpommern\nDeutschland",
+  "sub": {
+    "invoice_part2": "## Änderung\n\nDie Parteien ändern Leistungsumfang und Terminplanung zum 2026-09-30.\n\nKundenkonto: KD-13504\nSteuernummer Vertragspartner A: 58/436/14656\nUSt-ID Vertragspartner A: DE100514735\nUnterzeichnet für Mosaik Software e.K. durch Andreas Becker"
+  }
+}

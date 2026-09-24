@@ -1,0 +1,6 @@
+{
+  "invoice_part1": "# Rechnung · R26/04049\n\n> Dokumentreferenz: R26/04049\n\nAusgestellt am 14. September 2026 durch Prisma Laborservice AG.\n\nRechnungsanschrift:\nMittelstand Systems UG (haftungsbeschränkt)\nSendlinger Straße 26\n80331 München\nBayern\nDeutschland\n\nAnsprechperson: Sebastian Hartmann\nKundennummer: `KTO/700931`\nLeistungszeitpunkt: 12.09.26\nSteuerliche Angaben: DE100522654 / 639/7597/1833",
+  "sub": {
+    "invoice_part2": "## Abrechnung\n\n| Pos. | Leistung | Menge | Einzelpreis | Betrag |\n|---:|---|---:|---:|---:|\n| 1 | KI-Integration und Tests | 6 Std. | 145,00 € | 870,00 € |\n| 2 | Projektmanagement | 4 Std. | 112,00 € | 448,00 € |\n| 3 | Prüfung und Abnahme | 2 Pausch. | 740,00 € | 1.480,00 € |\n\n**Zwischensumme:** 2.798,00 €  \n**19 % USt.:** 531,62 €  \n**Gesamt:** 3.329,62 €\n\nZahlungsziel: 05 / 10 / 2026\nAuftragsreferenz: PO-26-08049\nBitte bei Rückfragen Laura Wolf angeben.\n\nRechnungssteller: Prisma Laborservice AG"
+  }
+}

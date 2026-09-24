@@ -1,0 +1,369 @@
+{
+  "document_id": "de-business-011",
+  "document_type": "Angebot",
+  "entities": [
+    {
+      "label": "ORDER_NUMBER",
+      "text": "BEST/2026/710",
+      "source_path": "$.invoice_part1",
+      "start": 28,
+      "end": 41
+    },
+    {
+      "label": "DOCUMENT_DATE",
+      "text": "03 / 03 / 2026",
+      "source_path": "$.invoice_part1",
+      "start": 61,
+      "end": 75
+    },
+    {
+      "label": "DATE",
+      "text": "02-04-2026",
+      "source_path": "$.invoice_part1",
+      "start": 92,
+      "end": 102
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "Südwerk Elektrotechnik GmbH",
+      "source_path": "$.invoice_part1",
+      "start": 117,
+      "end": 144
+    },
+    {
+      "label": "POSTAL_ADDRESS",
+      "text": "Sögestraße 31a\n28195 Bremen\nBremen\nDeutschland",
+      "source_path": "$.invoice_part1",
+      "start": 145,
+      "end": 191
+    },
+    {
+      "label": "STREET_ADDRESS",
+      "text": "Sögestraße 31a",
+      "source_path": "$.invoice_part1",
+      "start": 145,
+      "end": 159
+    },
+    {
+      "label": "POSTAL_CODE",
+      "text": "28195",
+      "source_path": "$.invoice_part1",
+      "start": 160,
+      "end": 165
+    },
+    {
+      "label": "CITY",
+      "text": "Bremen",
+      "source_path": "$.invoice_part1",
+      "start": 166,
+      "end": 172
+    },
+    {
+      "label": "STATE_OR_REGION",
+      "text": "Bremen",
+      "source_path": "$.invoice_part1",
+      "start": 173,
+      "end": 179
+    },
+    {
+      "label": "COUNTRY",
+      "text": "Deutschland",
+      "source_path": "$.invoice_part1",
+      "start": 180,
+      "end": 191
+    },
+    {
+      "label": "PERSON_NAME",
+      "text": "Simon Hartmann",
+      "source_path": "$.invoice_part1",
+      "start": 201,
+      "end": 215
+    },
+    {
+      "label": "TAX_ID",
+      "text": "DE100213813",
+      "source_path": "$.invoice_part1",
+      "start": 227,
+      "end": 238
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "Vectora Engineering e.K.",
+      "source_path": "$.invoice_part1",
+      "start": 253,
+      "end": 277
+    },
+    {
+      "label": "POSTAL_ADDRESS",
+      "text": "Am Vögenteich 32a\n18055 Rostock\nMecklenburg-Vorpommern\nDeutschland",
+      "source_path": "$.invoice_part1",
+      "start": 278,
+      "end": 344
+    },
+    {
+      "label": "STREET_ADDRESS",
+      "text": "Am Vögenteich 32a",
+      "source_path": "$.invoice_part1",
+      "start": 278,
+      "end": 295
+    },
+    {
+      "label": "POSTAL_CODE",
+      "text": "18055",
+      "source_path": "$.invoice_part1",
+      "start": 296,
+      "end": 301
+    },
+    {
+      "label": "CITY",
+      "text": "Rostock",
+      "source_path": "$.invoice_part1",
+      "start": 302,
+      "end": 309
+    },
+    {
+      "label": "STATE_OR_REGION",
+      "text": "Mecklenburg-Vorpommern",
+      "source_path": "$.invoice_part1",
+      "start": 310,
+      "end": 332
+    },
+    {
+      "label": "COUNTRY",
+      "text": "Deutschland",
+      "source_path": "$.invoice_part1",
+      "start": 333,
+      "end": 344
+    },
+    {
+      "label": "ACCOUNT_ID",
+      "text": "CUST-202610",
+      "source_path": "$.invoice_part1",
+      "start": 358,
+      "end": 369
+    },
+    {
+      "label": "SERVICE_DATE",
+      "text": "10.03.2026",
+      "source_path": "$.sub.invoice_part2",
+      "start": 281,
+      "end": 291
+    },
+    {
+      "label": "DELIVERY_DATE",
+      "text": "14. März 2026",
+      "source_path": "$.sub.invoice_part2",
+      "start": 315,
+      "end": 328
+    },
+    {
+      "label": "TAX_NUMBER",
+      "text": "210/5530/1170",
+      "source_path": "$.sub.invoice_part2",
+      "start": 351,
+      "end": 364
+    },
+    {
+      "label": "PERSON_NAME",
+      "text": "Simon Hartmann",
+      "source_path": "$.sub.invoice_part2",
+      "start": 388,
+      "end": 402
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "Südwerk Elektrotechnik GmbH",
+      "source_path": "$.sub.invoice_part2",
+      "start": 413,
+      "end": 440
+    }
+  ],
+  "by_label": {
+    "COMPANY_NAME": [
+      {
+        "text": "Südwerk Elektrotechnik GmbH",
+        "source_path": "$.invoice_part1",
+        "start": 117,
+        "end": 144
+      },
+      {
+        "text": "Vectora Engineering e.K.",
+        "source_path": "$.invoice_part1",
+        "start": 253,
+        "end": 277
+      },
+      {
+        "text": "Südwerk Elektrotechnik GmbH",
+        "source_path": "$.sub.invoice_part2",
+        "start": 413,
+        "end": 440
+      }
+    ],
+    "PERSON_NAME": [
+      {
+        "text": "Simon Hartmann",
+        "source_path": "$.invoice_part1",
+        "start": 201,
+        "end": 215
+      },
+      {
+        "text": "Simon Hartmann",
+        "source_path": "$.sub.invoice_part2",
+        "start": 388,
+        "end": 402
+      }
+    ],
+    "POSTAL_ADDRESS": [
+      {
+        "text": "Sögestraße 31a\n28195 Bremen\nBremen\nDeutschland",
+        "source_path": "$.invoice_part1",
+        "start": 145,
+        "end": 191
+      },
+      {
+        "text": "Am Vögenteich 32a\n18055 Rostock\nMecklenburg-Vorpommern\nDeutschland",
+        "source_path": "$.invoice_part1",
+        "start": 278,
+        "end": 344
+      }
+    ],
+    "STREET_ADDRESS": [
+      {
+        "text": "Sögestraße 31a",
+        "source_path": "$.invoice_part1",
+        "start": 145,
+        "end": 159
+      },
+      {
+        "text": "Am Vögenteich 32a",
+        "source_path": "$.invoice_part1",
+        "start": 278,
+        "end": 295
+      }
+    ],
+    "POSTAL_CODE": [
+      {
+        "text": "28195",
+        "source_path": "$.invoice_part1",
+        "start": 160,
+        "end": 165
+      },
+      {
+        "text": "18055",
+        "source_path": "$.invoice_part1",
+        "start": 296,
+        "end": 301
+      }
+    ],
+    "CITY": [
+      {
+        "text": "Bremen",
+        "source_path": "$.invoice_part1",
+        "start": 166,
+        "end": 172
+      },
+      {
+        "text": "Rostock",
+        "source_path": "$.invoice_part1",
+        "start": 302,
+        "end": 309
+      }
+    ],
+    "STATE_OR_REGION": [
+      {
+        "text": "Bremen",
+        "source_path": "$.invoice_part1",
+        "start": 173,
+        "end": 179
+      },
+      {
+        "text": "Mecklenburg-Vorpommern",
+        "source_path": "$.invoice_part1",
+        "start": 310,
+        "end": 332
+      }
+    ],
+    "COUNTRY": [
+      {
+        "text": "Deutschland",
+        "source_path": "$.invoice_part1",
+        "start": 180,
+        "end": 191
+      },
+      {
+        "text": "Deutschland",
+        "source_path": "$.invoice_part1",
+        "start": 333,
+        "end": 344
+      }
+    ],
+    "ACCOUNT_ID": [
+      {
+        "text": "CUST-202610",
+        "source_path": "$.invoice_part1",
+        "start": 358,
+        "end": 369
+      }
+    ],
+    "INVOICE_NUMBER": [],
+    "INVOICE_DATE": [],
+    "DUE_DATE": [],
+    "SERVICE_DATE": [
+      {
+        "text": "10.03.2026",
+        "source_path": "$.sub.invoice_part2",
+        "start": 281,
+        "end": 291
+      }
+    ],
+    "DELIVERY_DATE": [
+      {
+        "text": "14. März 2026",
+        "source_path": "$.sub.invoice_part2",
+        "start": 315,
+        "end": 328
+      }
+    ],
+    "ORDER_NUMBER": [
+      {
+        "text": "BEST/2026/710",
+        "source_path": "$.invoice_part1",
+        "start": 28,
+        "end": 41
+      }
+    ],
+    "DOCUMENT_DATE": [
+      {
+        "text": "03 / 03 / 2026",
+        "source_path": "$.invoice_part1",
+        "start": 61,
+        "end": 75
+      }
+    ],
+    "TRANSACTION_DATE": [],
+    "DATE": [
+      {
+        "text": "02-04-2026",
+        "source_path": "$.invoice_part1",
+        "start": 92,
+        "end": 102
+      }
+    ],
+    "TAX_ID": [
+      {
+        "text": "DE100213813",
+        "source_path": "$.invoice_part1",
+        "start": 227,
+        "end": 238
+      }
+    ],
+    "TAX_NUMBER": [
+      {
+        "text": "210/5530/1170",
+        "source_path": "$.sub.invoice_part2",
+        "start": 351,
+        "end": 364
+      }
+    ]
+  }
+}

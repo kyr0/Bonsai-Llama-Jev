@@ -1,0 +1,342 @@
+{
+  "document_id": "de-business-002",
+  "document_type": "Versandanzeige",
+  "entities": [
+    {
+      "label": "DOCUMENT_DATE",
+      "text": "17. Januar 2026",
+      "source_path": "$.invoice_part1",
+      "start": 30,
+      "end": 45
+    },
+    {
+      "label": "ORDER_NUMBER",
+      "text": "PO-26-08001",
+      "source_path": "$.invoice_part1",
+      "start": 55,
+      "end": 66
+    },
+    {
+      "label": "ACCOUNT_ID",
+      "text": "KTO/700019",
+      "source_path": "$.invoice_part1",
+      "start": 81,
+      "end": 91
+    },
+    {
+      "label": "TRANSACTION_DATE",
+      "text": "2026-01-20",
+      "source_path": "$.invoice_part1",
+      "start": 119,
+      "end": 129
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "Nordlicht Anlagenbau GmbH & Co. KG",
+      "source_path": "$.invoice_part1",
+      "start": 141,
+      "end": 175
+    },
+    {
+      "label": "POSTAL_ADDRESS",
+      "text": "Friedrichstraße 19\n10117 Berlin\nBerlin\nDeutschland",
+      "source_path": "$.invoice_part1",
+      "start": 176,
+      "end": 226
+    },
+    {
+      "label": "STREET_ADDRESS",
+      "text": "Friedrichstraße 19",
+      "source_path": "$.invoice_part1",
+      "start": 176,
+      "end": 194
+    },
+    {
+      "label": "POSTAL_CODE",
+      "text": "10117",
+      "source_path": "$.invoice_part1",
+      "start": 195,
+      "end": 200
+    },
+    {
+      "label": "CITY",
+      "text": "Berlin",
+      "source_path": "$.invoice_part1",
+      "start": 201,
+      "end": 207
+    },
+    {
+      "label": "STATE_OR_REGION",
+      "text": "Berlin",
+      "source_path": "$.invoice_part1",
+      "start": 208,
+      "end": 214
+    },
+    {
+      "label": "COUNTRY",
+      "text": "Deutschland",
+      "source_path": "$.invoice_part1",
+      "start": 215,
+      "end": 226
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "Prisma Laborservice AG",
+      "source_path": "$.invoice_part1",
+      "start": 239,
+      "end": 261
+    },
+    {
+      "label": "POSTAL_ADDRESS",
+      "text": "Königstraße 20\n90402 Nürnberg\nBayern\nDeutschland",
+      "source_path": "$.invoice_part1",
+      "start": 262,
+      "end": 310
+    },
+    {
+      "label": "STREET_ADDRESS",
+      "text": "Königstraße 20",
+      "source_path": "$.invoice_part1",
+      "start": 262,
+      "end": 276
+    },
+    {
+      "label": "POSTAL_CODE",
+      "text": "90402",
+      "source_path": "$.invoice_part1",
+      "start": 277,
+      "end": 282
+    },
+    {
+      "label": "CITY",
+      "text": "Nürnberg",
+      "source_path": "$.invoice_part1",
+      "start": 283,
+      "end": 291
+    },
+    {
+      "label": "STATE_OR_REGION",
+      "text": "Bayern",
+      "source_path": "$.invoice_part1",
+      "start": 292,
+      "end": 298
+    },
+    {
+      "label": "COUNTRY",
+      "text": "Deutschland",
+      "source_path": "$.invoice_part1",
+      "start": 299,
+      "end": 310
+    },
+    {
+      "label": "DELIVERY_DATE",
+      "text": "19.01.26",
+      "source_path": "$.sub.invoice_part2",
+      "start": 53,
+      "end": 61
+    },
+    {
+      "label": "PERSON_NAME",
+      "text": "Katharina Wolf",
+      "source_path": "$.sub.invoice_part2",
+      "start": 75,
+      "end": 89
+    },
+    {
+      "label": "DATE",
+      "text": "30 / 12 / 2025",
+      "source_path": "$.sub.invoice_part2",
+      "start": 102,
+      "end": 116
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "Nordlicht Anlagenbau GmbH & Co. KG",
+      "source_path": "$.sub.invoice_part2",
+      "start": 128,
+      "end": 162
+    },
+    {
+      "label": "TAX_ID",
+      "text": "DE100142542",
+      "source_path": "$.sub.invoice_part2",
+      "start": 174,
+      "end": 185
+    }
+  ],
+  "by_label": {
+    "COMPANY_NAME": [
+      {
+        "text": "Nordlicht Anlagenbau GmbH & Co. KG",
+        "source_path": "$.invoice_part1",
+        "start": 141,
+        "end": 175
+      },
+      {
+        "text": "Prisma Laborservice AG",
+        "source_path": "$.invoice_part1",
+        "start": 239,
+        "end": 261
+      },
+      {
+        "text": "Nordlicht Anlagenbau GmbH & Co. KG",
+        "source_path": "$.sub.invoice_part2",
+        "start": 128,
+        "end": 162
+      }
+    ],
+    "PERSON_NAME": [
+      {
+        "text": "Katharina Wolf",
+        "source_path": "$.sub.invoice_part2",
+        "start": 75,
+        "end": 89
+      }
+    ],
+    "POSTAL_ADDRESS": [
+      {
+        "text": "Friedrichstraße 19\n10117 Berlin\nBerlin\nDeutschland",
+        "source_path": "$.invoice_part1",
+        "start": 176,
+        "end": 226
+      },
+      {
+        "text": "Königstraße 20\n90402 Nürnberg\nBayern\nDeutschland",
+        "source_path": "$.invoice_part1",
+        "start": 262,
+        "end": 310
+      }
+    ],
+    "STREET_ADDRESS": [
+      {
+        "text": "Friedrichstraße 19",
+        "source_path": "$.invoice_part1",
+        "start": 176,
+        "end": 194
+      },
+      {
+        "text": "Königstraße 20",
+        "source_path": "$.invoice_part1",
+        "start": 262,
+        "end": 276
+      }
+    ],
+    "POSTAL_CODE": [
+      {
+        "text": "10117",
+        "source_path": "$.invoice_part1",
+        "start": 195,
+        "end": 200
+      },
+      {
+        "text": "90402",
+        "source_path": "$.invoice_part1",
+        "start": 277,
+        "end": 282
+      }
+    ],
+    "CITY": [
+      {
+        "text": "Berlin",
+        "source_path": "$.invoice_part1",
+        "start": 201,
+        "end": 207
+      },
+      {
+        "text": "Nürnberg",
+        "source_path": "$.invoice_part1",
+        "start": 283,
+        "end": 291
+      }
+    ],
+    "STATE_OR_REGION": [
+      {
+        "text": "Berlin",
+        "source_path": "$.invoice_part1",
+        "start": 208,
+        "end": 214
+      },
+      {
+        "text": "Bayern",
+        "source_path": "$.invoice_part1",
+        "start": 292,
+        "end": 298
+      }
+    ],
+    "COUNTRY": [
+      {
+        "text": "Deutschland",
+        "source_path": "$.invoice_part1",
+        "start": 215,
+        "end": 226
+      },
+      {
+        "text": "Deutschland",
+        "source_path": "$.invoice_part1",
+        "start": 299,
+        "end": 310
+      }
+    ],
+    "ACCOUNT_ID": [
+      {
+        "text": "KTO/700019",
+        "source_path": "$.invoice_part1",
+        "start": 81,
+        "end": 91
+      }
+    ],
+    "INVOICE_NUMBER": [],
+    "INVOICE_DATE": [],
+    "DUE_DATE": [],
+    "SERVICE_DATE": [],
+    "DELIVERY_DATE": [
+      {
+        "text": "19.01.26",
+        "source_path": "$.sub.invoice_part2",
+        "start": 53,
+        "end": 61
+      }
+    ],
+    "ORDER_NUMBER": [
+      {
+        "text": "PO-26-08001",
+        "source_path": "$.invoice_part1",
+        "start": 55,
+        "end": 66
+      }
+    ],
+    "DOCUMENT_DATE": [
+      {
+        "text": "17. Januar 2026",
+        "source_path": "$.invoice_part1",
+        "start": 30,
+        "end": 45
+      }
+    ],
+    "TRANSACTION_DATE": [
+      {
+        "text": "2026-01-20",
+        "source_path": "$.invoice_part1",
+        "start": 119,
+        "end": 129
+      }
+    ],
+    "DATE": [
+      {
+        "text": "30 / 12 / 2025",
+        "source_path": "$.sub.invoice_part2",
+        "start": 102,
+        "end": 116
+      }
+    ],
+    "TAX_ID": [
+      {
+        "text": "DE100142542",
+        "source_path": "$.sub.invoice_part2",
+        "start": 174,
+        "end": 185
+      }
+    ],
+    "TAX_NUMBER": []
+  }
+}

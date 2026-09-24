@@ -1,0 +1,355 @@
+{
+  "document_id": "de-business-016",
+  "document_type": "Reparaturbericht",
+  "entities": [
+    {
+      "label": "DOCUMENT_DATE",
+      "text": "28.03.26",
+      "source_path": "$.invoice_part1",
+      "start": 37,
+      "end": 45
+    },
+    {
+      "label": "ORDER_NUMBER",
+      "text": "AB-60255",
+      "source_path": "$.invoice_part1",
+      "start": 55,
+      "end": 63
+    },
+    {
+      "label": "ACCOUNT_ID",
+      "text": "DEB 90465",
+      "source_path": "$.invoice_part1",
+      "start": 75,
+      "end": 84
+    },
+    {
+      "label": "SERVICE_DATE",
+      "text": "20 / 03 / 2026",
+      "source_path": "$.invoice_part1",
+      "start": 110,
+      "end": 124
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "Signalraum Kommunikation GmbH",
+      "source_path": "$.invoice_part1",
+      "start": 141,
+      "end": 170
+    },
+    {
+      "label": "POSTAL_ADDRESS",
+      "text": "Sophienblatt 86b\n24103 Kiel\nSchleswig-Holstein\nDeutschland",
+      "source_path": "$.invoice_part1",
+      "start": 171,
+      "end": 229
+    },
+    {
+      "label": "STREET_ADDRESS",
+      "text": "Sophienblatt 86b",
+      "source_path": "$.invoice_part1",
+      "start": 171,
+      "end": 187
+    },
+    {
+      "label": "POSTAL_CODE",
+      "text": "24103",
+      "source_path": "$.invoice_part1",
+      "start": 188,
+      "end": 193
+    },
+    {
+      "label": "CITY",
+      "text": "Kiel",
+      "source_path": "$.invoice_part1",
+      "start": 194,
+      "end": 198
+    },
+    {
+      "label": "STATE_OR_REGION",
+      "text": "Schleswig-Holstein",
+      "source_path": "$.invoice_part1",
+      "start": 199,
+      "end": 217
+    },
+    {
+      "label": "COUNTRY",
+      "text": "Deutschland",
+      "source_path": "$.invoice_part1",
+      "start": 218,
+      "end": 229
+    },
+    {
+      "label": "PERSON_NAME",
+      "text": "Johanna Lorenz",
+      "source_path": "$.invoice_part1",
+      "start": 244,
+      "end": 258
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "Wellenform Audio e.K.",
+      "source_path": "$.invoice_part1",
+      "start": 267,
+      "end": 288
+    },
+    {
+      "label": "POSTAL_ADDRESS",
+      "text": "Berliner Straße 87b\n60311 Frankfurt am Main\nHessen\nDeutschland",
+      "source_path": "$.invoice_part1",
+      "start": 289,
+      "end": 351
+    },
+    {
+      "label": "STREET_ADDRESS",
+      "text": "Berliner Straße 87b",
+      "source_path": "$.invoice_part1",
+      "start": 289,
+      "end": 308
+    },
+    {
+      "label": "POSTAL_CODE",
+      "text": "60311",
+      "source_path": "$.invoice_part1",
+      "start": 309,
+      "end": 314
+    },
+    {
+      "label": "CITY",
+      "text": "Frankfurt am Main",
+      "source_path": "$.invoice_part1",
+      "start": 315,
+      "end": 332
+    },
+    {
+      "label": "STATE_OR_REGION",
+      "text": "Hessen",
+      "source_path": "$.invoice_part1",
+      "start": 333,
+      "end": 339
+    },
+    {
+      "label": "COUNTRY",
+      "text": "Deutschland",
+      "source_path": "$.invoice_part1",
+      "start": 340,
+      "end": 351
+    },
+    {
+      "label": "PERSON_NAME",
+      "text": "Martin Becker",
+      "source_path": "$.sub.invoice_part2",
+      "start": 124,
+      "end": 137
+    },
+    {
+      "label": "DATE",
+      "text": "24-09-2026",
+      "source_path": "$.sub.invoice_part2",
+      "start": 167,
+      "end": 177
+    },
+    {
+      "label": "TAX_NUMBER",
+      "text": "25/205/11455",
+      "source_path": "$.sub.invoice_part2",
+      "start": 206,
+      "end": 218
+    },
+    {
+      "label": "TAX_ID",
+      "text": "DE100253408",
+      "source_path": "$.sub.invoice_part2",
+      "start": 241,
+      "end": 252
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "Signalraum Kommunikation GmbH",
+      "source_path": "$.sub.invoice_part2",
+      "start": 268,
+      "end": 297
+    }
+  ],
+  "by_label": {
+    "COMPANY_NAME": [
+      {
+        "text": "Signalraum Kommunikation GmbH",
+        "source_path": "$.invoice_part1",
+        "start": 141,
+        "end": 170
+      },
+      {
+        "text": "Wellenform Audio e.K.",
+        "source_path": "$.invoice_part1",
+        "start": 267,
+        "end": 288
+      },
+      {
+        "text": "Signalraum Kommunikation GmbH",
+        "source_path": "$.sub.invoice_part2",
+        "start": 268,
+        "end": 297
+      }
+    ],
+    "PERSON_NAME": [
+      {
+        "text": "Johanna Lorenz",
+        "source_path": "$.invoice_part1",
+        "start": 244,
+        "end": 258
+      },
+      {
+        "text": "Martin Becker",
+        "source_path": "$.sub.invoice_part2",
+        "start": 124,
+        "end": 137
+      }
+    ],
+    "POSTAL_ADDRESS": [
+      {
+        "text": "Sophienblatt 86b\n24103 Kiel\nSchleswig-Holstein\nDeutschland",
+        "source_path": "$.invoice_part1",
+        "start": 171,
+        "end": 229
+      },
+      {
+        "text": "Berliner Straße 87b\n60311 Frankfurt am Main\nHessen\nDeutschland",
+        "source_path": "$.invoice_part1",
+        "start": 289,
+        "end": 351
+      }
+    ],
+    "STREET_ADDRESS": [
+      {
+        "text": "Sophienblatt 86b",
+        "source_path": "$.invoice_part1",
+        "start": 171,
+        "end": 187
+      },
+      {
+        "text": "Berliner Straße 87b",
+        "source_path": "$.invoice_part1",
+        "start": 289,
+        "end": 308
+      }
+    ],
+    "POSTAL_CODE": [
+      {
+        "text": "24103",
+        "source_path": "$.invoice_part1",
+        "start": 188,
+        "end": 193
+      },
+      {
+        "text": "60311",
+        "source_path": "$.invoice_part1",
+        "start": 309,
+        "end": 314
+      }
+    ],
+    "CITY": [
+      {
+        "text": "Kiel",
+        "source_path": "$.invoice_part1",
+        "start": 194,
+        "end": 198
+      },
+      {
+        "text": "Frankfurt am Main",
+        "source_path": "$.invoice_part1",
+        "start": 315,
+        "end": 332
+      }
+    ],
+    "STATE_OR_REGION": [
+      {
+        "text": "Schleswig-Holstein",
+        "source_path": "$.invoice_part1",
+        "start": 199,
+        "end": 217
+      },
+      {
+        "text": "Hessen",
+        "source_path": "$.invoice_part1",
+        "start": 333,
+        "end": 339
+      }
+    ],
+    "COUNTRY": [
+      {
+        "text": "Deutschland",
+        "source_path": "$.invoice_part1",
+        "start": 218,
+        "end": 229
+      },
+      {
+        "text": "Deutschland",
+        "source_path": "$.invoice_part1",
+        "start": 340,
+        "end": 351
+      }
+    ],
+    "ACCOUNT_ID": [
+      {
+        "text": "DEB 90465",
+        "source_path": "$.invoice_part1",
+        "start": 75,
+        "end": 84
+      }
+    ],
+    "INVOICE_NUMBER": [],
+    "INVOICE_DATE": [],
+    "DUE_DATE": [],
+    "SERVICE_DATE": [
+      {
+        "text": "20 / 03 / 2026",
+        "source_path": "$.invoice_part1",
+        "start": 110,
+        "end": 124
+      }
+    ],
+    "DELIVERY_DATE": [],
+    "ORDER_NUMBER": [
+      {
+        "text": "AB-60255",
+        "source_path": "$.invoice_part1",
+        "start": 55,
+        "end": 63
+      }
+    ],
+    "DOCUMENT_DATE": [
+      {
+        "text": "28.03.26",
+        "source_path": "$.invoice_part1",
+        "start": 37,
+        "end": 45
+      }
+    ],
+    "TRANSACTION_DATE": [],
+    "DATE": [
+      {
+        "text": "24-09-2026",
+        "source_path": "$.sub.invoice_part2",
+        "start": 167,
+        "end": 177
+      }
+    ],
+    "TAX_ID": [
+      {
+        "text": "DE100253408",
+        "source_path": "$.sub.invoice_part2",
+        "start": 241,
+        "end": 252
+      }
+    ],
+    "TAX_NUMBER": [
+      {
+        "text": "25/205/11455",
+        "source_path": "$.sub.invoice_part2",
+        "start": 206,
+        "end": 218
+      }
+    ]
+  }
+}

@@ -1,0 +1,291 @@
+{
+  "document_id": "de-business-004",
+  "document_type": "Rechnung",
+  "entities": [
+    {
+      "label": "INVOICE_NUMBER",
+      "text": "2026-50039",
+      "source_path": "$.invoice_part1",
+      "start": 45,
+      "end": 55
+    },
+    {
+      "label": "INVOICE_DATE",
+      "text": "27.01.26",
+      "source_path": "$.invoice_part1",
+      "start": 72,
+      "end": 80
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "Spreebogen Medien e.K.",
+      "source_path": "$.invoice_part1",
+      "start": 87,
+      "end": 109
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "Werkhalle Maschinenbau GmbH & Co. KG",
+      "source_path": "$.invoice_part1",
+      "start": 132,
+      "end": 168
+    },
+    {
+      "label": "POSTAL_ADDRESS",
+      "text": "Schillerstraße 42b\n30159 Hannover\nNiedersachsen\nDeutschland",
+      "source_path": "$.invoice_part1",
+      "start": 169,
+      "end": 228
+    },
+    {
+      "label": "STREET_ADDRESS",
+      "text": "Schillerstraße 42b",
+      "source_path": "$.invoice_part1",
+      "start": 169,
+      "end": 187
+    },
+    {
+      "label": "POSTAL_CODE",
+      "text": "30159",
+      "source_path": "$.invoice_part1",
+      "start": 188,
+      "end": 193
+    },
+    {
+      "label": "CITY",
+      "text": "Hannover",
+      "source_path": "$.invoice_part1",
+      "start": 194,
+      "end": 202
+    },
+    {
+      "label": "STATE_OR_REGION",
+      "text": "Niedersachsen",
+      "source_path": "$.invoice_part1",
+      "start": 203,
+      "end": 216
+    },
+    {
+      "label": "COUNTRY",
+      "text": "Deutschland",
+      "source_path": "$.invoice_part1",
+      "start": 217,
+      "end": 228
+    },
+    {
+      "label": "PERSON_NAME",
+      "text": "Jonas Becker",
+      "source_path": "$.invoice_part1",
+      "start": 246,
+      "end": 258
+    },
+    {
+      "label": "ACCOUNT_ID",
+      "text": "DEB 90093",
+      "source_path": "$.invoice_part1",
+      "start": 274,
+      "end": 283
+    },
+    {
+      "label": "SERVICE_DATE",
+      "text": "23-01-2026",
+      "source_path": "$.invoice_part1",
+      "start": 305,
+      "end": 315
+    },
+    {
+      "label": "TAX_ID",
+      "text": "DE100158380",
+      "source_path": "$.invoice_part1",
+      "start": 337,
+      "end": 348
+    },
+    {
+      "label": "TAX_NUMBER",
+      "text": "13/121/10291",
+      "source_path": "$.invoice_part1",
+      "start": 351,
+      "end": 363
+    },
+    {
+      "label": "DUE_DATE",
+      "text": "10.02.2026",
+      "source_path": "$.sub.invoice_part2",
+      "start": 309,
+      "end": 319
+    },
+    {
+      "label": "ORDER_NUMBER",
+      "text": "AB-60051",
+      "source_path": "$.sub.invoice_part2",
+      "start": 338,
+      "end": 346
+    },
+    {
+      "label": "PERSON_NAME",
+      "text": "Theresa Lorenz",
+      "source_path": "$.sub.invoice_part2",
+      "start": 368,
+      "end": 382
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "Spreebogen Medien e.K.",
+      "source_path": "$.sub.invoice_part2",
+      "start": 411,
+      "end": 433
+    }
+  ],
+  "by_label": {
+    "COMPANY_NAME": [
+      {
+        "text": "Spreebogen Medien e.K.",
+        "source_path": "$.invoice_part1",
+        "start": 87,
+        "end": 109
+      },
+      {
+        "text": "Werkhalle Maschinenbau GmbH & Co. KG",
+        "source_path": "$.invoice_part1",
+        "start": 132,
+        "end": 168
+      },
+      {
+        "text": "Spreebogen Medien e.K.",
+        "source_path": "$.sub.invoice_part2",
+        "start": 411,
+        "end": 433
+      }
+    ],
+    "PERSON_NAME": [
+      {
+        "text": "Jonas Becker",
+        "source_path": "$.invoice_part1",
+        "start": 246,
+        "end": 258
+      },
+      {
+        "text": "Theresa Lorenz",
+        "source_path": "$.sub.invoice_part2",
+        "start": 368,
+        "end": 382
+      }
+    ],
+    "POSTAL_ADDRESS": [
+      {
+        "text": "Schillerstraße 42b\n30159 Hannover\nNiedersachsen\nDeutschland",
+        "source_path": "$.invoice_part1",
+        "start": 169,
+        "end": 228
+      }
+    ],
+    "STREET_ADDRESS": [
+      {
+        "text": "Schillerstraße 42b",
+        "source_path": "$.invoice_part1",
+        "start": 169,
+        "end": 187
+      }
+    ],
+    "POSTAL_CODE": [
+      {
+        "text": "30159",
+        "source_path": "$.invoice_part1",
+        "start": 188,
+        "end": 193
+      }
+    ],
+    "CITY": [
+      {
+        "text": "Hannover",
+        "source_path": "$.invoice_part1",
+        "start": 194,
+        "end": 202
+      }
+    ],
+    "STATE_OR_REGION": [
+      {
+        "text": "Niedersachsen",
+        "source_path": "$.invoice_part1",
+        "start": 203,
+        "end": 216
+      }
+    ],
+    "COUNTRY": [
+      {
+        "text": "Deutschland",
+        "source_path": "$.invoice_part1",
+        "start": 217,
+        "end": 228
+      }
+    ],
+    "ACCOUNT_ID": [
+      {
+        "text": "DEB 90093",
+        "source_path": "$.invoice_part1",
+        "start": 274,
+        "end": 283
+      }
+    ],
+    "INVOICE_NUMBER": [
+      {
+        "text": "2026-50039",
+        "source_path": "$.invoice_part1",
+        "start": 45,
+        "end": 55
+      }
+    ],
+    "INVOICE_DATE": [
+      {
+        "text": "27.01.26",
+        "source_path": "$.invoice_part1",
+        "start": 72,
+        "end": 80
+      }
+    ],
+    "DUE_DATE": [
+      {
+        "text": "10.02.2026",
+        "source_path": "$.sub.invoice_part2",
+        "start": 309,
+        "end": 319
+      }
+    ],
+    "SERVICE_DATE": [
+      {
+        "text": "23-01-2026",
+        "source_path": "$.invoice_part1",
+        "start": 305,
+        "end": 315
+      }
+    ],
+    "DELIVERY_DATE": [],
+    "ORDER_NUMBER": [
+      {
+        "text": "AB-60051",
+        "source_path": "$.sub.invoice_part2",
+        "start": 338,
+        "end": 346
+      }
+    ],
+    "DOCUMENT_DATE": [],
+    "TRANSACTION_DATE": [],
+    "DATE": [],
+    "TAX_ID": [
+      {
+        "text": "DE100158380",
+        "source_path": "$.invoice_part1",
+        "start": 337,
+        "end": 348
+      }
+    ],
+    "TAX_NUMBER": [
+      {
+        "text": "13/121/10291",
+        "source_path": "$.invoice_part1",
+        "start": 351,
+        "end": 363
+      }
+    ]
+  }
+}

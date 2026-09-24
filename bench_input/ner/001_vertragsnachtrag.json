@@ -1,0 +1,6 @@
+{
+  "invoice_part1": "# Vertragsnachtrag\n\nNachtragsdatum: 12.01.2026\nVertrags-/Auftragsreferenz: AUF-2026-3000\nWirksam ab: 26. Januar 2026\n\nVertragspartner A\nAlpenbyte Solutions GmbH\nTal 8\n80331 München\nBayern\nDeutschland\nVertreten durch Tobias Becker\n\nVertragspartner B\nMosaik Software e.K.\nOstra-Allee 9\n01067 Dresden\nSachsen\nDeutschland",
+  "sub": {
+    "invoice_part2": "## Änderung\n\nDie Parteien ändern Leistungsumfang und Terminplanung zum 2026-02-02.\n\nKundenkonto: KD-10000\nSteuernummer Vertragspartner A: 10/100/10000\nUSt-ID Vertragspartner A: DE100134623\nUnterzeichnet für Alpenbyte Solutions GmbH durch Tobias Becker"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "invoice_part1": "# Bestellung\n\nVorgangsnummer: **AUF-2026-3024**  \nErstellt am: 12.05.2026  \nKunden-/Lieferantenkonto: KD-11752\n\n## Besteller\nRheinwerk Digital UG (haftungsbeschränkt)\nRheinstraße 12\n55116 Mainz\nRheinland-Pfalz\nDeutschland\nBearbeitung: Anna Wolf\n\n## Auftragnehmer\nRosenfeld Gebäudetechnik AG\nCalwer Straße 11\n70173 Stuttgart\nBaden-Württemberg\nDeutschland",
+  "sub": {
+    "invoice_part2": "## Termine und Referenzen\n\nGewünschtes Lieferdatum: 17. Mai 2026\nLeistungsbeginn: 2026-05-23\nAuftrag angenommen durch: Martin Becker\nSteuer-ID Auftragnehmer: DE100324679\nSteuernummer Auftragnehmer: 34/268/12328\n\nAuftragnehmer erneut zur Zuordnung: Rosenfeld Gebäudetechnik AG\nBestellreferenz: AUF-2026-3024"
+  }
+}

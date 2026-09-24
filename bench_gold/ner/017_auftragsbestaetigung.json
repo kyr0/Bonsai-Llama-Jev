@@ -1,0 +1,368 @@
+{
+  "document_id": "de-business-017",
+  "document_type": "Auftragsbestätigung",
+  "entities": [
+    {
+      "label": "ORDER_NUMBER",
+      "text": "AUF-2026-3016",
+      "source_path": "$.invoice_part1",
+      "start": 41,
+      "end": 54
+    },
+    {
+      "label": "DOCUMENT_DATE",
+      "text": "02 / 04 / 2026",
+      "source_path": "$.invoice_part1",
+      "start": 72,
+      "end": 86
+    },
+    {
+      "label": "ACCOUNT_ID",
+      "text": "KD-11168",
+      "source_path": "$.invoice_part1",
+      "start": 115,
+      "end": 123
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "Klarblick Steuerberatung AG",
+      "source_path": "$.invoice_part1",
+      "start": 138,
+      "end": 165
+    },
+    {
+      "label": "POSTAL_ADDRESS",
+      "text": "Calwer Straße 11\n70173 Stuttgart\nBaden-Württemberg\nDeutschland",
+      "source_path": "$.invoice_part1",
+      "start": 166,
+      "end": 228
+    },
+    {
+      "label": "STREET_ADDRESS",
+      "text": "Calwer Straße 11",
+      "source_path": "$.invoice_part1",
+      "start": 166,
+      "end": 182
+    },
+    {
+      "label": "POSTAL_CODE",
+      "text": "70173",
+      "source_path": "$.invoice_part1",
+      "start": 183,
+      "end": 188
+    },
+    {
+      "label": "CITY",
+      "text": "Stuttgart",
+      "source_path": "$.invoice_part1",
+      "start": 189,
+      "end": 198
+    },
+    {
+      "label": "STATE_OR_REGION",
+      "text": "Baden-Württemberg",
+      "source_path": "$.invoice_part1",
+      "start": 199,
+      "end": 216
+    },
+    {
+      "label": "COUNTRY",
+      "text": "Deutschland",
+      "source_path": "$.invoice_part1",
+      "start": 217,
+      "end": 228
+    },
+    {
+      "label": "PERSON_NAME",
+      "text": "Eva Wolf",
+      "source_path": "$.invoice_part1",
+      "start": 242,
+      "end": 250
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "Werkhalle Maschinenbau GmbH & Co. KG",
+      "source_path": "$.invoice_part1",
+      "start": 269,
+      "end": 305
+    },
+    {
+      "label": "POSTAL_ADDRESS",
+      "text": "Bahnhofstraße 10\n99084 Erfurt\nThüringen\nDeutschland",
+      "source_path": "$.invoice_part1",
+      "start": 306,
+      "end": 357
+    },
+    {
+      "label": "STREET_ADDRESS",
+      "text": "Bahnhofstraße 10",
+      "source_path": "$.invoice_part1",
+      "start": 306,
+      "end": 322
+    },
+    {
+      "label": "POSTAL_CODE",
+      "text": "99084",
+      "source_path": "$.invoice_part1",
+      "start": 323,
+      "end": 328
+    },
+    {
+      "label": "CITY",
+      "text": "Erfurt",
+      "source_path": "$.invoice_part1",
+      "start": 329,
+      "end": 335
+    },
+    {
+      "label": "STATE_OR_REGION",
+      "text": "Thüringen",
+      "source_path": "$.invoice_part1",
+      "start": 336,
+      "end": 345
+    },
+    {
+      "label": "COUNTRY",
+      "text": "Deutschland",
+      "source_path": "$.invoice_part1",
+      "start": 346,
+      "end": 357
+    },
+    {
+      "label": "DELIVERY_DATE",
+      "text": "04-04-2026",
+      "source_path": "$.sub.invoice_part2",
+      "start": 52,
+      "end": 62
+    },
+    {
+      "label": "SERVICE_DATE",
+      "text": "13.04.2026",
+      "source_path": "$.sub.invoice_part2",
+      "start": 80,
+      "end": 90
+    },
+    {
+      "label": "PERSON_NAME",
+      "text": "David Becker",
+      "source_path": "$.sub.invoice_part2",
+      "start": 117,
+      "end": 129
+    },
+    {
+      "label": "TAX_ID",
+      "text": "DE100261327",
+      "source_path": "$.sub.invoice_part2",
+      "start": 155,
+      "end": 166
+    },
+    {
+      "label": "TAX_NUMBER",
+      "text": "276/5848/1272",
+      "source_path": "$.sub.invoice_part2",
+      "start": 195,
+      "end": 208
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "Werkhalle Maschinenbau GmbH & Co. KG",
+      "source_path": "$.sub.invoice_part2",
+      "start": 246,
+      "end": 282
+    },
+    {
+      "label": "ORDER_NUMBER",
+      "text": "AUF-2026-3016",
+      "source_path": "$.sub.invoice_part2",
+      "start": 300,
+      "end": 313
+    }
+  ],
+  "by_label": {
+    "COMPANY_NAME": [
+      {
+        "text": "Klarblick Steuerberatung AG",
+        "source_path": "$.invoice_part1",
+        "start": 138,
+        "end": 165
+      },
+      {
+        "text": "Werkhalle Maschinenbau GmbH & Co. KG",
+        "source_path": "$.invoice_part1",
+        "start": 269,
+        "end": 305
+      },
+      {
+        "text": "Werkhalle Maschinenbau GmbH & Co. KG",
+        "source_path": "$.sub.invoice_part2",
+        "start": 246,
+        "end": 282
+      }
+    ],
+    "PERSON_NAME": [
+      {
+        "text": "Eva Wolf",
+        "source_path": "$.invoice_part1",
+        "start": 242,
+        "end": 250
+      },
+      {
+        "text": "David Becker",
+        "source_path": "$.sub.invoice_part2",
+        "start": 117,
+        "end": 129
+      }
+    ],
+    "POSTAL_ADDRESS": [
+      {
+        "text": "Calwer Straße 11\n70173 Stuttgart\nBaden-Württemberg\nDeutschland",
+        "source_path": "$.invoice_part1",
+        "start": 166,
+        "end": 228
+      },
+      {
+        "text": "Bahnhofstraße 10\n99084 Erfurt\nThüringen\nDeutschland",
+        "source_path": "$.invoice_part1",
+        "start": 306,
+        "end": 357
+      }
+    ],
+    "STREET_ADDRESS": [
+      {
+        "text": "Calwer Straße 11",
+        "source_path": "$.invoice_part1",
+        "start": 166,
+        "end": 182
+      },
+      {
+        "text": "Bahnhofstraße 10",
+        "source_path": "$.invoice_part1",
+        "start": 306,
+        "end": 322
+      }
+    ],
+    "POSTAL_CODE": [
+      {
+        "text": "70173",
+        "source_path": "$.invoice_part1",
+        "start": 183,
+        "end": 188
+      },
+      {
+        "text": "99084",
+        "source_path": "$.invoice_part1",
+        "start": 323,
+        "end": 328
+      }
+    ],
+    "CITY": [
+      {
+        "text": "Stuttgart",
+        "source_path": "$.invoice_part1",
+        "start": 189,
+        "end": 198
+      },
+      {
+        "text": "Erfurt",
+        "source_path": "$.invoice_part1",
+        "start": 329,
+        "end": 335
+      }
+    ],
+    "STATE_OR_REGION": [
+      {
+        "text": "Baden-Württemberg",
+        "source_path": "$.invoice_part1",
+        "start": 199,
+        "end": 216
+      },
+      {
+        "text": "Thüringen",
+        "source_path": "$.invoice_part1",
+        "start": 336,
+        "end": 345
+      }
+    ],
+    "COUNTRY": [
+      {
+        "text": "Deutschland",
+        "source_path": "$.invoice_part1",
+        "start": 217,
+        "end": 228
+      },
+      {
+        "text": "Deutschland",
+        "source_path": "$.invoice_part1",
+        "start": 346,
+        "end": 357
+      }
+    ],
+    "ACCOUNT_ID": [
+      {
+        "text": "KD-11168",
+        "source_path": "$.invoice_part1",
+        "start": 115,
+        "end": 123
+      }
+    ],
+    "INVOICE_NUMBER": [],
+    "INVOICE_DATE": [],
+    "DUE_DATE": [],
+    "SERVICE_DATE": [
+      {
+        "text": "13.04.2026",
+        "source_path": "$.sub.invoice_part2",
+        "start": 80,
+        "end": 90
+      }
+    ],
+    "DELIVERY_DATE": [
+      {
+        "text": "04-04-2026",
+        "source_path": "$.sub.invoice_part2",
+        "start": 52,
+        "end": 62
+      }
+    ],
+    "ORDER_NUMBER": [
+      {
+        "text": "AUF-2026-3016",
+        "source_path": "$.invoice_part1",
+        "start": 41,
+        "end": 54
+      },
+      {
+        "text": "AUF-2026-3016",
+        "source_path": "$.sub.invoice_part2",
+        "start": 300,
+        "end": 313
+      }
+    ],
+    "DOCUMENT_DATE": [
+      {
+        "text": "02 / 04 / 2026",
+        "source_path": "$.invoice_part1",
+        "start": 72,
+        "end": 86
+      }
+    ],
+    "TRANSACTION_DATE": [],
+    "DATE": [],
+    "TAX_ID": [
+      {
+        "text": "DE100261327",
+        "source_path": "$.sub.invoice_part2",
+        "start": 155,
+        "end": 166
+      }
+    ],
+    "TAX_NUMBER": [
+      {
+        "text": "276/5848/1272",
+        "source_path": "$.sub.invoice_part2",
+        "start": 195,
+        "end": 208
+      }
+    ]
+  }
+}

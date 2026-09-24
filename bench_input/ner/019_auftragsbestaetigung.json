@@ -1,0 +1,6 @@
+{
+  "invoice_part1": "# Auftragsbestätigung\n\nVorgangsnummer: **BEST/2026/718**  \nErstellt am: 12.04.2026  \nKunden-/Lieferantenkonto: CUST-202618\n\n## Besteller\nPapierhafen Verlag GmbH & Co. KG\nKatharinenstraße 33a\n04109 Leipzig\nSachsen\nDeutschland\nBearbeitung: Carolin Lorenz\n\n## Auftragnehmer\nNovaGrid Energie e.K.\nAm Vögenteich 32a\n18055 Rostock\nMecklenburg-Vorpommern\nDeutschland",
+  "sub": {
+    "invoice_part2": "## Termine und Referenzen\n\nGewünschtes Lieferdatum: 16. April 2026\nLeistungsbeginn: 2026-04-21\nAuftrag angenommen durch: Daniel Hartmann\nSteuer-ID Auftragnehmer: DE100277165\nSteuernummer Auftragnehmer: 28/226/11746\n\nAuftragnehmer erneut zur Zuordnung: NovaGrid Energie e.K.\nBestellreferenz: BEST/2026/718"
+  }
+}

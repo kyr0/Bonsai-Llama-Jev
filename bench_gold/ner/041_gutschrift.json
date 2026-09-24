@@ -1,0 +1,382 @@
+{
+  "document_id": "de-business-041",
+  "document_type": "Gutschrift",
+  "entities": [
+    {
+      "label": "INVOICE_NUMBER",
+      "text": "RE-2026-1040",
+      "source_path": "$.invoice_part1",
+      "start": 31,
+      "end": 43
+    },
+    {
+      "label": "INVOICE_DATE",
+      "text": "31 / 07 / 2026",
+      "source_path": "$.invoice_part1",
+      "start": 64,
+      "end": 78
+    },
+    {
+      "label": "SERVICE_DATE",
+      "text": "30-07-2026",
+      "source_path": "$.invoice_part1",
+      "start": 99,
+      "end": 109
+    },
+    {
+      "label": "ACCOUNT_ID",
+      "text": "KD-12920",
+      "source_path": "$.invoice_part1",
+      "start": 127,
+      "end": 135
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "Isar Automation GmbH",
+      "source_path": "$.invoice_part1",
+      "start": 152,
+      "end": 172
+    },
+    {
+      "label": "PERSON_NAME",
+      "text": "Jonas Becker",
+      "source_path": "$.invoice_part1",
+      "start": 182,
+      "end": 194
+    },
+    {
+      "label": "POSTAL_ADDRESS",
+      "text": "Steinstraße 13\n20095 Hamburg\nHamburg\nDeutschland",
+      "source_path": "$.invoice_part1",
+      "start": 195,
+      "end": 243
+    },
+    {
+      "label": "STREET_ADDRESS",
+      "text": "Steinstraße 13",
+      "source_path": "$.invoice_part1",
+      "start": 195,
+      "end": 209
+    },
+    {
+      "label": "POSTAL_CODE",
+      "text": "20095",
+      "source_path": "$.invoice_part1",
+      "start": 210,
+      "end": 215
+    },
+    {
+      "label": "CITY",
+      "text": "Hamburg",
+      "source_path": "$.invoice_part1",
+      "start": 216,
+      "end": 223
+    },
+    {
+      "label": "STATE_OR_REGION",
+      "text": "Hamburg",
+      "source_path": "$.invoice_part1",
+      "start": 224,
+      "end": 231
+    },
+    {
+      "label": "COUNTRY",
+      "text": "Deutschland",
+      "source_path": "$.invoice_part1",
+      "start": 232,
+      "end": 243
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "NovaGrid Energie e.K.",
+      "source_path": "$.invoice_part1",
+      "start": 259,
+      "end": 280
+    },
+    {
+      "label": "PERSON_NAME",
+      "text": "Laura Wolf",
+      "source_path": "$.invoice_part1",
+      "start": 289,
+      "end": 299
+    },
+    {
+      "label": "POSTAL_ADDRESS",
+      "text": "Martinistraße 14\n28195 Bremen\nBremen\nDeutschland",
+      "source_path": "$.invoice_part1",
+      "start": 300,
+      "end": 348
+    },
+    {
+      "label": "STREET_ADDRESS",
+      "text": "Martinistraße 14",
+      "source_path": "$.invoice_part1",
+      "start": 300,
+      "end": 316
+    },
+    {
+      "label": "POSTAL_CODE",
+      "text": "28195",
+      "source_path": "$.invoice_part1",
+      "start": 317,
+      "end": 322
+    },
+    {
+      "label": "CITY",
+      "text": "Bremen",
+      "source_path": "$.invoice_part1",
+      "start": 323,
+      "end": 329
+    },
+    {
+      "label": "STATE_OR_REGION",
+      "text": "Bremen",
+      "source_path": "$.invoice_part1",
+      "start": 330,
+      "end": 336
+    },
+    {
+      "label": "COUNTRY",
+      "text": "Deutschland",
+      "source_path": "$.invoice_part1",
+      "start": 337,
+      "end": 348
+    },
+    {
+      "label": "TAX_ID",
+      "text": "DE100451383",
+      "source_path": "$.invoice_part1",
+      "start": 364,
+      "end": 375
+    },
+    {
+      "label": "TAX_NUMBER",
+      "text": "540/7120/1680",
+      "source_path": "$.invoice_part1",
+      "start": 388,
+      "end": 401
+    },
+    {
+      "label": "DUE_DATE",
+      "text": "21. August 2026",
+      "source_path": "$.sub.invoice_part2",
+      "start": 359,
+      "end": 374
+    },
+    {
+      "label": "ORDER_NUMBER",
+      "text": "AUF-2026-3040",
+      "source_path": "$.sub.invoice_part2",
+      "start": 393,
+      "end": 406
+    },
+    {
+      "label": "PERSON_NAME",
+      "text": "Jonas Becker",
+      "source_path": "$.sub.invoice_part2",
+      "start": 428,
+      "end": 440
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "Isar Automation GmbH",
+      "source_path": "$.sub.invoice_part2",
+      "start": 469,
+      "end": 489
+    }
+  ],
+  "by_label": {
+    "COMPANY_NAME": [
+      {
+        "text": "Isar Automation GmbH",
+        "source_path": "$.invoice_part1",
+        "start": 152,
+        "end": 172
+      },
+      {
+        "text": "NovaGrid Energie e.K.",
+        "source_path": "$.invoice_part1",
+        "start": 259,
+        "end": 280
+      },
+      {
+        "text": "Isar Automation GmbH",
+        "source_path": "$.sub.invoice_part2",
+        "start": 469,
+        "end": 489
+      }
+    ],
+    "PERSON_NAME": [
+      {
+        "text": "Jonas Becker",
+        "source_path": "$.invoice_part1",
+        "start": 182,
+        "end": 194
+      },
+      {
+        "text": "Laura Wolf",
+        "source_path": "$.invoice_part1",
+        "start": 289,
+        "end": 299
+      },
+      {
+        "text": "Jonas Becker",
+        "source_path": "$.sub.invoice_part2",
+        "start": 428,
+        "end": 440
+      }
+    ],
+    "POSTAL_ADDRESS": [
+      {
+        "text": "Steinstraße 13\n20095 Hamburg\nHamburg\nDeutschland",
+        "source_path": "$.invoice_part1",
+        "start": 195,
+        "end": 243
+      },
+      {
+        "text": "Martinistraße 14\n28195 Bremen\nBremen\nDeutschland",
+        "source_path": "$.invoice_part1",
+        "start": 300,
+        "end": 348
+      }
+    ],
+    "STREET_ADDRESS": [
+      {
+        "text": "Steinstraße 13",
+        "source_path": "$.invoice_part1",
+        "start": 195,
+        "end": 209
+      },
+      {
+        "text": "Martinistraße 14",
+        "source_path": "$.invoice_part1",
+        "start": 300,
+        "end": 316
+      }
+    ],
+    "POSTAL_CODE": [
+      {
+        "text": "20095",
+        "source_path": "$.invoice_part1",
+        "start": 210,
+        "end": 215
+      },
+      {
+        "text": "28195",
+        "source_path": "$.invoice_part1",
+        "start": 317,
+        "end": 322
+      }
+    ],
+    "CITY": [
+      {
+        "text": "Hamburg",
+        "source_path": "$.invoice_part1",
+        "start": 216,
+        "end": 223
+      },
+      {
+        "text": "Bremen",
+        "source_path": "$.invoice_part1",
+        "start": 323,
+        "end": 329
+      }
+    ],
+    "STATE_OR_REGION": [
+      {
+        "text": "Hamburg",
+        "source_path": "$.invoice_part1",
+        "start": 224,
+        "end": 231
+      },
+      {
+        "text": "Bremen",
+        "source_path": "$.invoice_part1",
+        "start": 330,
+        "end": 336
+      }
+    ],
+    "COUNTRY": [
+      {
+        "text": "Deutschland",
+        "source_path": "$.invoice_part1",
+        "start": 232,
+        "end": 243
+      },
+      {
+        "text": "Deutschland",
+        "source_path": "$.invoice_part1",
+        "start": 337,
+        "end": 348
+      }
+    ],
+    "ACCOUNT_ID": [
+      {
+        "text": "KD-12920",
+        "source_path": "$.invoice_part1",
+        "start": 127,
+        "end": 135
+      }
+    ],
+    "INVOICE_NUMBER": [
+      {
+        "text": "RE-2026-1040",
+        "source_path": "$.invoice_part1",
+        "start": 31,
+        "end": 43
+      }
+    ],
+    "INVOICE_DATE": [
+      {
+        "text": "31 / 07 / 2026",
+        "source_path": "$.invoice_part1",
+        "start": 64,
+        "end": 78
+      }
+    ],
+    "DUE_DATE": [
+      {
+        "text": "21. August 2026",
+        "source_path": "$.sub.invoice_part2",
+        "start": 359,
+        "end": 374
+      }
+    ],
+    "SERVICE_DATE": [
+      {
+        "text": "30-07-2026",
+        "source_path": "$.invoice_part1",
+        "start": 99,
+        "end": 109
+      }
+    ],
+    "DELIVERY_DATE": [],
+    "ORDER_NUMBER": [
+      {
+        "text": "AUF-2026-3040",
+        "source_path": "$.sub.invoice_part2",
+        "start": 393,
+        "end": 406
+      }
+    ],
+    "DOCUMENT_DATE": [],
+    "TRANSACTION_DATE": [],
+    "DATE": [],
+    "TAX_ID": [
+      {
+        "text": "DE100451383",
+        "source_path": "$.invoice_part1",
+        "start": 364,
+        "end": 375
+      }
+    ],
+    "TAX_NUMBER": [
+      {
+        "text": "540/7120/1680",
+        "source_path": "$.invoice_part1",
+        "start": 388,
+        "end": 401
+      }
+    ]
+  }
+}

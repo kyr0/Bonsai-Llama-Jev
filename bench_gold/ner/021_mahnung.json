@@ -1,0 +1,383 @@
+{
+  "document_id": "de-business-021",
+  "document_type": "Mahnung",
+  "entities": [
+    {
+      "label": "COMPANY_NAME",
+      "text": "Merkur Netztechnik e.K.",
+      "source_path": "$.invoice_part1",
+      "start": 66,
+      "end": 89
+    },
+    {
+      "label": "INVOICE_NUMBER",
+      "text": "RE-2026-1020",
+      "source_path": "$.invoice_part1",
+      "start": 114,
+      "end": 126
+    },
+    {
+      "label": "INVOICE_DATE",
+      "text": "2026-04-22",
+      "source_path": "$.invoice_part1",
+      "start": 133,
+      "end": 143
+    },
+    {
+      "label": "DUE_DATE",
+      "text": "20.05.26",
+      "source_path": "$.invoice_part1",
+      "start": 238,
+      "end": 246
+    },
+    {
+      "label": "ACCOUNT_ID",
+      "text": "KD-11460",
+      "source_path": "$.invoice_part1",
+      "start": 261,
+      "end": 269
+    },
+    {
+      "label": "ORDER_NUMBER",
+      "text": "AUF-2026-3020",
+      "source_path": "$.invoice_part1",
+      "start": 295,
+      "end": 308
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "Kernpunkt Sicherheitstechnik GmbH",
+      "source_path": "$.invoice_part1",
+      "start": 321,
+      "end": 354
+    },
+    {
+      "label": "POSTAL_ADDRESS",
+      "text": "Jägerstraße 54\n10117 Berlin\nBerlin\nDeutschland",
+      "source_path": "$.invoice_part1",
+      "start": 355,
+      "end": 401
+    },
+    {
+      "label": "STREET_ADDRESS",
+      "text": "Jägerstraße 54",
+      "source_path": "$.invoice_part1",
+      "start": 355,
+      "end": 369
+    },
+    {
+      "label": "POSTAL_CODE",
+      "text": "10117",
+      "source_path": "$.invoice_part1",
+      "start": 370,
+      "end": 375
+    },
+    {
+      "label": "CITY",
+      "text": "Berlin",
+      "source_path": "$.invoice_part1",
+      "start": 376,
+      "end": 382
+    },
+    {
+      "label": "STATE_OR_REGION",
+      "text": "Berlin",
+      "source_path": "$.invoice_part1",
+      "start": 383,
+      "end": 389
+    },
+    {
+      "label": "COUNTRY",
+      "text": "Deutschland",
+      "source_path": "$.invoice_part1",
+      "start": 390,
+      "end": 401
+    },
+    {
+      "label": "DATE",
+      "text": "27 / 05 / 2026",
+      "source_path": "$.sub.invoice_part2",
+      "start": 80,
+      "end": 94
+    },
+    {
+      "label": "PERSON_NAME",
+      "text": "Andreas Becker",
+      "source_path": "$.sub.invoice_part2",
+      "start": 114,
+      "end": 128
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "Merkur Netztechnik e.K.",
+      "source_path": "$.sub.invoice_part2",
+      "start": 149,
+      "end": 172
+    },
+    {
+      "label": "POSTAL_ADDRESS",
+      "text": "Karolinenstraße 55\n90402 Nürnberg\nBayern\nDeutschland",
+      "source_path": "$.sub.invoice_part2",
+      "start": 173,
+      "end": 225
+    },
+    {
+      "label": "STREET_ADDRESS",
+      "text": "Karolinenstraße 55",
+      "source_path": "$.sub.invoice_part2",
+      "start": 173,
+      "end": 191
+    },
+    {
+      "label": "POSTAL_CODE",
+      "text": "90402",
+      "source_path": "$.sub.invoice_part2",
+      "start": 192,
+      "end": 197
+    },
+    {
+      "label": "CITY",
+      "text": "Nürnberg",
+      "source_path": "$.sub.invoice_part2",
+      "start": 198,
+      "end": 206
+    },
+    {
+      "label": "STATE_OR_REGION",
+      "text": "Bayern",
+      "source_path": "$.sub.invoice_part2",
+      "start": 207,
+      "end": 213
+    },
+    {
+      "label": "COUNTRY",
+      "text": "Deutschland",
+      "source_path": "$.sub.invoice_part2",
+      "start": 214,
+      "end": 225
+    },
+    {
+      "label": "DOCUMENT_DATE",
+      "text": "22-04-2026",
+      "source_path": "$.sub.invoice_part2",
+      "start": 261,
+      "end": 271
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "Kernpunkt Sicherheitstechnik GmbH",
+      "source_path": "$.sub.invoice_part2",
+      "start": 277,
+      "end": 310
+    },
+    {
+      "label": "TAX_ID",
+      "text": "DE100293003",
+      "source_path": "$.sub.invoice_part2",
+      "start": 323,
+      "end": 334
+    },
+    {
+      "label": "TAX_NUMBER",
+      "text": "30 240 11940",
+      "source_path": "$.sub.invoice_part2",
+      "start": 347,
+      "end": 359
+    }
+  ],
+  "by_label": {
+    "COMPANY_NAME": [
+      {
+        "text": "Merkur Netztechnik e.K.",
+        "source_path": "$.invoice_part1",
+        "start": 66,
+        "end": 89
+      },
+      {
+        "text": "Kernpunkt Sicherheitstechnik GmbH",
+        "source_path": "$.invoice_part1",
+        "start": 321,
+        "end": 354
+      },
+      {
+        "text": "Merkur Netztechnik e.K.",
+        "source_path": "$.sub.invoice_part2",
+        "start": 149,
+        "end": 172
+      },
+      {
+        "text": "Kernpunkt Sicherheitstechnik GmbH",
+        "source_path": "$.sub.invoice_part2",
+        "start": 277,
+        "end": 310
+      }
+    ],
+    "PERSON_NAME": [
+      {
+        "text": "Andreas Becker",
+        "source_path": "$.sub.invoice_part2",
+        "start": 114,
+        "end": 128
+      }
+    ],
+    "POSTAL_ADDRESS": [
+      {
+        "text": "Jägerstraße 54\n10117 Berlin\nBerlin\nDeutschland",
+        "source_path": "$.invoice_part1",
+        "start": 355,
+        "end": 401
+      },
+      {
+        "text": "Karolinenstraße 55\n90402 Nürnberg\nBayern\nDeutschland",
+        "source_path": "$.sub.invoice_part2",
+        "start": 173,
+        "end": 225
+      }
+    ],
+    "STREET_ADDRESS": [
+      {
+        "text": "Jägerstraße 54",
+        "source_path": "$.invoice_part1",
+        "start": 355,
+        "end": 369
+      },
+      {
+        "text": "Karolinenstraße 55",
+        "source_path": "$.sub.invoice_part2",
+        "start": 173,
+        "end": 191
+      }
+    ],
+    "POSTAL_CODE": [
+      {
+        "text": "10117",
+        "source_path": "$.invoice_part1",
+        "start": 370,
+        "end": 375
+      },
+      {
+        "text": "90402",
+        "source_path": "$.sub.invoice_part2",
+        "start": 192,
+        "end": 197
+      }
+    ],
+    "CITY": [
+      {
+        "text": "Berlin",
+        "source_path": "$.invoice_part1",
+        "start": 376,
+        "end": 382
+      },
+      {
+        "text": "Nürnberg",
+        "source_path": "$.sub.invoice_part2",
+        "start": 198,
+        "end": 206
+      }
+    ],
+    "STATE_OR_REGION": [
+      {
+        "text": "Berlin",
+        "source_path": "$.invoice_part1",
+        "start": 383,
+        "end": 389
+      },
+      {
+        "text": "Bayern",
+        "source_path": "$.sub.invoice_part2",
+        "start": 207,
+        "end": 213
+      }
+    ],
+    "COUNTRY": [
+      {
+        "text": "Deutschland",
+        "source_path": "$.invoice_part1",
+        "start": 390,
+        "end": 401
+      },
+      {
+        "text": "Deutschland",
+        "source_path": "$.sub.invoice_part2",
+        "start": 214,
+        "end": 225
+      }
+    ],
+    "ACCOUNT_ID": [
+      {
+        "text": "KD-11460",
+        "source_path": "$.invoice_part1",
+        "start": 261,
+        "end": 269
+      }
+    ],
+    "INVOICE_NUMBER": [
+      {
+        "text": "RE-2026-1020",
+        "source_path": "$.invoice_part1",
+        "start": 114,
+        "end": 126
+      }
+    ],
+    "INVOICE_DATE": [
+      {
+        "text": "2026-04-22",
+        "source_path": "$.invoice_part1",
+        "start": 133,
+        "end": 143
+      }
+    ],
+    "DUE_DATE": [
+      {
+        "text": "20.05.26",
+        "source_path": "$.invoice_part1",
+        "start": 238,
+        "end": 246
+      }
+    ],
+    "SERVICE_DATE": [],
+    "DELIVERY_DATE": [],
+    "ORDER_NUMBER": [
+      {
+        "text": "AUF-2026-3020",
+        "source_path": "$.invoice_part1",
+        "start": 295,
+        "end": 308
+      }
+    ],
+    "DOCUMENT_DATE": [
+      {
+        "text": "22-04-2026",
+        "source_path": "$.sub.invoice_part2",
+        "start": 261,
+        "end": 271
+      }
+    ],
+    "TRANSACTION_DATE": [],
+    "DATE": [
+      {
+        "text": "27 / 05 / 2026",
+        "source_path": "$.sub.invoice_part2",
+        "start": 80,
+        "end": 94
+      }
+    ],
+    "TAX_ID": [
+      {
+        "text": "DE100293003",
+        "source_path": "$.sub.invoice_part2",
+        "start": 323,
+        "end": 334
+      }
+    ],
+    "TAX_NUMBER": [
+      {
+        "text": "30 240 11940",
+        "source_path": "$.sub.invoice_part2",
+        "start": 347,
+        "end": 359
+      }
+    ]
+  }
+}

@@ -1,0 +1,383 @@
+{
+  "document_id": "de-business-013",
+  "document_type": "Mahnung",
+  "entities": [
+    {
+      "label": "COMPANY_NAME",
+      "text": "Brückenwerk Mobilität GmbH",
+      "source_path": "$.invoice_part1",
+      "start": 66,
+      "end": 92
+    },
+    {
+      "label": "INVOICE_NUMBER",
+      "text": "RE-2026-1012",
+      "source_path": "$.invoice_part1",
+      "start": 117,
+      "end": 129
+    },
+    {
+      "label": "INVOICE_DATE",
+      "text": "13.03.2026",
+      "source_path": "$.invoice_part1",
+      "start": 136,
+      "end": 146
+    },
+    {
+      "label": "DUE_DATE",
+      "text": "27. März 2026",
+      "source_path": "$.invoice_part1",
+      "start": 241,
+      "end": 254
+    },
+    {
+      "label": "ACCOUNT_ID",
+      "text": "KD-10876",
+      "source_path": "$.invoice_part1",
+      "start": 269,
+      "end": 277
+    },
+    {
+      "label": "ORDER_NUMBER",
+      "text": "AUF-2026-3012",
+      "source_path": "$.invoice_part1",
+      "start": 303,
+      "end": 316
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "Berg & Tal Architektur UG (haftungsbeschränkt)",
+      "source_path": "$.invoice_part1",
+      "start": 329,
+      "end": 375
+    },
+    {
+      "label": "POSTAL_ADDRESS",
+      "text": "Bertoldstraße 53\n79098 Freiburg im Breisgau\nBaden-Württemberg\nDeutschland",
+      "source_path": "$.invoice_part1",
+      "start": 376,
+      "end": 449
+    },
+    {
+      "label": "STREET_ADDRESS",
+      "text": "Bertoldstraße 53",
+      "source_path": "$.invoice_part1",
+      "start": 376,
+      "end": 392
+    },
+    {
+      "label": "POSTAL_CODE",
+      "text": "79098",
+      "source_path": "$.invoice_part1",
+      "start": 393,
+      "end": 398
+    },
+    {
+      "label": "CITY",
+      "text": "Freiburg im Breisgau",
+      "source_path": "$.invoice_part1",
+      "start": 399,
+      "end": 419
+    },
+    {
+      "label": "STATE_OR_REGION",
+      "text": "Baden-Württemberg",
+      "source_path": "$.invoice_part1",
+      "start": 420,
+      "end": 437
+    },
+    {
+      "label": "COUNTRY",
+      "text": "Deutschland",
+      "source_path": "$.invoice_part1",
+      "start": 438,
+      "end": 449
+    },
+    {
+      "label": "DATE",
+      "text": "2026-04-03",
+      "source_path": "$.sub.invoice_part2",
+      "start": 80,
+      "end": 90
+    },
+    {
+      "label": "PERSON_NAME",
+      "text": "Jonas Becker",
+      "source_path": "$.sub.invoice_part2",
+      "start": 110,
+      "end": 122
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "Brückenwerk Mobilität GmbH",
+      "source_path": "$.sub.invoice_part2",
+      "start": 143,
+      "end": 169
+    },
+    {
+      "label": "POSTAL_ADDRESS",
+      "text": "Jägerstraße 54\n10117 Berlin\nBerlin\nDeutschland",
+      "source_path": "$.sub.invoice_part2",
+      "start": 170,
+      "end": 216
+    },
+    {
+      "label": "STREET_ADDRESS",
+      "text": "Jägerstraße 54",
+      "source_path": "$.sub.invoice_part2",
+      "start": 170,
+      "end": 184
+    },
+    {
+      "label": "POSTAL_CODE",
+      "text": "10117",
+      "source_path": "$.sub.invoice_part2",
+      "start": 185,
+      "end": 190
+    },
+    {
+      "label": "CITY",
+      "text": "Berlin",
+      "source_path": "$.sub.invoice_part2",
+      "start": 191,
+      "end": 197
+    },
+    {
+      "label": "STATE_OR_REGION",
+      "text": "Berlin",
+      "source_path": "$.sub.invoice_part2",
+      "start": 198,
+      "end": 204
+    },
+    {
+      "label": "COUNTRY",
+      "text": "Deutschland",
+      "source_path": "$.sub.invoice_part2",
+      "start": 205,
+      "end": 216
+    },
+    {
+      "label": "DOCUMENT_DATE",
+      "text": "13.03.26",
+      "source_path": "$.sub.invoice_part2",
+      "start": 252,
+      "end": 260
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "Berg & Tal Architektur UG (haftungsbeschränkt)",
+      "source_path": "$.sub.invoice_part2",
+      "start": 266,
+      "end": 312
+    },
+    {
+      "label": "TAX_ID",
+      "text": "DE100229651",
+      "source_path": "$.sub.invoice_part2",
+      "start": 325,
+      "end": 336
+    },
+    {
+      "label": "TAX_NUMBER",
+      "text": "22/184/11164",
+      "source_path": "$.sub.invoice_part2",
+      "start": 349,
+      "end": 361
+    }
+  ],
+  "by_label": {
+    "COMPANY_NAME": [
+      {
+        "text": "Brückenwerk Mobilität GmbH",
+        "source_path": "$.invoice_part1",
+        "start": 66,
+        "end": 92
+      },
+      {
+        "text": "Berg & Tal Architektur UG (haftungsbeschränkt)",
+        "source_path": "$.invoice_part1",
+        "start": 329,
+        "end": 375
+      },
+      {
+        "text": "Brückenwerk Mobilität GmbH",
+        "source_path": "$.sub.invoice_part2",
+        "start": 143,
+        "end": 169
+      },
+      {
+        "text": "Berg & Tal Architektur UG (haftungsbeschränkt)",
+        "source_path": "$.sub.invoice_part2",
+        "start": 266,
+        "end": 312
+      }
+    ],
+    "PERSON_NAME": [
+      {
+        "text": "Jonas Becker",
+        "source_path": "$.sub.invoice_part2",
+        "start": 110,
+        "end": 122
+      }
+    ],
+    "POSTAL_ADDRESS": [
+      {
+        "text": "Bertoldstraße 53\n79098 Freiburg im Breisgau\nBaden-Württemberg\nDeutschland",
+        "source_path": "$.invoice_part1",
+        "start": 376,
+        "end": 449
+      },
+      {
+        "text": "Jägerstraße 54\n10117 Berlin\nBerlin\nDeutschland",
+        "source_path": "$.sub.invoice_part2",
+        "start": 170,
+        "end": 216
+      }
+    ],
+    "STREET_ADDRESS": [
+      {
+        "text": "Bertoldstraße 53",
+        "source_path": "$.invoice_part1",
+        "start": 376,
+        "end": 392
+      },
+      {
+        "text": "Jägerstraße 54",
+        "source_path": "$.sub.invoice_part2",
+        "start": 170,
+        "end": 184
+      }
+    ],
+    "POSTAL_CODE": [
+      {
+        "text": "79098",
+        "source_path": "$.invoice_part1",
+        "start": 393,
+        "end": 398
+      },
+      {
+        "text": "10117",
+        "source_path": "$.sub.invoice_part2",
+        "start": 185,
+        "end": 190
+      }
+    ],
+    "CITY": [
+      {
+        "text": "Freiburg im Breisgau",
+        "source_path": "$.invoice_part1",
+        "start": 399,
+        "end": 419
+      },
+      {
+        "text": "Berlin",
+        "source_path": "$.sub.invoice_part2",
+        "start": 191,
+        "end": 197
+      }
+    ],
+    "STATE_OR_REGION": [
+      {
+        "text": "Baden-Württemberg",
+        "source_path": "$.invoice_part1",
+        "start": 420,
+        "end": 437
+      },
+      {
+        "text": "Berlin",
+        "source_path": "$.sub.invoice_part2",
+        "start": 198,
+        "end": 204
+      }
+    ],
+    "COUNTRY": [
+      {
+        "text": "Deutschland",
+        "source_path": "$.invoice_part1",
+        "start": 438,
+        "end": 449
+      },
+      {
+        "text": "Deutschland",
+        "source_path": "$.sub.invoice_part2",
+        "start": 205,
+        "end": 216
+      }
+    ],
+    "ACCOUNT_ID": [
+      {
+        "text": "KD-10876",
+        "source_path": "$.invoice_part1",
+        "start": 269,
+        "end": 277
+      }
+    ],
+    "INVOICE_NUMBER": [
+      {
+        "text": "RE-2026-1012",
+        "source_path": "$.invoice_part1",
+        "start": 117,
+        "end": 129
+      }
+    ],
+    "INVOICE_DATE": [
+      {
+        "text": "13.03.2026",
+        "source_path": "$.invoice_part1",
+        "start": 136,
+        "end": 146
+      }
+    ],
+    "DUE_DATE": [
+      {
+        "text": "27. März 2026",
+        "source_path": "$.invoice_part1",
+        "start": 241,
+        "end": 254
+      }
+    ],
+    "SERVICE_DATE": [],
+    "DELIVERY_DATE": [],
+    "ORDER_NUMBER": [
+      {
+        "text": "AUF-2026-3012",
+        "source_path": "$.invoice_part1",
+        "start": 303,
+        "end": 316
+      }
+    ],
+    "DOCUMENT_DATE": [
+      {
+        "text": "13.03.26",
+        "source_path": "$.sub.invoice_part2",
+        "start": 252,
+        "end": 260
+      }
+    ],
+    "TRANSACTION_DATE": [],
+    "DATE": [
+      {
+        "text": "2026-04-03",
+        "source_path": "$.sub.invoice_part2",
+        "start": 80,
+        "end": 90
+      }
+    ],
+    "TAX_ID": [
+      {
+        "text": "DE100229651",
+        "source_path": "$.sub.invoice_part2",
+        "start": 325,
+        "end": 336
+      }
+    ],
+    "TAX_NUMBER": [
+      {
+        "text": "22/184/11164",
+        "source_path": "$.sub.invoice_part2",
+        "start": 349,
+        "end": 361
+      }
+    ]
+  }
+}

@@ -1,0 +1,355 @@
+{
+  "document_id": "de-business-043",
+  "document_type": "Wartungsprotokoll",
+  "entities": [
+    {
+      "label": "DOCUMENT_DATE",
+      "text": "10.08.2026",
+      "source_path": "$.invoice_part1",
+      "start": 38,
+      "end": 48
+    },
+    {
+      "label": "ORDER_NUMBER",
+      "text": "BEST/2026/742",
+      "source_path": "$.invoice_part1",
+      "start": 58,
+      "end": 71
+    },
+    {
+      "label": "ACCOUNT_ID",
+      "text": "CUST-202642",
+      "source_path": "$.invoice_part1",
+      "start": 83,
+      "end": 94
+    },
+    {
+      "label": "SERVICE_DATE",
+      "text": "7. August 2026",
+      "source_path": "$.invoice_part1",
+      "start": 120,
+      "end": 134
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "Neckar Data Systems UG (haftungsbeschränkt)",
+      "source_path": "$.invoice_part1",
+      "start": 151,
+      "end": 194
+    },
+    {
+      "label": "POSTAL_ADDRESS",
+      "text": "Kaiserstraße 35a\n60311 Frankfurt am Main\nHessen\nDeutschland",
+      "source_path": "$.invoice_part1",
+      "start": 195,
+      "end": 254
+    },
+    {
+      "label": "STREET_ADDRESS",
+      "text": "Kaiserstraße 35a",
+      "source_path": "$.invoice_part1",
+      "start": 195,
+      "end": 211
+    },
+    {
+      "label": "POSTAL_CODE",
+      "text": "60311",
+      "source_path": "$.invoice_part1",
+      "start": 212,
+      "end": 217
+    },
+    {
+      "label": "CITY",
+      "text": "Frankfurt am Main",
+      "source_path": "$.invoice_part1",
+      "start": 218,
+      "end": 235
+    },
+    {
+      "label": "STATE_OR_REGION",
+      "text": "Hessen",
+      "source_path": "$.invoice_part1",
+      "start": 236,
+      "end": 242
+    },
+    {
+      "label": "COUNTRY",
+      "text": "Deutschland",
+      "source_path": "$.invoice_part1",
+      "start": 243,
+      "end": 254
+    },
+    {
+      "label": "PERSON_NAME",
+      "text": "Lukas Hartmann",
+      "source_path": "$.invoice_part1",
+      "start": 269,
+      "end": 283
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "Kernpunkt Sicherheitstechnik GmbH",
+      "source_path": "$.invoice_part1",
+      "start": 292,
+      "end": 325
+    },
+    {
+      "label": "POSTAL_ADDRESS",
+      "text": "Salzstraße 36a\n79098 Freiburg im Breisgau\nBaden-Württemberg\nDeutschland",
+      "source_path": "$.invoice_part1",
+      "start": 326,
+      "end": 397
+    },
+    {
+      "label": "STREET_ADDRESS",
+      "text": "Salzstraße 36a",
+      "source_path": "$.invoice_part1",
+      "start": 326,
+      "end": 340
+    },
+    {
+      "label": "POSTAL_CODE",
+      "text": "79098",
+      "source_path": "$.invoice_part1",
+      "start": 341,
+      "end": 346
+    },
+    {
+      "label": "CITY",
+      "text": "Freiburg im Breisgau",
+      "source_path": "$.invoice_part1",
+      "start": 347,
+      "end": 367
+    },
+    {
+      "label": "STATE_OR_REGION",
+      "text": "Baden-Württemberg",
+      "source_path": "$.invoice_part1",
+      "start": 368,
+      "end": 385
+    },
+    {
+      "label": "COUNTRY",
+      "text": "Deutschland",
+      "source_path": "$.invoice_part1",
+      "start": 386,
+      "end": 397
+    },
+    {
+      "label": "PERSON_NAME",
+      "text": "Nina Lorenz",
+      "source_path": "$.sub.invoice_part2",
+      "start": 116,
+      "end": 127
+    },
+    {
+      "label": "DATE",
+      "text": "2027-02-06",
+      "source_path": "$.sub.invoice_part2",
+      "start": 157,
+      "end": 167
+    },
+    {
+      "label": "TAX_NUMBER",
+      "text": "52/394/14074",
+      "source_path": "$.sub.invoice_part2",
+      "start": 196,
+      "end": 208
+    },
+    {
+      "label": "TAX_ID",
+      "text": "DE100467221",
+      "source_path": "$.sub.invoice_part2",
+      "start": 231,
+      "end": 242
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "Neckar Data Systems UG (haftungsbeschränkt)",
+      "source_path": "$.sub.invoice_part2",
+      "start": 258,
+      "end": 301
+    }
+  ],
+  "by_label": {
+    "COMPANY_NAME": [
+      {
+        "text": "Neckar Data Systems UG (haftungsbeschränkt)",
+        "source_path": "$.invoice_part1",
+        "start": 151,
+        "end": 194
+      },
+      {
+        "text": "Kernpunkt Sicherheitstechnik GmbH",
+        "source_path": "$.invoice_part1",
+        "start": 292,
+        "end": 325
+      },
+      {
+        "text": "Neckar Data Systems UG (haftungsbeschränkt)",
+        "source_path": "$.sub.invoice_part2",
+        "start": 258,
+        "end": 301
+      }
+    ],
+    "PERSON_NAME": [
+      {
+        "text": "Lukas Hartmann",
+        "source_path": "$.invoice_part1",
+        "start": 269,
+        "end": 283
+      },
+      {
+        "text": "Nina Lorenz",
+        "source_path": "$.sub.invoice_part2",
+        "start": 116,
+        "end": 127
+      }
+    ],
+    "POSTAL_ADDRESS": [
+      {
+        "text": "Kaiserstraße 35a\n60311 Frankfurt am Main\nHessen\nDeutschland",
+        "source_path": "$.invoice_part1",
+        "start": 195,
+        "end": 254
+      },
+      {
+        "text": "Salzstraße 36a\n79098 Freiburg im Breisgau\nBaden-Württemberg\nDeutschland",
+        "source_path": "$.invoice_part1",
+        "start": 326,
+        "end": 397
+      }
+    ],
+    "STREET_ADDRESS": [
+      {
+        "text": "Kaiserstraße 35a",
+        "source_path": "$.invoice_part1",
+        "start": 195,
+        "end": 211
+      },
+      {
+        "text": "Salzstraße 36a",
+        "source_path": "$.invoice_part1",
+        "start": 326,
+        "end": 340
+      }
+    ],
+    "POSTAL_CODE": [
+      {
+        "text": "60311",
+        "source_path": "$.invoice_part1",
+        "start": 212,
+        "end": 217
+      },
+      {
+        "text": "79098",
+        "source_path": "$.invoice_part1",
+        "start": 341,
+        "end": 346
+      }
+    ],
+    "CITY": [
+      {
+        "text": "Frankfurt am Main",
+        "source_path": "$.invoice_part1",
+        "start": 218,
+        "end": 235
+      },
+      {
+        "text": "Freiburg im Breisgau",
+        "source_path": "$.invoice_part1",
+        "start": 347,
+        "end": 367
+      }
+    ],
+    "STATE_OR_REGION": [
+      {
+        "text": "Hessen",
+        "source_path": "$.invoice_part1",
+        "start": 236,
+        "end": 242
+      },
+      {
+        "text": "Baden-Württemberg",
+        "source_path": "$.invoice_part1",
+        "start": 368,
+        "end": 385
+      }
+    ],
+    "COUNTRY": [
+      {
+        "text": "Deutschland",
+        "source_path": "$.invoice_part1",
+        "start": 243,
+        "end": 254
+      },
+      {
+        "text": "Deutschland",
+        "source_path": "$.invoice_part1",
+        "start": 386,
+        "end": 397
+      }
+    ],
+    "ACCOUNT_ID": [
+      {
+        "text": "CUST-202642",
+        "source_path": "$.invoice_part1",
+        "start": 83,
+        "end": 94
+      }
+    ],
+    "INVOICE_NUMBER": [],
+    "INVOICE_DATE": [],
+    "DUE_DATE": [],
+    "SERVICE_DATE": [
+      {
+        "text": "7. August 2026",
+        "source_path": "$.invoice_part1",
+        "start": 120,
+        "end": 134
+      }
+    ],
+    "DELIVERY_DATE": [],
+    "ORDER_NUMBER": [
+      {
+        "text": "BEST/2026/742",
+        "source_path": "$.invoice_part1",
+        "start": 58,
+        "end": 71
+      }
+    ],
+    "DOCUMENT_DATE": [
+      {
+        "text": "10.08.2026",
+        "source_path": "$.invoice_part1",
+        "start": 38,
+        "end": 48
+      }
+    ],
+    "TRANSACTION_DATE": [],
+    "DATE": [
+      {
+        "text": "2027-02-06",
+        "source_path": "$.sub.invoice_part2",
+        "start": 157,
+        "end": 167
+      }
+    ],
+    "TAX_ID": [
+      {
+        "text": "DE100467221",
+        "source_path": "$.sub.invoice_part2",
+        "start": 231,
+        "end": 242
+      }
+    ],
+    "TAX_NUMBER": [
+      {
+        "text": "52/394/14074",
+        "source_path": "$.sub.invoice_part2",
+        "start": 196,
+        "end": 208
+      }
+    ]
+  }
+}

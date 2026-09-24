@@ -1,0 +1,6 @@
+{
+  "invoice_part1": "# Servicebericht\n\nDokumentiert am: 02 / 05 / 2026\nAuftrag: BEST/2026/722\nKunden-ID: CUST-202622\nEinsatz-/Leistungsdatum: 25-04-2026\n\nDienstleister:\nDatenhafen Analytics UG (haftungsbeschränkt)\nCäcilienstraße 76a\n50667 Köln\nNordrhein-Westfalen\nDeutschland\nTechniker/in: Markus Hartmann\n\nKunde:\nAlpenbyte Solutions GmbH\nLuisenstraße 77a\n30159 Hannover\nNiedersachsen\nDeutschland",
+  "sub": {
+    "invoice_part2": "## Ausgeführte Arbeiten\n\n- Fehleranalyse\n- Austausch einer Baugruppe\n- Systemprüfung und Funktionskontrolle\n\nAbnahme durch: Theresa Lorenz\nNächster empfohlener Termin: 29.10.2026\nSteuernummer Dienstleister: 342/6166/1374\nUSt-ID Dienstleister: DE100308841\nDienstleister: Datenhafen Analytics UG (haftungsbeschränkt)"
+  }
+}

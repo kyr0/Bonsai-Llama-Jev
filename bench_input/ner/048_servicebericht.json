@@ -1,0 +1,6 @@
+{
+  "invoice_part1": "# Servicebericht\n\nDokumentiert am: 04-09-2026\nAuftrag: AB-60799\nKunden-ID: DEB 91457\nEinsatz-/Leistungsdatum: 27.08.2026\n\nDienstleister:\nBerg & Tal Architektur UG (haftungsbeschränkt)\nLorenzer Straße 90b\n90402 Nürnberg\nBayern\nDeutschland\nTechniker/in: Julia Lorenz\n\nKunde:\nBrückenwerk Mobilität GmbH\nMainzer Straße 91b\n66111 Saarbrücken\nSaarland\nDeutschland",
+  "sub": {
+    "invoice_part2": "## Ausgeführte Arbeiten\n\n- Systemprüfung und Funktionskontrolle\n- Firmware-/Softwareaktualisierung\n- Austausch einer Baugruppe\n\nAbnahme durch: Tobias Becker\nNächster empfohlener Termin: 3. März 2027\nSteuernummer Dienstleister: 57 429 14559\nUSt-ID Dienstleister: DE100506816\nDienstleister: Berg & Tal Architektur UG (haftungsbeschränkt)"
+  }
+}

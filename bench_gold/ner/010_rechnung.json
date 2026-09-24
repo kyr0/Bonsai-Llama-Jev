@@ -1,0 +1,291 @@
+{
+  "document_id": "de-business-010",
+  "document_type": "Rechnung",
+  "entities": [
+    {
+      "label": "INVOICE_NUMBER",
+      "text": "R26/04009",
+      "source_path": "$.invoice_part1",
+      "start": 44,
+      "end": 53
+    },
+    {
+      "label": "INVOICE_DATE",
+      "text": "26.02.26",
+      "source_path": "$.invoice_part1",
+      "start": 70,
+      "end": 78
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "Mainblick Consulting AG",
+      "source_path": "$.invoice_part1",
+      "start": 85,
+      "end": 108
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "Datenhafen Analytics UG (haftungsbeschränkt)",
+      "source_path": "$.invoice_part1",
+      "start": 131,
+      "end": 175
+    },
+    {
+      "label": "POSTAL_ADDRESS",
+      "text": "Bahnhofstraße 21\n66111 Saarbrücken\nSaarland\nDeutschland",
+      "source_path": "$.invoice_part1",
+      "start": 176,
+      "end": 231
+    },
+    {
+      "label": "STREET_ADDRESS",
+      "text": "Bahnhofstraße 21",
+      "source_path": "$.invoice_part1",
+      "start": 176,
+      "end": 192
+    },
+    {
+      "label": "POSTAL_CODE",
+      "text": "66111",
+      "source_path": "$.invoice_part1",
+      "start": 193,
+      "end": 198
+    },
+    {
+      "label": "CITY",
+      "text": "Saarbrücken",
+      "source_path": "$.invoice_part1",
+      "start": 199,
+      "end": 210
+    },
+    {
+      "label": "STATE_OR_REGION",
+      "text": "Saarland",
+      "source_path": "$.invoice_part1",
+      "start": 211,
+      "end": 219
+    },
+    {
+      "label": "COUNTRY",
+      "text": "Deutschland",
+      "source_path": "$.invoice_part1",
+      "start": 220,
+      "end": 231
+    },
+    {
+      "label": "PERSON_NAME",
+      "text": "Daniel Hartmann",
+      "source_path": "$.invoice_part1",
+      "start": 249,
+      "end": 264
+    },
+    {
+      "label": "ACCOUNT_ID",
+      "text": "KTO/700171",
+      "source_path": "$.invoice_part1",
+      "start": 280,
+      "end": 290
+    },
+    {
+      "label": "SERVICE_DATE",
+      "text": "24-02-2026",
+      "source_path": "$.invoice_part1",
+      "start": 312,
+      "end": 322
+    },
+    {
+      "label": "TAX_ID",
+      "text": "DE100205894",
+      "source_path": "$.invoice_part1",
+      "start": 344,
+      "end": 355
+    },
+    {
+      "label": "TAX_NUMBER",
+      "text": "19/163/10873",
+      "source_path": "$.invoice_part1",
+      "start": 358,
+      "end": 370
+    },
+    {
+      "label": "DUE_DATE",
+      "text": "12.03.2026",
+      "source_path": "$.sub.invoice_part2",
+      "start": 315,
+      "end": 325
+    },
+    {
+      "label": "ORDER_NUMBER",
+      "text": "PO-26-08009",
+      "source_path": "$.sub.invoice_part2",
+      "start": 344,
+      "end": 355
+    },
+    {
+      "label": "PERSON_NAME",
+      "text": "Marlene Wolf",
+      "source_path": "$.sub.invoice_part2",
+      "start": 377,
+      "end": 389
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "Mainblick Consulting AG",
+      "source_path": "$.sub.invoice_part2",
+      "start": 418,
+      "end": 441
+    }
+  ],
+  "by_label": {
+    "COMPANY_NAME": [
+      {
+        "text": "Mainblick Consulting AG",
+        "source_path": "$.invoice_part1",
+        "start": 85,
+        "end": 108
+      },
+      {
+        "text": "Datenhafen Analytics UG (haftungsbeschränkt)",
+        "source_path": "$.invoice_part1",
+        "start": 131,
+        "end": 175
+      },
+      {
+        "text": "Mainblick Consulting AG",
+        "source_path": "$.sub.invoice_part2",
+        "start": 418,
+        "end": 441
+      }
+    ],
+    "PERSON_NAME": [
+      {
+        "text": "Daniel Hartmann",
+        "source_path": "$.invoice_part1",
+        "start": 249,
+        "end": 264
+      },
+      {
+        "text": "Marlene Wolf",
+        "source_path": "$.sub.invoice_part2",
+        "start": 377,
+        "end": 389
+      }
+    ],
+    "POSTAL_ADDRESS": [
+      {
+        "text": "Bahnhofstraße 21\n66111 Saarbrücken\nSaarland\nDeutschland",
+        "source_path": "$.invoice_part1",
+        "start": 176,
+        "end": 231
+      }
+    ],
+    "STREET_ADDRESS": [
+      {
+        "text": "Bahnhofstraße 21",
+        "source_path": "$.invoice_part1",
+        "start": 176,
+        "end": 192
+      }
+    ],
+    "POSTAL_CODE": [
+      {
+        "text": "66111",
+        "source_path": "$.invoice_part1",
+        "start": 193,
+        "end": 198
+      }
+    ],
+    "CITY": [
+      {
+        "text": "Saarbrücken",
+        "source_path": "$.invoice_part1",
+        "start": 199,
+        "end": 210
+      }
+    ],
+    "STATE_OR_REGION": [
+      {
+        "text": "Saarland",
+        "source_path": "$.invoice_part1",
+        "start": 211,
+        "end": 219
+      }
+    ],
+    "COUNTRY": [
+      {
+        "text": "Deutschland",
+        "source_path": "$.invoice_part1",
+        "start": 220,
+        "end": 231
+      }
+    ],
+    "ACCOUNT_ID": [
+      {
+        "text": "KTO/700171",
+        "source_path": "$.invoice_part1",
+        "start": 280,
+        "end": 290
+      }
+    ],
+    "INVOICE_NUMBER": [
+      {
+        "text": "R26/04009",
+        "source_path": "$.invoice_part1",
+        "start": 44,
+        "end": 53
+      }
+    ],
+    "INVOICE_DATE": [
+      {
+        "text": "26.02.26",
+        "source_path": "$.invoice_part1",
+        "start": 70,
+        "end": 78
+      }
+    ],
+    "DUE_DATE": [
+      {
+        "text": "12.03.2026",
+        "source_path": "$.sub.invoice_part2",
+        "start": 315,
+        "end": 325
+      }
+    ],
+    "SERVICE_DATE": [
+      {
+        "text": "24-02-2026",
+        "source_path": "$.invoice_part1",
+        "start": 312,
+        "end": 322
+      }
+    ],
+    "DELIVERY_DATE": [],
+    "ORDER_NUMBER": [
+      {
+        "text": "PO-26-08009",
+        "source_path": "$.sub.invoice_part2",
+        "start": 344,
+        "end": 355
+      }
+    ],
+    "DOCUMENT_DATE": [],
+    "TRANSACTION_DATE": [],
+    "DATE": [],
+    "TAX_ID": [
+      {
+        "text": "DE100205894",
+        "source_path": "$.invoice_part1",
+        "start": 344,
+        "end": 355
+      }
+    ],
+    "TAX_NUMBER": [
+      {
+        "text": "19/163/10873",
+        "source_path": "$.invoice_part1",
+        "start": 358,
+        "end": 370
+      }
+    ]
+  }
+}

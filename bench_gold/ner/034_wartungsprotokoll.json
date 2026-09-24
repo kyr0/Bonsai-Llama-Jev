@@ -1,0 +1,355 @@
+{
+  "document_id": "de-business-034",
+  "document_type": "Wartungsprotokoll",
+  "entities": [
+    {
+      "label": "DOCUMENT_DATE",
+      "text": "26.06.26",
+      "source_path": "$.invoice_part1",
+      "start": 38,
+      "end": 46
+    },
+    {
+      "label": "ORDER_NUMBER",
+      "text": "PO-26-08033",
+      "source_path": "$.invoice_part1",
+      "start": 56,
+      "end": 67
+    },
+    {
+      "label": "ACCOUNT_ID",
+      "text": "KTO/700627",
+      "source_path": "$.invoice_part1",
+      "start": 79,
+      "end": 89
+    },
+    {
+      "label": "SERVICE_DATE",
+      "text": "24 / 06 / 2026",
+      "source_path": "$.invoice_part1",
+      "start": 115,
+      "end": 129
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "Merkur Netztechnik e.K.",
+      "source_path": "$.invoice_part1",
+      "start": 146,
+      "end": 169
+    },
+    {
+      "label": "POSTAL_ADDRESS",
+      "text": "Brandenburger Straße 23\n14467 Potsdam\nBrandenburg\nDeutschland",
+      "source_path": "$.invoice_part1",
+      "start": 170,
+      "end": 231
+    },
+    {
+      "label": "STREET_ADDRESS",
+      "text": "Brandenburger Straße 23",
+      "source_path": "$.invoice_part1",
+      "start": 170,
+      "end": 193
+    },
+    {
+      "label": "POSTAL_CODE",
+      "text": "14467",
+      "source_path": "$.invoice_part1",
+      "start": 194,
+      "end": 199
+    },
+    {
+      "label": "CITY",
+      "text": "Potsdam",
+      "source_path": "$.invoice_part1",
+      "start": 200,
+      "end": 207
+    },
+    {
+      "label": "STATE_OR_REGION",
+      "text": "Brandenburg",
+      "source_path": "$.invoice_part1",
+      "start": 208,
+      "end": 219
+    },
+    {
+      "label": "COUNTRY",
+      "text": "Deutschland",
+      "source_path": "$.invoice_part1",
+      "start": 220,
+      "end": 231
+    },
+    {
+      "label": "PERSON_NAME",
+      "text": "Anna Wolf",
+      "source_path": "$.invoice_part1",
+      "start": 246,
+      "end": 255
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "KüstenCloud GmbH & Co. KG",
+      "source_path": "$.invoice_part1",
+      "start": 264,
+      "end": 289
+    },
+    {
+      "label": "POSTAL_ADDRESS",
+      "text": "Hohe Straße 24\n50667 Köln\nNordrhein-Westfalen\nDeutschland",
+      "source_path": "$.invoice_part1",
+      "start": 290,
+      "end": 347
+    },
+    {
+      "label": "STREET_ADDRESS",
+      "text": "Hohe Straße 24",
+      "source_path": "$.invoice_part1",
+      "start": 290,
+      "end": 304
+    },
+    {
+      "label": "POSTAL_CODE",
+      "text": "50667",
+      "source_path": "$.invoice_part1",
+      "start": 305,
+      "end": 310
+    },
+    {
+      "label": "CITY",
+      "text": "Köln",
+      "source_path": "$.invoice_part1",
+      "start": 311,
+      "end": 315
+    },
+    {
+      "label": "STATE_OR_REGION",
+      "text": "Nordrhein-Westfalen",
+      "source_path": "$.invoice_part1",
+      "start": 316,
+      "end": 335
+    },
+    {
+      "label": "COUNTRY",
+      "text": "Deutschland",
+      "source_path": "$.invoice_part1",
+      "start": 336,
+      "end": 347
+    },
+    {
+      "label": "PERSON_NAME",
+      "text": "Lukas Hartmann",
+      "source_path": "$.sub.invoice_part2",
+      "start": 143,
+      "end": 157
+    },
+    {
+      "label": "DATE",
+      "text": "23-12-2026",
+      "source_path": "$.sub.invoice_part2",
+      "start": 187,
+      "end": 197
+    },
+    {
+      "label": "TAX_NUMBER",
+      "text": "43/331/13201",
+      "source_path": "$.sub.invoice_part2",
+      "start": 226,
+      "end": 238
+    },
+    {
+      "label": "TAX_ID",
+      "text": "DE100395950",
+      "source_path": "$.sub.invoice_part2",
+      "start": 261,
+      "end": 272
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "Merkur Netztechnik e.K.",
+      "source_path": "$.sub.invoice_part2",
+      "start": 288,
+      "end": 311
+    }
+  ],
+  "by_label": {
+    "COMPANY_NAME": [
+      {
+        "text": "Merkur Netztechnik e.K.",
+        "source_path": "$.invoice_part1",
+        "start": 146,
+        "end": 169
+      },
+      {
+        "text": "KüstenCloud GmbH & Co. KG",
+        "source_path": "$.invoice_part1",
+        "start": 264,
+        "end": 289
+      },
+      {
+        "text": "Merkur Netztechnik e.K.",
+        "source_path": "$.sub.invoice_part2",
+        "start": 288,
+        "end": 311
+      }
+    ],
+    "PERSON_NAME": [
+      {
+        "text": "Anna Wolf",
+        "source_path": "$.invoice_part1",
+        "start": 246,
+        "end": 255
+      },
+      {
+        "text": "Lukas Hartmann",
+        "source_path": "$.sub.invoice_part2",
+        "start": 143,
+        "end": 157
+      }
+    ],
+    "POSTAL_ADDRESS": [
+      {
+        "text": "Brandenburger Straße 23\n14467 Potsdam\nBrandenburg\nDeutschland",
+        "source_path": "$.invoice_part1",
+        "start": 170,
+        "end": 231
+      },
+      {
+        "text": "Hohe Straße 24\n50667 Köln\nNordrhein-Westfalen\nDeutschland",
+        "source_path": "$.invoice_part1",
+        "start": 290,
+        "end": 347
+      }
+    ],
+    "STREET_ADDRESS": [
+      {
+        "text": "Brandenburger Straße 23",
+        "source_path": "$.invoice_part1",
+        "start": 170,
+        "end": 193
+      },
+      {
+        "text": "Hohe Straße 24",
+        "source_path": "$.invoice_part1",
+        "start": 290,
+        "end": 304
+      }
+    ],
+    "POSTAL_CODE": [
+      {
+        "text": "14467",
+        "source_path": "$.invoice_part1",
+        "start": 194,
+        "end": 199
+      },
+      {
+        "text": "50667",
+        "source_path": "$.invoice_part1",
+        "start": 305,
+        "end": 310
+      }
+    ],
+    "CITY": [
+      {
+        "text": "Potsdam",
+        "source_path": "$.invoice_part1",
+        "start": 200,
+        "end": 207
+      },
+      {
+        "text": "Köln",
+        "source_path": "$.invoice_part1",
+        "start": 311,
+        "end": 315
+      }
+    ],
+    "STATE_OR_REGION": [
+      {
+        "text": "Brandenburg",
+        "source_path": "$.invoice_part1",
+        "start": 208,
+        "end": 219
+      },
+      {
+        "text": "Nordrhein-Westfalen",
+        "source_path": "$.invoice_part1",
+        "start": 316,
+        "end": 335
+      }
+    ],
+    "COUNTRY": [
+      {
+        "text": "Deutschland",
+        "source_path": "$.invoice_part1",
+        "start": 220,
+        "end": 231
+      },
+      {
+        "text": "Deutschland",
+        "source_path": "$.invoice_part1",
+        "start": 336,
+        "end": 347
+      }
+    ],
+    "ACCOUNT_ID": [
+      {
+        "text": "KTO/700627",
+        "source_path": "$.invoice_part1",
+        "start": 79,
+        "end": 89
+      }
+    ],
+    "INVOICE_NUMBER": [],
+    "INVOICE_DATE": [],
+    "DUE_DATE": [],
+    "SERVICE_DATE": [
+      {
+        "text": "24 / 06 / 2026",
+        "source_path": "$.invoice_part1",
+        "start": 115,
+        "end": 129
+      }
+    ],
+    "DELIVERY_DATE": [],
+    "ORDER_NUMBER": [
+      {
+        "text": "PO-26-08033",
+        "source_path": "$.invoice_part1",
+        "start": 56,
+        "end": 67
+      }
+    ],
+    "DOCUMENT_DATE": [
+      {
+        "text": "26.06.26",
+        "source_path": "$.invoice_part1",
+        "start": 38,
+        "end": 46
+      }
+    ],
+    "TRANSACTION_DATE": [],
+    "DATE": [
+      {
+        "text": "23-12-2026",
+        "source_path": "$.sub.invoice_part2",
+        "start": 187,
+        "end": 197
+      }
+    ],
+    "TAX_ID": [
+      {
+        "text": "DE100395950",
+        "source_path": "$.sub.invoice_part2",
+        "start": 261,
+        "end": 272
+      }
+    ],
+    "TAX_NUMBER": [
+      {
+        "text": "43/331/13201",
+        "source_path": "$.sub.invoice_part2",
+        "start": 226,
+        "end": 238
+      }
+    ]
+  }
+}

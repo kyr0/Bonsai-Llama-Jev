@@ -1,0 +1,277 @@
+{
+  "document_id": "de-business-014",
+  "document_type": "Zahlungsavis",
+  "entities": [
+    {
+      "label": "DOCUMENT_DATE",
+      "text": "18. März 2026",
+      "source_path": "$.invoice_part1",
+      "start": 27,
+      "end": 40
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "Codegarten GmbH & Co. KG",
+      "source_path": "$.invoice_part1",
+      "start": 69,
+      "end": 93
+    },
+    {
+      "label": "ACCOUNT_ID",
+      "text": "KTO/700247",
+      "source_path": "$.invoice_part1",
+      "start": 104,
+      "end": 114
+    },
+    {
+      "label": "TRANSACTION_DATE",
+      "text": "2026-03-21",
+      "source_path": "$.invoice_part1",
+      "start": 134,
+      "end": 144
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "Mosaik Software e.K.",
+      "source_path": "$.invoice_part1",
+      "start": 165,
+      "end": 185
+    },
+    {
+      "label": "POSTAL_ADDRESS",
+      "text": "Ludwigsstraße 64\n55116 Mainz\nRheinland-Pfalz\nDeutschland",
+      "source_path": "$.invoice_part1",
+      "start": 186,
+      "end": 242
+    },
+    {
+      "label": "STREET_ADDRESS",
+      "text": "Ludwigsstraße 64",
+      "source_path": "$.invoice_part1",
+      "start": 186,
+      "end": 202
+    },
+    {
+      "label": "POSTAL_CODE",
+      "text": "55116",
+      "source_path": "$.invoice_part1",
+      "start": 203,
+      "end": 208
+    },
+    {
+      "label": "CITY",
+      "text": "Mainz",
+      "source_path": "$.invoice_part1",
+      "start": 209,
+      "end": 214
+    },
+    {
+      "label": "STATE_OR_REGION",
+      "text": "Rheinland-Pfalz",
+      "source_path": "$.invoice_part1",
+      "start": 215,
+      "end": 230
+    },
+    {
+      "label": "COUNTRY",
+      "text": "Deutschland",
+      "source_path": "$.invoice_part1",
+      "start": 231,
+      "end": 242
+    },
+    {
+      "label": "INVOICE_NUMBER",
+      "text": "R26/04013",
+      "source_path": "$.sub.invoice_part2",
+      "start": 34,
+      "end": 43
+    },
+    {
+      "label": "INVOICE_DATE",
+      "text": "18. März 2026",
+      "source_path": "$.sub.invoice_part2",
+      "start": 48,
+      "end": 61
+    },
+    {
+      "label": "INVOICE_NUMBER",
+      "text": "RG-03-202614",
+      "source_path": "$.sub.invoice_part2",
+      "start": 73,
+      "end": 85
+    },
+    {
+      "label": "INVOICE_DATE",
+      "text": "2026-03-10",
+      "source_path": "$.sub.invoice_part2",
+      "start": 90,
+      "end": 100
+    },
+    {
+      "label": "PERSON_NAME",
+      "text": "Clara Wolf",
+      "source_path": "$.sub.invoice_part2",
+      "start": 114,
+      "end": 124
+    },
+    {
+      "label": "ORDER_NUMBER",
+      "text": "PO-26-08013",
+      "source_path": "$.sub.invoice_part2",
+      "start": 142,
+      "end": 153
+    },
+    {
+      "label": "TAX_ID",
+      "text": "DE100237570",
+      "source_path": "$.sub.invoice_part2",
+      "start": 180,
+      "end": 191
+    }
+  ],
+  "by_label": {
+    "COMPANY_NAME": [
+      {
+        "text": "Codegarten GmbH & Co. KG",
+        "source_path": "$.invoice_part1",
+        "start": 69,
+        "end": 93
+      },
+      {
+        "text": "Mosaik Software e.K.",
+        "source_path": "$.invoice_part1",
+        "start": 165,
+        "end": 185
+      }
+    ],
+    "PERSON_NAME": [
+      {
+        "text": "Clara Wolf",
+        "source_path": "$.sub.invoice_part2",
+        "start": 114,
+        "end": 124
+      }
+    ],
+    "POSTAL_ADDRESS": [
+      {
+        "text": "Ludwigsstraße 64\n55116 Mainz\nRheinland-Pfalz\nDeutschland",
+        "source_path": "$.invoice_part1",
+        "start": 186,
+        "end": 242
+      }
+    ],
+    "STREET_ADDRESS": [
+      {
+        "text": "Ludwigsstraße 64",
+        "source_path": "$.invoice_part1",
+        "start": 186,
+        "end": 202
+      }
+    ],
+    "POSTAL_CODE": [
+      {
+        "text": "55116",
+        "source_path": "$.invoice_part1",
+        "start": 203,
+        "end": 208
+      }
+    ],
+    "CITY": [
+      {
+        "text": "Mainz",
+        "source_path": "$.invoice_part1",
+        "start": 209,
+        "end": 214
+      }
+    ],
+    "STATE_OR_REGION": [
+      {
+        "text": "Rheinland-Pfalz",
+        "source_path": "$.invoice_part1",
+        "start": 215,
+        "end": 230
+      }
+    ],
+    "COUNTRY": [
+      {
+        "text": "Deutschland",
+        "source_path": "$.invoice_part1",
+        "start": 231,
+        "end": 242
+      }
+    ],
+    "ACCOUNT_ID": [
+      {
+        "text": "KTO/700247",
+        "source_path": "$.invoice_part1",
+        "start": 104,
+        "end": 114
+      }
+    ],
+    "INVOICE_NUMBER": [
+      {
+        "text": "R26/04013",
+        "source_path": "$.sub.invoice_part2",
+        "start": 34,
+        "end": 43
+      },
+      {
+        "text": "RG-03-202614",
+        "source_path": "$.sub.invoice_part2",
+        "start": 73,
+        "end": 85
+      }
+    ],
+    "INVOICE_DATE": [
+      {
+        "text": "18. März 2026",
+        "source_path": "$.sub.invoice_part2",
+        "start": 48,
+        "end": 61
+      },
+      {
+        "text": "2026-03-10",
+        "source_path": "$.sub.invoice_part2",
+        "start": 90,
+        "end": 100
+      }
+    ],
+    "DUE_DATE": [],
+    "SERVICE_DATE": [],
+    "DELIVERY_DATE": [],
+    "ORDER_NUMBER": [
+      {
+        "text": "PO-26-08013",
+        "source_path": "$.sub.invoice_part2",
+        "start": 142,
+        "end": 153
+      }
+    ],
+    "DOCUMENT_DATE": [
+      {
+        "text": "18. März 2026",
+        "source_path": "$.invoice_part1",
+        "start": 27,
+        "end": 40
+      }
+    ],
+    "TRANSACTION_DATE": [
+      {
+        "text": "2026-03-21",
+        "source_path": "$.invoice_part1",
+        "start": 134,
+        "end": 144
+      }
+    ],
+    "DATE": [],
+    "TAX_ID": [
+      {
+        "text": "DE100237570",
+        "source_path": "$.sub.invoice_part2",
+        "start": 180,
+        "end": 191
+      }
+    ],
+    "TAX_NUMBER": []
+  }
+}

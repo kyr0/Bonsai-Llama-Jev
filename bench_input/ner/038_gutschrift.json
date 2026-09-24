@@ -1,0 +1,6 @@
+{
+  "invoice_part1": "# Gutschrift · R26/04037\n\n> Dokumentreferenz: R26/04037\n\nAusgestellt am 16. Juli 2026 durch Rheinwerk Digital UG (haftungsbeschränkt).\n\nRechnungsanschrift:\nSignalraum Kommunikation GmbH\nGrimmaische Straße 68\n04109 Leipzig\nSachsen\nDeutschland\n\nAnsprechperson: Daniel Hartmann\nKundennummer: `KTO/700703`\nLeistungszeitpunkt: 10.07.26\nSteuerliche Angaben: DE100427626 / 507/6961/1629",
+  "sub": {
+    "invoice_part2": "## Abrechnung\n\n| Pos. | Leistung | Menge | Einzelpreis | Betrag |\n|---:|---|---:|---:|---:|\n| 1 | Prüfung und Abnahme | 2 Pausch. | 740,00 € | 1.480,00 € |\n| 2 | Datenanalyse | 5 Std. | 126,00 € | 630,00 € |\n| 3 | Sensorbaugruppe | 8 Stk. | 164,50 € | 1.316,00 € |\n\n**Zwischensumme:** 3.426,00 €  \n**19 % USt.:** 650,94 €  \n**Gesamt:** -4.076,94 €\n\nZahlungsziel: 06 / 08 / 2026\nAuftragsreferenz: PO-26-08037\nBitte bei Rückfragen Marlene Wolf angeben.\n\nRechnungssteller: Rheinwerk Digital UG (haftungsbeschränkt)"
+  }
+}

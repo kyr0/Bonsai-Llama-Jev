@@ -1,0 +1,369 @@
+{
+  "document_id": "de-business-031",
+  "document_type": "Kostenvoranschlag",
+  "entities": [
+    {
+      "label": "ORDER_NUMBER",
+      "text": "BEST/2026/730",
+      "source_path": "$.invoice_part1",
+      "start": 48,
+      "end": 61
+    },
+    {
+      "label": "DOCUMENT_DATE",
+      "text": "11.06.2026",
+      "source_path": "$.invoice_part1",
+      "start": 81,
+      "end": 91
+    },
+    {
+      "label": "DATE",
+      "text": "11. Juli 2026",
+      "source_path": "$.invoice_part1",
+      "start": 108,
+      "end": 121
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "Routenwerk Transport GmbH",
+      "source_path": "$.invoice_part1",
+      "start": 136,
+      "end": 161
+    },
+    {
+      "label": "POSTAL_ADDRESS",
+      "text": "Luisenstraße 77a\n30159 Hannover\nNiedersachsen\nDeutschland",
+      "source_path": "$.invoice_part1",
+      "start": 162,
+      "end": 219
+    },
+    {
+      "label": "STREET_ADDRESS",
+      "text": "Luisenstraße 77a",
+      "source_path": "$.invoice_part1",
+      "start": 162,
+      "end": 178
+    },
+    {
+      "label": "POSTAL_CODE",
+      "text": "30159",
+      "source_path": "$.invoice_part1",
+      "start": 179,
+      "end": 184
+    },
+    {
+      "label": "CITY",
+      "text": "Hannover",
+      "source_path": "$.invoice_part1",
+      "start": 185,
+      "end": 193
+    },
+    {
+      "label": "STATE_OR_REGION",
+      "text": "Niedersachsen",
+      "source_path": "$.invoice_part1",
+      "start": 194,
+      "end": 207
+    },
+    {
+      "label": "COUNTRY",
+      "text": "Deutschland",
+      "source_path": "$.invoice_part1",
+      "start": 208,
+      "end": 219
+    },
+    {
+      "label": "PERSON_NAME",
+      "text": "Sebastian Hartmann",
+      "source_path": "$.invoice_part1",
+      "start": 229,
+      "end": 247
+    },
+    {
+      "label": "TAX_ID",
+      "text": "DE100372193",
+      "source_path": "$.invoice_part1",
+      "start": 259,
+      "end": 270
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "Taunus Werktechnik e.K.",
+      "source_path": "$.invoice_part1",
+      "start": 285,
+      "end": 308
+    },
+    {
+      "label": "POSTAL_ADDRESS",
+      "text": "Maximilianstraße 78a\n80331 München\nBayern\nDeutschland",
+      "source_path": "$.invoice_part1",
+      "start": 309,
+      "end": 362
+    },
+    {
+      "label": "STREET_ADDRESS",
+      "text": "Maximilianstraße 78a",
+      "source_path": "$.invoice_part1",
+      "start": 309,
+      "end": 329
+    },
+    {
+      "label": "POSTAL_CODE",
+      "text": "80331",
+      "source_path": "$.invoice_part1",
+      "start": 330,
+      "end": 335
+    },
+    {
+      "label": "CITY",
+      "text": "München",
+      "source_path": "$.invoice_part1",
+      "start": 336,
+      "end": 343
+    },
+    {
+      "label": "STATE_OR_REGION",
+      "text": "Bayern",
+      "source_path": "$.invoice_part1",
+      "start": 344,
+      "end": 350
+    },
+    {
+      "label": "COUNTRY",
+      "text": "Deutschland",
+      "source_path": "$.invoice_part1",
+      "start": 351,
+      "end": 362
+    },
+    {
+      "label": "ACCOUNT_ID",
+      "text": "CUST-202630",
+      "source_path": "$.invoice_part1",
+      "start": 376,
+      "end": 387
+    },
+    {
+      "label": "SERVICE_DATE",
+      "text": "2026-06-14",
+      "source_path": "$.sub.invoice_part2",
+      "start": 278,
+      "end": 288
+    },
+    {
+      "label": "DELIVERY_DATE",
+      "text": "22.06.26",
+      "source_path": "$.sub.invoice_part2",
+      "start": 312,
+      "end": 320
+    },
+    {
+      "label": "TAX_NUMBER",
+      "text": "40/310/12910",
+      "source_path": "$.sub.invoice_part2",
+      "start": 343,
+      "end": 355
+    },
+    {
+      "label": "PERSON_NAME",
+      "text": "Sebastian Hartmann",
+      "source_path": "$.sub.invoice_part2",
+      "start": 379,
+      "end": 397
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "Routenwerk Transport GmbH",
+      "source_path": "$.sub.invoice_part2",
+      "start": 408,
+      "end": 433
+    }
+  ],
+  "by_label": {
+    "COMPANY_NAME": [
+      {
+        "text": "Routenwerk Transport GmbH",
+        "source_path": "$.invoice_part1",
+        "start": 136,
+        "end": 161
+      },
+      {
+        "text": "Taunus Werktechnik e.K.",
+        "source_path": "$.invoice_part1",
+        "start": 285,
+        "end": 308
+      },
+      {
+        "text": "Routenwerk Transport GmbH",
+        "source_path": "$.sub.invoice_part2",
+        "start": 408,
+        "end": 433
+      }
+    ],
+    "PERSON_NAME": [
+      {
+        "text": "Sebastian Hartmann",
+        "source_path": "$.invoice_part1",
+        "start": 229,
+        "end": 247
+      },
+      {
+        "text": "Sebastian Hartmann",
+        "source_path": "$.sub.invoice_part2",
+        "start": 379,
+        "end": 397
+      }
+    ],
+    "POSTAL_ADDRESS": [
+      {
+        "text": "Luisenstraße 77a\n30159 Hannover\nNiedersachsen\nDeutschland",
+        "source_path": "$.invoice_part1",
+        "start": 162,
+        "end": 219
+      },
+      {
+        "text": "Maximilianstraße 78a\n80331 München\nBayern\nDeutschland",
+        "source_path": "$.invoice_part1",
+        "start": 309,
+        "end": 362
+      }
+    ],
+    "STREET_ADDRESS": [
+      {
+        "text": "Luisenstraße 77a",
+        "source_path": "$.invoice_part1",
+        "start": 162,
+        "end": 178
+      },
+      {
+        "text": "Maximilianstraße 78a",
+        "source_path": "$.invoice_part1",
+        "start": 309,
+        "end": 329
+      }
+    ],
+    "POSTAL_CODE": [
+      {
+        "text": "30159",
+        "source_path": "$.invoice_part1",
+        "start": 179,
+        "end": 184
+      },
+      {
+        "text": "80331",
+        "source_path": "$.invoice_part1",
+        "start": 330,
+        "end": 335
+      }
+    ],
+    "CITY": [
+      {
+        "text": "Hannover",
+        "source_path": "$.invoice_part1",
+        "start": 185,
+        "end": 193
+      },
+      {
+        "text": "München",
+        "source_path": "$.invoice_part1",
+        "start": 336,
+        "end": 343
+      }
+    ],
+    "STATE_OR_REGION": [
+      {
+        "text": "Niedersachsen",
+        "source_path": "$.invoice_part1",
+        "start": 194,
+        "end": 207
+      },
+      {
+        "text": "Bayern",
+        "source_path": "$.invoice_part1",
+        "start": 344,
+        "end": 350
+      }
+    ],
+    "COUNTRY": [
+      {
+        "text": "Deutschland",
+        "source_path": "$.invoice_part1",
+        "start": 208,
+        "end": 219
+      },
+      {
+        "text": "Deutschland",
+        "source_path": "$.invoice_part1",
+        "start": 351,
+        "end": 362
+      }
+    ],
+    "ACCOUNT_ID": [
+      {
+        "text": "CUST-202630",
+        "source_path": "$.invoice_part1",
+        "start": 376,
+        "end": 387
+      }
+    ],
+    "INVOICE_NUMBER": [],
+    "INVOICE_DATE": [],
+    "DUE_DATE": [],
+    "SERVICE_DATE": [
+      {
+        "text": "2026-06-14",
+        "source_path": "$.sub.invoice_part2",
+        "start": 278,
+        "end": 288
+      }
+    ],
+    "DELIVERY_DATE": [
+      {
+        "text": "22.06.26",
+        "source_path": "$.sub.invoice_part2",
+        "start": 312,
+        "end": 320
+      }
+    ],
+    "ORDER_NUMBER": [
+      {
+        "text": "BEST/2026/730",
+        "source_path": "$.invoice_part1",
+        "start": 48,
+        "end": 61
+      }
+    ],
+    "DOCUMENT_DATE": [
+      {
+        "text": "11.06.2026",
+        "source_path": "$.invoice_part1",
+        "start": 81,
+        "end": 91
+      }
+    ],
+    "TRANSACTION_DATE": [],
+    "DATE": [
+      {
+        "text": "11. Juli 2026",
+        "source_path": "$.invoice_part1",
+        "start": 108,
+        "end": 121
+      }
+    ],
+    "TAX_ID": [
+      {
+        "text": "DE100372193",
+        "source_path": "$.invoice_part1",
+        "start": 259,
+        "end": 270
+      }
+    ],
+    "TAX_NUMBER": [
+      {
+        "text": "40/310/12910",
+        "source_path": "$.sub.invoice_part2",
+        "start": 343,
+        "end": 355
+      }
+    ]
+  }
+}

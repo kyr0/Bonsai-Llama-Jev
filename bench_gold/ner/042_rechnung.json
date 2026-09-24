@@ -1,0 +1,291 @@
+{
+  "document_id": "de-business-042",
+  "document_type": "Rechnung",
+  "entities": [
+    {
+      "label": "INVOICE_NUMBER",
+      "text": "R26/04041",
+      "source_path": "$.invoice_part1",
+      "start": 44,
+      "end": 53
+    },
+    {
+      "label": "INVOICE_DATE",
+      "text": "05-08-2026",
+      "source_path": "$.invoice_part1",
+      "start": 70,
+      "end": 80
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "Elbstrand Logistik GmbH & Co. KG",
+      "source_path": "$.invoice_part1",
+      "start": 87,
+      "end": 119
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "Feldstern Handel AG",
+      "source_path": "$.invoice_part1",
+      "start": 142,
+      "end": 161
+    },
+    {
+      "label": "POSTAL_ADDRESS",
+      "text": "Georgstraße 25\n30159 Hannover\nNiedersachsen\nDeutschland",
+      "source_path": "$.invoice_part1",
+      "start": 162,
+      "end": 217
+    },
+    {
+      "label": "STREET_ADDRESS",
+      "text": "Georgstraße 25",
+      "source_path": "$.invoice_part1",
+      "start": 162,
+      "end": 176
+    },
+    {
+      "label": "POSTAL_CODE",
+      "text": "30159",
+      "source_path": "$.invoice_part1",
+      "start": 177,
+      "end": 182
+    },
+    {
+      "label": "CITY",
+      "text": "Hannover",
+      "source_path": "$.invoice_part1",
+      "start": 183,
+      "end": 191
+    },
+    {
+      "label": "STATE_OR_REGION",
+      "text": "Niedersachsen",
+      "source_path": "$.invoice_part1",
+      "start": 192,
+      "end": 205
+    },
+    {
+      "label": "COUNTRY",
+      "text": "Deutschland",
+      "source_path": "$.invoice_part1",
+      "start": 206,
+      "end": 217
+    },
+    {
+      "label": "PERSON_NAME",
+      "text": "Markus Hartmann",
+      "source_path": "$.invoice_part1",
+      "start": 235,
+      "end": 250
+    },
+    {
+      "label": "ACCOUNT_ID",
+      "text": "KTO/700779",
+      "source_path": "$.invoice_part1",
+      "start": 266,
+      "end": 276
+    },
+    {
+      "label": "SERVICE_DATE",
+      "text": "3. August 2026",
+      "source_path": "$.invoice_part1",
+      "start": 298,
+      "end": 312
+    },
+    {
+      "label": "TAX_ID",
+      "text": "DE100459302",
+      "source_path": "$.invoice_part1",
+      "start": 334,
+      "end": 345
+    },
+    {
+      "label": "TAX_NUMBER",
+      "text": "51 387 13977",
+      "source_path": "$.invoice_part1",
+      "start": 348,
+      "end": 360
+    },
+    {
+      "label": "DUE_DATE",
+      "text": "2026-09-02",
+      "source_path": "$.sub.invoice_part2",
+      "start": 417,
+      "end": 427
+    },
+    {
+      "label": "ORDER_NUMBER",
+      "text": "PO-26-08041",
+      "source_path": "$.sub.invoice_part2",
+      "start": 446,
+      "end": 457
+    },
+    {
+      "label": "PERSON_NAME",
+      "text": "Clara Wolf",
+      "source_path": "$.sub.invoice_part2",
+      "start": 479,
+      "end": 489
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "Elbstrand Logistik GmbH & Co. KG",
+      "source_path": "$.sub.invoice_part2",
+      "start": 518,
+      "end": 550
+    }
+  ],
+  "by_label": {
+    "COMPANY_NAME": [
+      {
+        "text": "Elbstrand Logistik GmbH & Co. KG",
+        "source_path": "$.invoice_part1",
+        "start": 87,
+        "end": 119
+      },
+      {
+        "text": "Feldstern Handel AG",
+        "source_path": "$.invoice_part1",
+        "start": 142,
+        "end": 161
+      },
+      {
+        "text": "Elbstrand Logistik GmbH & Co. KG",
+        "source_path": "$.sub.invoice_part2",
+        "start": 518,
+        "end": 550
+      }
+    ],
+    "PERSON_NAME": [
+      {
+        "text": "Markus Hartmann",
+        "source_path": "$.invoice_part1",
+        "start": 235,
+        "end": 250
+      },
+      {
+        "text": "Clara Wolf",
+        "source_path": "$.sub.invoice_part2",
+        "start": 479,
+        "end": 489
+      }
+    ],
+    "POSTAL_ADDRESS": [
+      {
+        "text": "Georgstraße 25\n30159 Hannover\nNiedersachsen\nDeutschland",
+        "source_path": "$.invoice_part1",
+        "start": 162,
+        "end": 217
+      }
+    ],
+    "STREET_ADDRESS": [
+      {
+        "text": "Georgstraße 25",
+        "source_path": "$.invoice_part1",
+        "start": 162,
+        "end": 176
+      }
+    ],
+    "POSTAL_CODE": [
+      {
+        "text": "30159",
+        "source_path": "$.invoice_part1",
+        "start": 177,
+        "end": 182
+      }
+    ],
+    "CITY": [
+      {
+        "text": "Hannover",
+        "source_path": "$.invoice_part1",
+        "start": 183,
+        "end": 191
+      }
+    ],
+    "STATE_OR_REGION": [
+      {
+        "text": "Niedersachsen",
+        "source_path": "$.invoice_part1",
+        "start": 192,
+        "end": 205
+      }
+    ],
+    "COUNTRY": [
+      {
+        "text": "Deutschland",
+        "source_path": "$.invoice_part1",
+        "start": 206,
+        "end": 217
+      }
+    ],
+    "ACCOUNT_ID": [
+      {
+        "text": "KTO/700779",
+        "source_path": "$.invoice_part1",
+        "start": 266,
+        "end": 276
+      }
+    ],
+    "INVOICE_NUMBER": [
+      {
+        "text": "R26/04041",
+        "source_path": "$.invoice_part1",
+        "start": 44,
+        "end": 53
+      }
+    ],
+    "INVOICE_DATE": [
+      {
+        "text": "05-08-2026",
+        "source_path": "$.invoice_part1",
+        "start": 70,
+        "end": 80
+      }
+    ],
+    "DUE_DATE": [
+      {
+        "text": "2026-09-02",
+        "source_path": "$.sub.invoice_part2",
+        "start": 417,
+        "end": 427
+      }
+    ],
+    "SERVICE_DATE": [
+      {
+        "text": "3. August 2026",
+        "source_path": "$.invoice_part1",
+        "start": 298,
+        "end": 312
+      }
+    ],
+    "DELIVERY_DATE": [],
+    "ORDER_NUMBER": [
+      {
+        "text": "PO-26-08041",
+        "source_path": "$.sub.invoice_part2",
+        "start": 446,
+        "end": 457
+      }
+    ],
+    "DOCUMENT_DATE": [],
+    "TRANSACTION_DATE": [],
+    "DATE": [],
+    "TAX_ID": [
+      {
+        "text": "DE100459302",
+        "source_path": "$.invoice_part1",
+        "start": 334,
+        "end": 345
+      }
+    ],
+    "TAX_NUMBER": [
+      {
+        "text": "51 387 13977",
+        "source_path": "$.invoice_part1",
+        "start": 348,
+        "end": 360
+      }
+    ]
+  }
+}

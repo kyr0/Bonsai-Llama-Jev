@@ -1,0 +1,291 @@
+{
+  "document_id": "de-business-026",
+  "document_type": "Rechnung",
+  "entities": [
+    {
+      "label": "INVOICE_NUMBER",
+      "text": "R26/04025",
+      "source_path": "$.invoice_part1",
+      "start": 44,
+      "end": 53
+    },
+    {
+      "label": "INVOICE_DATE",
+      "text": "17. Mai 2026",
+      "source_path": "$.invoice_part1",
+      "start": 70,
+      "end": 82
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "Brückenwerk Mobilität GmbH",
+      "source_path": "$.invoice_part1",
+      "start": 89,
+      "end": 115
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "Spreebogen Medien e.K.",
+      "source_path": "$.invoice_part1",
+      "start": 138,
+      "end": 160
+    },
+    {
+      "label": "POSTAL_ADDRESS",
+      "text": "Brandenburger Straße 23\n14467 Potsdam\nBrandenburg\nDeutschland",
+      "source_path": "$.invoice_part1",
+      "start": 161,
+      "end": 222
+    },
+    {
+      "label": "STREET_ADDRESS",
+      "text": "Brandenburger Straße 23",
+      "source_path": "$.invoice_part1",
+      "start": 161,
+      "end": 184
+    },
+    {
+      "label": "POSTAL_CODE",
+      "text": "14467",
+      "source_path": "$.invoice_part1",
+      "start": 185,
+      "end": 190
+    },
+    {
+      "label": "CITY",
+      "text": "Potsdam",
+      "source_path": "$.invoice_part1",
+      "start": 191,
+      "end": 198
+    },
+    {
+      "label": "STATE_OR_REGION",
+      "text": "Brandenburg",
+      "source_path": "$.invoice_part1",
+      "start": 199,
+      "end": 210
+    },
+    {
+      "label": "COUNTRY",
+      "text": "Deutschland",
+      "source_path": "$.invoice_part1",
+      "start": 211,
+      "end": 222
+    },
+    {
+      "label": "PERSON_NAME",
+      "text": "Felix Hartmann",
+      "source_path": "$.invoice_part1",
+      "start": 240,
+      "end": 254
+    },
+    {
+      "label": "ACCOUNT_ID",
+      "text": "KTO/700475",
+      "source_path": "$.invoice_part1",
+      "start": 270,
+      "end": 280
+    },
+    {
+      "label": "SERVICE_DATE",
+      "text": "15.05.26",
+      "source_path": "$.invoice_part1",
+      "start": 302,
+      "end": 310
+    },
+    {
+      "label": "TAX_ID",
+      "text": "DE100332598",
+      "source_path": "$.invoice_part1",
+      "start": 332,
+      "end": 343
+    },
+    {
+      "label": "TAX_NUMBER",
+      "text": "375/6325/1425",
+      "source_path": "$.invoice_part1",
+      "start": 346,
+      "end": 359
+    },
+    {
+      "label": "DUE_DATE",
+      "text": "07 / 06 / 2026",
+      "source_path": "$.sub.invoice_part2",
+      "start": 363,
+      "end": 377
+    },
+    {
+      "label": "ORDER_NUMBER",
+      "text": "PO-26-08025",
+      "source_path": "$.sub.invoice_part2",
+      "start": 396,
+      "end": 407
+    },
+    {
+      "label": "PERSON_NAME",
+      "text": "Eva Wolf",
+      "source_path": "$.sub.invoice_part2",
+      "start": 429,
+      "end": 437
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "Brückenwerk Mobilität GmbH",
+      "source_path": "$.sub.invoice_part2",
+      "start": 466,
+      "end": 492
+    }
+  ],
+  "by_label": {
+    "COMPANY_NAME": [
+      {
+        "text": "Brückenwerk Mobilität GmbH",
+        "source_path": "$.invoice_part1",
+        "start": 89,
+        "end": 115
+      },
+      {
+        "text": "Spreebogen Medien e.K.",
+        "source_path": "$.invoice_part1",
+        "start": 138,
+        "end": 160
+      },
+      {
+        "text": "Brückenwerk Mobilität GmbH",
+        "source_path": "$.sub.invoice_part2",
+        "start": 466,
+        "end": 492
+      }
+    ],
+    "PERSON_NAME": [
+      {
+        "text": "Felix Hartmann",
+        "source_path": "$.invoice_part1",
+        "start": 240,
+        "end": 254
+      },
+      {
+        "text": "Eva Wolf",
+        "source_path": "$.sub.invoice_part2",
+        "start": 429,
+        "end": 437
+      }
+    ],
+    "POSTAL_ADDRESS": [
+      {
+        "text": "Brandenburger Straße 23\n14467 Potsdam\nBrandenburg\nDeutschland",
+        "source_path": "$.invoice_part1",
+        "start": 161,
+        "end": 222
+      }
+    ],
+    "STREET_ADDRESS": [
+      {
+        "text": "Brandenburger Straße 23",
+        "source_path": "$.invoice_part1",
+        "start": 161,
+        "end": 184
+      }
+    ],
+    "POSTAL_CODE": [
+      {
+        "text": "14467",
+        "source_path": "$.invoice_part1",
+        "start": 185,
+        "end": 190
+      }
+    ],
+    "CITY": [
+      {
+        "text": "Potsdam",
+        "source_path": "$.invoice_part1",
+        "start": 191,
+        "end": 198
+      }
+    ],
+    "STATE_OR_REGION": [
+      {
+        "text": "Brandenburg",
+        "source_path": "$.invoice_part1",
+        "start": 199,
+        "end": 210
+      }
+    ],
+    "COUNTRY": [
+      {
+        "text": "Deutschland",
+        "source_path": "$.invoice_part1",
+        "start": 211,
+        "end": 222
+      }
+    ],
+    "ACCOUNT_ID": [
+      {
+        "text": "KTO/700475",
+        "source_path": "$.invoice_part1",
+        "start": 270,
+        "end": 280
+      }
+    ],
+    "INVOICE_NUMBER": [
+      {
+        "text": "R26/04025",
+        "source_path": "$.invoice_part1",
+        "start": 44,
+        "end": 53
+      }
+    ],
+    "INVOICE_DATE": [
+      {
+        "text": "17. Mai 2026",
+        "source_path": "$.invoice_part1",
+        "start": 70,
+        "end": 82
+      }
+    ],
+    "DUE_DATE": [
+      {
+        "text": "07 / 06 / 2026",
+        "source_path": "$.sub.invoice_part2",
+        "start": 363,
+        "end": 377
+      }
+    ],
+    "SERVICE_DATE": [
+      {
+        "text": "15.05.26",
+        "source_path": "$.invoice_part1",
+        "start": 302,
+        "end": 310
+      }
+    ],
+    "DELIVERY_DATE": [],
+    "ORDER_NUMBER": [
+      {
+        "text": "PO-26-08025",
+        "source_path": "$.sub.invoice_part2",
+        "start": 396,
+        "end": 407
+      }
+    ],
+    "DOCUMENT_DATE": [],
+    "TRANSACTION_DATE": [],
+    "DATE": [],
+    "TAX_ID": [
+      {
+        "text": "DE100332598",
+        "source_path": "$.invoice_part1",
+        "start": 332,
+        "end": 343
+      }
+    ],
+    "TAX_NUMBER": [
+      {
+        "text": "375/6325/1425",
+        "source_path": "$.invoice_part1",
+        "start": 346,
+        "end": 359
+      }
+    ]
+  }
+}

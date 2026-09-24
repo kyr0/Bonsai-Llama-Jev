@@ -15,7 +15,8 @@ if ! curl -sf -m 5 "$BASE/health" >/dev/null; then
 fi
 
 # README "First message": the answer is in the JSON under
-# choices[0].message.content.
+# choices[0].message.content. Thinking is off because the server caps generation
+# (BONSAI_MAX_TOKENS) below what the model's default <think> phase needs.
 echo "e2e-readme: README 'First message' (POST /v1/chat/completions)"
 curl -sf -m 120 -X POST "$BASE/v1/chat/completions" -H "$AUTH" -H "Content-Type: application/json" -d @- <<'JSON' | python3 -c '
 import json, sys
@@ -26,7 +27,8 @@ print("e2e-readme: first-message PASS (" + content.strip()[:40].replace("\n", " 
 '
 {
   "messages": [{"role": "user", "content": "Hello!"}],
-  "max_tokens": 200
+  "max_tokens": 200,
+  "chat_template_kwargs": {"enable_thinking": false}
 }
 JSON
 

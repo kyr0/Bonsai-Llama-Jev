@@ -1,0 +1,355 @@
+{
+  "document_id": "de-business-023",
+  "document_type": "Servicebericht",
+  "entities": [
+    {
+      "label": "DOCUMENT_DATE",
+      "text": "02 / 05 / 2026",
+      "source_path": "$.invoice_part1",
+      "start": 35,
+      "end": 49
+    },
+    {
+      "label": "ORDER_NUMBER",
+      "text": "BEST/2026/722",
+      "source_path": "$.invoice_part1",
+      "start": 59,
+      "end": 72
+    },
+    {
+      "label": "ACCOUNT_ID",
+      "text": "CUST-202622",
+      "source_path": "$.invoice_part1",
+      "start": 84,
+      "end": 95
+    },
+    {
+      "label": "SERVICE_DATE",
+      "text": "25-04-2026",
+      "source_path": "$.invoice_part1",
+      "start": 121,
+      "end": 131
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "Datenhafen Analytics UG (haftungsbeschränkt)",
+      "source_path": "$.invoice_part1",
+      "start": 148,
+      "end": 192
+    },
+    {
+      "label": "POSTAL_ADDRESS",
+      "text": "Cäcilienstraße 76a\n50667 Köln\nNordrhein-Westfalen\nDeutschland",
+      "source_path": "$.invoice_part1",
+      "start": 193,
+      "end": 254
+    },
+    {
+      "label": "STREET_ADDRESS",
+      "text": "Cäcilienstraße 76a",
+      "source_path": "$.invoice_part1",
+      "start": 193,
+      "end": 211
+    },
+    {
+      "label": "POSTAL_CODE",
+      "text": "50667",
+      "source_path": "$.invoice_part1",
+      "start": 212,
+      "end": 217
+    },
+    {
+      "label": "CITY",
+      "text": "Köln",
+      "source_path": "$.invoice_part1",
+      "start": 218,
+      "end": 222
+    },
+    {
+      "label": "STATE_OR_REGION",
+      "text": "Nordrhein-Westfalen",
+      "source_path": "$.invoice_part1",
+      "start": 223,
+      "end": 242
+    },
+    {
+      "label": "COUNTRY",
+      "text": "Deutschland",
+      "source_path": "$.invoice_part1",
+      "start": 243,
+      "end": 254
+    },
+    {
+      "label": "PERSON_NAME",
+      "text": "Markus Hartmann",
+      "source_path": "$.invoice_part1",
+      "start": 269,
+      "end": 284
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "Alpenbyte Solutions GmbH",
+      "source_path": "$.invoice_part1",
+      "start": 293,
+      "end": 317
+    },
+    {
+      "label": "POSTAL_ADDRESS",
+      "text": "Luisenstraße 77a\n30159 Hannover\nNiedersachsen\nDeutschland",
+      "source_path": "$.invoice_part1",
+      "start": 318,
+      "end": 375
+    },
+    {
+      "label": "STREET_ADDRESS",
+      "text": "Luisenstraße 77a",
+      "source_path": "$.invoice_part1",
+      "start": 318,
+      "end": 334
+    },
+    {
+      "label": "POSTAL_CODE",
+      "text": "30159",
+      "source_path": "$.invoice_part1",
+      "start": 335,
+      "end": 340
+    },
+    {
+      "label": "CITY",
+      "text": "Hannover",
+      "source_path": "$.invoice_part1",
+      "start": 341,
+      "end": 349
+    },
+    {
+      "label": "STATE_OR_REGION",
+      "text": "Niedersachsen",
+      "source_path": "$.invoice_part1",
+      "start": 350,
+      "end": 363
+    },
+    {
+      "label": "COUNTRY",
+      "text": "Deutschland",
+      "source_path": "$.invoice_part1",
+      "start": 364,
+      "end": 375
+    },
+    {
+      "label": "PERSON_NAME",
+      "text": "Theresa Lorenz",
+      "source_path": "$.sub.invoice_part2",
+      "start": 124,
+      "end": 138
+    },
+    {
+      "label": "DATE",
+      "text": "29.10.2026",
+      "source_path": "$.sub.invoice_part2",
+      "start": 168,
+      "end": 178
+    },
+    {
+      "label": "TAX_NUMBER",
+      "text": "342/6166/1374",
+      "source_path": "$.sub.invoice_part2",
+      "start": 207,
+      "end": 220
+    },
+    {
+      "label": "TAX_ID",
+      "text": "DE100308841",
+      "source_path": "$.sub.invoice_part2",
+      "start": 243,
+      "end": 254
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "Datenhafen Analytics UG (haftungsbeschränkt)",
+      "source_path": "$.sub.invoice_part2",
+      "start": 270,
+      "end": 314
+    }
+  ],
+  "by_label": {
+    "COMPANY_NAME": [
+      {
+        "text": "Datenhafen Analytics UG (haftungsbeschränkt)",
+        "source_path": "$.invoice_part1",
+        "start": 148,
+        "end": 192
+      },
+      {
+        "text": "Alpenbyte Solutions GmbH",
+        "source_path": "$.invoice_part1",
+        "start": 293,
+        "end": 317
+      },
+      {
+        "text": "Datenhafen Analytics UG (haftungsbeschränkt)",
+        "source_path": "$.sub.invoice_part2",
+        "start": 270,
+        "end": 314
+      }
+    ],
+    "PERSON_NAME": [
+      {
+        "text": "Markus Hartmann",
+        "source_path": "$.invoice_part1",
+        "start": 269,
+        "end": 284
+      },
+      {
+        "text": "Theresa Lorenz",
+        "source_path": "$.sub.invoice_part2",
+        "start": 124,
+        "end": 138
+      }
+    ],
+    "POSTAL_ADDRESS": [
+      {
+        "text": "Cäcilienstraße 76a\n50667 Köln\nNordrhein-Westfalen\nDeutschland",
+        "source_path": "$.invoice_part1",
+        "start": 193,
+        "end": 254
+      },
+      {
+        "text": "Luisenstraße 77a\n30159 Hannover\nNiedersachsen\nDeutschland",
+        "source_path": "$.invoice_part1",
+        "start": 318,
+        "end": 375
+      }
+    ],
+    "STREET_ADDRESS": [
+      {
+        "text": "Cäcilienstraße 76a",
+        "source_path": "$.invoice_part1",
+        "start": 193,
+        "end": 211
+      },
+      {
+        "text": "Luisenstraße 77a",
+        "source_path": "$.invoice_part1",
+        "start": 318,
+        "end": 334
+      }
+    ],
+    "POSTAL_CODE": [
+      {
+        "text": "50667",
+        "source_path": "$.invoice_part1",
+        "start": 212,
+        "end": 217
+      },
+      {
+        "text": "30159",
+        "source_path": "$.invoice_part1",
+        "start": 335,
+        "end": 340
+      }
+    ],
+    "CITY": [
+      {
+        "text": "Köln",
+        "source_path": "$.invoice_part1",
+        "start": 218,
+        "end": 222
+      },
+      {
+        "text": "Hannover",
+        "source_path": "$.invoice_part1",
+        "start": 341,
+        "end": 349
+      }
+    ],
+    "STATE_OR_REGION": [
+      {
+        "text": "Nordrhein-Westfalen",
+        "source_path": "$.invoice_part1",
+        "start": 223,
+        "end": 242
+      },
+      {
+        "text": "Niedersachsen",
+        "source_path": "$.invoice_part1",
+        "start": 350,
+        "end": 363
+      }
+    ],
+    "COUNTRY": [
+      {
+        "text": "Deutschland",
+        "source_path": "$.invoice_part1",
+        "start": 243,
+        "end": 254
+      },
+      {
+        "text": "Deutschland",
+        "source_path": "$.invoice_part1",
+        "start": 364,
+        "end": 375
+      }
+    ],
+    "ACCOUNT_ID": [
+      {
+        "text": "CUST-202622",
+        "source_path": "$.invoice_part1",
+        "start": 84,
+        "end": 95
+      }
+    ],
+    "INVOICE_NUMBER": [],
+    "INVOICE_DATE": [],
+    "DUE_DATE": [],
+    "SERVICE_DATE": [
+      {
+        "text": "25-04-2026",
+        "source_path": "$.invoice_part1",
+        "start": 121,
+        "end": 131
+      }
+    ],
+    "DELIVERY_DATE": [],
+    "ORDER_NUMBER": [
+      {
+        "text": "BEST/2026/722",
+        "source_path": "$.invoice_part1",
+        "start": 59,
+        "end": 72
+      }
+    ],
+    "DOCUMENT_DATE": [
+      {
+        "text": "02 / 05 / 2026",
+        "source_path": "$.invoice_part1",
+        "start": 35,
+        "end": 49
+      }
+    ],
+    "TRANSACTION_DATE": [],
+    "DATE": [
+      {
+        "text": "29.10.2026",
+        "source_path": "$.sub.invoice_part2",
+        "start": 168,
+        "end": 178
+      }
+    ],
+    "TAX_ID": [
+      {
+        "text": "DE100308841",
+        "source_path": "$.sub.invoice_part2",
+        "start": 243,
+        "end": 254
+      }
+    ],
+    "TAX_NUMBER": [
+      {
+        "text": "342/6166/1374",
+        "source_path": "$.sub.invoice_part2",
+        "start": 207,
+        "end": 220
+      }
+    ]
+  }
+}

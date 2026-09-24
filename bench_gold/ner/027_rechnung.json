@@ -1,0 +1,291 @@
+{
+  "document_id": "de-business-027",
+  "document_type": "Rechnung",
+  "entities": [
+    {
+      "label": "INVOICE_NUMBER",
+      "text": "RG-03-202626",
+      "source_path": "$.invoice_part1",
+      "start": 47,
+      "end": 59
+    },
+    {
+      "label": "INVOICE_DATE",
+      "text": "2026-05-22",
+      "source_path": "$.invoice_part1",
+      "start": 76,
+      "end": 86
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "Codegarten GmbH & Co. KG",
+      "source_path": "$.invoice_part1",
+      "start": 93,
+      "end": 117
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "HanseKontor IT AG",
+      "source_path": "$.invoice_part1",
+      "start": 140,
+      "end": 157
+    },
+    {
+      "label": "POSTAL_ADDRESS",
+      "text": "Fleethörn 34a\n24103 Kiel\nSchleswig-Holstein\nDeutschland",
+      "source_path": "$.invoice_part1",
+      "start": 158,
+      "end": 213
+    },
+    {
+      "label": "STREET_ADDRESS",
+      "text": "Fleethörn 34a",
+      "source_path": "$.invoice_part1",
+      "start": 158,
+      "end": 171
+    },
+    {
+      "label": "POSTAL_CODE",
+      "text": "24103",
+      "source_path": "$.invoice_part1",
+      "start": 172,
+      "end": 177
+    },
+    {
+      "label": "CITY",
+      "text": "Kiel",
+      "source_path": "$.invoice_part1",
+      "start": 178,
+      "end": 182
+    },
+    {
+      "label": "STATE_OR_REGION",
+      "text": "Schleswig-Holstein",
+      "source_path": "$.invoice_part1",
+      "start": 183,
+      "end": 201
+    },
+    {
+      "label": "COUNTRY",
+      "text": "Deutschland",
+      "source_path": "$.invoice_part1",
+      "start": 202,
+      "end": 213
+    },
+    {
+      "label": "PERSON_NAME",
+      "text": "Sophie Lorenz",
+      "source_path": "$.invoice_part1",
+      "start": 231,
+      "end": 244
+    },
+    {
+      "label": "ACCOUNT_ID",
+      "text": "CUST-202626",
+      "source_path": "$.invoice_part1",
+      "start": 260,
+      "end": 271
+    },
+    {
+      "label": "SERVICE_DATE",
+      "text": "19 / 05 / 2026",
+      "source_path": "$.invoice_part1",
+      "start": 293,
+      "end": 307
+    },
+    {
+      "label": "TAX_ID",
+      "text": "DE100340517",
+      "source_path": "$.invoice_part1",
+      "start": 329,
+      "end": 340
+    },
+    {
+      "label": "TAX_NUMBER",
+      "text": "36 282 12522",
+      "source_path": "$.invoice_part1",
+      "start": 343,
+      "end": 355
+    },
+    {
+      "label": "DUE_DATE",
+      "text": "19-06-2026",
+      "source_path": "$.sub.invoice_part2",
+      "start": 432,
+      "end": 442
+    },
+    {
+      "label": "ORDER_NUMBER",
+      "text": "BEST/2026/726",
+      "source_path": "$.sub.invoice_part2",
+      "start": 461,
+      "end": 474
+    },
+    {
+      "label": "PERSON_NAME",
+      "text": "Fabian Hartmann",
+      "source_path": "$.sub.invoice_part2",
+      "start": 496,
+      "end": 511
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "Codegarten GmbH & Co. KG",
+      "source_path": "$.sub.invoice_part2",
+      "start": 540,
+      "end": 564
+    }
+  ],
+  "by_label": {
+    "COMPANY_NAME": [
+      {
+        "text": "Codegarten GmbH & Co. KG",
+        "source_path": "$.invoice_part1",
+        "start": 93,
+        "end": 117
+      },
+      {
+        "text": "HanseKontor IT AG",
+        "source_path": "$.invoice_part1",
+        "start": 140,
+        "end": 157
+      },
+      {
+        "text": "Codegarten GmbH & Co. KG",
+        "source_path": "$.sub.invoice_part2",
+        "start": 540,
+        "end": 564
+      }
+    ],
+    "PERSON_NAME": [
+      {
+        "text": "Sophie Lorenz",
+        "source_path": "$.invoice_part1",
+        "start": 231,
+        "end": 244
+      },
+      {
+        "text": "Fabian Hartmann",
+        "source_path": "$.sub.invoice_part2",
+        "start": 496,
+        "end": 511
+      }
+    ],
+    "POSTAL_ADDRESS": [
+      {
+        "text": "Fleethörn 34a\n24103 Kiel\nSchleswig-Holstein\nDeutschland",
+        "source_path": "$.invoice_part1",
+        "start": 158,
+        "end": 213
+      }
+    ],
+    "STREET_ADDRESS": [
+      {
+        "text": "Fleethörn 34a",
+        "source_path": "$.invoice_part1",
+        "start": 158,
+        "end": 171
+      }
+    ],
+    "POSTAL_CODE": [
+      {
+        "text": "24103",
+        "source_path": "$.invoice_part1",
+        "start": 172,
+        "end": 177
+      }
+    ],
+    "CITY": [
+      {
+        "text": "Kiel",
+        "source_path": "$.invoice_part1",
+        "start": 178,
+        "end": 182
+      }
+    ],
+    "STATE_OR_REGION": [
+      {
+        "text": "Schleswig-Holstein",
+        "source_path": "$.invoice_part1",
+        "start": 183,
+        "end": 201
+      }
+    ],
+    "COUNTRY": [
+      {
+        "text": "Deutschland",
+        "source_path": "$.invoice_part1",
+        "start": 202,
+        "end": 213
+      }
+    ],
+    "ACCOUNT_ID": [
+      {
+        "text": "CUST-202626",
+        "source_path": "$.invoice_part1",
+        "start": 260,
+        "end": 271
+      }
+    ],
+    "INVOICE_NUMBER": [
+      {
+        "text": "RG-03-202626",
+        "source_path": "$.invoice_part1",
+        "start": 47,
+        "end": 59
+      }
+    ],
+    "INVOICE_DATE": [
+      {
+        "text": "2026-05-22",
+        "source_path": "$.invoice_part1",
+        "start": 76,
+        "end": 86
+      }
+    ],
+    "DUE_DATE": [
+      {
+        "text": "19-06-2026",
+        "source_path": "$.sub.invoice_part2",
+        "start": 432,
+        "end": 442
+      }
+    ],
+    "SERVICE_DATE": [
+      {
+        "text": "19 / 05 / 2026",
+        "source_path": "$.invoice_part1",
+        "start": 293,
+        "end": 307
+      }
+    ],
+    "DELIVERY_DATE": [],
+    "ORDER_NUMBER": [
+      {
+        "text": "BEST/2026/726",
+        "source_path": "$.sub.invoice_part2",
+        "start": 461,
+        "end": 474
+      }
+    ],
+    "DOCUMENT_DATE": [],
+    "TRANSACTION_DATE": [],
+    "DATE": [],
+    "TAX_ID": [
+      {
+        "text": "DE100340517",
+        "source_path": "$.invoice_part1",
+        "start": 329,
+        "end": 340
+      }
+    ],
+    "TAX_NUMBER": [
+      {
+        "text": "36 282 12522",
+        "source_path": "$.invoice_part1",
+        "start": 343,
+        "end": 355
+      }
+    ]
+  }
+}

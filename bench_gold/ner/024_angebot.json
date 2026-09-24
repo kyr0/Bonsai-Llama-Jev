@@ -1,0 +1,369 @@
+{
+  "document_id": "de-business-024",
+  "document_type": "Angebot",
+  "entities": [
+    {
+      "label": "ORDER_NUMBER",
+      "text": "AB-60391",
+      "source_path": "$.invoice_part1",
+      "start": 28,
+      "end": 36
+    },
+    {
+      "label": "DOCUMENT_DATE",
+      "text": "07-05-2026",
+      "source_path": "$.invoice_part1",
+      "start": 56,
+      "end": 66
+    },
+    {
+      "label": "DATE",
+      "text": "06.06.2026",
+      "source_path": "$.invoice_part1",
+      "start": 83,
+      "end": 93
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "Vectora Engineering e.K.",
+      "source_path": "$.invoice_part1",
+      "start": 108,
+      "end": 132
+    },
+    {
+      "label": "POSTAL_ADDRESS",
+      "text": "Berliner Straße 87b\n60311 Frankfurt am Main\nHessen\nDeutschland",
+      "source_path": "$.invoice_part1",
+      "start": 133,
+      "end": 195
+    },
+    {
+      "label": "STREET_ADDRESS",
+      "text": "Berliner Straße 87b",
+      "source_path": "$.invoice_part1",
+      "start": 133,
+      "end": 152
+    },
+    {
+      "label": "POSTAL_CODE",
+      "text": "60311",
+      "source_path": "$.invoice_part1",
+      "start": 153,
+      "end": 158
+    },
+    {
+      "label": "CITY",
+      "text": "Frankfurt am Main",
+      "source_path": "$.invoice_part1",
+      "start": 159,
+      "end": 176
+    },
+    {
+      "label": "STATE_OR_REGION",
+      "text": "Hessen",
+      "source_path": "$.invoice_part1",
+      "start": 177,
+      "end": 183
+    },
+    {
+      "label": "COUNTRY",
+      "text": "Deutschland",
+      "source_path": "$.invoice_part1",
+      "start": 184,
+      "end": 195
+    },
+    {
+      "label": "PERSON_NAME",
+      "text": "Nina Lorenz",
+      "source_path": "$.invoice_part1",
+      "start": 205,
+      "end": 216
+    },
+    {
+      "label": "TAX_ID",
+      "text": "DE100316760",
+      "source_path": "$.invoice_part1",
+      "start": 228,
+      "end": 239
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "Nordlicht Anlagenbau GmbH & Co. KG",
+      "source_path": "$.invoice_part1",
+      "start": 254,
+      "end": 288
+    },
+    {
+      "label": "POSTAL_ADDRESS",
+      "text": "Schusterstraße 88b\n79098 Freiburg im Breisgau\nBaden-Württemberg\nDeutschland",
+      "source_path": "$.invoice_part1",
+      "start": 289,
+      "end": 364
+    },
+    {
+      "label": "STREET_ADDRESS",
+      "text": "Schusterstraße 88b",
+      "source_path": "$.invoice_part1",
+      "start": 289,
+      "end": 307
+    },
+    {
+      "label": "POSTAL_CODE",
+      "text": "79098",
+      "source_path": "$.invoice_part1",
+      "start": 308,
+      "end": 313
+    },
+    {
+      "label": "CITY",
+      "text": "Freiburg im Breisgau",
+      "source_path": "$.invoice_part1",
+      "start": 314,
+      "end": 334
+    },
+    {
+      "label": "STATE_OR_REGION",
+      "text": "Baden-Württemberg",
+      "source_path": "$.invoice_part1",
+      "start": 335,
+      "end": 352
+    },
+    {
+      "label": "COUNTRY",
+      "text": "Deutschland",
+      "source_path": "$.invoice_part1",
+      "start": 353,
+      "end": 364
+    },
+    {
+      "label": "ACCOUNT_ID",
+      "text": "DEB 90713",
+      "source_path": "$.invoice_part1",
+      "start": 378,
+      "end": 387
+    },
+    {
+      "label": "SERVICE_DATE",
+      "text": "9. Mai 2026",
+      "source_path": "$.sub.invoice_part2",
+      "start": 314,
+      "end": 325
+    },
+    {
+      "label": "DELIVERY_DATE",
+      "text": "2026-05-21",
+      "source_path": "$.sub.invoice_part2",
+      "start": 349,
+      "end": 359
+    },
+    {
+      "label": "TAX_NUMBER",
+      "text": "33 261 12231",
+      "source_path": "$.sub.invoice_part2",
+      "start": 382,
+      "end": 394
+    },
+    {
+      "label": "PERSON_NAME",
+      "text": "Nina Lorenz",
+      "source_path": "$.sub.invoice_part2",
+      "start": 418,
+      "end": 429
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "Vectora Engineering e.K.",
+      "source_path": "$.sub.invoice_part2",
+      "start": 440,
+      "end": 464
+    }
+  ],
+  "by_label": {
+    "COMPANY_NAME": [
+      {
+        "text": "Vectora Engineering e.K.",
+        "source_path": "$.invoice_part1",
+        "start": 108,
+        "end": 132
+      },
+      {
+        "text": "Nordlicht Anlagenbau GmbH & Co. KG",
+        "source_path": "$.invoice_part1",
+        "start": 254,
+        "end": 288
+      },
+      {
+        "text": "Vectora Engineering e.K.",
+        "source_path": "$.sub.invoice_part2",
+        "start": 440,
+        "end": 464
+      }
+    ],
+    "PERSON_NAME": [
+      {
+        "text": "Nina Lorenz",
+        "source_path": "$.invoice_part1",
+        "start": 205,
+        "end": 216
+      },
+      {
+        "text": "Nina Lorenz",
+        "source_path": "$.sub.invoice_part2",
+        "start": 418,
+        "end": 429
+      }
+    ],
+    "POSTAL_ADDRESS": [
+      {
+        "text": "Berliner Straße 87b\n60311 Frankfurt am Main\nHessen\nDeutschland",
+        "source_path": "$.invoice_part1",
+        "start": 133,
+        "end": 195
+      },
+      {
+        "text": "Schusterstraße 88b\n79098 Freiburg im Breisgau\nBaden-Württemberg\nDeutschland",
+        "source_path": "$.invoice_part1",
+        "start": 289,
+        "end": 364
+      }
+    ],
+    "STREET_ADDRESS": [
+      {
+        "text": "Berliner Straße 87b",
+        "source_path": "$.invoice_part1",
+        "start": 133,
+        "end": 152
+      },
+      {
+        "text": "Schusterstraße 88b",
+        "source_path": "$.invoice_part1",
+        "start": 289,
+        "end": 307
+      }
+    ],
+    "POSTAL_CODE": [
+      {
+        "text": "60311",
+        "source_path": "$.invoice_part1",
+        "start": 153,
+        "end": 158
+      },
+      {
+        "text": "79098",
+        "source_path": "$.invoice_part1",
+        "start": 308,
+        "end": 313
+      }
+    ],
+    "CITY": [
+      {
+        "text": "Frankfurt am Main",
+        "source_path": "$.invoice_part1",
+        "start": 159,
+        "end": 176
+      },
+      {
+        "text": "Freiburg im Breisgau",
+        "source_path": "$.invoice_part1",
+        "start": 314,
+        "end": 334
+      }
+    ],
+    "STATE_OR_REGION": [
+      {
+        "text": "Hessen",
+        "source_path": "$.invoice_part1",
+        "start": 177,
+        "end": 183
+      },
+      {
+        "text": "Baden-Württemberg",
+        "source_path": "$.invoice_part1",
+        "start": 335,
+        "end": 352
+      }
+    ],
+    "COUNTRY": [
+      {
+        "text": "Deutschland",
+        "source_path": "$.invoice_part1",
+        "start": 184,
+        "end": 195
+      },
+      {
+        "text": "Deutschland",
+        "source_path": "$.invoice_part1",
+        "start": 353,
+        "end": 364
+      }
+    ],
+    "ACCOUNT_ID": [
+      {
+        "text": "DEB 90713",
+        "source_path": "$.invoice_part1",
+        "start": 378,
+        "end": 387
+      }
+    ],
+    "INVOICE_NUMBER": [],
+    "INVOICE_DATE": [],
+    "DUE_DATE": [],
+    "SERVICE_DATE": [
+      {
+        "text": "9. Mai 2026",
+        "source_path": "$.sub.invoice_part2",
+        "start": 314,
+        "end": 325
+      }
+    ],
+    "DELIVERY_DATE": [
+      {
+        "text": "2026-05-21",
+        "source_path": "$.sub.invoice_part2",
+        "start": 349,
+        "end": 359
+      }
+    ],
+    "ORDER_NUMBER": [
+      {
+        "text": "AB-60391",
+        "source_path": "$.invoice_part1",
+        "start": 28,
+        "end": 36
+      }
+    ],
+    "DOCUMENT_DATE": [
+      {
+        "text": "07-05-2026",
+        "source_path": "$.invoice_part1",
+        "start": 56,
+        "end": 66
+      }
+    ],
+    "TRANSACTION_DATE": [],
+    "DATE": [
+      {
+        "text": "06.06.2026",
+        "source_path": "$.invoice_part1",
+        "start": 83,
+        "end": 93
+      }
+    ],
+    "TAX_ID": [
+      {
+        "text": "DE100316760",
+        "source_path": "$.invoice_part1",
+        "start": 228,
+        "end": 239
+      }
+    ],
+    "TAX_NUMBER": [
+      {
+        "text": "33 261 12231",
+        "source_path": "$.sub.invoice_part2",
+        "start": 382,
+        "end": 394
+      }
+    ]
+  }
+}

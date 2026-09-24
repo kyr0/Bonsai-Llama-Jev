@@ -1,0 +1,355 @@
+{
+  "document_id": "de-business-007",
+  "document_type": "Retourenbestätigung",
+  "entities": [
+    {
+      "label": "DOCUMENT_DATE",
+      "text": "11.02.2026",
+      "source_path": "$.invoice_part1",
+      "start": 35,
+      "end": 45
+    },
+    {
+      "label": "ORDER_NUMBER",
+      "text": "BEST/2026/706",
+      "source_path": "$.invoice_part1",
+      "start": 55,
+      "end": 68
+    },
+    {
+      "label": "ACCOUNT_ID",
+      "text": "CUST-202606",
+      "source_path": "$.invoice_part1",
+      "start": 83,
+      "end": 94
+    },
+    {
+      "label": "TRANSACTION_DATE",
+      "text": "13. Februar 2026",
+      "source_path": "$.invoice_part1",
+      "start": 122,
+      "end": 138
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "Elbstrand Logistik GmbH & Co. KG",
+      "source_path": "$.invoice_part1",
+      "start": 150,
+      "end": 182
+    },
+    {
+      "label": "POSTAL_ADDRESS",
+      "text": "Kasernenstraße 74a\n40213 Düsseldorf\nNordrhein-Westfalen\nDeutschland",
+      "source_path": "$.invoice_part1",
+      "start": 183,
+      "end": 250
+    },
+    {
+      "label": "STREET_ADDRESS",
+      "text": "Kasernenstraße 74a",
+      "source_path": "$.invoice_part1",
+      "start": 183,
+      "end": 201
+    },
+    {
+      "label": "POSTAL_CODE",
+      "text": "40213",
+      "source_path": "$.invoice_part1",
+      "start": 202,
+      "end": 207
+    },
+    {
+      "label": "CITY",
+      "text": "Düsseldorf",
+      "source_path": "$.invoice_part1",
+      "start": 208,
+      "end": 218
+    },
+    {
+      "label": "STATE_OR_REGION",
+      "text": "Nordrhein-Westfalen",
+      "source_path": "$.invoice_part1",
+      "start": 219,
+      "end": 238
+    },
+    {
+      "label": "COUNTRY",
+      "text": "Deutschland",
+      "source_path": "$.invoice_part1",
+      "start": 239,
+      "end": 250
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "Feldstern Handel AG",
+      "source_path": "$.invoice_part1",
+      "start": 263,
+      "end": 282
+    },
+    {
+      "label": "POSTAL_ADDRESS",
+      "text": "Dortustraße 75a\n14467 Potsdam\nBrandenburg\nDeutschland",
+      "source_path": "$.invoice_part1",
+      "start": 283,
+      "end": 336
+    },
+    {
+      "label": "STREET_ADDRESS",
+      "text": "Dortustraße 75a",
+      "source_path": "$.invoice_part1",
+      "start": 283,
+      "end": 298
+    },
+    {
+      "label": "POSTAL_CODE",
+      "text": "14467",
+      "source_path": "$.invoice_part1",
+      "start": 299,
+      "end": 304
+    },
+    {
+      "label": "CITY",
+      "text": "Potsdam",
+      "source_path": "$.invoice_part1",
+      "start": 305,
+      "end": 312
+    },
+    {
+      "label": "STATE_OR_REGION",
+      "text": "Brandenburg",
+      "source_path": "$.invoice_part1",
+      "start": 313,
+      "end": 324
+    },
+    {
+      "label": "COUNTRY",
+      "text": "Deutschland",
+      "source_path": "$.invoice_part1",
+      "start": 325,
+      "end": 336
+    },
+    {
+      "label": "DELIVERY_DATE",
+      "text": "2026-02-13",
+      "source_path": "$.sub.invoice_part2",
+      "start": 53,
+      "end": 63
+    },
+    {
+      "label": "PERSON_NAME",
+      "text": "Felix Hartmann",
+      "source_path": "$.sub.invoice_part2",
+      "start": 77,
+      "end": 91
+    },
+    {
+      "label": "DATE",
+      "text": "19.01.26",
+      "source_path": "$.sub.invoice_part2",
+      "start": 104,
+      "end": 112
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "Elbstrand Logistik GmbH & Co. KG",
+      "source_path": "$.sub.invoice_part2",
+      "start": 124,
+      "end": 156
+    },
+    {
+      "label": "TAX_ID",
+      "text": "DE100182137",
+      "source_path": "$.sub.invoice_part2",
+      "start": 168,
+      "end": 179
+    },
+    {
+      "label": "TRANSACTION_DATE",
+      "text": "15 / 02 / 2026",
+      "source_path": "$.sub.invoice_part2",
+      "start": 206,
+      "end": 220
+    }
+  ],
+  "by_label": {
+    "COMPANY_NAME": [
+      {
+        "text": "Elbstrand Logistik GmbH & Co. KG",
+        "source_path": "$.invoice_part1",
+        "start": 150,
+        "end": 182
+      },
+      {
+        "text": "Feldstern Handel AG",
+        "source_path": "$.invoice_part1",
+        "start": 263,
+        "end": 282
+      },
+      {
+        "text": "Elbstrand Logistik GmbH & Co. KG",
+        "source_path": "$.sub.invoice_part2",
+        "start": 124,
+        "end": 156
+      }
+    ],
+    "PERSON_NAME": [
+      {
+        "text": "Felix Hartmann",
+        "source_path": "$.sub.invoice_part2",
+        "start": 77,
+        "end": 91
+      }
+    ],
+    "POSTAL_ADDRESS": [
+      {
+        "text": "Kasernenstraße 74a\n40213 Düsseldorf\nNordrhein-Westfalen\nDeutschland",
+        "source_path": "$.invoice_part1",
+        "start": 183,
+        "end": 250
+      },
+      {
+        "text": "Dortustraße 75a\n14467 Potsdam\nBrandenburg\nDeutschland",
+        "source_path": "$.invoice_part1",
+        "start": 283,
+        "end": 336
+      }
+    ],
+    "STREET_ADDRESS": [
+      {
+        "text": "Kasernenstraße 74a",
+        "source_path": "$.invoice_part1",
+        "start": 183,
+        "end": 201
+      },
+      {
+        "text": "Dortustraße 75a",
+        "source_path": "$.invoice_part1",
+        "start": 283,
+        "end": 298
+      }
+    ],
+    "POSTAL_CODE": [
+      {
+        "text": "40213",
+        "source_path": "$.invoice_part1",
+        "start": 202,
+        "end": 207
+      },
+      {
+        "text": "14467",
+        "source_path": "$.invoice_part1",
+        "start": 299,
+        "end": 304
+      }
+    ],
+    "CITY": [
+      {
+        "text": "Düsseldorf",
+        "source_path": "$.invoice_part1",
+        "start": 208,
+        "end": 218
+      },
+      {
+        "text": "Potsdam",
+        "source_path": "$.invoice_part1",
+        "start": 305,
+        "end": 312
+      }
+    ],
+    "STATE_OR_REGION": [
+      {
+        "text": "Nordrhein-Westfalen",
+        "source_path": "$.invoice_part1",
+        "start": 219,
+        "end": 238
+      },
+      {
+        "text": "Brandenburg",
+        "source_path": "$.invoice_part1",
+        "start": 313,
+        "end": 324
+      }
+    ],
+    "COUNTRY": [
+      {
+        "text": "Deutschland",
+        "source_path": "$.invoice_part1",
+        "start": 239,
+        "end": 250
+      },
+      {
+        "text": "Deutschland",
+        "source_path": "$.invoice_part1",
+        "start": 325,
+        "end": 336
+      }
+    ],
+    "ACCOUNT_ID": [
+      {
+        "text": "CUST-202606",
+        "source_path": "$.invoice_part1",
+        "start": 83,
+        "end": 94
+      }
+    ],
+    "INVOICE_NUMBER": [],
+    "INVOICE_DATE": [],
+    "DUE_DATE": [],
+    "SERVICE_DATE": [],
+    "DELIVERY_DATE": [
+      {
+        "text": "2026-02-13",
+        "source_path": "$.sub.invoice_part2",
+        "start": 53,
+        "end": 63
+      }
+    ],
+    "ORDER_NUMBER": [
+      {
+        "text": "BEST/2026/706",
+        "source_path": "$.invoice_part1",
+        "start": 55,
+        "end": 68
+      }
+    ],
+    "DOCUMENT_DATE": [
+      {
+        "text": "11.02.2026",
+        "source_path": "$.invoice_part1",
+        "start": 35,
+        "end": 45
+      }
+    ],
+    "TRANSACTION_DATE": [
+      {
+        "text": "13. Februar 2026",
+        "source_path": "$.invoice_part1",
+        "start": 122,
+        "end": 138
+      },
+      {
+        "text": "15 / 02 / 2026",
+        "source_path": "$.sub.invoice_part2",
+        "start": 206,
+        "end": 220
+      }
+    ],
+    "DATE": [
+      {
+        "text": "19.01.26",
+        "source_path": "$.sub.invoice_part2",
+        "start": 104,
+        "end": 112
+      }
+    ],
+    "TAX_ID": [
+      {
+        "text": "DE100182137",
+        "source_path": "$.sub.invoice_part2",
+        "start": 168,
+        "end": 179
+      }
+    ],
+    "TAX_NUMBER": []
+  }
+}

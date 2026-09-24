@@ -1,0 +1,6 @@
+{
+  "invoice_part1": "# Auftragsbestätigung\n\nVorgangsnummer: **AUF-2026-3016**  \nErstellt am: 02 / 04 / 2026  \nKunden-/Lieferantenkonto: KD-11168\n\n## Besteller\nKlarblick Steuerberatung AG\nCalwer Straße 11\n70173 Stuttgart\nBaden-Württemberg\nDeutschland\nBearbeitung: Eva Wolf\n\n## Auftragnehmer\nWerkhalle Maschinenbau GmbH & Co. KG\nBahnhofstraße 10\n99084 Erfurt\nThüringen\nDeutschland",
+  "sub": {
+    "invoice_part2": "## Termine und Referenzen\n\nGewünschtes Lieferdatum: 04-04-2026\nLeistungsbeginn: 13.04.2026\nAuftrag angenommen durch: David Becker\nSteuer-ID Auftragnehmer: DE100261327\nSteuernummer Auftragnehmer: 276/5848/1272\n\nAuftragnehmer erneut zur Zuordnung: Werkhalle Maschinenbau GmbH & Co. KG\nBestellreferenz: AUF-2026-3016"
+  }
+}

@@ -1,0 +1,368 @@
+{
+  "document_id": "de-business-025",
+  "document_type": "Bestellung",
+  "entities": [
+    {
+      "label": "ORDER_NUMBER",
+      "text": "AUF-2026-3024",
+      "source_path": "$.invoice_part1",
+      "start": 32,
+      "end": 45
+    },
+    {
+      "label": "DOCUMENT_DATE",
+      "text": "12.05.2026",
+      "source_path": "$.invoice_part1",
+      "start": 63,
+      "end": 73
+    },
+    {
+      "label": "ACCOUNT_ID",
+      "text": "KD-11752",
+      "source_path": "$.invoice_part1",
+      "start": 102,
+      "end": 110
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "Rheinwerk Digital UG (haftungsbeschränkt)",
+      "source_path": "$.invoice_part1",
+      "start": 125,
+      "end": 166
+    },
+    {
+      "label": "POSTAL_ADDRESS",
+      "text": "Rheinstraße 12\n55116 Mainz\nRheinland-Pfalz\nDeutschland",
+      "source_path": "$.invoice_part1",
+      "start": 167,
+      "end": 221
+    },
+    {
+      "label": "STREET_ADDRESS",
+      "text": "Rheinstraße 12",
+      "source_path": "$.invoice_part1",
+      "start": 167,
+      "end": 181
+    },
+    {
+      "label": "POSTAL_CODE",
+      "text": "55116",
+      "source_path": "$.invoice_part1",
+      "start": 182,
+      "end": 187
+    },
+    {
+      "label": "CITY",
+      "text": "Mainz",
+      "source_path": "$.invoice_part1",
+      "start": 188,
+      "end": 193
+    },
+    {
+      "label": "STATE_OR_REGION",
+      "text": "Rheinland-Pfalz",
+      "source_path": "$.invoice_part1",
+      "start": 194,
+      "end": 209
+    },
+    {
+      "label": "COUNTRY",
+      "text": "Deutschland",
+      "source_path": "$.invoice_part1",
+      "start": 210,
+      "end": 221
+    },
+    {
+      "label": "PERSON_NAME",
+      "text": "Anna Wolf",
+      "source_path": "$.invoice_part1",
+      "start": 235,
+      "end": 244
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "Rosenfeld Gebäudetechnik AG",
+      "source_path": "$.invoice_part1",
+      "start": 263,
+      "end": 290
+    },
+    {
+      "label": "POSTAL_ADDRESS",
+      "text": "Calwer Straße 11\n70173 Stuttgart\nBaden-Württemberg\nDeutschland",
+      "source_path": "$.invoice_part1",
+      "start": 291,
+      "end": 353
+    },
+    {
+      "label": "STREET_ADDRESS",
+      "text": "Calwer Straße 11",
+      "source_path": "$.invoice_part1",
+      "start": 291,
+      "end": 307
+    },
+    {
+      "label": "POSTAL_CODE",
+      "text": "70173",
+      "source_path": "$.invoice_part1",
+      "start": 308,
+      "end": 313
+    },
+    {
+      "label": "CITY",
+      "text": "Stuttgart",
+      "source_path": "$.invoice_part1",
+      "start": 314,
+      "end": 323
+    },
+    {
+      "label": "STATE_OR_REGION",
+      "text": "Baden-Württemberg",
+      "source_path": "$.invoice_part1",
+      "start": 324,
+      "end": 341
+    },
+    {
+      "label": "COUNTRY",
+      "text": "Deutschland",
+      "source_path": "$.invoice_part1",
+      "start": 342,
+      "end": 353
+    },
+    {
+      "label": "DELIVERY_DATE",
+      "text": "17. Mai 2026",
+      "source_path": "$.sub.invoice_part2",
+      "start": 52,
+      "end": 64
+    },
+    {
+      "label": "SERVICE_DATE",
+      "text": "2026-05-23",
+      "source_path": "$.sub.invoice_part2",
+      "start": 82,
+      "end": 92
+    },
+    {
+      "label": "PERSON_NAME",
+      "text": "Martin Becker",
+      "source_path": "$.sub.invoice_part2",
+      "start": 119,
+      "end": 132
+    },
+    {
+      "label": "TAX_ID",
+      "text": "DE100324679",
+      "source_path": "$.sub.invoice_part2",
+      "start": 158,
+      "end": 169
+    },
+    {
+      "label": "TAX_NUMBER",
+      "text": "34/268/12328",
+      "source_path": "$.sub.invoice_part2",
+      "start": 198,
+      "end": 210
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "Rosenfeld Gebäudetechnik AG",
+      "source_path": "$.sub.invoice_part2",
+      "start": 248,
+      "end": 275
+    },
+    {
+      "label": "ORDER_NUMBER",
+      "text": "AUF-2026-3024",
+      "source_path": "$.sub.invoice_part2",
+      "start": 293,
+      "end": 306
+    }
+  ],
+  "by_label": {
+    "COMPANY_NAME": [
+      {
+        "text": "Rheinwerk Digital UG (haftungsbeschränkt)",
+        "source_path": "$.invoice_part1",
+        "start": 125,
+        "end": 166
+      },
+      {
+        "text": "Rosenfeld Gebäudetechnik AG",
+        "source_path": "$.invoice_part1",
+        "start": 263,
+        "end": 290
+      },
+      {
+        "text": "Rosenfeld Gebäudetechnik AG",
+        "source_path": "$.sub.invoice_part2",
+        "start": 248,
+        "end": 275
+      }
+    ],
+    "PERSON_NAME": [
+      {
+        "text": "Anna Wolf",
+        "source_path": "$.invoice_part1",
+        "start": 235,
+        "end": 244
+      },
+      {
+        "text": "Martin Becker",
+        "source_path": "$.sub.invoice_part2",
+        "start": 119,
+        "end": 132
+      }
+    ],
+    "POSTAL_ADDRESS": [
+      {
+        "text": "Rheinstraße 12\n55116 Mainz\nRheinland-Pfalz\nDeutschland",
+        "source_path": "$.invoice_part1",
+        "start": 167,
+        "end": 221
+      },
+      {
+        "text": "Calwer Straße 11\n70173 Stuttgart\nBaden-Württemberg\nDeutschland",
+        "source_path": "$.invoice_part1",
+        "start": 291,
+        "end": 353
+      }
+    ],
+    "STREET_ADDRESS": [
+      {
+        "text": "Rheinstraße 12",
+        "source_path": "$.invoice_part1",
+        "start": 167,
+        "end": 181
+      },
+      {
+        "text": "Calwer Straße 11",
+        "source_path": "$.invoice_part1",
+        "start": 291,
+        "end": 307
+      }
+    ],
+    "POSTAL_CODE": [
+      {
+        "text": "55116",
+        "source_path": "$.invoice_part1",
+        "start": 182,
+        "end": 187
+      },
+      {
+        "text": "70173",
+        "source_path": "$.invoice_part1",
+        "start": 308,
+        "end": 313
+      }
+    ],
+    "CITY": [
+      {
+        "text": "Mainz",
+        "source_path": "$.invoice_part1",
+        "start": 188,
+        "end": 193
+      },
+      {
+        "text": "Stuttgart",
+        "source_path": "$.invoice_part1",
+        "start": 314,
+        "end": 323
+      }
+    ],
+    "STATE_OR_REGION": [
+      {
+        "text": "Rheinland-Pfalz",
+        "source_path": "$.invoice_part1",
+        "start": 194,
+        "end": 209
+      },
+      {
+        "text": "Baden-Württemberg",
+        "source_path": "$.invoice_part1",
+        "start": 324,
+        "end": 341
+      }
+    ],
+    "COUNTRY": [
+      {
+        "text": "Deutschland",
+        "source_path": "$.invoice_part1",
+        "start": 210,
+        "end": 221
+      },
+      {
+        "text": "Deutschland",
+        "source_path": "$.invoice_part1",
+        "start": 342,
+        "end": 353
+      }
+    ],
+    "ACCOUNT_ID": [
+      {
+        "text": "KD-11752",
+        "source_path": "$.invoice_part1",
+        "start": 102,
+        "end": 110
+      }
+    ],
+    "INVOICE_NUMBER": [],
+    "INVOICE_DATE": [],
+    "DUE_DATE": [],
+    "SERVICE_DATE": [
+      {
+        "text": "2026-05-23",
+        "source_path": "$.sub.invoice_part2",
+        "start": 82,
+        "end": 92
+      }
+    ],
+    "DELIVERY_DATE": [
+      {
+        "text": "17. Mai 2026",
+        "source_path": "$.sub.invoice_part2",
+        "start": 52,
+        "end": 64
+      }
+    ],
+    "ORDER_NUMBER": [
+      {
+        "text": "AUF-2026-3024",
+        "source_path": "$.invoice_part1",
+        "start": 32,
+        "end": 45
+      },
+      {
+        "text": "AUF-2026-3024",
+        "source_path": "$.sub.invoice_part2",
+        "start": 293,
+        "end": 306
+      }
+    ],
+    "DOCUMENT_DATE": [
+      {
+        "text": "12.05.2026",
+        "source_path": "$.invoice_part1",
+        "start": 63,
+        "end": 73
+      }
+    ],
+    "TRANSACTION_DATE": [],
+    "DATE": [],
+    "TAX_ID": [
+      {
+        "text": "DE100324679",
+        "source_path": "$.sub.invoice_part2",
+        "start": 158,
+        "end": 169
+      }
+    ],
+    "TAX_NUMBER": [
+      {
+        "text": "34/268/12328",
+        "source_path": "$.sub.invoice_part2",
+        "start": 198,
+        "end": 210
+      }
+    ]
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "invoice_part1": "# Lieferschein\n\nBelegdatum: 2026-07-21\nAuftrag: BEST/2026/738\nKundennummer: CUST-202638\nLiefer-/Transaktionsdatum: 25.07.26\n\nAbsender:\nSpreebogen Medien e.K.\nMaximilianstraße 78a\n80331 München\nBayern\nDeutschland\n\nEmpfänger:\nWerkhalle Maschinenbau GmbH & Co. KG\nWallstraße 79a\n01067 Dresden\nSachsen\nDeutschland",
+  "sub": {
+    "invoice_part2": "## Sendungsdetails\n\nGeplante / bestätigte Lieferung: 25 / 07 / 2026\nDisposition: Simon Hartmann\nErfasst am: 29-06-2026\nVersender: Spreebogen Medien e.K.\nUSt-IdNr.: DE100435545\n"
+  }
+}

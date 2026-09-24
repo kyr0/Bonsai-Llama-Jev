@@ -1,0 +1,355 @@
+{
+  "document_id": "de-business-046",
+  "document_type": "Retourenbestätigung",
+  "entities": [
+    {
+      "label": "DOCUMENT_DATE",
+      "text": "25.08.26",
+      "source_path": "$.invoice_part1",
+      "start": 35,
+      "end": 43
+    },
+    {
+      "label": "ORDER_NUMBER",
+      "text": "PO-26-08045",
+      "source_path": "$.invoice_part1",
+      "start": 53,
+      "end": 64
+    },
+    {
+      "label": "ACCOUNT_ID",
+      "text": "KTO/700855",
+      "source_path": "$.invoice_part1",
+      "start": 79,
+      "end": 89
+    },
+    {
+      "label": "TRANSACTION_DATE",
+      "text": "30 / 08 / 2026",
+      "source_path": "$.invoice_part1",
+      "start": 117,
+      "end": 131
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "Südwerk Elektrotechnik GmbH",
+      "source_path": "$.invoice_part1",
+      "start": 143,
+      "end": 170
+    },
+    {
+      "label": "POSTAL_ADDRESS",
+      "text": "Grimmaische Straße 68\n04109 Leipzig\nSachsen\nDeutschland",
+      "source_path": "$.invoice_part1",
+      "start": 171,
+      "end": 226
+    },
+    {
+      "label": "STREET_ADDRESS",
+      "text": "Grimmaische Straße 68",
+      "source_path": "$.invoice_part1",
+      "start": 171,
+      "end": 192
+    },
+    {
+      "label": "POSTAL_CODE",
+      "text": "04109",
+      "source_path": "$.invoice_part1",
+      "start": 193,
+      "end": 198
+    },
+    {
+      "label": "CITY",
+      "text": "Leipzig",
+      "source_path": "$.invoice_part1",
+      "start": 199,
+      "end": 206
+    },
+    {
+      "label": "STATE_OR_REGION",
+      "text": "Sachsen",
+      "source_path": "$.invoice_part1",
+      "start": 207,
+      "end": 214
+    },
+    {
+      "label": "COUNTRY",
+      "text": "Deutschland",
+      "source_path": "$.invoice_part1",
+      "start": 215,
+      "end": 226
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "Vectora Engineering e.K.",
+      "source_path": "$.invoice_part1",
+      "start": 239,
+      "end": 263
+    },
+    {
+      "label": "POSTAL_ADDRESS",
+      "text": "Holstenstraße 69\n24103 Kiel\nSchleswig-Holstein\nDeutschland",
+      "source_path": "$.invoice_part1",
+      "start": 264,
+      "end": 322
+    },
+    {
+      "label": "STREET_ADDRESS",
+      "text": "Holstenstraße 69",
+      "source_path": "$.invoice_part1",
+      "start": 264,
+      "end": 280
+    },
+    {
+      "label": "POSTAL_CODE",
+      "text": "24103",
+      "source_path": "$.invoice_part1",
+      "start": 281,
+      "end": 286
+    },
+    {
+      "label": "CITY",
+      "text": "Kiel",
+      "source_path": "$.invoice_part1",
+      "start": 287,
+      "end": 291
+    },
+    {
+      "label": "STATE_OR_REGION",
+      "text": "Schleswig-Holstein",
+      "source_path": "$.invoice_part1",
+      "start": 292,
+      "end": 310
+    },
+    {
+      "label": "COUNTRY",
+      "text": "Deutschland",
+      "source_path": "$.invoice_part1",
+      "start": 311,
+      "end": 322
+    },
+    {
+      "label": "DELIVERY_DATE",
+      "text": "26-08-2026",
+      "source_path": "$.sub.invoice_part2",
+      "start": 53,
+      "end": 63
+    },
+    {
+      "label": "PERSON_NAME",
+      "text": "Miriam Wolf",
+      "source_path": "$.sub.invoice_part2",
+      "start": 77,
+      "end": 88
+    },
+    {
+      "label": "DATE",
+      "text": "07.08.2026",
+      "source_path": "$.sub.invoice_part2",
+      "start": 101,
+      "end": 111
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "Südwerk Elektrotechnik GmbH",
+      "source_path": "$.sub.invoice_part2",
+      "start": 123,
+      "end": 150
+    },
+    {
+      "label": "TAX_ID",
+      "text": "DE100490978",
+      "source_path": "$.sub.invoice_part2",
+      "start": 162,
+      "end": 173
+    },
+    {
+      "label": "TRANSACTION_DATE",
+      "text": "1. September 2026",
+      "source_path": "$.sub.invoice_part2",
+      "start": 200,
+      "end": 217
+    }
+  ],
+  "by_label": {
+    "COMPANY_NAME": [
+      {
+        "text": "Südwerk Elektrotechnik GmbH",
+        "source_path": "$.invoice_part1",
+        "start": 143,
+        "end": 170
+      },
+      {
+        "text": "Vectora Engineering e.K.",
+        "source_path": "$.invoice_part1",
+        "start": 239,
+        "end": 263
+      },
+      {
+        "text": "Südwerk Elektrotechnik GmbH",
+        "source_path": "$.sub.invoice_part2",
+        "start": 123,
+        "end": 150
+      }
+    ],
+    "PERSON_NAME": [
+      {
+        "text": "Miriam Wolf",
+        "source_path": "$.sub.invoice_part2",
+        "start": 77,
+        "end": 88
+      }
+    ],
+    "POSTAL_ADDRESS": [
+      {
+        "text": "Grimmaische Straße 68\n04109 Leipzig\nSachsen\nDeutschland",
+        "source_path": "$.invoice_part1",
+        "start": 171,
+        "end": 226
+      },
+      {
+        "text": "Holstenstraße 69\n24103 Kiel\nSchleswig-Holstein\nDeutschland",
+        "source_path": "$.invoice_part1",
+        "start": 264,
+        "end": 322
+      }
+    ],
+    "STREET_ADDRESS": [
+      {
+        "text": "Grimmaische Straße 68",
+        "source_path": "$.invoice_part1",
+        "start": 171,
+        "end": 192
+      },
+      {
+        "text": "Holstenstraße 69",
+        "source_path": "$.invoice_part1",
+        "start": 264,
+        "end": 280
+      }
+    ],
+    "POSTAL_CODE": [
+      {
+        "text": "04109",
+        "source_path": "$.invoice_part1",
+        "start": 193,
+        "end": 198
+      },
+      {
+        "text": "24103",
+        "source_path": "$.invoice_part1",
+        "start": 281,
+        "end": 286
+      }
+    ],
+    "CITY": [
+      {
+        "text": "Leipzig",
+        "source_path": "$.invoice_part1",
+        "start": 199,
+        "end": 206
+      },
+      {
+        "text": "Kiel",
+        "source_path": "$.invoice_part1",
+        "start": 287,
+        "end": 291
+      }
+    ],
+    "STATE_OR_REGION": [
+      {
+        "text": "Sachsen",
+        "source_path": "$.invoice_part1",
+        "start": 207,
+        "end": 214
+      },
+      {
+        "text": "Schleswig-Holstein",
+        "source_path": "$.invoice_part1",
+        "start": 292,
+        "end": 310
+      }
+    ],
+    "COUNTRY": [
+      {
+        "text": "Deutschland",
+        "source_path": "$.invoice_part1",
+        "start": 215,
+        "end": 226
+      },
+      {
+        "text": "Deutschland",
+        "source_path": "$.invoice_part1",
+        "start": 311,
+        "end": 322
+      }
+    ],
+    "ACCOUNT_ID": [
+      {
+        "text": "KTO/700855",
+        "source_path": "$.invoice_part1",
+        "start": 79,
+        "end": 89
+      }
+    ],
+    "INVOICE_NUMBER": [],
+    "INVOICE_DATE": [],
+    "DUE_DATE": [],
+    "SERVICE_DATE": [],
+    "DELIVERY_DATE": [
+      {
+        "text": "26-08-2026",
+        "source_path": "$.sub.invoice_part2",
+        "start": 53,
+        "end": 63
+      }
+    ],
+    "ORDER_NUMBER": [
+      {
+        "text": "PO-26-08045",
+        "source_path": "$.invoice_part1",
+        "start": 53,
+        "end": 64
+      }
+    ],
+    "DOCUMENT_DATE": [
+      {
+        "text": "25.08.26",
+        "source_path": "$.invoice_part1",
+        "start": 35,
+        "end": 43
+      }
+    ],
+    "TRANSACTION_DATE": [
+      {
+        "text": "30 / 08 / 2026",
+        "source_path": "$.invoice_part1",
+        "start": 117,
+        "end": 131
+      },
+      {
+        "text": "1. September 2026",
+        "source_path": "$.sub.invoice_part2",
+        "start": 200,
+        "end": 217
+      }
+    ],
+    "DATE": [
+      {
+        "text": "07.08.2026",
+        "source_path": "$.sub.invoice_part2",
+        "start": 101,
+        "end": 111
+      }
+    ],
+    "TAX_ID": [
+      {
+        "text": "DE100490978",
+        "source_path": "$.sub.invoice_part2",
+        "start": 162,
+        "end": 173
+      }
+    ],
+    "TAX_NUMBER": []
+  }
+}

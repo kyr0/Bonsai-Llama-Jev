@@ -1,0 +1,368 @@
+{
+  "document_id": "de-business-003",
+  "document_type": "Bestellung",
+  "entities": [
+    {
+      "label": "ORDER_NUMBER",
+      "text": "BEST/2026/702",
+      "source_path": "$.invoice_part1",
+      "start": 32,
+      "end": 45
+    },
+    {
+      "label": "DOCUMENT_DATE",
+      "text": "2026-01-22",
+      "source_path": "$.invoice_part1",
+      "start": 63,
+      "end": 73
+    },
+    {
+      "label": "ACCOUNT_ID",
+      "text": "CUST-202602",
+      "source_path": "$.invoice_part1",
+      "start": 102,
+      "end": 113
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "Signalraum Kommunikation GmbH",
+      "source_path": "$.invoice_part1",
+      "start": 128,
+      "end": 157
+    },
+    {
+      "label": "POSTAL_ADDRESS",
+      "text": "Sögestraße 31a\n28195 Bremen\nBremen\nDeutschland",
+      "source_path": "$.invoice_part1",
+      "start": 158,
+      "end": 204
+    },
+    {
+      "label": "STREET_ADDRESS",
+      "text": "Sögestraße 31a",
+      "source_path": "$.invoice_part1",
+      "start": 158,
+      "end": 172
+    },
+    {
+      "label": "POSTAL_CODE",
+      "text": "28195",
+      "source_path": "$.invoice_part1",
+      "start": 173,
+      "end": 178
+    },
+    {
+      "label": "CITY",
+      "text": "Bremen",
+      "source_path": "$.invoice_part1",
+      "start": 179,
+      "end": 185
+    },
+    {
+      "label": "STATE_OR_REGION",
+      "text": "Bremen",
+      "source_path": "$.invoice_part1",
+      "start": 186,
+      "end": 192
+    },
+    {
+      "label": "COUNTRY",
+      "text": "Deutschland",
+      "source_path": "$.invoice_part1",
+      "start": 193,
+      "end": 204
+    },
+    {
+      "label": "PERSON_NAME",
+      "text": "Leonie Lorenz",
+      "source_path": "$.invoice_part1",
+      "start": 218,
+      "end": 231
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "Rheinwerk Digital UG (haftungsbeschränkt)",
+      "source_path": "$.invoice_part1",
+      "start": 250,
+      "end": 291
+    },
+    {
+      "label": "POSTAL_ADDRESS",
+      "text": "Domstraße 30a\n20095 Hamburg\nHamburg\nDeutschland",
+      "source_path": "$.invoice_part1",
+      "start": 292,
+      "end": 339
+    },
+    {
+      "label": "STREET_ADDRESS",
+      "text": "Domstraße 30a",
+      "source_path": "$.invoice_part1",
+      "start": 292,
+      "end": 305
+    },
+    {
+      "label": "POSTAL_CODE",
+      "text": "20095",
+      "source_path": "$.invoice_part1",
+      "start": 306,
+      "end": 311
+    },
+    {
+      "label": "CITY",
+      "text": "Hamburg",
+      "source_path": "$.invoice_part1",
+      "start": 312,
+      "end": 319
+    },
+    {
+      "label": "STATE_OR_REGION",
+      "text": "Hamburg",
+      "source_path": "$.invoice_part1",
+      "start": 320,
+      "end": 327
+    },
+    {
+      "label": "COUNTRY",
+      "text": "Deutschland",
+      "source_path": "$.invoice_part1",
+      "start": 328,
+      "end": 339
+    },
+    {
+      "label": "DELIVERY_DATE",
+      "text": "25.01.26",
+      "source_path": "$.sub.invoice_part2",
+      "start": 52,
+      "end": 60
+    },
+    {
+      "label": "SERVICE_DATE",
+      "text": "31 / 01 / 2026",
+      "source_path": "$.sub.invoice_part2",
+      "start": 78,
+      "end": 92
+    },
+    {
+      "label": "PERSON_NAME",
+      "text": "Sebastian Hartmann",
+      "source_path": "$.sub.invoice_part2",
+      "start": 119,
+      "end": 137
+    },
+    {
+      "label": "TAX_ID",
+      "text": "DE100150461",
+      "source_path": "$.sub.invoice_part2",
+      "start": 163,
+      "end": 174
+    },
+    {
+      "label": "TAX_NUMBER",
+      "text": "12 114 10194",
+      "source_path": "$.sub.invoice_part2",
+      "start": 203,
+      "end": 215
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "Rheinwerk Digital UG (haftungsbeschränkt)",
+      "source_path": "$.sub.invoice_part2",
+      "start": 253,
+      "end": 294
+    },
+    {
+      "label": "ORDER_NUMBER",
+      "text": "BEST/2026/702",
+      "source_path": "$.sub.invoice_part2",
+      "start": 312,
+      "end": 325
+    }
+  ],
+  "by_label": {
+    "COMPANY_NAME": [
+      {
+        "text": "Signalraum Kommunikation GmbH",
+        "source_path": "$.invoice_part1",
+        "start": 128,
+        "end": 157
+      },
+      {
+        "text": "Rheinwerk Digital UG (haftungsbeschränkt)",
+        "source_path": "$.invoice_part1",
+        "start": 250,
+        "end": 291
+      },
+      {
+        "text": "Rheinwerk Digital UG (haftungsbeschränkt)",
+        "source_path": "$.sub.invoice_part2",
+        "start": 253,
+        "end": 294
+      }
+    ],
+    "PERSON_NAME": [
+      {
+        "text": "Leonie Lorenz",
+        "source_path": "$.invoice_part1",
+        "start": 218,
+        "end": 231
+      },
+      {
+        "text": "Sebastian Hartmann",
+        "source_path": "$.sub.invoice_part2",
+        "start": 119,
+        "end": 137
+      }
+    ],
+    "POSTAL_ADDRESS": [
+      {
+        "text": "Sögestraße 31a\n28195 Bremen\nBremen\nDeutschland",
+        "source_path": "$.invoice_part1",
+        "start": 158,
+        "end": 204
+      },
+      {
+        "text": "Domstraße 30a\n20095 Hamburg\nHamburg\nDeutschland",
+        "source_path": "$.invoice_part1",
+        "start": 292,
+        "end": 339
+      }
+    ],
+    "STREET_ADDRESS": [
+      {
+        "text": "Sögestraße 31a",
+        "source_path": "$.invoice_part1",
+        "start": 158,
+        "end": 172
+      },
+      {
+        "text": "Domstraße 30a",
+        "source_path": "$.invoice_part1",
+        "start": 292,
+        "end": 305
+      }
+    ],
+    "POSTAL_CODE": [
+      {
+        "text": "28195",
+        "source_path": "$.invoice_part1",
+        "start": 173,
+        "end": 178
+      },
+      {
+        "text": "20095",
+        "source_path": "$.invoice_part1",
+        "start": 306,
+        "end": 311
+      }
+    ],
+    "CITY": [
+      {
+        "text": "Bremen",
+        "source_path": "$.invoice_part1",
+        "start": 179,
+        "end": 185
+      },
+      {
+        "text": "Hamburg",
+        "source_path": "$.invoice_part1",
+        "start": 312,
+        "end": 319
+      }
+    ],
+    "STATE_OR_REGION": [
+      {
+        "text": "Bremen",
+        "source_path": "$.invoice_part1",
+        "start": 186,
+        "end": 192
+      },
+      {
+        "text": "Hamburg",
+        "source_path": "$.invoice_part1",
+        "start": 320,
+        "end": 327
+      }
+    ],
+    "COUNTRY": [
+      {
+        "text": "Deutschland",
+        "source_path": "$.invoice_part1",
+        "start": 193,
+        "end": 204
+      },
+      {
+        "text": "Deutschland",
+        "source_path": "$.invoice_part1",
+        "start": 328,
+        "end": 339
+      }
+    ],
+    "ACCOUNT_ID": [
+      {
+        "text": "CUST-202602",
+        "source_path": "$.invoice_part1",
+        "start": 102,
+        "end": 113
+      }
+    ],
+    "INVOICE_NUMBER": [],
+    "INVOICE_DATE": [],
+    "DUE_DATE": [],
+    "SERVICE_DATE": [
+      {
+        "text": "31 / 01 / 2026",
+        "source_path": "$.sub.invoice_part2",
+        "start": 78,
+        "end": 92
+      }
+    ],
+    "DELIVERY_DATE": [
+      {
+        "text": "25.01.26",
+        "source_path": "$.sub.invoice_part2",
+        "start": 52,
+        "end": 60
+      }
+    ],
+    "ORDER_NUMBER": [
+      {
+        "text": "BEST/2026/702",
+        "source_path": "$.invoice_part1",
+        "start": 32,
+        "end": 45
+      },
+      {
+        "text": "BEST/2026/702",
+        "source_path": "$.sub.invoice_part2",
+        "start": 312,
+        "end": 325
+      }
+    ],
+    "DOCUMENT_DATE": [
+      {
+        "text": "2026-01-22",
+        "source_path": "$.invoice_part1",
+        "start": 63,
+        "end": 73
+      }
+    ],
+    "TRANSACTION_DATE": [],
+    "DATE": [],
+    "TAX_ID": [
+      {
+        "text": "DE100150461",
+        "source_path": "$.sub.invoice_part2",
+        "start": 163,
+        "end": 174
+      }
+    ],
+    "TAX_NUMBER": [
+      {
+        "text": "12 114 10194",
+        "source_path": "$.sub.invoice_part2",
+        "start": 203,
+        "end": 215
+      }
+    ]
+  }
+}

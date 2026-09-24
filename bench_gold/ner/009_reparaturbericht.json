@@ -1,0 +1,355 @@
+{
+  "document_id": "de-business-009",
+  "document_type": "Reparaturbericht",
+  "entities": [
+    {
+      "label": "DOCUMENT_DATE",
+      "text": "2026-02-21",
+      "source_path": "$.invoice_part1",
+      "start": 37,
+      "end": 47
+    },
+    {
+      "label": "ORDER_NUMBER",
+      "text": "AUF-2026-3008",
+      "source_path": "$.invoice_part1",
+      "start": 57,
+      "end": 70
+    },
+    {
+      "label": "ACCOUNT_ID",
+      "text": "KD-10584",
+      "source_path": "$.invoice_part1",
+      "start": 82,
+      "end": 90
+    },
+    {
+      "label": "SERVICE_DATE",
+      "text": "20.02.26",
+      "source_path": "$.invoice_part1",
+      "start": 116,
+      "end": 124
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "Taunus Werktechnik e.K.",
+      "source_path": "$.invoice_part1",
+      "start": 141,
+      "end": 164
+    },
+    {
+      "label": "POSTAL_ADDRESS",
+      "text": "Ostra-Allee 9\n01067 Dresden\nSachsen\nDeutschland",
+      "source_path": "$.invoice_part1",
+      "start": 165,
+      "end": 212
+    },
+    {
+      "label": "STREET_ADDRESS",
+      "text": "Ostra-Allee 9",
+      "source_path": "$.invoice_part1",
+      "start": 165,
+      "end": 178
+    },
+    {
+      "label": "POSTAL_CODE",
+      "text": "01067",
+      "source_path": "$.invoice_part1",
+      "start": 179,
+      "end": 184
+    },
+    {
+      "label": "CITY",
+      "text": "Dresden",
+      "source_path": "$.invoice_part1",
+      "start": 185,
+      "end": 192
+    },
+    {
+      "label": "STATE_OR_REGION",
+      "text": "Sachsen",
+      "source_path": "$.invoice_part1",
+      "start": 193,
+      "end": 200
+    },
+    {
+      "label": "COUNTRY",
+      "text": "Deutschland",
+      "source_path": "$.invoice_part1",
+      "start": 201,
+      "end": 212
+    },
+    {
+      "label": "PERSON_NAME",
+      "text": "Robert Becker",
+      "source_path": "$.invoice_part1",
+      "start": 227,
+      "end": 240
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "Lichtbogen Veranstaltungstechnik GmbH & Co. KG",
+      "source_path": "$.invoice_part1",
+      "start": 249,
+      "end": 295
+    },
+    {
+      "label": "POSTAL_ADDRESS",
+      "text": "Bahnhofstraße 10\n99084 Erfurt\nThüringen\nDeutschland",
+      "source_path": "$.invoice_part1",
+      "start": 296,
+      "end": 347
+    },
+    {
+      "label": "STREET_ADDRESS",
+      "text": "Bahnhofstraße 10",
+      "source_path": "$.invoice_part1",
+      "start": 296,
+      "end": 312
+    },
+    {
+      "label": "POSTAL_CODE",
+      "text": "99084",
+      "source_path": "$.invoice_part1",
+      "start": 313,
+      "end": 318
+    },
+    {
+      "label": "CITY",
+      "text": "Erfurt",
+      "source_path": "$.invoice_part1",
+      "start": 319,
+      "end": 325
+    },
+    {
+      "label": "STATE_OR_REGION",
+      "text": "Thüringen",
+      "source_path": "$.invoice_part1",
+      "start": 326,
+      "end": 335
+    },
+    {
+      "label": "COUNTRY",
+      "text": "Deutschland",
+      "source_path": "$.invoice_part1",
+      "start": 336,
+      "end": 347
+    },
+    {
+      "label": "PERSON_NAME",
+      "text": "Miriam Wolf",
+      "source_path": "$.sub.invoice_part2",
+      "start": 128,
+      "end": 139
+    },
+    {
+      "label": "DATE",
+      "text": "20 / 08 / 2026",
+      "source_path": "$.sub.invoice_part2",
+      "start": 169,
+      "end": 183
+    },
+    {
+      "label": "TAX_NUMBER",
+      "text": "18 156 10776",
+      "source_path": "$.sub.invoice_part2",
+      "start": 212,
+      "end": 224
+    },
+    {
+      "label": "TAX_ID",
+      "text": "DE100197975",
+      "source_path": "$.sub.invoice_part2",
+      "start": 247,
+      "end": 258
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "Taunus Werktechnik e.K.",
+      "source_path": "$.sub.invoice_part2",
+      "start": 274,
+      "end": 297
+    }
+  ],
+  "by_label": {
+    "COMPANY_NAME": [
+      {
+        "text": "Taunus Werktechnik e.K.",
+        "source_path": "$.invoice_part1",
+        "start": 141,
+        "end": 164
+      },
+      {
+        "text": "Lichtbogen Veranstaltungstechnik GmbH & Co. KG",
+        "source_path": "$.invoice_part1",
+        "start": 249,
+        "end": 295
+      },
+      {
+        "text": "Taunus Werktechnik e.K.",
+        "source_path": "$.sub.invoice_part2",
+        "start": 274,
+        "end": 297
+      }
+    ],
+    "PERSON_NAME": [
+      {
+        "text": "Robert Becker",
+        "source_path": "$.invoice_part1",
+        "start": 227,
+        "end": 240
+      },
+      {
+        "text": "Miriam Wolf",
+        "source_path": "$.sub.invoice_part2",
+        "start": 128,
+        "end": 139
+      }
+    ],
+    "POSTAL_ADDRESS": [
+      {
+        "text": "Ostra-Allee 9\n01067 Dresden\nSachsen\nDeutschland",
+        "source_path": "$.invoice_part1",
+        "start": 165,
+        "end": 212
+      },
+      {
+        "text": "Bahnhofstraße 10\n99084 Erfurt\nThüringen\nDeutschland",
+        "source_path": "$.invoice_part1",
+        "start": 296,
+        "end": 347
+      }
+    ],
+    "STREET_ADDRESS": [
+      {
+        "text": "Ostra-Allee 9",
+        "source_path": "$.invoice_part1",
+        "start": 165,
+        "end": 178
+      },
+      {
+        "text": "Bahnhofstraße 10",
+        "source_path": "$.invoice_part1",
+        "start": 296,
+        "end": 312
+      }
+    ],
+    "POSTAL_CODE": [
+      {
+        "text": "01067",
+        "source_path": "$.invoice_part1",
+        "start": 179,
+        "end": 184
+      },
+      {
+        "text": "99084",
+        "source_path": "$.invoice_part1",
+        "start": 313,
+        "end": 318
+      }
+    ],
+    "CITY": [
+      {
+        "text": "Dresden",
+        "source_path": "$.invoice_part1",
+        "start": 185,
+        "end": 192
+      },
+      {
+        "text": "Erfurt",
+        "source_path": "$.invoice_part1",
+        "start": 319,
+        "end": 325
+      }
+    ],
+    "STATE_OR_REGION": [
+      {
+        "text": "Sachsen",
+        "source_path": "$.invoice_part1",
+        "start": 193,
+        "end": 200
+      },
+      {
+        "text": "Thüringen",
+        "source_path": "$.invoice_part1",
+        "start": 326,
+        "end": 335
+      }
+    ],
+    "COUNTRY": [
+      {
+        "text": "Deutschland",
+        "source_path": "$.invoice_part1",
+        "start": 201,
+        "end": 212
+      },
+      {
+        "text": "Deutschland",
+        "source_path": "$.invoice_part1",
+        "start": 336,
+        "end": 347
+      }
+    ],
+    "ACCOUNT_ID": [
+      {
+        "text": "KD-10584",
+        "source_path": "$.invoice_part1",
+        "start": 82,
+        "end": 90
+      }
+    ],
+    "INVOICE_NUMBER": [],
+    "INVOICE_DATE": [],
+    "DUE_DATE": [],
+    "SERVICE_DATE": [
+      {
+        "text": "20.02.26",
+        "source_path": "$.invoice_part1",
+        "start": 116,
+        "end": 124
+      }
+    ],
+    "DELIVERY_DATE": [],
+    "ORDER_NUMBER": [
+      {
+        "text": "AUF-2026-3008",
+        "source_path": "$.invoice_part1",
+        "start": 57,
+        "end": 70
+      }
+    ],
+    "DOCUMENT_DATE": [
+      {
+        "text": "2026-02-21",
+        "source_path": "$.invoice_part1",
+        "start": 37,
+        "end": 47
+      }
+    ],
+    "TRANSACTION_DATE": [],
+    "DATE": [
+      {
+        "text": "20 / 08 / 2026",
+        "source_path": "$.sub.invoice_part2",
+        "start": 169,
+        "end": 183
+      }
+    ],
+    "TAX_ID": [
+      {
+        "text": "DE100197975",
+        "source_path": "$.sub.invoice_part2",
+        "start": 247,
+        "end": 258
+      }
+    ],
+    "TAX_NUMBER": [
+      {
+        "text": "18 156 10776",
+        "source_path": "$.sub.invoice_part2",
+        "start": 212,
+        "end": 224
+      }
+    ]
+  }
+}

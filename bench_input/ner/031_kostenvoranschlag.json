@@ -1,0 +1,6 @@
+{
+  "invoice_part1": "# Kostenvoranschlag\n\n**Kostenvoranschlag-Nr.:** BEST/2026/730\n**Dokumentdatum:** 11.06.2026\n**Gültig bis:** 11. Juli 2026\n\n### Anbieter\nRoutenwerk Transport GmbH\nLuisenstraße 77a\n30159 Hannover\nNiedersachsen\nDeutschland\nKontakt: Sebastian Hartmann\nUSt-IdNr.: DE100372193\n\n### Adressat\nTaunus Werktechnik e.K.\nMaximilianstraße 78a\n80331 München\nBayern\nDeutschland\nKundenkonto: CUST-202630",
+  "sub": {
+    "invoice_part2": "# Positionen zum Kostenvoranschlag\n\n1. **Softwareentwicklung** — 4 Std. × 118,00 € = 472,00 €\n2. **Dokumentation** — 5 Std. × 92,00 € = 460,00 €\n3. **Projektmanagement** — 6 Std. × 112,00 € = 672,00 €\n\nVoraussichtlicher Nettobetrag: **1.604,00 €**\nVorgesehener Leistungsbeginn: 2026-06-14\nGeplantes Lieferdatum: 22.06.26\nInterne Steuernummer: 40/310/12910\nProjektverantwortlich: Sebastian Hartmann\nAnbieter: Routenwerk Transport GmbH"
+  }
+}

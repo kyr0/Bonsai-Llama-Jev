@@ -1,0 +1,369 @@
+{
+  "document_id": "de-business-015",
+  "document_type": "Angebot",
+  "entities": [
+    {
+      "label": "ORDER_NUMBER",
+      "text": "BEST/2026/714",
+      "source_path": "$.invoice_part1",
+      "start": 28,
+      "end": 41
+    },
+    {
+      "label": "DOCUMENT_DATE",
+      "text": "2026-03-23",
+      "source_path": "$.invoice_part1",
+      "start": 61,
+      "end": 71
+    },
+    {
+      "label": "DATE",
+      "text": "22.04.26",
+      "source_path": "$.invoice_part1",
+      "start": 88,
+      "end": 96
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "Prisma Laborservice AG",
+      "source_path": "$.invoice_part1",
+      "start": 111,
+      "end": 133
+    },
+    {
+      "label": "POSTAL_ADDRESS",
+      "text": "Dortustraße 75a\n14467 Potsdam\nBrandenburg\nDeutschland",
+      "source_path": "$.invoice_part1",
+      "start": 134,
+      "end": 187
+    },
+    {
+      "label": "STREET_ADDRESS",
+      "text": "Dortustraße 75a",
+      "source_path": "$.invoice_part1",
+      "start": 134,
+      "end": 149
+    },
+    {
+      "label": "POSTAL_CODE",
+      "text": "14467",
+      "source_path": "$.invoice_part1",
+      "start": 150,
+      "end": 155
+    },
+    {
+      "label": "CITY",
+      "text": "Potsdam",
+      "source_path": "$.invoice_part1",
+      "start": 156,
+      "end": 163
+    },
+    {
+      "label": "STATE_OR_REGION",
+      "text": "Brandenburg",
+      "source_path": "$.invoice_part1",
+      "start": 164,
+      "end": 175
+    },
+    {
+      "label": "COUNTRY",
+      "text": "Deutschland",
+      "source_path": "$.invoice_part1",
+      "start": 176,
+      "end": 187
+    },
+    {
+      "label": "PERSON_NAME",
+      "text": "Lukas Hartmann",
+      "source_path": "$.invoice_part1",
+      "start": 197,
+      "end": 211
+    },
+    {
+      "label": "TAX_ID",
+      "text": "DE100245489",
+      "source_path": "$.invoice_part1",
+      "start": 223,
+      "end": 234
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "Mittelstand Systems UG (haftungsbeschränkt)",
+      "source_path": "$.invoice_part1",
+      "start": 249,
+      "end": 292
+    },
+    {
+      "label": "POSTAL_ADDRESS",
+      "text": "Cäcilienstraße 76a\n50667 Köln\nNordrhein-Westfalen\nDeutschland",
+      "source_path": "$.invoice_part1",
+      "start": 293,
+      "end": 354
+    },
+    {
+      "label": "STREET_ADDRESS",
+      "text": "Cäcilienstraße 76a",
+      "source_path": "$.invoice_part1",
+      "start": 293,
+      "end": 311
+    },
+    {
+      "label": "POSTAL_CODE",
+      "text": "50667",
+      "source_path": "$.invoice_part1",
+      "start": 312,
+      "end": 317
+    },
+    {
+      "label": "CITY",
+      "text": "Köln",
+      "source_path": "$.invoice_part1",
+      "start": 318,
+      "end": 322
+    },
+    {
+      "label": "STATE_OR_REGION",
+      "text": "Nordrhein-Westfalen",
+      "source_path": "$.invoice_part1",
+      "start": 323,
+      "end": 342
+    },
+    {
+      "label": "COUNTRY",
+      "text": "Deutschland",
+      "source_path": "$.invoice_part1",
+      "start": 343,
+      "end": 354
+    },
+    {
+      "label": "ACCOUNT_ID",
+      "text": "CUST-202614",
+      "source_path": "$.invoice_part1",
+      "start": 368,
+      "end": 379
+    },
+    {
+      "label": "SERVICE_DATE",
+      "text": "26 / 03 / 2026",
+      "source_path": "$.sub.invoice_part2",
+      "start": 268,
+      "end": 282
+    },
+    {
+      "label": "DELIVERY_DATE",
+      "text": "07-04-2026",
+      "source_path": "$.sub.invoice_part2",
+      "start": 306,
+      "end": 316
+    },
+    {
+      "label": "TAX_NUMBER",
+      "text": "24 198 11358",
+      "source_path": "$.sub.invoice_part2",
+      "start": 339,
+      "end": 351
+    },
+    {
+      "label": "PERSON_NAME",
+      "text": "Lukas Hartmann",
+      "source_path": "$.sub.invoice_part2",
+      "start": 375,
+      "end": 389
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "Prisma Laborservice AG",
+      "source_path": "$.sub.invoice_part2",
+      "start": 400,
+      "end": 422
+    }
+  ],
+  "by_label": {
+    "COMPANY_NAME": [
+      {
+        "text": "Prisma Laborservice AG",
+        "source_path": "$.invoice_part1",
+        "start": 111,
+        "end": 133
+      },
+      {
+        "text": "Mittelstand Systems UG (haftungsbeschränkt)",
+        "source_path": "$.invoice_part1",
+        "start": 249,
+        "end": 292
+      },
+      {
+        "text": "Prisma Laborservice AG",
+        "source_path": "$.sub.invoice_part2",
+        "start": 400,
+        "end": 422
+      }
+    ],
+    "PERSON_NAME": [
+      {
+        "text": "Lukas Hartmann",
+        "source_path": "$.invoice_part1",
+        "start": 197,
+        "end": 211
+      },
+      {
+        "text": "Lukas Hartmann",
+        "source_path": "$.sub.invoice_part2",
+        "start": 375,
+        "end": 389
+      }
+    ],
+    "POSTAL_ADDRESS": [
+      {
+        "text": "Dortustraße 75a\n14467 Potsdam\nBrandenburg\nDeutschland",
+        "source_path": "$.invoice_part1",
+        "start": 134,
+        "end": 187
+      },
+      {
+        "text": "Cäcilienstraße 76a\n50667 Köln\nNordrhein-Westfalen\nDeutschland",
+        "source_path": "$.invoice_part1",
+        "start": 293,
+        "end": 354
+      }
+    ],
+    "STREET_ADDRESS": [
+      {
+        "text": "Dortustraße 75a",
+        "source_path": "$.invoice_part1",
+        "start": 134,
+        "end": 149
+      },
+      {
+        "text": "Cäcilienstraße 76a",
+        "source_path": "$.invoice_part1",
+        "start": 293,
+        "end": 311
+      }
+    ],
+    "POSTAL_CODE": [
+      {
+        "text": "14467",
+        "source_path": "$.invoice_part1",
+        "start": 150,
+        "end": 155
+      },
+      {
+        "text": "50667",
+        "source_path": "$.invoice_part1",
+        "start": 312,
+        "end": 317
+      }
+    ],
+    "CITY": [
+      {
+        "text": "Potsdam",
+        "source_path": "$.invoice_part1",
+        "start": 156,
+        "end": 163
+      },
+      {
+        "text": "Köln",
+        "source_path": "$.invoice_part1",
+        "start": 318,
+        "end": 322
+      }
+    ],
+    "STATE_OR_REGION": [
+      {
+        "text": "Brandenburg",
+        "source_path": "$.invoice_part1",
+        "start": 164,
+        "end": 175
+      },
+      {
+        "text": "Nordrhein-Westfalen",
+        "source_path": "$.invoice_part1",
+        "start": 323,
+        "end": 342
+      }
+    ],
+    "COUNTRY": [
+      {
+        "text": "Deutschland",
+        "source_path": "$.invoice_part1",
+        "start": 176,
+        "end": 187
+      },
+      {
+        "text": "Deutschland",
+        "source_path": "$.invoice_part1",
+        "start": 343,
+        "end": 354
+      }
+    ],
+    "ACCOUNT_ID": [
+      {
+        "text": "CUST-202614",
+        "source_path": "$.invoice_part1",
+        "start": 368,
+        "end": 379
+      }
+    ],
+    "INVOICE_NUMBER": [],
+    "INVOICE_DATE": [],
+    "DUE_DATE": [],
+    "SERVICE_DATE": [
+      {
+        "text": "26 / 03 / 2026",
+        "source_path": "$.sub.invoice_part2",
+        "start": 268,
+        "end": 282
+      }
+    ],
+    "DELIVERY_DATE": [
+      {
+        "text": "07-04-2026",
+        "source_path": "$.sub.invoice_part2",
+        "start": 306,
+        "end": 316
+      }
+    ],
+    "ORDER_NUMBER": [
+      {
+        "text": "BEST/2026/714",
+        "source_path": "$.invoice_part1",
+        "start": 28,
+        "end": 41
+      }
+    ],
+    "DOCUMENT_DATE": [
+      {
+        "text": "2026-03-23",
+        "source_path": "$.invoice_part1",
+        "start": 61,
+        "end": 71
+      }
+    ],
+    "TRANSACTION_DATE": [],
+    "DATE": [
+      {
+        "text": "22.04.26",
+        "source_path": "$.invoice_part1",
+        "start": 88,
+        "end": 96
+      }
+    ],
+    "TAX_ID": [
+      {
+        "text": "DE100245489",
+        "source_path": "$.invoice_part1",
+        "start": 223,
+        "end": 234
+      }
+    ],
+    "TAX_NUMBER": [
+      {
+        "text": "24 198 11358",
+        "source_path": "$.sub.invoice_part2",
+        "start": 339,
+        "end": 351
+      }
+    ]
+  }
+}

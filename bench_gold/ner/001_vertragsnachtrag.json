@@ -1,0 +1,354 @@
+{
+  "document_id": "de-business-001",
+  "document_type": "Vertragsnachtrag",
+  "entities": [
+    {
+      "label": "DOCUMENT_DATE",
+      "text": "12.01.2026",
+      "source_path": "$.invoice_part1",
+      "start": 36,
+      "end": 46
+    },
+    {
+      "label": "ORDER_NUMBER",
+      "text": "AUF-2026-3000",
+      "source_path": "$.invoice_part1",
+      "start": 75,
+      "end": 88
+    },
+    {
+      "label": "DATE",
+      "text": "26. Januar 2026",
+      "source_path": "$.invoice_part1",
+      "start": 101,
+      "end": 116
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "Alpenbyte Solutions GmbH",
+      "source_path": "$.invoice_part1",
+      "start": 136,
+      "end": 160
+    },
+    {
+      "label": "POSTAL_ADDRESS",
+      "text": "Tal 8\n80331 München\nBayern\nDeutschland",
+      "source_path": "$.invoice_part1",
+      "start": 161,
+      "end": 199
+    },
+    {
+      "label": "STREET_ADDRESS",
+      "text": "Tal 8",
+      "source_path": "$.invoice_part1",
+      "start": 161,
+      "end": 166
+    },
+    {
+      "label": "POSTAL_CODE",
+      "text": "80331",
+      "source_path": "$.invoice_part1",
+      "start": 167,
+      "end": 172
+    },
+    {
+      "label": "CITY",
+      "text": "München",
+      "source_path": "$.invoice_part1",
+      "start": 173,
+      "end": 180
+    },
+    {
+      "label": "STATE_OR_REGION",
+      "text": "Bayern",
+      "source_path": "$.invoice_part1",
+      "start": 181,
+      "end": 187
+    },
+    {
+      "label": "COUNTRY",
+      "text": "Deutschland",
+      "source_path": "$.invoice_part1",
+      "start": 188,
+      "end": 199
+    },
+    {
+      "label": "PERSON_NAME",
+      "text": "Tobias Becker",
+      "source_path": "$.invoice_part1",
+      "start": 216,
+      "end": 229
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "Mosaik Software e.K.",
+      "source_path": "$.invoice_part1",
+      "start": 249,
+      "end": 269
+    },
+    {
+      "label": "POSTAL_ADDRESS",
+      "text": "Ostra-Allee 9\n01067 Dresden\nSachsen\nDeutschland",
+      "source_path": "$.invoice_part1",
+      "start": 270,
+      "end": 317
+    },
+    {
+      "label": "STREET_ADDRESS",
+      "text": "Ostra-Allee 9",
+      "source_path": "$.invoice_part1",
+      "start": 270,
+      "end": 283
+    },
+    {
+      "label": "POSTAL_CODE",
+      "text": "01067",
+      "source_path": "$.invoice_part1",
+      "start": 284,
+      "end": 289
+    },
+    {
+      "label": "CITY",
+      "text": "Dresden",
+      "source_path": "$.invoice_part1",
+      "start": 290,
+      "end": 297
+    },
+    {
+      "label": "STATE_OR_REGION",
+      "text": "Sachsen",
+      "source_path": "$.invoice_part1",
+      "start": 298,
+      "end": 305
+    },
+    {
+      "label": "COUNTRY",
+      "text": "Deutschland",
+      "source_path": "$.invoice_part1",
+      "start": 306,
+      "end": 317
+    },
+    {
+      "label": "DATE",
+      "text": "2026-02-02",
+      "source_path": "$.sub.invoice_part2",
+      "start": 71,
+      "end": 81
+    },
+    {
+      "label": "ACCOUNT_ID",
+      "text": "KD-10000",
+      "source_path": "$.sub.invoice_part2",
+      "start": 97,
+      "end": 105
+    },
+    {
+      "label": "TAX_NUMBER",
+      "text": "10/100/10000",
+      "source_path": "$.sub.invoice_part2",
+      "start": 138,
+      "end": 150
+    },
+    {
+      "label": "TAX_ID",
+      "text": "DE100134623",
+      "source_path": "$.sub.invoice_part2",
+      "start": 177,
+      "end": 188
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "Alpenbyte Solutions GmbH",
+      "source_path": "$.sub.invoice_part2",
+      "start": 207,
+      "end": 231
+    },
+    {
+      "label": "PERSON_NAME",
+      "text": "Tobias Becker",
+      "source_path": "$.sub.invoice_part2",
+      "start": 238,
+      "end": 251
+    }
+  ],
+  "by_label": {
+    "COMPANY_NAME": [
+      {
+        "text": "Alpenbyte Solutions GmbH",
+        "source_path": "$.invoice_part1",
+        "start": 136,
+        "end": 160
+      },
+      {
+        "text": "Mosaik Software e.K.",
+        "source_path": "$.invoice_part1",
+        "start": 249,
+        "end": 269
+      },
+      {
+        "text": "Alpenbyte Solutions GmbH",
+        "source_path": "$.sub.invoice_part2",
+        "start": 207,
+        "end": 231
+      }
+    ],
+    "PERSON_NAME": [
+      {
+        "text": "Tobias Becker",
+        "source_path": "$.invoice_part1",
+        "start": 216,
+        "end": 229
+      },
+      {
+        "text": "Tobias Becker",
+        "source_path": "$.sub.invoice_part2",
+        "start": 238,
+        "end": 251
+      }
+    ],
+    "POSTAL_ADDRESS": [
+      {
+        "text": "Tal 8\n80331 München\nBayern\nDeutschland",
+        "source_path": "$.invoice_part1",
+        "start": 161,
+        "end": 199
+      },
+      {
+        "text": "Ostra-Allee 9\n01067 Dresden\nSachsen\nDeutschland",
+        "source_path": "$.invoice_part1",
+        "start": 270,
+        "end": 317
+      }
+    ],
+    "STREET_ADDRESS": [
+      {
+        "text": "Tal 8",
+        "source_path": "$.invoice_part1",
+        "start": 161,
+        "end": 166
+      },
+      {
+        "text": "Ostra-Allee 9",
+        "source_path": "$.invoice_part1",
+        "start": 270,
+        "end": 283
+      }
+    ],
+    "POSTAL_CODE": [
+      {
+        "text": "80331",
+        "source_path": "$.invoice_part1",
+        "start": 167,
+        "end": 172
+      },
+      {
+        "text": "01067",
+        "source_path": "$.invoice_part1",
+        "start": 284,
+        "end": 289
+      }
+    ],
+    "CITY": [
+      {
+        "text": "München",
+        "source_path": "$.invoice_part1",
+        "start": 173,
+        "end": 180
+      },
+      {
+        "text": "Dresden",
+        "source_path": "$.invoice_part1",
+        "start": 290,
+        "end": 297
+      }
+    ],
+    "STATE_OR_REGION": [
+      {
+        "text": "Bayern",
+        "source_path": "$.invoice_part1",
+        "start": 181,
+        "end": 187
+      },
+      {
+        "text": "Sachsen",
+        "source_path": "$.invoice_part1",
+        "start": 298,
+        "end": 305
+      }
+    ],
+    "COUNTRY": [
+      {
+        "text": "Deutschland",
+        "source_path": "$.invoice_part1",
+        "start": 188,
+        "end": 199
+      },
+      {
+        "text": "Deutschland",
+        "source_path": "$.invoice_part1",
+        "start": 306,
+        "end": 317
+      }
+    ],
+    "ACCOUNT_ID": [
+      {
+        "text": "KD-10000",
+        "source_path": "$.sub.invoice_part2",
+        "start": 97,
+        "end": 105
+      }
+    ],
+    "INVOICE_NUMBER": [],
+    "INVOICE_DATE": [],
+    "DUE_DATE": [],
+    "SERVICE_DATE": [],
+    "DELIVERY_DATE": [],
+    "ORDER_NUMBER": [
+      {
+        "text": "AUF-2026-3000",
+        "source_path": "$.invoice_part1",
+        "start": 75,
+        "end": 88
+      }
+    ],
+    "DOCUMENT_DATE": [
+      {
+        "text": "12.01.2026",
+        "source_path": "$.invoice_part1",
+        "start": 36,
+        "end": 46
+      }
+    ],
+    "TRANSACTION_DATE": [],
+    "DATE": [
+      {
+        "text": "26. Januar 2026",
+        "source_path": "$.invoice_part1",
+        "start": 101,
+        "end": 116
+      },
+      {
+        "text": "2026-02-02",
+        "source_path": "$.sub.invoice_part2",
+        "start": 71,
+        "end": 81
+      }
+    ],
+    "TAX_ID": [
+      {
+        "text": "DE100134623",
+        "source_path": "$.sub.invoice_part2",
+        "start": 177,
+        "end": 188
+      }
+    ],
+    "TAX_NUMBER": [
+      {
+        "text": "10/100/10000",
+        "source_path": "$.sub.invoice_part2",
+        "start": 138,
+        "end": 150
+      }
+    ]
+  }
+}

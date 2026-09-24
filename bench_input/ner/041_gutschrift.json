@@ -1,0 +1,6 @@
+{
+  "invoice_part1": "# Gutschrift\n\n**Belegnummer:** RE-2026-1040\n**Rechnungsdatum:** 31 / 07 / 2026\n**Leistungsdatum:** 30-07-2026\n**Kundenkonto:** KD-12920\n\n## Aussteller\n\nIsar Automation GmbH\nKontakt: Jonas Becker\nSteinstraße 13\n20095 Hamburg\nHamburg\nDeutschland\n\n## Empfänger\n\nNovaGrid Energie e.K.\nz. Hd.: Laura Wolf\nMartinistraße 14\n28195 Bremen\nBremen\nDeutschland\n\n---\nUSt-IdNr. DE100451383 · Steuernr. 540/7120/1680",
+  "sub": {
+    "invoice_part2": "## Abrechnung\n\n| Pos. | Leistung | Menge | Einzelpreis | Betrag |\n|---:|---|---:|---:|---:|\n| 1 | Datenanalyse | 8 Std. | 126,00 € | 1.008,00 € |\n| 2 | Netzwerkinstallation | 6 Std. | 108,00 € | 648,00 € |\n| 3 | Sensorbaugruppe | 3 Stk. | 164,50 € | 493,50 € |\n\n**Zwischensumme:** 2.149,50 €  \n**19 % USt.:** 408,40 €  \n**Gesamt:** -2.557,90 €\n\nZahlungsziel: 21. August 2026\nAuftragsreferenz: AUF-2026-3040\nBitte bei Rückfragen Jonas Becker angeben.\n\nRechnungssteller: Isar Automation GmbH"
+  }
+}

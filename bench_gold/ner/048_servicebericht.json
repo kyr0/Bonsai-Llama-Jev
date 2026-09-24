@@ -1,0 +1,355 @@
+{
+  "document_id": "de-business-048",
+  "document_type": "Servicebericht",
+  "entities": [
+    {
+      "label": "DOCUMENT_DATE",
+      "text": "04-09-2026",
+      "source_path": "$.invoice_part1",
+      "start": 35,
+      "end": 45
+    },
+    {
+      "label": "ORDER_NUMBER",
+      "text": "AB-60799",
+      "source_path": "$.invoice_part1",
+      "start": 55,
+      "end": 63
+    },
+    {
+      "label": "ACCOUNT_ID",
+      "text": "DEB 91457",
+      "source_path": "$.invoice_part1",
+      "start": 75,
+      "end": 84
+    },
+    {
+      "label": "SERVICE_DATE",
+      "text": "27.08.2026",
+      "source_path": "$.invoice_part1",
+      "start": 110,
+      "end": 120
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "Berg & Tal Architektur UG (haftungsbeschränkt)",
+      "source_path": "$.invoice_part1",
+      "start": 137,
+      "end": 183
+    },
+    {
+      "label": "POSTAL_ADDRESS",
+      "text": "Lorenzer Straße 90b\n90402 Nürnberg\nBayern\nDeutschland",
+      "source_path": "$.invoice_part1",
+      "start": 184,
+      "end": 237
+    },
+    {
+      "label": "STREET_ADDRESS",
+      "text": "Lorenzer Straße 90b",
+      "source_path": "$.invoice_part1",
+      "start": 184,
+      "end": 203
+    },
+    {
+      "label": "POSTAL_CODE",
+      "text": "90402",
+      "source_path": "$.invoice_part1",
+      "start": 204,
+      "end": 209
+    },
+    {
+      "label": "CITY",
+      "text": "Nürnberg",
+      "source_path": "$.invoice_part1",
+      "start": 210,
+      "end": 218
+    },
+    {
+      "label": "STATE_OR_REGION",
+      "text": "Bayern",
+      "source_path": "$.invoice_part1",
+      "start": 219,
+      "end": 225
+    },
+    {
+      "label": "COUNTRY",
+      "text": "Deutschland",
+      "source_path": "$.invoice_part1",
+      "start": 226,
+      "end": 237
+    },
+    {
+      "label": "PERSON_NAME",
+      "text": "Julia Lorenz",
+      "source_path": "$.invoice_part1",
+      "start": 252,
+      "end": 264
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "Brückenwerk Mobilität GmbH",
+      "source_path": "$.invoice_part1",
+      "start": 273,
+      "end": 299
+    },
+    {
+      "label": "POSTAL_ADDRESS",
+      "text": "Mainzer Straße 91b\n66111 Saarbrücken\nSaarland\nDeutschland",
+      "source_path": "$.invoice_part1",
+      "start": 300,
+      "end": 357
+    },
+    {
+      "label": "STREET_ADDRESS",
+      "text": "Mainzer Straße 91b",
+      "source_path": "$.invoice_part1",
+      "start": 300,
+      "end": 318
+    },
+    {
+      "label": "POSTAL_CODE",
+      "text": "66111",
+      "source_path": "$.invoice_part1",
+      "start": 319,
+      "end": 324
+    },
+    {
+      "label": "CITY",
+      "text": "Saarbrücken",
+      "source_path": "$.invoice_part1",
+      "start": 325,
+      "end": 336
+    },
+    {
+      "label": "STATE_OR_REGION",
+      "text": "Saarland",
+      "source_path": "$.invoice_part1",
+      "start": 337,
+      "end": 345
+    },
+    {
+      "label": "COUNTRY",
+      "text": "Deutschland",
+      "source_path": "$.invoice_part1",
+      "start": 346,
+      "end": 357
+    },
+    {
+      "label": "PERSON_NAME",
+      "text": "Tobias Becker",
+      "source_path": "$.sub.invoice_part2",
+      "start": 143,
+      "end": 156
+    },
+    {
+      "label": "DATE",
+      "text": "3. März 2027",
+      "source_path": "$.sub.invoice_part2",
+      "start": 186,
+      "end": 198
+    },
+    {
+      "label": "TAX_NUMBER",
+      "text": "57 429 14559",
+      "source_path": "$.sub.invoice_part2",
+      "start": 227,
+      "end": 239
+    },
+    {
+      "label": "TAX_ID",
+      "text": "DE100506816",
+      "source_path": "$.sub.invoice_part2",
+      "start": 262,
+      "end": 273
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "Berg & Tal Architektur UG (haftungsbeschränkt)",
+      "source_path": "$.sub.invoice_part2",
+      "start": 289,
+      "end": 335
+    }
+  ],
+  "by_label": {
+    "COMPANY_NAME": [
+      {
+        "text": "Berg & Tal Architektur UG (haftungsbeschränkt)",
+        "source_path": "$.invoice_part1",
+        "start": 137,
+        "end": 183
+      },
+      {
+        "text": "Brückenwerk Mobilität GmbH",
+        "source_path": "$.invoice_part1",
+        "start": 273,
+        "end": 299
+      },
+      {
+        "text": "Berg & Tal Architektur UG (haftungsbeschränkt)",
+        "source_path": "$.sub.invoice_part2",
+        "start": 289,
+        "end": 335
+      }
+    ],
+    "PERSON_NAME": [
+      {
+        "text": "Julia Lorenz",
+        "source_path": "$.invoice_part1",
+        "start": 252,
+        "end": 264
+      },
+      {
+        "text": "Tobias Becker",
+        "source_path": "$.sub.invoice_part2",
+        "start": 143,
+        "end": 156
+      }
+    ],
+    "POSTAL_ADDRESS": [
+      {
+        "text": "Lorenzer Straße 90b\n90402 Nürnberg\nBayern\nDeutschland",
+        "source_path": "$.invoice_part1",
+        "start": 184,
+        "end": 237
+      },
+      {
+        "text": "Mainzer Straße 91b\n66111 Saarbrücken\nSaarland\nDeutschland",
+        "source_path": "$.invoice_part1",
+        "start": 300,
+        "end": 357
+      }
+    ],
+    "STREET_ADDRESS": [
+      {
+        "text": "Lorenzer Straße 90b",
+        "source_path": "$.invoice_part1",
+        "start": 184,
+        "end": 203
+      },
+      {
+        "text": "Mainzer Straße 91b",
+        "source_path": "$.invoice_part1",
+        "start": 300,
+        "end": 318
+      }
+    ],
+    "POSTAL_CODE": [
+      {
+        "text": "90402",
+        "source_path": "$.invoice_part1",
+        "start": 204,
+        "end": 209
+      },
+      {
+        "text": "66111",
+        "source_path": "$.invoice_part1",
+        "start": 319,
+        "end": 324
+      }
+    ],
+    "CITY": [
+      {
+        "text": "Nürnberg",
+        "source_path": "$.invoice_part1",
+        "start": 210,
+        "end": 218
+      },
+      {
+        "text": "Saarbrücken",
+        "source_path": "$.invoice_part1",
+        "start": 325,
+        "end": 336
+      }
+    ],
+    "STATE_OR_REGION": [
+      {
+        "text": "Bayern",
+        "source_path": "$.invoice_part1",
+        "start": 219,
+        "end": 225
+      },
+      {
+        "text": "Saarland",
+        "source_path": "$.invoice_part1",
+        "start": 337,
+        "end": 345
+      }
+    ],
+    "COUNTRY": [
+      {
+        "text": "Deutschland",
+        "source_path": "$.invoice_part1",
+        "start": 226,
+        "end": 237
+      },
+      {
+        "text": "Deutschland",
+        "source_path": "$.invoice_part1",
+        "start": 346,
+        "end": 357
+      }
+    ],
+    "ACCOUNT_ID": [
+      {
+        "text": "DEB 91457",
+        "source_path": "$.invoice_part1",
+        "start": 75,
+        "end": 84
+      }
+    ],
+    "INVOICE_NUMBER": [],
+    "INVOICE_DATE": [],
+    "DUE_DATE": [],
+    "SERVICE_DATE": [
+      {
+        "text": "27.08.2026",
+        "source_path": "$.invoice_part1",
+        "start": 110,
+        "end": 120
+      }
+    ],
+    "DELIVERY_DATE": [],
+    "ORDER_NUMBER": [
+      {
+        "text": "AB-60799",
+        "source_path": "$.invoice_part1",
+        "start": 55,
+        "end": 63
+      }
+    ],
+    "DOCUMENT_DATE": [
+      {
+        "text": "04-09-2026",
+        "source_path": "$.invoice_part1",
+        "start": 35,
+        "end": 45
+      }
+    ],
+    "TRANSACTION_DATE": [],
+    "DATE": [
+      {
+        "text": "3. März 2027",
+        "source_path": "$.sub.invoice_part2",
+        "start": 186,
+        "end": 198
+      }
+    ],
+    "TAX_ID": [
+      {
+        "text": "DE100506816",
+        "source_path": "$.sub.invoice_part2",
+        "start": 262,
+        "end": 273
+      }
+    ],
+    "TAX_NUMBER": [
+      {
+        "text": "57 429 14559",
+        "source_path": "$.sub.invoice_part2",
+        "start": 227,
+        "end": 239
+      }
+    ]
+  }
+}

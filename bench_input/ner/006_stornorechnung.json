@@ -1,0 +1,6 @@
+{
+  "invoice_part1": "# Stornorechnung · R26/04005\n\n> Dokumentreferenz: R26/04005\n\nAusgestellt am 06-02-2026 durch Isar Automation GmbH.\n\nRechnungsanschrift:\nNovaGrid Energie e.K.\nLudwigsstraße 64\n55116 Mainz\nRheinland-Pfalz\nDeutschland\n\nAnsprechperson: Lukas Hartmann\nKundennummer: `KTO/700095`\nLeistungszeitpunkt: 31. Januar 2026\nSteuerliche Angaben: DE100174218 / 15 135 10485",
+  "sub": {
+    "invoice_part2": "## Abrechnung\n\n| Pos. | Leistung | Menge | Einzelpreis | Betrag |\n|---:|---|---:|---:|---:|\n| 1 | Datenanalyse | 2 Std. | 126,00 € | 252,00 € |\n| 2 | Dokumentation | 1 Std. | 92,00 € | 92,00 € |\n| 3 | Cloud-Migration | 10 Std. | 138,00 € | 1.380,00 € |\n| 4 | Systemwartung | 4 Std. | 96,00 € | 384,00 € |\n\n**Zwischensumme:** 2.108,00 €  \n**19 % USt.:** 400,52 €  \n**Gesamt:** 2.508,52 €\n\nDiese Stornorechnung hebt die Rechnung R26/04005 vollständig auf.\n\nZahlungsziel: 2026-03-06\nAuftragsreferenz: PO-26-08005\nBitte bei Rückfragen Anna Wolf angeben.\n\nRechnungssteller: Isar Automation GmbH"
+  }
+}

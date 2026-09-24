@@ -1,0 +1,395 @@
+{
+  "document_id": "de-business-029",
+  "document_type": "Stornorechnung",
+  "entities": [
+    {
+      "label": "INVOICE_NUMBER",
+      "text": "RE-2026-1028",
+      "source_path": "$.invoice_part1",
+      "start": 35,
+      "end": 47
+    },
+    {
+      "label": "INVOICE_DATE",
+      "text": "01 / 06 / 2026",
+      "source_path": "$.invoice_part1",
+      "start": 68,
+      "end": 82
+    },
+    {
+      "label": "SERVICE_DATE",
+      "text": "27-05-2026",
+      "source_path": "$.invoice_part1",
+      "start": 103,
+      "end": 113
+    },
+    {
+      "label": "ACCOUNT_ID",
+      "text": "KD-12044",
+      "source_path": "$.invoice_part1",
+      "start": 131,
+      "end": 139
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "Wellenform Audio e.K.",
+      "source_path": "$.invoice_part1",
+      "start": 156,
+      "end": 177
+    },
+    {
+      "label": "PERSON_NAME",
+      "text": "Tobias Becker",
+      "source_path": "$.invoice_part1",
+      "start": 187,
+      "end": 200
+    },
+    {
+      "label": "POSTAL_ADDRESS",
+      "text": "Karolinenstraße 55\n90402 Nürnberg\nBayern\nDeutschland",
+      "source_path": "$.invoice_part1",
+      "start": 201,
+      "end": 253
+    },
+    {
+      "label": "STREET_ADDRESS",
+      "text": "Karolinenstraße 55",
+      "source_path": "$.invoice_part1",
+      "start": 201,
+      "end": 219
+    },
+    {
+      "label": "POSTAL_CODE",
+      "text": "90402",
+      "source_path": "$.invoice_part1",
+      "start": 220,
+      "end": 225
+    },
+    {
+      "label": "CITY",
+      "text": "Nürnberg",
+      "source_path": "$.invoice_part1",
+      "start": 226,
+      "end": 234
+    },
+    {
+      "label": "STATE_OR_REGION",
+      "text": "Bayern",
+      "source_path": "$.invoice_part1",
+      "start": 235,
+      "end": 241
+    },
+    {
+      "label": "COUNTRY",
+      "text": "Deutschland",
+      "source_path": "$.invoice_part1",
+      "start": 242,
+      "end": 253
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "Elbstrand Logistik GmbH & Co. KG",
+      "source_path": "$.invoice_part1",
+      "start": 269,
+      "end": 301
+    },
+    {
+      "label": "PERSON_NAME",
+      "text": "Marlene Wolf",
+      "source_path": "$.invoice_part1",
+      "start": 310,
+      "end": 322
+    },
+    {
+      "label": "POSTAL_ADDRESS",
+      "text": "Trierer Straße 56\n66111 Saarbrücken\nSaarland\nDeutschland",
+      "source_path": "$.invoice_part1",
+      "start": 323,
+      "end": 379
+    },
+    {
+      "label": "STREET_ADDRESS",
+      "text": "Trierer Straße 56",
+      "source_path": "$.invoice_part1",
+      "start": 323,
+      "end": 340
+    },
+    {
+      "label": "POSTAL_CODE",
+      "text": "66111",
+      "source_path": "$.invoice_part1",
+      "start": 341,
+      "end": 346
+    },
+    {
+      "label": "CITY",
+      "text": "Saarbrücken",
+      "source_path": "$.invoice_part1",
+      "start": 347,
+      "end": 358
+    },
+    {
+      "label": "STATE_OR_REGION",
+      "text": "Saarland",
+      "source_path": "$.invoice_part1",
+      "start": 359,
+      "end": 367
+    },
+    {
+      "label": "COUNTRY",
+      "text": "Deutschland",
+      "source_path": "$.invoice_part1",
+      "start": 368,
+      "end": 379
+    },
+    {
+      "label": "TAX_ID",
+      "text": "DE100356355",
+      "source_path": "$.invoice_part1",
+      "start": 395,
+      "end": 406
+    },
+    {
+      "label": "TAX_NUMBER",
+      "text": "408/6484/1476",
+      "source_path": "$.invoice_part1",
+      "start": 419,
+      "end": 432
+    },
+    {
+      "label": "INVOICE_NUMBER",
+      "text": "RE-2026-1028",
+      "source_path": "$.sub.invoice_part2",
+      "start": 384,
+      "end": 396
+    },
+    {
+      "label": "DUE_DATE",
+      "text": "22. Juni 2026",
+      "source_path": "$.sub.invoice_part2",
+      "start": 429,
+      "end": 442
+    },
+    {
+      "label": "ORDER_NUMBER",
+      "text": "AUF-2026-3028",
+      "source_path": "$.sub.invoice_part2",
+      "start": 461,
+      "end": 474
+    },
+    {
+      "label": "PERSON_NAME",
+      "text": "Tobias Becker",
+      "source_path": "$.sub.invoice_part2",
+      "start": 496,
+      "end": 509
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "Wellenform Audio e.K.",
+      "source_path": "$.sub.invoice_part2",
+      "start": 538,
+      "end": 559
+    }
+  ],
+  "by_label": {
+    "COMPANY_NAME": [
+      {
+        "text": "Wellenform Audio e.K.",
+        "source_path": "$.invoice_part1",
+        "start": 156,
+        "end": 177
+      },
+      {
+        "text": "Elbstrand Logistik GmbH & Co. KG",
+        "source_path": "$.invoice_part1",
+        "start": 269,
+        "end": 301
+      },
+      {
+        "text": "Wellenform Audio e.K.",
+        "source_path": "$.sub.invoice_part2",
+        "start": 538,
+        "end": 559
+      }
+    ],
+    "PERSON_NAME": [
+      {
+        "text": "Tobias Becker",
+        "source_path": "$.invoice_part1",
+        "start": 187,
+        "end": 200
+      },
+      {
+        "text": "Marlene Wolf",
+        "source_path": "$.invoice_part1",
+        "start": 310,
+        "end": 322
+      },
+      {
+        "text": "Tobias Becker",
+        "source_path": "$.sub.invoice_part2",
+        "start": 496,
+        "end": 509
+      }
+    ],
+    "POSTAL_ADDRESS": [
+      {
+        "text": "Karolinenstraße 55\n90402 Nürnberg\nBayern\nDeutschland",
+        "source_path": "$.invoice_part1",
+        "start": 201,
+        "end": 253
+      },
+      {
+        "text": "Trierer Straße 56\n66111 Saarbrücken\nSaarland\nDeutschland",
+        "source_path": "$.invoice_part1",
+        "start": 323,
+        "end": 379
+      }
+    ],
+    "STREET_ADDRESS": [
+      {
+        "text": "Karolinenstraße 55",
+        "source_path": "$.invoice_part1",
+        "start": 201,
+        "end": 219
+      },
+      {
+        "text": "Trierer Straße 56",
+        "source_path": "$.invoice_part1",
+        "start": 323,
+        "end": 340
+      }
+    ],
+    "POSTAL_CODE": [
+      {
+        "text": "90402",
+        "source_path": "$.invoice_part1",
+        "start": 220,
+        "end": 225
+      },
+      {
+        "text": "66111",
+        "source_path": "$.invoice_part1",
+        "start": 341,
+        "end": 346
+      }
+    ],
+    "CITY": [
+      {
+        "text": "Nürnberg",
+        "source_path": "$.invoice_part1",
+        "start": 226,
+        "end": 234
+      },
+      {
+        "text": "Saarbrücken",
+        "source_path": "$.invoice_part1",
+        "start": 347,
+        "end": 358
+      }
+    ],
+    "STATE_OR_REGION": [
+      {
+        "text": "Bayern",
+        "source_path": "$.invoice_part1",
+        "start": 235,
+        "end": 241
+      },
+      {
+        "text": "Saarland",
+        "source_path": "$.invoice_part1",
+        "start": 359,
+        "end": 367
+      }
+    ],
+    "COUNTRY": [
+      {
+        "text": "Deutschland",
+        "source_path": "$.invoice_part1",
+        "start": 242,
+        "end": 253
+      },
+      {
+        "text": "Deutschland",
+        "source_path": "$.invoice_part1",
+        "start": 368,
+        "end": 379
+      }
+    ],
+    "ACCOUNT_ID": [
+      {
+        "text": "KD-12044",
+        "source_path": "$.invoice_part1",
+        "start": 131,
+        "end": 139
+      }
+    ],
+    "INVOICE_NUMBER": [
+      {
+        "text": "RE-2026-1028",
+        "source_path": "$.invoice_part1",
+        "start": 35,
+        "end": 47
+      },
+      {
+        "text": "RE-2026-1028",
+        "source_path": "$.sub.invoice_part2",
+        "start": 384,
+        "end": 396
+      }
+    ],
+    "INVOICE_DATE": [
+      {
+        "text": "01 / 06 / 2026",
+        "source_path": "$.invoice_part1",
+        "start": 68,
+        "end": 82
+      }
+    ],
+    "DUE_DATE": [
+      {
+        "text": "22. Juni 2026",
+        "source_path": "$.sub.invoice_part2",
+        "start": 429,
+        "end": 442
+      }
+    ],
+    "SERVICE_DATE": [
+      {
+        "text": "27-05-2026",
+        "source_path": "$.invoice_part1",
+        "start": 103,
+        "end": 113
+      }
+    ],
+    "DELIVERY_DATE": [],
+    "ORDER_NUMBER": [
+      {
+        "text": "AUF-2026-3028",
+        "source_path": "$.sub.invoice_part2",
+        "start": 461,
+        "end": 474
+      }
+    ],
+    "DOCUMENT_DATE": [],
+    "TRANSACTION_DATE": [],
+    "DATE": [],
+    "TAX_ID": [
+      {
+        "text": "DE100356355",
+        "source_path": "$.invoice_part1",
+        "start": 395,
+        "end": 406
+      }
+    ],
+    "TAX_NUMBER": [
+      {
+        "text": "408/6484/1476",
+        "source_path": "$.invoice_part1",
+        "start": 419,
+        "end": 432
+      }
+    ]
+  }
+}

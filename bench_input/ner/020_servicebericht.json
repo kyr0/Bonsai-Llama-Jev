@@ -1,0 +1,6 @@
+{
+  "invoice_part1": "# Servicebericht\n\nDokumentiert am: 17. April 2026\nAuftrag: AB-60323\nKunden-ID: DEB 90589\nEinsatz-/Leistungsdatum: 2026-04-13\n\nDienstleister:\nFeldstern Handel AG\nSonnenstraße 43b\n80331 München\nBayern\nDeutschland\nTechniker/in: Julia Lorenz\n\nKunde:\nLindenhof Facility Services UG (haftungsbeschränkt)\nSchweriner Straße 44b\n01067 Dresden\nSachsen\nDeutschland",
+  "sub": {
+    "invoice_part2": "## Ausgeführte Arbeiten\n\n- Messung und Dokumentation\n- Systemprüfung und Funktionskontrolle\n- Austausch einer Baugruppe\n\nAbnahme durch: Tobias Becker\nNächster empfohlener Termin: 14.10.26\nSteuernummer Dienstleister: 309/6007/1323\nUSt-ID Dienstleister: DE100285084\nDienstleister: Feldstern Handel AG"
+  }
+}

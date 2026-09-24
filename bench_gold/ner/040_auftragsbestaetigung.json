@@ -1,0 +1,368 @@
+{
+  "document_id": "de-business-040",
+  "document_type": "Auftragsbestätigung",
+  "entities": [
+    {
+      "label": "ORDER_NUMBER",
+      "text": "AB-60663",
+      "source_path": "$.invoice_part1",
+      "start": 41,
+      "end": 49
+    },
+    {
+      "label": "DOCUMENT_DATE",
+      "text": "26.07.26",
+      "source_path": "$.invoice_part1",
+      "start": 67,
+      "end": 75
+    },
+    {
+      "label": "ACCOUNT_ID",
+      "text": "DEB 91209",
+      "source_path": "$.invoice_part1",
+      "start": 104,
+      "end": 113
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "Orbis Büroservice UG (haftungsbeschränkt)",
+      "source_path": "$.invoice_part1",
+      "start": 128,
+      "end": 169
+    },
+    {
+      "label": "POSTAL_ADDRESS",
+      "text": "Lorenzer Straße 90b\n90402 Nürnberg\nBayern\nDeutschland",
+      "source_path": "$.invoice_part1",
+      "start": 170,
+      "end": 223
+    },
+    {
+      "label": "STREET_ADDRESS",
+      "text": "Lorenzer Straße 90b",
+      "source_path": "$.invoice_part1",
+      "start": 170,
+      "end": 189
+    },
+    {
+      "label": "POSTAL_CODE",
+      "text": "90402",
+      "source_path": "$.invoice_part1",
+      "start": 190,
+      "end": 195
+    },
+    {
+      "label": "CITY",
+      "text": "Nürnberg",
+      "source_path": "$.invoice_part1",
+      "start": 196,
+      "end": 204
+    },
+    {
+      "label": "STATE_OR_REGION",
+      "text": "Bayern",
+      "source_path": "$.invoice_part1",
+      "start": 205,
+      "end": 211
+    },
+    {
+      "label": "COUNTRY",
+      "text": "Deutschland",
+      "source_path": "$.invoice_part1",
+      "start": 212,
+      "end": 223
+    },
+    {
+      "label": "PERSON_NAME",
+      "text": "Andreas Becker",
+      "source_path": "$.invoice_part1",
+      "start": 237,
+      "end": 251
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "HanseKontor IT AG",
+      "source_path": "$.invoice_part1",
+      "start": 270,
+      "end": 287
+    },
+    {
+      "label": "POSTAL_ADDRESS",
+      "text": "Leipziger Straße 89b\n10117 Berlin\nBerlin\nDeutschland",
+      "source_path": "$.invoice_part1",
+      "start": 288,
+      "end": 340
+    },
+    {
+      "label": "STREET_ADDRESS",
+      "text": "Leipziger Straße 89b",
+      "source_path": "$.invoice_part1",
+      "start": 288,
+      "end": 308
+    },
+    {
+      "label": "POSTAL_CODE",
+      "text": "10117",
+      "source_path": "$.invoice_part1",
+      "start": 309,
+      "end": 314
+    },
+    {
+      "label": "CITY",
+      "text": "Berlin",
+      "source_path": "$.invoice_part1",
+      "start": 315,
+      "end": 321
+    },
+    {
+      "label": "STATE_OR_REGION",
+      "text": "Berlin",
+      "source_path": "$.invoice_part1",
+      "start": 322,
+      "end": 328
+    },
+    {
+      "label": "COUNTRY",
+      "text": "Deutschland",
+      "source_path": "$.invoice_part1",
+      "start": 329,
+      "end": 340
+    },
+    {
+      "label": "DELIVERY_DATE",
+      "text": "31 / 07 / 2026",
+      "source_path": "$.sub.invoice_part2",
+      "start": 52,
+      "end": 66
+    },
+    {
+      "label": "SERVICE_DATE",
+      "text": "30-07-2026",
+      "source_path": "$.sub.invoice_part2",
+      "start": 84,
+      "end": 94
+    },
+    {
+      "label": "PERSON_NAME",
+      "text": "Leonie Lorenz",
+      "source_path": "$.sub.invoice_part2",
+      "start": 121,
+      "end": 134
+    },
+    {
+      "label": "TAX_ID",
+      "text": "DE100443464",
+      "source_path": "$.sub.invoice_part2",
+      "start": 160,
+      "end": 171
+    },
+    {
+      "label": "TAX_NUMBER",
+      "text": "49/373/13783",
+      "source_path": "$.sub.invoice_part2",
+      "start": 200,
+      "end": 212
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "HanseKontor IT AG",
+      "source_path": "$.sub.invoice_part2",
+      "start": 250,
+      "end": 267
+    },
+    {
+      "label": "ORDER_NUMBER",
+      "text": "AB-60663",
+      "source_path": "$.sub.invoice_part2",
+      "start": 285,
+      "end": 293
+    }
+  ],
+  "by_label": {
+    "COMPANY_NAME": [
+      {
+        "text": "Orbis Büroservice UG (haftungsbeschränkt)",
+        "source_path": "$.invoice_part1",
+        "start": 128,
+        "end": 169
+      },
+      {
+        "text": "HanseKontor IT AG",
+        "source_path": "$.invoice_part1",
+        "start": 270,
+        "end": 287
+      },
+      {
+        "text": "HanseKontor IT AG",
+        "source_path": "$.sub.invoice_part2",
+        "start": 250,
+        "end": 267
+      }
+    ],
+    "PERSON_NAME": [
+      {
+        "text": "Andreas Becker",
+        "source_path": "$.invoice_part1",
+        "start": 237,
+        "end": 251
+      },
+      {
+        "text": "Leonie Lorenz",
+        "source_path": "$.sub.invoice_part2",
+        "start": 121,
+        "end": 134
+      }
+    ],
+    "POSTAL_ADDRESS": [
+      {
+        "text": "Lorenzer Straße 90b\n90402 Nürnberg\nBayern\nDeutschland",
+        "source_path": "$.invoice_part1",
+        "start": 170,
+        "end": 223
+      },
+      {
+        "text": "Leipziger Straße 89b\n10117 Berlin\nBerlin\nDeutschland",
+        "source_path": "$.invoice_part1",
+        "start": 288,
+        "end": 340
+      }
+    ],
+    "STREET_ADDRESS": [
+      {
+        "text": "Lorenzer Straße 90b",
+        "source_path": "$.invoice_part1",
+        "start": 170,
+        "end": 189
+      },
+      {
+        "text": "Leipziger Straße 89b",
+        "source_path": "$.invoice_part1",
+        "start": 288,
+        "end": 308
+      }
+    ],
+    "POSTAL_CODE": [
+      {
+        "text": "90402",
+        "source_path": "$.invoice_part1",
+        "start": 190,
+        "end": 195
+      },
+      {
+        "text": "10117",
+        "source_path": "$.invoice_part1",
+        "start": 309,
+        "end": 314
+      }
+    ],
+    "CITY": [
+      {
+        "text": "Nürnberg",
+        "source_path": "$.invoice_part1",
+        "start": 196,
+        "end": 204
+      },
+      {
+        "text": "Berlin",
+        "source_path": "$.invoice_part1",
+        "start": 315,
+        "end": 321
+      }
+    ],
+    "STATE_OR_REGION": [
+      {
+        "text": "Bayern",
+        "source_path": "$.invoice_part1",
+        "start": 205,
+        "end": 211
+      },
+      {
+        "text": "Berlin",
+        "source_path": "$.invoice_part1",
+        "start": 322,
+        "end": 328
+      }
+    ],
+    "COUNTRY": [
+      {
+        "text": "Deutschland",
+        "source_path": "$.invoice_part1",
+        "start": 212,
+        "end": 223
+      },
+      {
+        "text": "Deutschland",
+        "source_path": "$.invoice_part1",
+        "start": 329,
+        "end": 340
+      }
+    ],
+    "ACCOUNT_ID": [
+      {
+        "text": "DEB 91209",
+        "source_path": "$.invoice_part1",
+        "start": 104,
+        "end": 113
+      }
+    ],
+    "INVOICE_NUMBER": [],
+    "INVOICE_DATE": [],
+    "DUE_DATE": [],
+    "SERVICE_DATE": [
+      {
+        "text": "30-07-2026",
+        "source_path": "$.sub.invoice_part2",
+        "start": 84,
+        "end": 94
+      }
+    ],
+    "DELIVERY_DATE": [
+      {
+        "text": "31 / 07 / 2026",
+        "source_path": "$.sub.invoice_part2",
+        "start": 52,
+        "end": 66
+      }
+    ],
+    "ORDER_NUMBER": [
+      {
+        "text": "AB-60663",
+        "source_path": "$.invoice_part1",
+        "start": 41,
+        "end": 49
+      },
+      {
+        "text": "AB-60663",
+        "source_path": "$.sub.invoice_part2",
+        "start": 285,
+        "end": 293
+      }
+    ],
+    "DOCUMENT_DATE": [
+      {
+        "text": "26.07.26",
+        "source_path": "$.invoice_part1",
+        "start": 67,
+        "end": 75
+      }
+    ],
+    "TRANSACTION_DATE": [],
+    "DATE": [],
+    "TAX_ID": [
+      {
+        "text": "DE100443464",
+        "source_path": "$.sub.invoice_part2",
+        "start": 160,
+        "end": 171
+      }
+    ],
+    "TAX_NUMBER": [
+      {
+        "text": "49/373/13783",
+        "source_path": "$.sub.invoice_part2",
+        "start": 200,
+        "end": 212
+      }
+    ]
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "invoice_part1": "# Kostenvoranschlag\n\n**Kostenvoranschlag-Nr.:** PO-26-08029\n**Dokumentdatum:** 06-06-2026\n**Gültig bis:** 06.07.2026\n\n### Anbieter\nKlarblick Steuerberatung AG\nObernstraße 66\n28195 Bremen\nBremen\nDeutschland\nKontakt: Katharina Wolf\nUSt-IdNr.: DE100364274\n\n### Adressat\nNeckar Data Systems UG (haftungsbeschränkt)\nKröpeliner Straße 67\n18055 Rostock\nMecklenburg-Vorpommern\nDeutschland\nKundenkonto: KTO/700551",
+  "sub": {
+    "invoice_part2": "# Positionen zum Kostenvoranschlag\n\n1. **Prüfung und Abnahme** — 6 Pausch. × 740,00 € = 4.440,00 €\n2. **Dokumentation** — 10 Std. × 92,00 € = 920,00 €\n3. **Sensorbaugruppe** — 3 Stk. × 164,50 € = 493,50 €\n4. **Ersatzteilmodul** — 10 Stk. × 289,00 € = 2.890,00 €\n\nVoraussichtlicher Nettobetrag: **8.743,50 €**\nVorgesehener Leistungsbeginn: 10. Juni 2026\nGeplantes Lieferdatum: 2026-06-21\nInterne Steuernummer: 39 303 12813\nProjektverantwortlich: Katharina Wolf\nAnbieter: Klarblick Steuerberatung AG"
+  }
+}

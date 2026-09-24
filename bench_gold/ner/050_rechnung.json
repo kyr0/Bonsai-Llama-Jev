@@ -1,0 +1,291 @@
+{
+  "document_id": "de-business-050",
+  "document_type": "Rechnung",
+  "entities": [
+    {
+      "label": "INVOICE_NUMBER",
+      "text": "R26/04049",
+      "source_path": "$.invoice_part1",
+      "start": 44,
+      "end": 53
+    },
+    {
+      "label": "INVOICE_DATE",
+      "text": "14. September 2026",
+      "source_path": "$.invoice_part1",
+      "start": 70,
+      "end": 88
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "Prisma Laborservice AG",
+      "source_path": "$.invoice_part1",
+      "start": 95,
+      "end": 117
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "Mittelstand Systems UG (haftungsbeschränkt)",
+      "source_path": "$.invoice_part1",
+      "start": 140,
+      "end": 183
+    },
+    {
+      "label": "POSTAL_ADDRESS",
+      "text": "Sendlinger Straße 26\n80331 München\nBayern\nDeutschland",
+      "source_path": "$.invoice_part1",
+      "start": 184,
+      "end": 237
+    },
+    {
+      "label": "STREET_ADDRESS",
+      "text": "Sendlinger Straße 26",
+      "source_path": "$.invoice_part1",
+      "start": 184,
+      "end": 204
+    },
+    {
+      "label": "POSTAL_CODE",
+      "text": "80331",
+      "source_path": "$.invoice_part1",
+      "start": 205,
+      "end": 210
+    },
+    {
+      "label": "CITY",
+      "text": "München",
+      "source_path": "$.invoice_part1",
+      "start": 211,
+      "end": 218
+    },
+    {
+      "label": "STATE_OR_REGION",
+      "text": "Bayern",
+      "source_path": "$.invoice_part1",
+      "start": 219,
+      "end": 225
+    },
+    {
+      "label": "COUNTRY",
+      "text": "Deutschland",
+      "source_path": "$.invoice_part1",
+      "start": 226,
+      "end": 237
+    },
+    {
+      "label": "PERSON_NAME",
+      "text": "Sebastian Hartmann",
+      "source_path": "$.invoice_part1",
+      "start": 255,
+      "end": 273
+    },
+    {
+      "label": "ACCOUNT_ID",
+      "text": "KTO/700931",
+      "source_path": "$.invoice_part1",
+      "start": 289,
+      "end": 299
+    },
+    {
+      "label": "SERVICE_DATE",
+      "text": "12.09.26",
+      "source_path": "$.invoice_part1",
+      "start": 321,
+      "end": 329
+    },
+    {
+      "label": "TAX_ID",
+      "text": "DE100522654",
+      "source_path": "$.invoice_part1",
+      "start": 351,
+      "end": 362
+    },
+    {
+      "label": "TAX_NUMBER",
+      "text": "639/7597/1833",
+      "source_path": "$.invoice_part1",
+      "start": 365,
+      "end": 378
+    },
+    {
+      "label": "DUE_DATE",
+      "text": "05 / 10 / 2026",
+      "source_path": "$.sub.invoice_part2",
+      "start": 374,
+      "end": 388
+    },
+    {
+      "label": "ORDER_NUMBER",
+      "text": "PO-26-08049",
+      "source_path": "$.sub.invoice_part2",
+      "start": 407,
+      "end": 418
+    },
+    {
+      "label": "PERSON_NAME",
+      "text": "Laura Wolf",
+      "source_path": "$.sub.invoice_part2",
+      "start": 440,
+      "end": 450
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "Prisma Laborservice AG",
+      "source_path": "$.sub.invoice_part2",
+      "start": 479,
+      "end": 501
+    }
+  ],
+  "by_label": {
+    "COMPANY_NAME": [
+      {
+        "text": "Prisma Laborservice AG",
+        "source_path": "$.invoice_part1",
+        "start": 95,
+        "end": 117
+      },
+      {
+        "text": "Mittelstand Systems UG (haftungsbeschränkt)",
+        "source_path": "$.invoice_part1",
+        "start": 140,
+        "end": 183
+      },
+      {
+        "text": "Prisma Laborservice AG",
+        "source_path": "$.sub.invoice_part2",
+        "start": 479,
+        "end": 501
+      }
+    ],
+    "PERSON_NAME": [
+      {
+        "text": "Sebastian Hartmann",
+        "source_path": "$.invoice_part1",
+        "start": 255,
+        "end": 273
+      },
+      {
+        "text": "Laura Wolf",
+        "source_path": "$.sub.invoice_part2",
+        "start": 440,
+        "end": 450
+      }
+    ],
+    "POSTAL_ADDRESS": [
+      {
+        "text": "Sendlinger Straße 26\n80331 München\nBayern\nDeutschland",
+        "source_path": "$.invoice_part1",
+        "start": 184,
+        "end": 237
+      }
+    ],
+    "STREET_ADDRESS": [
+      {
+        "text": "Sendlinger Straße 26",
+        "source_path": "$.invoice_part1",
+        "start": 184,
+        "end": 204
+      }
+    ],
+    "POSTAL_CODE": [
+      {
+        "text": "80331",
+        "source_path": "$.invoice_part1",
+        "start": 205,
+        "end": 210
+      }
+    ],
+    "CITY": [
+      {
+        "text": "München",
+        "source_path": "$.invoice_part1",
+        "start": 211,
+        "end": 218
+      }
+    ],
+    "STATE_OR_REGION": [
+      {
+        "text": "Bayern",
+        "source_path": "$.invoice_part1",
+        "start": 219,
+        "end": 225
+      }
+    ],
+    "COUNTRY": [
+      {
+        "text": "Deutschland",
+        "source_path": "$.invoice_part1",
+        "start": 226,
+        "end": 237
+      }
+    ],
+    "ACCOUNT_ID": [
+      {
+        "text": "KTO/700931",
+        "source_path": "$.invoice_part1",
+        "start": 289,
+        "end": 299
+      }
+    ],
+    "INVOICE_NUMBER": [
+      {
+        "text": "R26/04049",
+        "source_path": "$.invoice_part1",
+        "start": 44,
+        "end": 53
+      }
+    ],
+    "INVOICE_DATE": [
+      {
+        "text": "14. September 2026",
+        "source_path": "$.invoice_part1",
+        "start": 70,
+        "end": 88
+      }
+    ],
+    "DUE_DATE": [
+      {
+        "text": "05 / 10 / 2026",
+        "source_path": "$.sub.invoice_part2",
+        "start": 374,
+        "end": 388
+      }
+    ],
+    "SERVICE_DATE": [
+      {
+        "text": "12.09.26",
+        "source_path": "$.invoice_part1",
+        "start": 321,
+        "end": 329
+      }
+    ],
+    "DELIVERY_DATE": [],
+    "ORDER_NUMBER": [
+      {
+        "text": "PO-26-08049",
+        "source_path": "$.sub.invoice_part2",
+        "start": 407,
+        "end": 418
+      }
+    ],
+    "DOCUMENT_DATE": [],
+    "TRANSACTION_DATE": [],
+    "DATE": [],
+    "TAX_ID": [
+      {
+        "text": "DE100522654",
+        "source_path": "$.invoice_part1",
+        "start": 351,
+        "end": 362
+      }
+    ],
+    "TAX_NUMBER": [
+      {
+        "text": "639/7597/1833",
+        "source_path": "$.invoice_part1",
+        "start": 365,
+        "end": 378
+      }
+    ]
+  }
+}

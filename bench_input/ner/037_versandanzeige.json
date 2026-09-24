@@ -1,0 +1,6 @@
+{
+  "invoice_part1": "# Versandanzeige\n\nBelegdatum: 11.07.2026\nAuftrag: AUF-2026-3036\nKundennummer: KD-12628\nLiefer-/Transaktionsdatum: 13. Juli 2026\n\nAbsender:\nNordlicht Anlagenbau GmbH & Co. KG\nTrierer Straße 56\n66111 Saarbrücken\nSaarland\nDeutschland\n\nEmpfänger:\nPrisma Laborservice AG\nBilker Straße 57\n40213 Düsseldorf\nNordrhein-Westfalen\nDeutschland",
+  "sub": {
+    "invoice_part2": "## Sendungsdetails\n\nGeplante / bestätigte Lieferung: 2026-07-13\nDisposition: Robert Becker\nErfasst am: 21.06.26\nVersender: Nordlicht Anlagenbau GmbH & Co. KG\nUSt-IdNr.: DE100419707\n"
+  }
+}

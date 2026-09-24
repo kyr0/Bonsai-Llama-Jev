@@ -1,0 +1,6 @@
+{
+  "invoice_part1": "# Bestellung\n\nVorgangsnummer: **BEST/2026/702**  \nErstellt am: 2026-01-22  \nKunden-/Lieferantenkonto: CUST-202602\n\n## Besteller\nSignalraum Kommunikation GmbH\nSögestraße 31a\n28195 Bremen\nBremen\nDeutschland\nBearbeitung: Leonie Lorenz\n\n## Auftragnehmer\nRheinwerk Digital UG (haftungsbeschränkt)\nDomstraße 30a\n20095 Hamburg\nHamburg\nDeutschland",
+  "sub": {
+    "invoice_part2": "## Termine und Referenzen\n\nGewünschtes Lieferdatum: 25.01.26\nLeistungsbeginn: 31 / 01 / 2026\nAuftrag angenommen durch: Sebastian Hartmann\nSteuer-ID Auftragnehmer: DE100150461\nSteuernummer Auftragnehmer: 12 114 10194\n\nAuftragnehmer erneut zur Zuordnung: Rheinwerk Digital UG (haftungsbeschränkt)\nBestellreferenz: BEST/2026/702"
+  }
+}

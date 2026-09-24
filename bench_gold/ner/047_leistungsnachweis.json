@@ -1,0 +1,355 @@
+{
+  "document_id": "de-business-047",
+  "document_type": "Leistungsnachweis",
+  "entities": [
+    {
+      "label": "DOCUMENT_DATE",
+      "text": "30 / 08 / 2026",
+      "source_path": "$.invoice_part1",
+      "start": 38,
+      "end": 52
+    },
+    {
+      "label": "ORDER_NUMBER",
+      "text": "BEST/2026/746",
+      "source_path": "$.invoice_part1",
+      "start": 62,
+      "end": 75
+    },
+    {
+      "label": "ACCOUNT_ID",
+      "text": "CUST-202646",
+      "source_path": "$.invoice_part1",
+      "start": 87,
+      "end": 98
+    },
+    {
+      "label": "SERVICE_DATE",
+      "text": "23-08-2026",
+      "source_path": "$.invoice_part1",
+      "start": 124,
+      "end": 134
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "KüstenCloud GmbH & Co. KG",
+      "source_path": "$.invoice_part1",
+      "start": 151,
+      "end": 176
+    },
+    {
+      "label": "POSTAL_ADDRESS",
+      "text": "Wallstraße 79a\n01067 Dresden\nSachsen\nDeutschland",
+      "source_path": "$.invoice_part1",
+      "start": 177,
+      "end": 225
+    },
+    {
+      "label": "STREET_ADDRESS",
+      "text": "Wallstraße 79a",
+      "source_path": "$.invoice_part1",
+      "start": 177,
+      "end": 191
+    },
+    {
+      "label": "POSTAL_CODE",
+      "text": "01067",
+      "source_path": "$.invoice_part1",
+      "start": 192,
+      "end": 197
+    },
+    {
+      "label": "CITY",
+      "text": "Dresden",
+      "source_path": "$.invoice_part1",
+      "start": 198,
+      "end": 205
+    },
+    {
+      "label": "STATE_OR_REGION",
+      "text": "Sachsen",
+      "source_path": "$.invoice_part1",
+      "start": 206,
+      "end": 213
+    },
+    {
+      "label": "COUNTRY",
+      "text": "Deutschland",
+      "source_path": "$.invoice_part1",
+      "start": 214,
+      "end": 225
+    },
+    {
+      "label": "PERSON_NAME",
+      "text": "Daniel Hartmann",
+      "source_path": "$.invoice_part1",
+      "start": 240,
+      "end": 255
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "Rosenfeld Gebäudetechnik AG",
+      "source_path": "$.invoice_part1",
+      "start": 264,
+      "end": 291
+    },
+    {
+      "label": "POSTAL_ADDRESS",
+      "text": "Schlösserstraße 80a\n99084 Erfurt\nThüringen\nDeutschland",
+      "source_path": "$.invoice_part1",
+      "start": 292,
+      "end": 346
+    },
+    {
+      "label": "STREET_ADDRESS",
+      "text": "Schlösserstraße 80a",
+      "source_path": "$.invoice_part1",
+      "start": 292,
+      "end": 311
+    },
+    {
+      "label": "POSTAL_CODE",
+      "text": "99084",
+      "source_path": "$.invoice_part1",
+      "start": 312,
+      "end": 317
+    },
+    {
+      "label": "CITY",
+      "text": "Erfurt",
+      "source_path": "$.invoice_part1",
+      "start": 318,
+      "end": 324
+    },
+    {
+      "label": "STATE_OR_REGION",
+      "text": "Thüringen",
+      "source_path": "$.invoice_part1",
+      "start": 325,
+      "end": 334
+    },
+    {
+      "label": "COUNTRY",
+      "text": "Deutschland",
+      "source_path": "$.invoice_part1",
+      "start": 335,
+      "end": 346
+    },
+    {
+      "label": "PERSON_NAME",
+      "text": "Carolin Lorenz",
+      "source_path": "$.sub.invoice_part2",
+      "start": 113,
+      "end": 127
+    },
+    {
+      "label": "DATE",
+      "text": "26.02.2027",
+      "source_path": "$.sub.invoice_part2",
+      "start": 157,
+      "end": 167
+    },
+    {
+      "label": "TAX_NUMBER",
+      "text": "606/7438/1782",
+      "source_path": "$.sub.invoice_part2",
+      "start": 196,
+      "end": 209
+    },
+    {
+      "label": "TAX_ID",
+      "text": "DE100498897",
+      "source_path": "$.sub.invoice_part2",
+      "start": 232,
+      "end": 243
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "KüstenCloud GmbH & Co. KG",
+      "source_path": "$.sub.invoice_part2",
+      "start": 259,
+      "end": 284
+    }
+  ],
+  "by_label": {
+    "COMPANY_NAME": [
+      {
+        "text": "KüstenCloud GmbH & Co. KG",
+        "source_path": "$.invoice_part1",
+        "start": 151,
+        "end": 176
+      },
+      {
+        "text": "Rosenfeld Gebäudetechnik AG",
+        "source_path": "$.invoice_part1",
+        "start": 264,
+        "end": 291
+      },
+      {
+        "text": "KüstenCloud GmbH & Co. KG",
+        "source_path": "$.sub.invoice_part2",
+        "start": 259,
+        "end": 284
+      }
+    ],
+    "PERSON_NAME": [
+      {
+        "text": "Daniel Hartmann",
+        "source_path": "$.invoice_part1",
+        "start": 240,
+        "end": 255
+      },
+      {
+        "text": "Carolin Lorenz",
+        "source_path": "$.sub.invoice_part2",
+        "start": 113,
+        "end": 127
+      }
+    ],
+    "POSTAL_ADDRESS": [
+      {
+        "text": "Wallstraße 79a\n01067 Dresden\nSachsen\nDeutschland",
+        "source_path": "$.invoice_part1",
+        "start": 177,
+        "end": 225
+      },
+      {
+        "text": "Schlösserstraße 80a\n99084 Erfurt\nThüringen\nDeutschland",
+        "source_path": "$.invoice_part1",
+        "start": 292,
+        "end": 346
+      }
+    ],
+    "STREET_ADDRESS": [
+      {
+        "text": "Wallstraße 79a",
+        "source_path": "$.invoice_part1",
+        "start": 177,
+        "end": 191
+      },
+      {
+        "text": "Schlösserstraße 80a",
+        "source_path": "$.invoice_part1",
+        "start": 292,
+        "end": 311
+      }
+    ],
+    "POSTAL_CODE": [
+      {
+        "text": "01067",
+        "source_path": "$.invoice_part1",
+        "start": 192,
+        "end": 197
+      },
+      {
+        "text": "99084",
+        "source_path": "$.invoice_part1",
+        "start": 312,
+        "end": 317
+      }
+    ],
+    "CITY": [
+      {
+        "text": "Dresden",
+        "source_path": "$.invoice_part1",
+        "start": 198,
+        "end": 205
+      },
+      {
+        "text": "Erfurt",
+        "source_path": "$.invoice_part1",
+        "start": 318,
+        "end": 324
+      }
+    ],
+    "STATE_OR_REGION": [
+      {
+        "text": "Sachsen",
+        "source_path": "$.invoice_part1",
+        "start": 206,
+        "end": 213
+      },
+      {
+        "text": "Thüringen",
+        "source_path": "$.invoice_part1",
+        "start": 325,
+        "end": 334
+      }
+    ],
+    "COUNTRY": [
+      {
+        "text": "Deutschland",
+        "source_path": "$.invoice_part1",
+        "start": 214,
+        "end": 225
+      },
+      {
+        "text": "Deutschland",
+        "source_path": "$.invoice_part1",
+        "start": 335,
+        "end": 346
+      }
+    ],
+    "ACCOUNT_ID": [
+      {
+        "text": "CUST-202646",
+        "source_path": "$.invoice_part1",
+        "start": 87,
+        "end": 98
+      }
+    ],
+    "INVOICE_NUMBER": [],
+    "INVOICE_DATE": [],
+    "DUE_DATE": [],
+    "SERVICE_DATE": [
+      {
+        "text": "23-08-2026",
+        "source_path": "$.invoice_part1",
+        "start": 124,
+        "end": 134
+      }
+    ],
+    "DELIVERY_DATE": [],
+    "ORDER_NUMBER": [
+      {
+        "text": "BEST/2026/746",
+        "source_path": "$.invoice_part1",
+        "start": 62,
+        "end": 75
+      }
+    ],
+    "DOCUMENT_DATE": [
+      {
+        "text": "30 / 08 / 2026",
+        "source_path": "$.invoice_part1",
+        "start": 38,
+        "end": 52
+      }
+    ],
+    "TRANSACTION_DATE": [],
+    "DATE": [
+      {
+        "text": "26.02.2027",
+        "source_path": "$.sub.invoice_part2",
+        "start": 157,
+        "end": 167
+      }
+    ],
+    "TAX_ID": [
+      {
+        "text": "DE100498897",
+        "source_path": "$.sub.invoice_part2",
+        "start": 232,
+        "end": 243
+      }
+    ],
+    "TAX_NUMBER": [
+      {
+        "text": "606/7438/1782",
+        "source_path": "$.sub.invoice_part2",
+        "start": 196,
+        "end": 209
+      }
+    ]
+  }
+}

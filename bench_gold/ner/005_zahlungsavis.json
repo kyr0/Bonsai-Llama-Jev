@@ -1,0 +1,277 @@
+{
+  "document_id": "de-business-005",
+  "document_type": "Zahlungsavis",
+  "entities": [
+    {
+      "label": "DOCUMENT_DATE",
+      "text": "01 / 02 / 2026",
+      "source_path": "$.invoice_part1",
+      "start": 27,
+      "end": 41
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "Orbis Büroservice UG (haftungsbeschränkt)",
+      "source_path": "$.invoice_part1",
+      "start": 70,
+      "end": 111
+    },
+    {
+      "label": "ACCOUNT_ID",
+      "text": "KD-10292",
+      "source_path": "$.invoice_part1",
+      "start": 122,
+      "end": 130
+    },
+    {
+      "label": "TRANSACTION_DATE",
+      "text": "07-02-2026",
+      "source_path": "$.invoice_part1",
+      "start": 150,
+      "end": 160
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "HanseKontor IT AG",
+      "source_path": "$.invoice_part1",
+      "start": 181,
+      "end": 198
+    },
+    {
+      "label": "POSTAL_ADDRESS",
+      "text": "Neue Kräme 52\n60311 Frankfurt am Main\nHessen\nDeutschland",
+      "source_path": "$.invoice_part1",
+      "start": 199,
+      "end": 255
+    },
+    {
+      "label": "STREET_ADDRESS",
+      "text": "Neue Kräme 52",
+      "source_path": "$.invoice_part1",
+      "start": 199,
+      "end": 212
+    },
+    {
+      "label": "POSTAL_CODE",
+      "text": "60311",
+      "source_path": "$.invoice_part1",
+      "start": 213,
+      "end": 218
+    },
+    {
+      "label": "CITY",
+      "text": "Frankfurt am Main",
+      "source_path": "$.invoice_part1",
+      "start": 219,
+      "end": 236
+    },
+    {
+      "label": "STATE_OR_REGION",
+      "text": "Hessen",
+      "source_path": "$.invoice_part1",
+      "start": 237,
+      "end": 243
+    },
+    {
+      "label": "COUNTRY",
+      "text": "Deutschland",
+      "source_path": "$.invoice_part1",
+      "start": 244,
+      "end": 255
+    },
+    {
+      "label": "INVOICE_NUMBER",
+      "text": "RE-2026-1004",
+      "source_path": "$.sub.invoice_part2",
+      "start": 34,
+      "end": 46
+    },
+    {
+      "label": "INVOICE_DATE",
+      "text": "01 / 02 / 2026",
+      "source_path": "$.sub.invoice_part2",
+      "start": 51,
+      "end": 65
+    },
+    {
+      "label": "INVOICE_NUMBER",
+      "text": "R26/04005",
+      "source_path": "$.sub.invoice_part2",
+      "start": 77,
+      "end": 86
+    },
+    {
+      "label": "INVOICE_DATE",
+      "text": "24-01-2026",
+      "source_path": "$.sub.invoice_part2",
+      "start": 91,
+      "end": 101
+    },
+    {
+      "label": "PERSON_NAME",
+      "text": "Henrik Becker",
+      "source_path": "$.sub.invoice_part2",
+      "start": 115,
+      "end": 128
+    },
+    {
+      "label": "ORDER_NUMBER",
+      "text": "AUF-2026-3004",
+      "source_path": "$.sub.invoice_part2",
+      "start": 146,
+      "end": 159
+    },
+    {
+      "label": "TAX_ID",
+      "text": "DE100166299",
+      "source_path": "$.sub.invoice_part2",
+      "start": 186,
+      "end": 197
+    }
+  ],
+  "by_label": {
+    "COMPANY_NAME": [
+      {
+        "text": "Orbis Büroservice UG (haftungsbeschränkt)",
+        "source_path": "$.invoice_part1",
+        "start": 70,
+        "end": 111
+      },
+      {
+        "text": "HanseKontor IT AG",
+        "source_path": "$.invoice_part1",
+        "start": 181,
+        "end": 198
+      }
+    ],
+    "PERSON_NAME": [
+      {
+        "text": "Henrik Becker",
+        "source_path": "$.sub.invoice_part2",
+        "start": 115,
+        "end": 128
+      }
+    ],
+    "POSTAL_ADDRESS": [
+      {
+        "text": "Neue Kräme 52\n60311 Frankfurt am Main\nHessen\nDeutschland",
+        "source_path": "$.invoice_part1",
+        "start": 199,
+        "end": 255
+      }
+    ],
+    "STREET_ADDRESS": [
+      {
+        "text": "Neue Kräme 52",
+        "source_path": "$.invoice_part1",
+        "start": 199,
+        "end": 212
+      }
+    ],
+    "POSTAL_CODE": [
+      {
+        "text": "60311",
+        "source_path": "$.invoice_part1",
+        "start": 213,
+        "end": 218
+      }
+    ],
+    "CITY": [
+      {
+        "text": "Frankfurt am Main",
+        "source_path": "$.invoice_part1",
+        "start": 219,
+        "end": 236
+      }
+    ],
+    "STATE_OR_REGION": [
+      {
+        "text": "Hessen",
+        "source_path": "$.invoice_part1",
+        "start": 237,
+        "end": 243
+      }
+    ],
+    "COUNTRY": [
+      {
+        "text": "Deutschland",
+        "source_path": "$.invoice_part1",
+        "start": 244,
+        "end": 255
+      }
+    ],
+    "ACCOUNT_ID": [
+      {
+        "text": "KD-10292",
+        "source_path": "$.invoice_part1",
+        "start": 122,
+        "end": 130
+      }
+    ],
+    "INVOICE_NUMBER": [
+      {
+        "text": "RE-2026-1004",
+        "source_path": "$.sub.invoice_part2",
+        "start": 34,
+        "end": 46
+      },
+      {
+        "text": "R26/04005",
+        "source_path": "$.sub.invoice_part2",
+        "start": 77,
+        "end": 86
+      }
+    ],
+    "INVOICE_DATE": [
+      {
+        "text": "01 / 02 / 2026",
+        "source_path": "$.sub.invoice_part2",
+        "start": 51,
+        "end": 65
+      },
+      {
+        "text": "24-01-2026",
+        "source_path": "$.sub.invoice_part2",
+        "start": 91,
+        "end": 101
+      }
+    ],
+    "DUE_DATE": [],
+    "SERVICE_DATE": [],
+    "DELIVERY_DATE": [],
+    "ORDER_NUMBER": [
+      {
+        "text": "AUF-2026-3004",
+        "source_path": "$.sub.invoice_part2",
+        "start": 146,
+        "end": 159
+      }
+    ],
+    "DOCUMENT_DATE": [
+      {
+        "text": "01 / 02 / 2026",
+        "source_path": "$.invoice_part1",
+        "start": 27,
+        "end": 41
+      }
+    ],
+    "TRANSACTION_DATE": [
+      {
+        "text": "07-02-2026",
+        "source_path": "$.invoice_part1",
+        "start": 150,
+        "end": 160
+      }
+    ],
+    "DATE": [],
+    "TAX_ID": [
+      {
+        "text": "DE100166299",
+        "source_path": "$.sub.invoice_part2",
+        "start": 186,
+        "end": 197
+      }
+    ],
+    "TAX_NUMBER": []
+  }
+}

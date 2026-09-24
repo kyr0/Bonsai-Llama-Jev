@@ -1,0 +1,342 @@
+{
+  "document_id": "de-business-035",
+  "document_type": "Lieferschein",
+  "entities": [
+    {
+      "label": "DOCUMENT_DATE",
+      "text": "01 / 07 / 2026",
+      "source_path": "$.invoice_part1",
+      "start": 28,
+      "end": 42
+    },
+    {
+      "label": "ORDER_NUMBER",
+      "text": "BEST/2026/734",
+      "source_path": "$.invoice_part1",
+      "start": 52,
+      "end": 65
+    },
+    {
+      "label": "ACCOUNT_ID",
+      "text": "CUST-202634",
+      "source_path": "$.invoice_part1",
+      "start": 80,
+      "end": 91
+    },
+    {
+      "label": "TRANSACTION_DATE",
+      "text": "07-07-2026",
+      "source_path": "$.invoice_part1",
+      "start": 119,
+      "end": 129
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "Weitblick Forschung AG",
+      "source_path": "$.invoice_part1",
+      "start": 141,
+      "end": 163
+    },
+    {
+      "label": "POSTAL_ADDRESS",
+      "text": "Fleethörn 34a\n24103 Kiel\nSchleswig-Holstein\nDeutschland",
+      "source_path": "$.invoice_part1",
+      "start": 164,
+      "end": 219
+    },
+    {
+      "label": "STREET_ADDRESS",
+      "text": "Fleethörn 34a",
+      "source_path": "$.invoice_part1",
+      "start": 164,
+      "end": 177
+    },
+    {
+      "label": "POSTAL_CODE",
+      "text": "24103",
+      "source_path": "$.invoice_part1",
+      "start": 178,
+      "end": 183
+    },
+    {
+      "label": "CITY",
+      "text": "Kiel",
+      "source_path": "$.invoice_part1",
+      "start": 184,
+      "end": 188
+    },
+    {
+      "label": "STATE_OR_REGION",
+      "text": "Schleswig-Holstein",
+      "source_path": "$.invoice_part1",
+      "start": 189,
+      "end": 207
+    },
+    {
+      "label": "COUNTRY",
+      "text": "Deutschland",
+      "source_path": "$.invoice_part1",
+      "start": 208,
+      "end": 219
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "Berg & Tal Architektur UG (haftungsbeschränkt)",
+      "source_path": "$.invoice_part1",
+      "start": 232,
+      "end": 278
+    },
+    {
+      "label": "POSTAL_ADDRESS",
+      "text": "Kaiserstraße 35a\n60311 Frankfurt am Main\nHessen\nDeutschland",
+      "source_path": "$.invoice_part1",
+      "start": 279,
+      "end": 338
+    },
+    {
+      "label": "STREET_ADDRESS",
+      "text": "Kaiserstraße 35a",
+      "source_path": "$.invoice_part1",
+      "start": 279,
+      "end": 295
+    },
+    {
+      "label": "POSTAL_CODE",
+      "text": "60311",
+      "source_path": "$.invoice_part1",
+      "start": 296,
+      "end": 301
+    },
+    {
+      "label": "CITY",
+      "text": "Frankfurt am Main",
+      "source_path": "$.invoice_part1",
+      "start": 302,
+      "end": 319
+    },
+    {
+      "label": "STATE_OR_REGION",
+      "text": "Hessen",
+      "source_path": "$.invoice_part1",
+      "start": 320,
+      "end": 326
+    },
+    {
+      "label": "COUNTRY",
+      "text": "Deutschland",
+      "source_path": "$.invoice_part1",
+      "start": 327,
+      "end": 338
+    },
+    {
+      "label": "DELIVERY_DATE",
+      "text": "06.07.2026",
+      "source_path": "$.sub.invoice_part2",
+      "start": 53,
+      "end": 63
+    },
+    {
+      "label": "PERSON_NAME",
+      "text": "Felix Hartmann",
+      "source_path": "$.sub.invoice_part2",
+      "start": 77,
+      "end": 91
+    },
+    {
+      "label": "DATE",
+      "text": "13. Juni 2026",
+      "source_path": "$.sub.invoice_part2",
+      "start": 104,
+      "end": 117
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "Weitblick Forschung AG",
+      "source_path": "$.sub.invoice_part2",
+      "start": 129,
+      "end": 151
+    },
+    {
+      "label": "TAX_ID",
+      "text": "DE100403869",
+      "source_path": "$.sub.invoice_part2",
+      "start": 163,
+      "end": 174
+    }
+  ],
+  "by_label": {
+    "COMPANY_NAME": [
+      {
+        "text": "Weitblick Forschung AG",
+        "source_path": "$.invoice_part1",
+        "start": 141,
+        "end": 163
+      },
+      {
+        "text": "Berg & Tal Architektur UG (haftungsbeschränkt)",
+        "source_path": "$.invoice_part1",
+        "start": 232,
+        "end": 278
+      },
+      {
+        "text": "Weitblick Forschung AG",
+        "source_path": "$.sub.invoice_part2",
+        "start": 129,
+        "end": 151
+      }
+    ],
+    "PERSON_NAME": [
+      {
+        "text": "Felix Hartmann",
+        "source_path": "$.sub.invoice_part2",
+        "start": 77,
+        "end": 91
+      }
+    ],
+    "POSTAL_ADDRESS": [
+      {
+        "text": "Fleethörn 34a\n24103 Kiel\nSchleswig-Holstein\nDeutschland",
+        "source_path": "$.invoice_part1",
+        "start": 164,
+        "end": 219
+      },
+      {
+        "text": "Kaiserstraße 35a\n60311 Frankfurt am Main\nHessen\nDeutschland",
+        "source_path": "$.invoice_part1",
+        "start": 279,
+        "end": 338
+      }
+    ],
+    "STREET_ADDRESS": [
+      {
+        "text": "Fleethörn 34a",
+        "source_path": "$.invoice_part1",
+        "start": 164,
+        "end": 177
+      },
+      {
+        "text": "Kaiserstraße 35a",
+        "source_path": "$.invoice_part1",
+        "start": 279,
+        "end": 295
+      }
+    ],
+    "POSTAL_CODE": [
+      {
+        "text": "24103",
+        "source_path": "$.invoice_part1",
+        "start": 178,
+        "end": 183
+      },
+      {
+        "text": "60311",
+        "source_path": "$.invoice_part1",
+        "start": 296,
+        "end": 301
+      }
+    ],
+    "CITY": [
+      {
+        "text": "Kiel",
+        "source_path": "$.invoice_part1",
+        "start": 184,
+        "end": 188
+      },
+      {
+        "text": "Frankfurt am Main",
+        "source_path": "$.invoice_part1",
+        "start": 302,
+        "end": 319
+      }
+    ],
+    "STATE_OR_REGION": [
+      {
+        "text": "Schleswig-Holstein",
+        "source_path": "$.invoice_part1",
+        "start": 189,
+        "end": 207
+      },
+      {
+        "text": "Hessen",
+        "source_path": "$.invoice_part1",
+        "start": 320,
+        "end": 326
+      }
+    ],
+    "COUNTRY": [
+      {
+        "text": "Deutschland",
+        "source_path": "$.invoice_part1",
+        "start": 208,
+        "end": 219
+      },
+      {
+        "text": "Deutschland",
+        "source_path": "$.invoice_part1",
+        "start": 327,
+        "end": 338
+      }
+    ],
+    "ACCOUNT_ID": [
+      {
+        "text": "CUST-202634",
+        "source_path": "$.invoice_part1",
+        "start": 80,
+        "end": 91
+      }
+    ],
+    "INVOICE_NUMBER": [],
+    "INVOICE_DATE": [],
+    "DUE_DATE": [],
+    "SERVICE_DATE": [],
+    "DELIVERY_DATE": [
+      {
+        "text": "06.07.2026",
+        "source_path": "$.sub.invoice_part2",
+        "start": 53,
+        "end": 63
+      }
+    ],
+    "ORDER_NUMBER": [
+      {
+        "text": "BEST/2026/734",
+        "source_path": "$.invoice_part1",
+        "start": 52,
+        "end": 65
+      }
+    ],
+    "DOCUMENT_DATE": [
+      {
+        "text": "01 / 07 / 2026",
+        "source_path": "$.invoice_part1",
+        "start": 28,
+        "end": 42
+      }
+    ],
+    "TRANSACTION_DATE": [
+      {
+        "text": "07-07-2026",
+        "source_path": "$.invoice_part1",
+        "start": 119,
+        "end": 129
+      }
+    ],
+    "DATE": [
+      {
+        "text": "13. Juni 2026",
+        "source_path": "$.sub.invoice_part2",
+        "start": 104,
+        "end": 117
+      }
+    ],
+    "TAX_ID": [
+      {
+        "text": "DE100403869",
+        "source_path": "$.sub.invoice_part2",
+        "start": 163,
+        "end": 174
+      }
+    ],
+    "TAX_NUMBER": []
+  }
+}

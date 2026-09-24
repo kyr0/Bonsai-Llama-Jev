@@ -1,0 +1,6 @@
+{
+  "invoice_part1": "# Gutschrift · 2026-50143\n\n> Dokumentreferenz: 2026-50143\n\nAusgestellt am 08-03-2026 durch KüstenCloud GmbH & Co. KG.\n\nRechnungsanschrift:\nRosenfeld Gebäudetechnik AG\nSonnenstraße 43b\n80331 München\nBayern\nDeutschland\n\nAnsprechperson: Andreas Becker\nKundennummer: `DEB 90341`\nLeistungszeitpunkt: 4. März 2026\nSteuerliche Angaben: DE100221732 / 21 177 11067",
+  "sub": {
+    "invoice_part2": "## Abrechnung\n\n| Pos. | Leistung | Menge | Einzelpreis | Betrag |\n|---:|---|---:|---:|---:|\n| 1 | Cloud-Migration | 10 Std. | 138,00 € | 1.380,00 € |\n| 2 | Workshop | 4 Tag | 980,00 € | 3.920,00 € |\n| 3 | Datenanalyse | 10 Std. | 126,00 € | 1.260,00 € |\n| 4 | Projektmanagement | 4 Std. | 112,00 € | 448,00 € |\n\n**Zwischensumme:** 7.008,00 €  \n**19 % USt.:** 1.331,52 €  \n**Gesamt:** -8.339,52 €\n\nZahlungsziel: 2026-04-05\nAuftragsreferenz: AB-60187\nBitte bei Rückfragen Leonie Lorenz angeben.\n\nRechnungssteller: KüstenCloud GmbH & Co. KG"
+  }
+}

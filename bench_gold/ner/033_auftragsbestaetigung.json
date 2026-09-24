@@ -1,0 +1,368 @@
+{
+  "document_id": "de-business-033",
+  "document_type": "Auftragsbestätigung",
+  "entities": [
+    {
+      "label": "ORDER_NUMBER",
+      "text": "AUF-2026-3032",
+      "source_path": "$.invoice_part1",
+      "start": 41,
+      "end": 54
+    },
+    {
+      "label": "DOCUMENT_DATE",
+      "text": "2026-06-21",
+      "source_path": "$.invoice_part1",
+      "start": 72,
+      "end": 82
+    },
+    {
+      "label": "ACCOUNT_ID",
+      "text": "KD-12336",
+      "source_path": "$.invoice_part1",
+      "start": 111,
+      "end": 119
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "Südwerk Elektrotechnik GmbH",
+      "source_path": "$.invoice_part1",
+      "start": 134,
+      "end": 161
+    },
+    {
+      "label": "POSTAL_ADDRESS",
+      "text": "Steinstraße 13\n20095 Hamburg\nHamburg\nDeutschland",
+      "source_path": "$.invoice_part1",
+      "start": 162,
+      "end": 210
+    },
+    {
+      "label": "STREET_ADDRESS",
+      "text": "Steinstraße 13",
+      "source_path": "$.invoice_part1",
+      "start": 162,
+      "end": 176
+    },
+    {
+      "label": "POSTAL_CODE",
+      "text": "20095",
+      "source_path": "$.invoice_part1",
+      "start": 177,
+      "end": 182
+    },
+    {
+      "label": "CITY",
+      "text": "Hamburg",
+      "source_path": "$.invoice_part1",
+      "start": 183,
+      "end": 190
+    },
+    {
+      "label": "STATE_OR_REGION",
+      "text": "Hamburg",
+      "source_path": "$.invoice_part1",
+      "start": 191,
+      "end": 198
+    },
+    {
+      "label": "COUNTRY",
+      "text": "Deutschland",
+      "source_path": "$.invoice_part1",
+      "start": 199,
+      "end": 210
+    },
+    {
+      "label": "PERSON_NAME",
+      "text": "Clara Wolf",
+      "source_path": "$.invoice_part1",
+      "start": 224,
+      "end": 234
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "Lindenhof Facility Services UG (haftungsbeschränkt)",
+      "source_path": "$.invoice_part1",
+      "start": 253,
+      "end": 304
+    },
+    {
+      "label": "POSTAL_ADDRESS",
+      "text": "Rheinstraße 12\n55116 Mainz\nRheinland-Pfalz\nDeutschland",
+      "source_path": "$.invoice_part1",
+      "start": 305,
+      "end": 359
+    },
+    {
+      "label": "STREET_ADDRESS",
+      "text": "Rheinstraße 12",
+      "source_path": "$.invoice_part1",
+      "start": 305,
+      "end": 319
+    },
+    {
+      "label": "POSTAL_CODE",
+      "text": "55116",
+      "source_path": "$.invoice_part1",
+      "start": 320,
+      "end": 325
+    },
+    {
+      "label": "CITY",
+      "text": "Mainz",
+      "source_path": "$.invoice_part1",
+      "start": 326,
+      "end": 331
+    },
+    {
+      "label": "STATE_OR_REGION",
+      "text": "Rheinland-Pfalz",
+      "source_path": "$.invoice_part1",
+      "start": 332,
+      "end": 347
+    },
+    {
+      "label": "COUNTRY",
+      "text": "Deutschland",
+      "source_path": "$.invoice_part1",
+      "start": 348,
+      "end": 359
+    },
+    {
+      "label": "DELIVERY_DATE",
+      "text": "24.06.26",
+      "source_path": "$.sub.invoice_part2",
+      "start": 52,
+      "end": 60
+    },
+    {
+      "label": "SERVICE_DATE",
+      "text": "02 / 07 / 2026",
+      "source_path": "$.sub.invoice_part2",
+      "start": 78,
+      "end": 92
+    },
+    {
+      "label": "PERSON_NAME",
+      "text": "Henrik Becker",
+      "source_path": "$.sub.invoice_part2",
+      "start": 119,
+      "end": 132
+    },
+    {
+      "label": "TAX_ID",
+      "text": "DE100388031",
+      "source_path": "$.sub.invoice_part2",
+      "start": 158,
+      "end": 169
+    },
+    {
+      "label": "TAX_NUMBER",
+      "text": "42 324 13104",
+      "source_path": "$.sub.invoice_part2",
+      "start": 198,
+      "end": 210
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "Lindenhof Facility Services UG (haftungsbeschränkt)",
+      "source_path": "$.sub.invoice_part2",
+      "start": 248,
+      "end": 299
+    },
+    {
+      "label": "ORDER_NUMBER",
+      "text": "AUF-2026-3032",
+      "source_path": "$.sub.invoice_part2",
+      "start": 317,
+      "end": 330
+    }
+  ],
+  "by_label": {
+    "COMPANY_NAME": [
+      {
+        "text": "Südwerk Elektrotechnik GmbH",
+        "source_path": "$.invoice_part1",
+        "start": 134,
+        "end": 161
+      },
+      {
+        "text": "Lindenhof Facility Services UG (haftungsbeschränkt)",
+        "source_path": "$.invoice_part1",
+        "start": 253,
+        "end": 304
+      },
+      {
+        "text": "Lindenhof Facility Services UG (haftungsbeschränkt)",
+        "source_path": "$.sub.invoice_part2",
+        "start": 248,
+        "end": 299
+      }
+    ],
+    "PERSON_NAME": [
+      {
+        "text": "Clara Wolf",
+        "source_path": "$.invoice_part1",
+        "start": 224,
+        "end": 234
+      },
+      {
+        "text": "Henrik Becker",
+        "source_path": "$.sub.invoice_part2",
+        "start": 119,
+        "end": 132
+      }
+    ],
+    "POSTAL_ADDRESS": [
+      {
+        "text": "Steinstraße 13\n20095 Hamburg\nHamburg\nDeutschland",
+        "source_path": "$.invoice_part1",
+        "start": 162,
+        "end": 210
+      },
+      {
+        "text": "Rheinstraße 12\n55116 Mainz\nRheinland-Pfalz\nDeutschland",
+        "source_path": "$.invoice_part1",
+        "start": 305,
+        "end": 359
+      }
+    ],
+    "STREET_ADDRESS": [
+      {
+        "text": "Steinstraße 13",
+        "source_path": "$.invoice_part1",
+        "start": 162,
+        "end": 176
+      },
+      {
+        "text": "Rheinstraße 12",
+        "source_path": "$.invoice_part1",
+        "start": 305,
+        "end": 319
+      }
+    ],
+    "POSTAL_CODE": [
+      {
+        "text": "20095",
+        "source_path": "$.invoice_part1",
+        "start": 177,
+        "end": 182
+      },
+      {
+        "text": "55116",
+        "source_path": "$.invoice_part1",
+        "start": 320,
+        "end": 325
+      }
+    ],
+    "CITY": [
+      {
+        "text": "Hamburg",
+        "source_path": "$.invoice_part1",
+        "start": 183,
+        "end": 190
+      },
+      {
+        "text": "Mainz",
+        "source_path": "$.invoice_part1",
+        "start": 326,
+        "end": 331
+      }
+    ],
+    "STATE_OR_REGION": [
+      {
+        "text": "Hamburg",
+        "source_path": "$.invoice_part1",
+        "start": 191,
+        "end": 198
+      },
+      {
+        "text": "Rheinland-Pfalz",
+        "source_path": "$.invoice_part1",
+        "start": 332,
+        "end": 347
+      }
+    ],
+    "COUNTRY": [
+      {
+        "text": "Deutschland",
+        "source_path": "$.invoice_part1",
+        "start": 199,
+        "end": 210
+      },
+      {
+        "text": "Deutschland",
+        "source_path": "$.invoice_part1",
+        "start": 348,
+        "end": 359
+      }
+    ],
+    "ACCOUNT_ID": [
+      {
+        "text": "KD-12336",
+        "source_path": "$.invoice_part1",
+        "start": 111,
+        "end": 119
+      }
+    ],
+    "INVOICE_NUMBER": [],
+    "INVOICE_DATE": [],
+    "DUE_DATE": [],
+    "SERVICE_DATE": [
+      {
+        "text": "02 / 07 / 2026",
+        "source_path": "$.sub.invoice_part2",
+        "start": 78,
+        "end": 92
+      }
+    ],
+    "DELIVERY_DATE": [
+      {
+        "text": "24.06.26",
+        "source_path": "$.sub.invoice_part2",
+        "start": 52,
+        "end": 60
+      }
+    ],
+    "ORDER_NUMBER": [
+      {
+        "text": "AUF-2026-3032",
+        "source_path": "$.invoice_part1",
+        "start": 41,
+        "end": 54
+      },
+      {
+        "text": "AUF-2026-3032",
+        "source_path": "$.sub.invoice_part2",
+        "start": 317,
+        "end": 330
+      }
+    ],
+    "DOCUMENT_DATE": [
+      {
+        "text": "2026-06-21",
+        "source_path": "$.invoice_part1",
+        "start": 72,
+        "end": 82
+      }
+    ],
+    "TRANSACTION_DATE": [],
+    "DATE": [],
+    "TAX_ID": [
+      {
+        "text": "DE100388031",
+        "source_path": "$.sub.invoice_part2",
+        "start": 158,
+        "end": 169
+      }
+    ],
+    "TAX_NUMBER": [
+      {
+        "text": "42 324 13104",
+        "source_path": "$.sub.invoice_part2",
+        "start": 198,
+        "end": 210
+      }
+    ]
+  }
+}

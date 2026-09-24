@@ -1,0 +1,6 @@
+{
+  "invoice_part1": "# Zahlungsavis\n\nAvisdatum: 01 / 02 / 2026\nZahlender Geschäftspartner: Orbis Büroservice UG (haftungsbeschränkt)\nKonto-ID: KD-10292\nTransaktionsdatum: 07-02-2026\n\nZahlungsempfänger:\nHanseKontor IT AG\nNeue Kräme 52\n60311 Frankfurt am Main\nHessen\nDeutschland",
+  "sub": {
+    "invoice_part2": "## Zugeordnete Belege\n\n- Rechnung RE-2026-1004 vom 01 / 02 / 2026\n- Rechnung R26/04005 vom 24-01-2026\n\nBearbeiter: Henrik Becker\nReferenzauftrag: AUF-2026-3004\nSteuerliche ID Empfänger: DE100166299"
+  }
+}

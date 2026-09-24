@@ -1,0 +1,6 @@
+{
+  "invoice_part1": "# Auftragsbestätigung\n\nVorgangsnummer: **AUF-2026-3032**  \nErstellt am: 2026-06-21  \nKunden-/Lieferantenkonto: KD-12336\n\n## Besteller\nSüdwerk Elektrotechnik GmbH\nSteinstraße 13\n20095 Hamburg\nHamburg\nDeutschland\nBearbeitung: Clara Wolf\n\n## Auftragnehmer\nLindenhof Facility Services UG (haftungsbeschränkt)\nRheinstraße 12\n55116 Mainz\nRheinland-Pfalz\nDeutschland",
+  "sub": {
+    "invoice_part2": "## Termine und Referenzen\n\nGewünschtes Lieferdatum: 24.06.26\nLeistungsbeginn: 02 / 07 / 2026\nAuftrag angenommen durch: Henrik Becker\nSteuer-ID Auftragnehmer: DE100388031\nSteuernummer Auftragnehmer: 42 324 13104\n\nAuftragnehmer erneut zur Zuordnung: Lindenhof Facility Services UG (haftungsbeschränkt)\nBestellreferenz: AUF-2026-3032"
+  }
+}

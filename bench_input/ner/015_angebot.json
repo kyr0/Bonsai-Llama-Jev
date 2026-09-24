@@ -1,0 +1,6 @@
+{
+  "invoice_part1": "# Angebot\n\n**Angebot-Nr.:** BEST/2026/714\n**Dokumentdatum:** 2026-03-23\n**Gültig bis:** 22.04.26\n\n### Anbieter\nPrisma Laborservice AG\nDortustraße 75a\n14467 Potsdam\nBrandenburg\nDeutschland\nKontakt: Lukas Hartmann\nUSt-IdNr.: DE100245489\n\n### Adressat\nMittelstand Systems UG (haftungsbeschränkt)\nCäcilienstraße 76a\n50667 Köln\nNordrhein-Westfalen\nDeutschland\nKundenkonto: CUST-202614",
+  "sub": {
+    "invoice_part2": "# Positionen zum Angebot\n\n1. **Projektmanagement** — 12 Std. × 112,00 € = 1.344,00 €\n2. **Softwareentwicklung** — 5 Std. × 118,00 € = 590,00 €\n3. **Workshop** — 8 Tag × 980,00 € = 7.840,00 €\n\nVoraussichtlicher Nettobetrag: **9.774,00 €**\nVorgesehener Leistungsbeginn: 26 / 03 / 2026\nGeplantes Lieferdatum: 07-04-2026\nInterne Steuernummer: 24 198 11358\nProjektverantwortlich: Lukas Hartmann\nAnbieter: Prisma Laborservice AG"
+  }
+}

@@ -89,14 +89,16 @@ That's it. The server runs in the background at `http://localhost:54100`.
 `make start` also runs a few self-checks and prints PASS for each one.
 
 ## 🗨️ First message
+The 27B is a thinking model, so a plain chat request answers with its reasoning in `reasoning_content` first and only then fills `content` - which a small `max_tokens` never reaches. Disable thinking for direct answers:
+
 ```sh
 curl http://localhost:54100/v1/chat/completions \
   -H "Content-Type: application/json" \
-  -d '{"messages": [{"role": "user", "content": "Hello!"}], "max_tokens": 200}'
+  -d '{"messages": [{"role": "user", "content": "Hello!"}], "max_tokens": 200, "chat_template_kwargs": {"enable_thinking": false}}'
 ```
-The answer is in the JSON under `choices[0].message.content`. With the OpenAI SDK, just point it
 
-at the server (key only needed if you set `BONSAI_API_KEY`):
+The answer is in the JSON under `choices[0].message.content`. With the OpenAI SDK, just point it at the server (key only needed if you set `BONSAI_API_KEY`):
+
 ```python
 # pip install openai
 from openai import OpenAI
@@ -104,9 +106,11 @@ client = OpenAI(base_url="http://localhost:54100/v1")
 r = client.chat.completions.create(
     model="bonsai-2-27b",  # any name works unless you set BONSAI_ALIAS
     messages=[{"role": "user", "content": "Hello!"}],
+    extra_body={"chat_template_kwargs": {"enable_thinking": False}},
 )
 print(r.choices[0].message.content)
 ```
+
 Other OpenAI-compatible clients can work when they use the API subset implemented by this server; point them at the local base URL and verify the features you rely on.
 
 ## 🧠 Typed questions (`POST /v1/systemone`)

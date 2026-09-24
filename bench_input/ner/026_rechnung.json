@@ -1,0 +1,6 @@
+{
+  "invoice_part1": "# Rechnung · R26/04025\n\n> Dokumentreferenz: R26/04025\n\nAusgestellt am 17. Mai 2026 durch Brückenwerk Mobilität GmbH.\n\nRechnungsanschrift:\nSpreebogen Medien e.K.\nBrandenburger Straße 23\n14467 Potsdam\nBrandenburg\nDeutschland\n\nAnsprechperson: Felix Hartmann\nKundennummer: `KTO/700475`\nLeistungszeitpunkt: 15.05.26\nSteuerliche Angaben: DE100332598 / 375/6325/1425",
+  "sub": {
+    "invoice_part2": "## Abrechnung\n\n| Pos. | Leistung | Menge | Einzelpreis | Betrag |\n|---:|---|---:|---:|---:|\n| 1 | Cloud-Migration | 5 Std. | 138,00 € | 690,00 € |\n| 2 | KI-Integration und Tests | 12 Std. | 145,00 € | 1.740,00 € |\n| 3 | Systemwartung | 4 Std. | 96,00 € | 384,00 € |\n\n**Zwischensumme:** 2.814,00 €  \n**19 % USt.:** 534,66 €  \n**Gesamt:** 3.348,66 €\n\nZahlungsziel: 07 / 06 / 2026\nAuftragsreferenz: PO-26-08025\nBitte bei Rückfragen Eva Wolf angeben.\n\nRechnungssteller: Brückenwerk Mobilität GmbH"
+  }
+}

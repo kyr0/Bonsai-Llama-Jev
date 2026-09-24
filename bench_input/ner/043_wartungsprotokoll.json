@@ -1,0 +1,6 @@
+{
+  "invoice_part1": "# Wartungsprotokoll\n\nDokumentiert am: 10.08.2026\nAuftrag: BEST/2026/742\nKunden-ID: CUST-202642\nEinsatz-/Leistungsdatum: 7. August 2026\n\nDienstleister:\nNeckar Data Systems UG (haftungsbeschränkt)\nKaiserstraße 35a\n60311 Frankfurt am Main\nHessen\nDeutschland\nTechniker/in: Lukas Hartmann\n\nKunde:\nKernpunkt Sicherheitstechnik GmbH\nSalzstraße 36a\n79098 Freiburg im Breisgau\nBaden-Württemberg\nDeutschland",
+  "sub": {
+    "invoice_part2": "## Ausgeführte Arbeiten\n\n- Firmware-/Softwareaktualisierung\n- Fehleranalyse\n- Konfigurationsprüfung\n\nAbnahme durch: Nina Lorenz\nNächster empfohlener Termin: 2027-02-06\nSteuernummer Dienstleister: 52/394/14074\nUSt-ID Dienstleister: DE100467221\nDienstleister: Neckar Data Systems UG (haftungsbeschränkt)"
+  }
+}

@@ -1,0 +1,383 @@
+{
+  "document_id": "de-business-028",
+  "document_type": "Mahnung",
+  "entities": [
+    {
+      "label": "COMPANY_NAME",
+      "text": "Isar Automation GmbH",
+      "source_path": "$.invoice_part1",
+      "start": 66,
+      "end": 86
+    },
+    {
+      "label": "INVOICE_NUMBER",
+      "text": "2026-50351",
+      "source_path": "$.invoice_part1",
+      "start": 111,
+      "end": 121
+    },
+    {
+      "label": "INVOICE_DATE",
+      "text": "27.05.26",
+      "source_path": "$.invoice_part1",
+      "start": 128,
+      "end": 136
+    },
+    {
+      "label": "DUE_DATE",
+      "text": "10 / 06 / 2026",
+      "source_path": "$.invoice_part1",
+      "start": 231,
+      "end": 245
+    },
+    {
+      "label": "ACCOUNT_ID",
+      "text": "DEB 90837",
+      "source_path": "$.invoice_part1",
+      "start": 260,
+      "end": 269
+    },
+    {
+      "label": "ORDER_NUMBER",
+      "text": "AB-60459",
+      "source_path": "$.invoice_part1",
+      "start": 295,
+      "end": 303
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "Mittelstand Systems UG (haftungsbeschränkt)",
+      "source_path": "$.invoice_part1",
+      "start": 316,
+      "end": 359
+    },
+    {
+      "label": "POSTAL_ADDRESS",
+      "text": "Schweriner Straße 44b\n01067 Dresden\nSachsen\nDeutschland",
+      "source_path": "$.invoice_part1",
+      "start": 360,
+      "end": 415
+    },
+    {
+      "label": "STREET_ADDRESS",
+      "text": "Schweriner Straße 44b",
+      "source_path": "$.invoice_part1",
+      "start": 360,
+      "end": 381
+    },
+    {
+      "label": "POSTAL_CODE",
+      "text": "01067",
+      "source_path": "$.invoice_part1",
+      "start": 382,
+      "end": 387
+    },
+    {
+      "label": "CITY",
+      "text": "Dresden",
+      "source_path": "$.invoice_part1",
+      "start": 388,
+      "end": 395
+    },
+    {
+      "label": "STATE_OR_REGION",
+      "text": "Sachsen",
+      "source_path": "$.invoice_part1",
+      "start": 396,
+      "end": 403
+    },
+    {
+      "label": "COUNTRY",
+      "text": "Deutschland",
+      "source_path": "$.invoice_part1",
+      "start": 404,
+      "end": 415
+    },
+    {
+      "label": "DATE",
+      "text": "17-06-2026",
+      "source_path": "$.sub.invoice_part2",
+      "start": 80,
+      "end": 90
+    },
+    {
+      "label": "PERSON_NAME",
+      "text": "Carolin Lorenz",
+      "source_path": "$.sub.invoice_part2",
+      "start": 110,
+      "end": 124
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "Isar Automation GmbH",
+      "source_path": "$.sub.invoice_part2",
+      "start": 145,
+      "end": 165
+    },
+    {
+      "label": "POSTAL_ADDRESS",
+      "text": "Juri-Gagarin-Ring 45b\n99084 Erfurt\nThüringen\nDeutschland",
+      "source_path": "$.sub.invoice_part2",
+      "start": 166,
+      "end": 222
+    },
+    {
+      "label": "STREET_ADDRESS",
+      "text": "Juri-Gagarin-Ring 45b",
+      "source_path": "$.sub.invoice_part2",
+      "start": 166,
+      "end": 187
+    },
+    {
+      "label": "POSTAL_CODE",
+      "text": "99084",
+      "source_path": "$.sub.invoice_part2",
+      "start": 188,
+      "end": 193
+    },
+    {
+      "label": "CITY",
+      "text": "Erfurt",
+      "source_path": "$.sub.invoice_part2",
+      "start": 194,
+      "end": 200
+    },
+    {
+      "label": "STATE_OR_REGION",
+      "text": "Thüringen",
+      "source_path": "$.sub.invoice_part2",
+      "start": 201,
+      "end": 210
+    },
+    {
+      "label": "COUNTRY",
+      "text": "Deutschland",
+      "source_path": "$.sub.invoice_part2",
+      "start": 211,
+      "end": 222
+    },
+    {
+      "label": "DOCUMENT_DATE",
+      "text": "27.05.2026",
+      "source_path": "$.sub.invoice_part2",
+      "start": 258,
+      "end": 268
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "Mittelstand Systems UG (haftungsbeschränkt)",
+      "source_path": "$.sub.invoice_part2",
+      "start": 274,
+      "end": 317
+    },
+    {
+      "label": "TAX_ID",
+      "text": "DE100348436",
+      "source_path": "$.sub.invoice_part2",
+      "start": 330,
+      "end": 341
+    },
+    {
+      "label": "TAX_NUMBER",
+      "text": "37/289/12619",
+      "source_path": "$.sub.invoice_part2",
+      "start": 354,
+      "end": 366
+    }
+  ],
+  "by_label": {
+    "COMPANY_NAME": [
+      {
+        "text": "Isar Automation GmbH",
+        "source_path": "$.invoice_part1",
+        "start": 66,
+        "end": 86
+      },
+      {
+        "text": "Mittelstand Systems UG (haftungsbeschränkt)",
+        "source_path": "$.invoice_part1",
+        "start": 316,
+        "end": 359
+      },
+      {
+        "text": "Isar Automation GmbH",
+        "source_path": "$.sub.invoice_part2",
+        "start": 145,
+        "end": 165
+      },
+      {
+        "text": "Mittelstand Systems UG (haftungsbeschränkt)",
+        "source_path": "$.sub.invoice_part2",
+        "start": 274,
+        "end": 317
+      }
+    ],
+    "PERSON_NAME": [
+      {
+        "text": "Carolin Lorenz",
+        "source_path": "$.sub.invoice_part2",
+        "start": 110,
+        "end": 124
+      }
+    ],
+    "POSTAL_ADDRESS": [
+      {
+        "text": "Schweriner Straße 44b\n01067 Dresden\nSachsen\nDeutschland",
+        "source_path": "$.invoice_part1",
+        "start": 360,
+        "end": 415
+      },
+      {
+        "text": "Juri-Gagarin-Ring 45b\n99084 Erfurt\nThüringen\nDeutschland",
+        "source_path": "$.sub.invoice_part2",
+        "start": 166,
+        "end": 222
+      }
+    ],
+    "STREET_ADDRESS": [
+      {
+        "text": "Schweriner Straße 44b",
+        "source_path": "$.invoice_part1",
+        "start": 360,
+        "end": 381
+      },
+      {
+        "text": "Juri-Gagarin-Ring 45b",
+        "source_path": "$.sub.invoice_part2",
+        "start": 166,
+        "end": 187
+      }
+    ],
+    "POSTAL_CODE": [
+      {
+        "text": "01067",
+        "source_path": "$.invoice_part1",
+        "start": 382,
+        "end": 387
+      },
+      {
+        "text": "99084",
+        "source_path": "$.sub.invoice_part2",
+        "start": 188,
+        "end": 193
+      }
+    ],
+    "CITY": [
+      {
+        "text": "Dresden",
+        "source_path": "$.invoice_part1",
+        "start": 388,
+        "end": 395
+      },
+      {
+        "text": "Erfurt",
+        "source_path": "$.sub.invoice_part2",
+        "start": 194,
+        "end": 200
+      }
+    ],
+    "STATE_OR_REGION": [
+      {
+        "text": "Sachsen",
+        "source_path": "$.invoice_part1",
+        "start": 396,
+        "end": 403
+      },
+      {
+        "text": "Thüringen",
+        "source_path": "$.sub.invoice_part2",
+        "start": 201,
+        "end": 210
+      }
+    ],
+    "COUNTRY": [
+      {
+        "text": "Deutschland",
+        "source_path": "$.invoice_part1",
+        "start": 404,
+        "end": 415
+      },
+      {
+        "text": "Deutschland",
+        "source_path": "$.sub.invoice_part2",
+        "start": 211,
+        "end": 222
+      }
+    ],
+    "ACCOUNT_ID": [
+      {
+        "text": "DEB 90837",
+        "source_path": "$.invoice_part1",
+        "start": 260,
+        "end": 269
+      }
+    ],
+    "INVOICE_NUMBER": [
+      {
+        "text": "2026-50351",
+        "source_path": "$.invoice_part1",
+        "start": 111,
+        "end": 121
+      }
+    ],
+    "INVOICE_DATE": [
+      {
+        "text": "27.05.26",
+        "source_path": "$.invoice_part1",
+        "start": 128,
+        "end": 136
+      }
+    ],
+    "DUE_DATE": [
+      {
+        "text": "10 / 06 / 2026",
+        "source_path": "$.invoice_part1",
+        "start": 231,
+        "end": 245
+      }
+    ],
+    "SERVICE_DATE": [],
+    "DELIVERY_DATE": [],
+    "ORDER_NUMBER": [
+      {
+        "text": "AB-60459",
+        "source_path": "$.invoice_part1",
+        "start": 295,
+        "end": 303
+      }
+    ],
+    "DOCUMENT_DATE": [
+      {
+        "text": "27.05.2026",
+        "source_path": "$.sub.invoice_part2",
+        "start": 258,
+        "end": 268
+      }
+    ],
+    "TRANSACTION_DATE": [],
+    "DATE": [
+      {
+        "text": "17-06-2026",
+        "source_path": "$.sub.invoice_part2",
+        "start": 80,
+        "end": 90
+      }
+    ],
+    "TAX_ID": [
+      {
+        "text": "DE100348436",
+        "source_path": "$.sub.invoice_part2",
+        "start": 330,
+        "end": 341
+      }
+    ],
+    "TAX_NUMBER": [
+      {
+        "text": "37/289/12619",
+        "source_path": "$.sub.invoice_part2",
+        "start": 354,
+        "end": 366
+      }
+    ]
+  }
+}

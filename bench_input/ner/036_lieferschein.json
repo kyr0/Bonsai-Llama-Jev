@@ -1,0 +1,6 @@
+{
+  "invoice_part1": "# Lieferschein\n\nBelegdatum: 06-07-2026\nAuftrag: AB-60595\nKundennummer: DEB 91085\nLiefer-/Transaktionsdatum: 13.07.2026\n\nAbsender:\nAlpenbyte Solutions GmbH\nJuri-Gagarin-Ring 45b\n99084 Erfurt\nThüringen\nDeutschland\n\nEmpfänger:\nMosaik Software e.K.\nLautenschlagerstraße 46b\n70173 Stuttgart\nBaden-Württemberg\nDeutschland",
+  "sub": {
+    "invoice_part2": "## Sendungsdetails\n\nGeplante / bestätigte Lieferung: 7. Juli 2026\nDisposition: Sophie Lorenz\nErfasst am: 2026-06-17\nVersender: Alpenbyte Solutions GmbH\nUSt-IdNr.: DE100411788\n"
+  }
+}

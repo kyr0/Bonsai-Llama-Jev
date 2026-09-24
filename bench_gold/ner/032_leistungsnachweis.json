@@ -1,0 +1,355 @@
+{
+  "document_id": "de-business-032",
+  "document_type": "Leistungsnachweis",
+  "entities": [
+    {
+      "label": "DOCUMENT_DATE",
+      "text": "16. Juni 2026",
+      "source_path": "$.invoice_part1",
+      "start": 38,
+      "end": 51
+    },
+    {
+      "label": "ORDER_NUMBER",
+      "text": "AB-60527",
+      "source_path": "$.invoice_part1",
+      "start": 61,
+      "end": 69
+    },
+    {
+      "label": "ACCOUNT_ID",
+      "text": "DEB 90961",
+      "source_path": "$.invoice_part1",
+      "start": 81,
+      "end": 90
+    },
+    {
+      "label": "SERVICE_DATE",
+      "text": "2026-06-08",
+      "source_path": "$.invoice_part1",
+      "start": 116,
+      "end": 126
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "Papierhafen Verlag GmbH & Co. KG",
+      "source_path": "$.invoice_part1",
+      "start": 143,
+      "end": 175
+    },
+    {
+      "label": "POSTAL_ADDRESS",
+      "text": "Schusterstraße 88b\n79098 Freiburg im Breisgau\nBaden-Württemberg\nDeutschland",
+      "source_path": "$.invoice_part1",
+      "start": 176,
+      "end": 251
+    },
+    {
+      "label": "STREET_ADDRESS",
+      "text": "Schusterstraße 88b",
+      "source_path": "$.invoice_part1",
+      "start": 176,
+      "end": 194
+    },
+    {
+      "label": "POSTAL_CODE",
+      "text": "79098",
+      "source_path": "$.invoice_part1",
+      "start": 195,
+      "end": 200
+    },
+    {
+      "label": "CITY",
+      "text": "Freiburg im Breisgau",
+      "source_path": "$.invoice_part1",
+      "start": 201,
+      "end": 221
+    },
+    {
+      "label": "STATE_OR_REGION",
+      "text": "Baden-Württemberg",
+      "source_path": "$.invoice_part1",
+      "start": 222,
+      "end": 239
+    },
+    {
+      "label": "COUNTRY",
+      "text": "Deutschland",
+      "source_path": "$.invoice_part1",
+      "start": 240,
+      "end": 251
+    },
+    {
+      "label": "PERSON_NAME",
+      "text": "Theresa Lorenz",
+      "source_path": "$.invoice_part1",
+      "start": 266,
+      "end": 280
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "Mainblick Consulting AG",
+      "source_path": "$.invoice_part1",
+      "start": 289,
+      "end": 312
+    },
+    {
+      "label": "POSTAL_ADDRESS",
+      "text": "Leipziger Straße 89b\n10117 Berlin\nBerlin\nDeutschland",
+      "source_path": "$.invoice_part1",
+      "start": 313,
+      "end": 365
+    },
+    {
+      "label": "STREET_ADDRESS",
+      "text": "Leipziger Straße 89b",
+      "source_path": "$.invoice_part1",
+      "start": 313,
+      "end": 333
+    },
+    {
+      "label": "POSTAL_CODE",
+      "text": "10117",
+      "source_path": "$.invoice_part1",
+      "start": 334,
+      "end": 339
+    },
+    {
+      "label": "CITY",
+      "text": "Berlin",
+      "source_path": "$.invoice_part1",
+      "start": 340,
+      "end": 346
+    },
+    {
+      "label": "STATE_OR_REGION",
+      "text": "Berlin",
+      "source_path": "$.invoice_part1",
+      "start": 347,
+      "end": 353
+    },
+    {
+      "label": "COUNTRY",
+      "text": "Deutschland",
+      "source_path": "$.invoice_part1",
+      "start": 354,
+      "end": 365
+    },
+    {
+      "label": "PERSON_NAME",
+      "text": "Jonas Becker",
+      "source_path": "$.sub.invoice_part2",
+      "start": 143,
+      "end": 155
+    },
+    {
+      "label": "DATE",
+      "text": "13.12.26",
+      "source_path": "$.sub.invoice_part2",
+      "start": 185,
+      "end": 193
+    },
+    {
+      "label": "TAX_NUMBER",
+      "text": "441/6643/1527",
+      "source_path": "$.sub.invoice_part2",
+      "start": 222,
+      "end": 235
+    },
+    {
+      "label": "TAX_ID",
+      "text": "DE100380112",
+      "source_path": "$.sub.invoice_part2",
+      "start": 258,
+      "end": 269
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "Papierhafen Verlag GmbH & Co. KG",
+      "source_path": "$.sub.invoice_part2",
+      "start": 285,
+      "end": 317
+    }
+  ],
+  "by_label": {
+    "COMPANY_NAME": [
+      {
+        "text": "Papierhafen Verlag GmbH & Co. KG",
+        "source_path": "$.invoice_part1",
+        "start": 143,
+        "end": 175
+      },
+      {
+        "text": "Mainblick Consulting AG",
+        "source_path": "$.invoice_part1",
+        "start": 289,
+        "end": 312
+      },
+      {
+        "text": "Papierhafen Verlag GmbH & Co. KG",
+        "source_path": "$.sub.invoice_part2",
+        "start": 285,
+        "end": 317
+      }
+    ],
+    "PERSON_NAME": [
+      {
+        "text": "Theresa Lorenz",
+        "source_path": "$.invoice_part1",
+        "start": 266,
+        "end": 280
+      },
+      {
+        "text": "Jonas Becker",
+        "source_path": "$.sub.invoice_part2",
+        "start": 143,
+        "end": 155
+      }
+    ],
+    "POSTAL_ADDRESS": [
+      {
+        "text": "Schusterstraße 88b\n79098 Freiburg im Breisgau\nBaden-Württemberg\nDeutschland",
+        "source_path": "$.invoice_part1",
+        "start": 176,
+        "end": 251
+      },
+      {
+        "text": "Leipziger Straße 89b\n10117 Berlin\nBerlin\nDeutschland",
+        "source_path": "$.invoice_part1",
+        "start": 313,
+        "end": 365
+      }
+    ],
+    "STREET_ADDRESS": [
+      {
+        "text": "Schusterstraße 88b",
+        "source_path": "$.invoice_part1",
+        "start": 176,
+        "end": 194
+      },
+      {
+        "text": "Leipziger Straße 89b",
+        "source_path": "$.invoice_part1",
+        "start": 313,
+        "end": 333
+      }
+    ],
+    "POSTAL_CODE": [
+      {
+        "text": "79098",
+        "source_path": "$.invoice_part1",
+        "start": 195,
+        "end": 200
+      },
+      {
+        "text": "10117",
+        "source_path": "$.invoice_part1",
+        "start": 334,
+        "end": 339
+      }
+    ],
+    "CITY": [
+      {
+        "text": "Freiburg im Breisgau",
+        "source_path": "$.invoice_part1",
+        "start": 201,
+        "end": 221
+      },
+      {
+        "text": "Berlin",
+        "source_path": "$.invoice_part1",
+        "start": 340,
+        "end": 346
+      }
+    ],
+    "STATE_OR_REGION": [
+      {
+        "text": "Baden-Württemberg",
+        "source_path": "$.invoice_part1",
+        "start": 222,
+        "end": 239
+      },
+      {
+        "text": "Berlin",
+        "source_path": "$.invoice_part1",
+        "start": 347,
+        "end": 353
+      }
+    ],
+    "COUNTRY": [
+      {
+        "text": "Deutschland",
+        "source_path": "$.invoice_part1",
+        "start": 240,
+        "end": 251
+      },
+      {
+        "text": "Deutschland",
+        "source_path": "$.invoice_part1",
+        "start": 354,
+        "end": 365
+      }
+    ],
+    "ACCOUNT_ID": [
+      {
+        "text": "DEB 90961",
+        "source_path": "$.invoice_part1",
+        "start": 81,
+        "end": 90
+      }
+    ],
+    "INVOICE_NUMBER": [],
+    "INVOICE_DATE": [],
+    "DUE_DATE": [],
+    "SERVICE_DATE": [
+      {
+        "text": "2026-06-08",
+        "source_path": "$.invoice_part1",
+        "start": 116,
+        "end": 126
+      }
+    ],
+    "DELIVERY_DATE": [],
+    "ORDER_NUMBER": [
+      {
+        "text": "AB-60527",
+        "source_path": "$.invoice_part1",
+        "start": 61,
+        "end": 69
+      }
+    ],
+    "DOCUMENT_DATE": [
+      {
+        "text": "16. Juni 2026",
+        "source_path": "$.invoice_part1",
+        "start": 38,
+        "end": 51
+      }
+    ],
+    "TRANSACTION_DATE": [],
+    "DATE": [
+      {
+        "text": "13.12.26",
+        "source_path": "$.sub.invoice_part2",
+        "start": 185,
+        "end": 193
+      }
+    ],
+    "TAX_ID": [
+      {
+        "text": "DE100380112",
+        "source_path": "$.sub.invoice_part2",
+        "start": 258,
+        "end": 269
+      }
+    ],
+    "TAX_NUMBER": [
+      {
+        "text": "441/6643/1527",
+        "source_path": "$.sub.invoice_part2",
+        "start": 222,
+        "end": 235
+      }
+    ]
+  }
+}

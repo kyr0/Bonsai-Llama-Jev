@@ -1,0 +1,6 @@
+{
+  "invoice_part1": "# Auftragsbestätigung\n\nVorgangsnummer: **AB-60663**  \nErstellt am: 26.07.26  \nKunden-/Lieferantenkonto: DEB 91209\n\n## Besteller\nOrbis Büroservice UG (haftungsbeschränkt)\nLorenzer Straße 90b\n90402 Nürnberg\nBayern\nDeutschland\nBearbeitung: Andreas Becker\n\n## Auftragnehmer\nHanseKontor IT AG\nLeipziger Straße 89b\n10117 Berlin\nBerlin\nDeutschland",
+  "sub": {
+    "invoice_part2": "## Termine und Referenzen\n\nGewünschtes Lieferdatum: 31 / 07 / 2026\nLeistungsbeginn: 30-07-2026\nAuftrag angenommen durch: Leonie Lorenz\nSteuer-ID Auftragnehmer: DE100443464\nSteuernummer Auftragnehmer: 49/373/13783\n\nAuftragnehmer erneut zur Zuordnung: HanseKontor IT AG\nBestellreferenz: AB-60663"
+  }
+}

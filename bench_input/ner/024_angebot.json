@@ -1,0 +1,6 @@
+{
+  "invoice_part1": "# Angebot\n\n**Angebot-Nr.:** AB-60391\n**Dokumentdatum:** 07-05-2026\n**Gültig bis:** 06.06.2026\n\n### Anbieter\nVectora Engineering e.K.\nBerliner Straße 87b\n60311 Frankfurt am Main\nHessen\nDeutschland\nKontakt: Nina Lorenz\nUSt-IdNr.: DE100316760\n\n### Adressat\nNordlicht Anlagenbau GmbH & Co. KG\nSchusterstraße 88b\n79098 Freiburg im Breisgau\nBaden-Württemberg\nDeutschland\nKundenkonto: DEB 90713",
+  "sub": {
+    "invoice_part2": "# Positionen zum Angebot\n\n1. **Datenanalyse** — 5 Std. × 126,00 € = 630,00 €\n2. **Cloud-Migration** — 6 Std. × 138,00 € = 828,00 €\n3. **Workshop** — 2 Tag × 980,00 € = 1.960,00 €\n4. **Softwareentwicklung** — 1 Std. × 118,00 € = 118,00 €\n\nVoraussichtlicher Nettobetrag: **3.536,00 €**\nVorgesehener Leistungsbeginn: 9. Mai 2026\nGeplantes Lieferdatum: 2026-05-21\nInterne Steuernummer: 33 261 12231\nProjektverantwortlich: Nina Lorenz\nAnbieter: Vectora Engineering e.K."
+  }
+}

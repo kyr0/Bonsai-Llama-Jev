@@ -1,0 +1,342 @@
+{
+  "document_id": "de-business-039",
+  "document_type": "Lieferschein",
+  "entities": [
+    {
+      "label": "DOCUMENT_DATE",
+      "text": "2026-07-21",
+      "source_path": "$.invoice_part1",
+      "start": 28,
+      "end": 38
+    },
+    {
+      "label": "ORDER_NUMBER",
+      "text": "BEST/2026/738",
+      "source_path": "$.invoice_part1",
+      "start": 48,
+      "end": 61
+    },
+    {
+      "label": "ACCOUNT_ID",
+      "text": "CUST-202638",
+      "source_path": "$.invoice_part1",
+      "start": 76,
+      "end": 87
+    },
+    {
+      "label": "TRANSACTION_DATE",
+      "text": "25.07.26",
+      "source_path": "$.invoice_part1",
+      "start": 115,
+      "end": 123
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "Spreebogen Medien e.K.",
+      "source_path": "$.invoice_part1",
+      "start": 135,
+      "end": 157
+    },
+    {
+      "label": "POSTAL_ADDRESS",
+      "text": "Maximilianstraße 78a\n80331 München\nBayern\nDeutschland",
+      "source_path": "$.invoice_part1",
+      "start": 158,
+      "end": 211
+    },
+    {
+      "label": "STREET_ADDRESS",
+      "text": "Maximilianstraße 78a",
+      "source_path": "$.invoice_part1",
+      "start": 158,
+      "end": 178
+    },
+    {
+      "label": "POSTAL_CODE",
+      "text": "80331",
+      "source_path": "$.invoice_part1",
+      "start": 179,
+      "end": 184
+    },
+    {
+      "label": "CITY",
+      "text": "München",
+      "source_path": "$.invoice_part1",
+      "start": 185,
+      "end": 192
+    },
+    {
+      "label": "STATE_OR_REGION",
+      "text": "Bayern",
+      "source_path": "$.invoice_part1",
+      "start": 193,
+      "end": 199
+    },
+    {
+      "label": "COUNTRY",
+      "text": "Deutschland",
+      "source_path": "$.invoice_part1",
+      "start": 200,
+      "end": 211
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "Werkhalle Maschinenbau GmbH & Co. KG",
+      "source_path": "$.invoice_part1",
+      "start": 224,
+      "end": 260
+    },
+    {
+      "label": "POSTAL_ADDRESS",
+      "text": "Wallstraße 79a\n01067 Dresden\nSachsen\nDeutschland",
+      "source_path": "$.invoice_part1",
+      "start": 261,
+      "end": 309
+    },
+    {
+      "label": "STREET_ADDRESS",
+      "text": "Wallstraße 79a",
+      "source_path": "$.invoice_part1",
+      "start": 261,
+      "end": 275
+    },
+    {
+      "label": "POSTAL_CODE",
+      "text": "01067",
+      "source_path": "$.invoice_part1",
+      "start": 276,
+      "end": 281
+    },
+    {
+      "label": "CITY",
+      "text": "Dresden",
+      "source_path": "$.invoice_part1",
+      "start": 282,
+      "end": 289
+    },
+    {
+      "label": "STATE_OR_REGION",
+      "text": "Sachsen",
+      "source_path": "$.invoice_part1",
+      "start": 290,
+      "end": 297
+    },
+    {
+      "label": "COUNTRY",
+      "text": "Deutschland",
+      "source_path": "$.invoice_part1",
+      "start": 298,
+      "end": 309
+    },
+    {
+      "label": "DELIVERY_DATE",
+      "text": "25 / 07 / 2026",
+      "source_path": "$.sub.invoice_part2",
+      "start": 53,
+      "end": 67
+    },
+    {
+      "label": "PERSON_NAME",
+      "text": "Simon Hartmann",
+      "source_path": "$.sub.invoice_part2",
+      "start": 81,
+      "end": 95
+    },
+    {
+      "label": "DATE",
+      "text": "29-06-2026",
+      "source_path": "$.sub.invoice_part2",
+      "start": 108,
+      "end": 118
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "Spreebogen Medien e.K.",
+      "source_path": "$.sub.invoice_part2",
+      "start": 130,
+      "end": 152
+    },
+    {
+      "label": "TAX_ID",
+      "text": "DE100435545",
+      "source_path": "$.sub.invoice_part2",
+      "start": 164,
+      "end": 175
+    }
+  ],
+  "by_label": {
+    "COMPANY_NAME": [
+      {
+        "text": "Spreebogen Medien e.K.",
+        "source_path": "$.invoice_part1",
+        "start": 135,
+        "end": 157
+      },
+      {
+        "text": "Werkhalle Maschinenbau GmbH & Co. KG",
+        "source_path": "$.invoice_part1",
+        "start": 224,
+        "end": 260
+      },
+      {
+        "text": "Spreebogen Medien e.K.",
+        "source_path": "$.sub.invoice_part2",
+        "start": 130,
+        "end": 152
+      }
+    ],
+    "PERSON_NAME": [
+      {
+        "text": "Simon Hartmann",
+        "source_path": "$.sub.invoice_part2",
+        "start": 81,
+        "end": 95
+      }
+    ],
+    "POSTAL_ADDRESS": [
+      {
+        "text": "Maximilianstraße 78a\n80331 München\nBayern\nDeutschland",
+        "source_path": "$.invoice_part1",
+        "start": 158,
+        "end": 211
+      },
+      {
+        "text": "Wallstraße 79a\n01067 Dresden\nSachsen\nDeutschland",
+        "source_path": "$.invoice_part1",
+        "start": 261,
+        "end": 309
+      }
+    ],
+    "STREET_ADDRESS": [
+      {
+        "text": "Maximilianstraße 78a",
+        "source_path": "$.invoice_part1",
+        "start": 158,
+        "end": 178
+      },
+      {
+        "text": "Wallstraße 79a",
+        "source_path": "$.invoice_part1",
+        "start": 261,
+        "end": 275
+      }
+    ],
+    "POSTAL_CODE": [
+      {
+        "text": "80331",
+        "source_path": "$.invoice_part1",
+        "start": 179,
+        "end": 184
+      },
+      {
+        "text": "01067",
+        "source_path": "$.invoice_part1",
+        "start": 276,
+        "end": 281
+      }
+    ],
+    "CITY": [
+      {
+        "text": "München",
+        "source_path": "$.invoice_part1",
+        "start": 185,
+        "end": 192
+      },
+      {
+        "text": "Dresden",
+        "source_path": "$.invoice_part1",
+        "start": 282,
+        "end": 289
+      }
+    ],
+    "STATE_OR_REGION": [
+      {
+        "text": "Bayern",
+        "source_path": "$.invoice_part1",
+        "start": 193,
+        "end": 199
+      },
+      {
+        "text": "Sachsen",
+        "source_path": "$.invoice_part1",
+        "start": 290,
+        "end": 297
+      }
+    ],
+    "COUNTRY": [
+      {
+        "text": "Deutschland",
+        "source_path": "$.invoice_part1",
+        "start": 200,
+        "end": 211
+      },
+      {
+        "text": "Deutschland",
+        "source_path": "$.invoice_part1",
+        "start": 298,
+        "end": 309
+      }
+    ],
+    "ACCOUNT_ID": [
+      {
+        "text": "CUST-202638",
+        "source_path": "$.invoice_part1",
+        "start": 76,
+        "end": 87
+      }
+    ],
+    "INVOICE_NUMBER": [],
+    "INVOICE_DATE": [],
+    "DUE_DATE": [],
+    "SERVICE_DATE": [],
+    "DELIVERY_DATE": [
+      {
+        "text": "25 / 07 / 2026",
+        "source_path": "$.sub.invoice_part2",
+        "start": 53,
+        "end": 67
+      }
+    ],
+    "ORDER_NUMBER": [
+      {
+        "text": "BEST/2026/738",
+        "source_path": "$.invoice_part1",
+        "start": 48,
+        "end": 61
+      }
+    ],
+    "DOCUMENT_DATE": [
+      {
+        "text": "2026-07-21",
+        "source_path": "$.invoice_part1",
+        "start": 28,
+        "end": 38
+      }
+    ],
+    "TRANSACTION_DATE": [
+      {
+        "text": "25.07.26",
+        "source_path": "$.invoice_part1",
+        "start": 115,
+        "end": 123
+      }
+    ],
+    "DATE": [
+      {
+        "text": "29-06-2026",
+        "source_path": "$.sub.invoice_part2",
+        "start": 108,
+        "end": 118
+      }
+    ],
+    "TAX_ID": [
+      {
+        "text": "DE100435545",
+        "source_path": "$.sub.invoice_part2",
+        "start": 164,
+        "end": 175
+      }
+    ],
+    "TAX_NUMBER": []
+  }
+}

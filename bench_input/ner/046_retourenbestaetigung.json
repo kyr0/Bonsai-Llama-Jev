@@ -1,0 +1,6 @@
+{
+  "invoice_part1": "# Retourenbestätigung\n\nBelegdatum: 25.08.26\nAuftrag: PO-26-08045\nKundennummer: KTO/700855\nLiefer-/Transaktionsdatum: 30 / 08 / 2026\n\nAbsender:\nSüdwerk Elektrotechnik GmbH\nGrimmaische Straße 68\n04109 Leipzig\nSachsen\nDeutschland\n\nEmpfänger:\nVectora Engineering e.K.\nHolstenstraße 69\n24103 Kiel\nSchleswig-Holstein\nDeutschland",
+  "sub": {
+    "invoice_part2": "## Sendungsdetails\n\nGeplante / bestätigte Lieferung: 26-08-2026\nDisposition: Miriam Wolf\nErfasst am: 07.08.2026\nVersender: Südwerk Elektrotechnik GmbH\nUSt-IdNr.: DE100490978\nRücksendung angenommen am 1. September 2026."
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "invoice_part1": "# Rechnung · R26/04041\n\n> Dokumentreferenz: R26/04041\n\nAusgestellt am 05-08-2026 durch Elbstrand Logistik GmbH & Co. KG.\n\nRechnungsanschrift:\nFeldstern Handel AG\nGeorgstraße 25\n30159 Hannover\nNiedersachsen\nDeutschland\n\nAnsprechperson: Markus Hartmann\nKundennummer: `KTO/700779`\nLeistungszeitpunkt: 3. August 2026\nSteuerliche Angaben: DE100459302 / 51 387 13977",
+  "sub": {
+    "invoice_part2": "## Abrechnung\n\n| Pos. | Leistung | Menge | Einzelpreis | Betrag |\n|---:|---|---:|---:|---:|\n| 1 | Softwareentwicklung | 3 Std. | 118,00 € | 354,00 € |\n| 2 | Lizenzpaket Business | 4 Stk. | 690,00 € | 2.760,00 € |\n| 3 | Datenanalyse | 2 Std. | 126,00 € | 252,00 € |\n| 4 | Sensorbaugruppe | 6 Stk. | 164,50 € | 987,00 € |\n\n**Zwischensumme:** 4.353,00 €  \n**19 % USt.:** 827,07 €  \n**Gesamt:** 5.180,07 €\n\nZahlungsziel: 2026-09-02\nAuftragsreferenz: PO-26-08041\nBitte bei Rückfragen Clara Wolf angeben.\n\nRechnungssteller: Elbstrand Logistik GmbH & Co. KG"
+  }
+}

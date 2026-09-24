@@ -1,0 +1,368 @@
+{
+  "document_id": "de-business-008",
+  "document_type": "Bestellung",
+  "entities": [
+    {
+      "label": "ORDER_NUMBER",
+      "text": "AB-60119",
+      "source_path": "$.invoice_part1",
+      "start": 32,
+      "end": 40
+    },
+    {
+      "label": "DOCUMENT_DATE",
+      "text": "16. Februar 2026",
+      "source_path": "$.invoice_part1",
+      "start": 58,
+      "end": 74
+    },
+    {
+      "label": "ACCOUNT_ID",
+      "text": "DEB 90217",
+      "source_path": "$.invoice_part1",
+      "start": 103,
+      "end": 112
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "Kernpunkt Sicherheitstechnik GmbH",
+      "source_path": "$.invoice_part1",
+      "start": 127,
+      "end": 160
+    },
+    {
+      "label": "POSTAL_ADDRESS",
+      "text": "Sophienblatt 86b\n24103 Kiel\nSchleswig-Holstein\nDeutschland",
+      "source_path": "$.invoice_part1",
+      "start": 161,
+      "end": 219
+    },
+    {
+      "label": "STREET_ADDRESS",
+      "text": "Sophienblatt 86b",
+      "source_path": "$.invoice_part1",
+      "start": 161,
+      "end": 177
+    },
+    {
+      "label": "POSTAL_CODE",
+      "text": "24103",
+      "source_path": "$.invoice_part1",
+      "start": 178,
+      "end": 183
+    },
+    {
+      "label": "CITY",
+      "text": "Kiel",
+      "source_path": "$.invoice_part1",
+      "start": 184,
+      "end": 188
+    },
+    {
+      "label": "STATE_OR_REGION",
+      "text": "Schleswig-Holstein",
+      "source_path": "$.invoice_part1",
+      "start": 189,
+      "end": 207
+    },
+    {
+      "label": "COUNTRY",
+      "text": "Deutschland",
+      "source_path": "$.invoice_part1",
+      "start": 208,
+      "end": 219
+    },
+    {
+      "label": "PERSON_NAME",
+      "text": "David Becker",
+      "source_path": "$.invoice_part1",
+      "start": 233,
+      "end": 245
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "Neckar Data Systems UG (haftungsbeschränkt)",
+      "source_path": "$.invoice_part1",
+      "start": 264,
+      "end": 307
+    },
+    {
+      "label": "POSTAL_ADDRESS",
+      "text": "Petersstraße 85b\n04109 Leipzig\nSachsen\nDeutschland",
+      "source_path": "$.invoice_part1",
+      "start": 308,
+      "end": 358
+    },
+    {
+      "label": "STREET_ADDRESS",
+      "text": "Petersstraße 85b",
+      "source_path": "$.invoice_part1",
+      "start": 308,
+      "end": 324
+    },
+    {
+      "label": "POSTAL_CODE",
+      "text": "04109",
+      "source_path": "$.invoice_part1",
+      "start": 325,
+      "end": 330
+    },
+    {
+      "label": "CITY",
+      "text": "Leipzig",
+      "source_path": "$.invoice_part1",
+      "start": 331,
+      "end": 338
+    },
+    {
+      "label": "STATE_OR_REGION",
+      "text": "Sachsen",
+      "source_path": "$.invoice_part1",
+      "start": 339,
+      "end": 346
+    },
+    {
+      "label": "COUNTRY",
+      "text": "Deutschland",
+      "source_path": "$.invoice_part1",
+      "start": 347,
+      "end": 358
+    },
+    {
+      "label": "DELIVERY_DATE",
+      "text": "2026-02-19",
+      "source_path": "$.sub.invoice_part2",
+      "start": 52,
+      "end": 62
+    },
+    {
+      "label": "SERVICE_DATE",
+      "text": "20.02.26",
+      "source_path": "$.sub.invoice_part2",
+      "start": 80,
+      "end": 88
+    },
+    {
+      "label": "PERSON_NAME",
+      "text": "Sophie Lorenz",
+      "source_path": "$.sub.invoice_part2",
+      "start": 115,
+      "end": 128
+    },
+    {
+      "label": "TAX_ID",
+      "text": "DE100190056",
+      "source_path": "$.sub.invoice_part2",
+      "start": 154,
+      "end": 165
+    },
+    {
+      "label": "TAX_NUMBER",
+      "text": "177/5371/1119",
+      "source_path": "$.sub.invoice_part2",
+      "start": 194,
+      "end": 207
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "Neckar Data Systems UG (haftungsbeschränkt)",
+      "source_path": "$.sub.invoice_part2",
+      "start": 245,
+      "end": 288
+    },
+    {
+      "label": "ORDER_NUMBER",
+      "text": "AB-60119",
+      "source_path": "$.sub.invoice_part2",
+      "start": 306,
+      "end": 314
+    }
+  ],
+  "by_label": {
+    "COMPANY_NAME": [
+      {
+        "text": "Kernpunkt Sicherheitstechnik GmbH",
+        "source_path": "$.invoice_part1",
+        "start": 127,
+        "end": 160
+      },
+      {
+        "text": "Neckar Data Systems UG (haftungsbeschränkt)",
+        "source_path": "$.invoice_part1",
+        "start": 264,
+        "end": 307
+      },
+      {
+        "text": "Neckar Data Systems UG (haftungsbeschränkt)",
+        "source_path": "$.sub.invoice_part2",
+        "start": 245,
+        "end": 288
+      }
+    ],
+    "PERSON_NAME": [
+      {
+        "text": "David Becker",
+        "source_path": "$.invoice_part1",
+        "start": 233,
+        "end": 245
+      },
+      {
+        "text": "Sophie Lorenz",
+        "source_path": "$.sub.invoice_part2",
+        "start": 115,
+        "end": 128
+      }
+    ],
+    "POSTAL_ADDRESS": [
+      {
+        "text": "Sophienblatt 86b\n24103 Kiel\nSchleswig-Holstein\nDeutschland",
+        "source_path": "$.invoice_part1",
+        "start": 161,
+        "end": 219
+      },
+      {
+        "text": "Petersstraße 85b\n04109 Leipzig\nSachsen\nDeutschland",
+        "source_path": "$.invoice_part1",
+        "start": 308,
+        "end": 358
+      }
+    ],
+    "STREET_ADDRESS": [
+      {
+        "text": "Sophienblatt 86b",
+        "source_path": "$.invoice_part1",
+        "start": 161,
+        "end": 177
+      },
+      {
+        "text": "Petersstraße 85b",
+        "source_path": "$.invoice_part1",
+        "start": 308,
+        "end": 324
+      }
+    ],
+    "POSTAL_CODE": [
+      {
+        "text": "24103",
+        "source_path": "$.invoice_part1",
+        "start": 178,
+        "end": 183
+      },
+      {
+        "text": "04109",
+        "source_path": "$.invoice_part1",
+        "start": 325,
+        "end": 330
+      }
+    ],
+    "CITY": [
+      {
+        "text": "Kiel",
+        "source_path": "$.invoice_part1",
+        "start": 184,
+        "end": 188
+      },
+      {
+        "text": "Leipzig",
+        "source_path": "$.invoice_part1",
+        "start": 331,
+        "end": 338
+      }
+    ],
+    "STATE_OR_REGION": [
+      {
+        "text": "Schleswig-Holstein",
+        "source_path": "$.invoice_part1",
+        "start": 189,
+        "end": 207
+      },
+      {
+        "text": "Sachsen",
+        "source_path": "$.invoice_part1",
+        "start": 339,
+        "end": 346
+      }
+    ],
+    "COUNTRY": [
+      {
+        "text": "Deutschland",
+        "source_path": "$.invoice_part1",
+        "start": 208,
+        "end": 219
+      },
+      {
+        "text": "Deutschland",
+        "source_path": "$.invoice_part1",
+        "start": 347,
+        "end": 358
+      }
+    ],
+    "ACCOUNT_ID": [
+      {
+        "text": "DEB 90217",
+        "source_path": "$.invoice_part1",
+        "start": 103,
+        "end": 112
+      }
+    ],
+    "INVOICE_NUMBER": [],
+    "INVOICE_DATE": [],
+    "DUE_DATE": [],
+    "SERVICE_DATE": [
+      {
+        "text": "20.02.26",
+        "source_path": "$.sub.invoice_part2",
+        "start": 80,
+        "end": 88
+      }
+    ],
+    "DELIVERY_DATE": [
+      {
+        "text": "2026-02-19",
+        "source_path": "$.sub.invoice_part2",
+        "start": 52,
+        "end": 62
+      }
+    ],
+    "ORDER_NUMBER": [
+      {
+        "text": "AB-60119",
+        "source_path": "$.invoice_part1",
+        "start": 32,
+        "end": 40
+      },
+      {
+        "text": "AB-60119",
+        "source_path": "$.sub.invoice_part2",
+        "start": 306,
+        "end": 314
+      }
+    ],
+    "DOCUMENT_DATE": [
+      {
+        "text": "16. Februar 2026",
+        "source_path": "$.invoice_part1",
+        "start": 58,
+        "end": 74
+      }
+    ],
+    "TRANSACTION_DATE": [],
+    "DATE": [],
+    "TAX_ID": [
+      {
+        "text": "DE100190056",
+        "source_path": "$.sub.invoice_part2",
+        "start": 154,
+        "end": 165
+      }
+    ],
+    "TAX_NUMBER": [
+      {
+        "text": "177/5371/1119",
+        "source_path": "$.sub.invoice_part2",
+        "start": 194,
+        "end": 207
+      }
+    ]
+  }
+}

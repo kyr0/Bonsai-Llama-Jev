@@ -1,0 +1,368 @@
+{
+  "document_id": "de-business-019",
+  "document_type": "Auftragsbestätigung",
+  "entities": [
+    {
+      "label": "ORDER_NUMBER",
+      "text": "BEST/2026/718",
+      "source_path": "$.invoice_part1",
+      "start": 41,
+      "end": 54
+    },
+    {
+      "label": "DOCUMENT_DATE",
+      "text": "12.04.2026",
+      "source_path": "$.invoice_part1",
+      "start": 72,
+      "end": 82
+    },
+    {
+      "label": "ACCOUNT_ID",
+      "text": "CUST-202618",
+      "source_path": "$.invoice_part1",
+      "start": 111,
+      "end": 122
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "Papierhafen Verlag GmbH & Co. KG",
+      "source_path": "$.invoice_part1",
+      "start": 137,
+      "end": 169
+    },
+    {
+      "label": "POSTAL_ADDRESS",
+      "text": "Katharinenstraße 33a\n04109 Leipzig\nSachsen\nDeutschland",
+      "source_path": "$.invoice_part1",
+      "start": 170,
+      "end": 224
+    },
+    {
+      "label": "STREET_ADDRESS",
+      "text": "Katharinenstraße 33a",
+      "source_path": "$.invoice_part1",
+      "start": 170,
+      "end": 190
+    },
+    {
+      "label": "POSTAL_CODE",
+      "text": "04109",
+      "source_path": "$.invoice_part1",
+      "start": 191,
+      "end": 196
+    },
+    {
+      "label": "CITY",
+      "text": "Leipzig",
+      "source_path": "$.invoice_part1",
+      "start": 197,
+      "end": 204
+    },
+    {
+      "label": "STATE_OR_REGION",
+      "text": "Sachsen",
+      "source_path": "$.invoice_part1",
+      "start": 205,
+      "end": 212
+    },
+    {
+      "label": "COUNTRY",
+      "text": "Deutschland",
+      "source_path": "$.invoice_part1",
+      "start": 213,
+      "end": 224
+    },
+    {
+      "label": "PERSON_NAME",
+      "text": "Carolin Lorenz",
+      "source_path": "$.invoice_part1",
+      "start": 238,
+      "end": 252
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "NovaGrid Energie e.K.",
+      "source_path": "$.invoice_part1",
+      "start": 271,
+      "end": 292
+    },
+    {
+      "label": "POSTAL_ADDRESS",
+      "text": "Am Vögenteich 32a\n18055 Rostock\nMecklenburg-Vorpommern\nDeutschland",
+      "source_path": "$.invoice_part1",
+      "start": 293,
+      "end": 359
+    },
+    {
+      "label": "STREET_ADDRESS",
+      "text": "Am Vögenteich 32a",
+      "source_path": "$.invoice_part1",
+      "start": 293,
+      "end": 310
+    },
+    {
+      "label": "POSTAL_CODE",
+      "text": "18055",
+      "source_path": "$.invoice_part1",
+      "start": 311,
+      "end": 316
+    },
+    {
+      "label": "CITY",
+      "text": "Rostock",
+      "source_path": "$.invoice_part1",
+      "start": 317,
+      "end": 324
+    },
+    {
+      "label": "STATE_OR_REGION",
+      "text": "Mecklenburg-Vorpommern",
+      "source_path": "$.invoice_part1",
+      "start": 325,
+      "end": 347
+    },
+    {
+      "label": "COUNTRY",
+      "text": "Deutschland",
+      "source_path": "$.invoice_part1",
+      "start": 348,
+      "end": 359
+    },
+    {
+      "label": "DELIVERY_DATE",
+      "text": "16. April 2026",
+      "source_path": "$.sub.invoice_part2",
+      "start": 52,
+      "end": 66
+    },
+    {
+      "label": "SERVICE_DATE",
+      "text": "2026-04-21",
+      "source_path": "$.sub.invoice_part2",
+      "start": 84,
+      "end": 94
+    },
+    {
+      "label": "PERSON_NAME",
+      "text": "Daniel Hartmann",
+      "source_path": "$.sub.invoice_part2",
+      "start": 121,
+      "end": 136
+    },
+    {
+      "label": "TAX_ID",
+      "text": "DE100277165",
+      "source_path": "$.sub.invoice_part2",
+      "start": 162,
+      "end": 173
+    },
+    {
+      "label": "TAX_NUMBER",
+      "text": "28/226/11746",
+      "source_path": "$.sub.invoice_part2",
+      "start": 202,
+      "end": 214
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "NovaGrid Energie e.K.",
+      "source_path": "$.sub.invoice_part2",
+      "start": 252,
+      "end": 273
+    },
+    {
+      "label": "ORDER_NUMBER",
+      "text": "BEST/2026/718",
+      "source_path": "$.sub.invoice_part2",
+      "start": 291,
+      "end": 304
+    }
+  ],
+  "by_label": {
+    "COMPANY_NAME": [
+      {
+        "text": "Papierhafen Verlag GmbH & Co. KG",
+        "source_path": "$.invoice_part1",
+        "start": 137,
+        "end": 169
+      },
+      {
+        "text": "NovaGrid Energie e.K.",
+        "source_path": "$.invoice_part1",
+        "start": 271,
+        "end": 292
+      },
+      {
+        "text": "NovaGrid Energie e.K.",
+        "source_path": "$.sub.invoice_part2",
+        "start": 252,
+        "end": 273
+      }
+    ],
+    "PERSON_NAME": [
+      {
+        "text": "Carolin Lorenz",
+        "source_path": "$.invoice_part1",
+        "start": 238,
+        "end": 252
+      },
+      {
+        "text": "Daniel Hartmann",
+        "source_path": "$.sub.invoice_part2",
+        "start": 121,
+        "end": 136
+      }
+    ],
+    "POSTAL_ADDRESS": [
+      {
+        "text": "Katharinenstraße 33a\n04109 Leipzig\nSachsen\nDeutschland",
+        "source_path": "$.invoice_part1",
+        "start": 170,
+        "end": 224
+      },
+      {
+        "text": "Am Vögenteich 32a\n18055 Rostock\nMecklenburg-Vorpommern\nDeutschland",
+        "source_path": "$.invoice_part1",
+        "start": 293,
+        "end": 359
+      }
+    ],
+    "STREET_ADDRESS": [
+      {
+        "text": "Katharinenstraße 33a",
+        "source_path": "$.invoice_part1",
+        "start": 170,
+        "end": 190
+      },
+      {
+        "text": "Am Vögenteich 32a",
+        "source_path": "$.invoice_part1",
+        "start": 293,
+        "end": 310
+      }
+    ],
+    "POSTAL_CODE": [
+      {
+        "text": "04109",
+        "source_path": "$.invoice_part1",
+        "start": 191,
+        "end": 196
+      },
+      {
+        "text": "18055",
+        "source_path": "$.invoice_part1",
+        "start": 311,
+        "end": 316
+      }
+    ],
+    "CITY": [
+      {
+        "text": "Leipzig",
+        "source_path": "$.invoice_part1",
+        "start": 197,
+        "end": 204
+      },
+      {
+        "text": "Rostock",
+        "source_path": "$.invoice_part1",
+        "start": 317,
+        "end": 324
+      }
+    ],
+    "STATE_OR_REGION": [
+      {
+        "text": "Sachsen",
+        "source_path": "$.invoice_part1",
+        "start": 205,
+        "end": 212
+      },
+      {
+        "text": "Mecklenburg-Vorpommern",
+        "source_path": "$.invoice_part1",
+        "start": 325,
+        "end": 347
+      }
+    ],
+    "COUNTRY": [
+      {
+        "text": "Deutschland",
+        "source_path": "$.invoice_part1",
+        "start": 213,
+        "end": 224
+      },
+      {
+        "text": "Deutschland",
+        "source_path": "$.invoice_part1",
+        "start": 348,
+        "end": 359
+      }
+    ],
+    "ACCOUNT_ID": [
+      {
+        "text": "CUST-202618",
+        "source_path": "$.invoice_part1",
+        "start": 111,
+        "end": 122
+      }
+    ],
+    "INVOICE_NUMBER": [],
+    "INVOICE_DATE": [],
+    "DUE_DATE": [],
+    "SERVICE_DATE": [
+      {
+        "text": "2026-04-21",
+        "source_path": "$.sub.invoice_part2",
+        "start": 84,
+        "end": 94
+      }
+    ],
+    "DELIVERY_DATE": [
+      {
+        "text": "16. April 2026",
+        "source_path": "$.sub.invoice_part2",
+        "start": 52,
+        "end": 66
+      }
+    ],
+    "ORDER_NUMBER": [
+      {
+        "text": "BEST/2026/718",
+        "source_path": "$.invoice_part1",
+        "start": 41,
+        "end": 54
+      },
+      {
+        "text": "BEST/2026/718",
+        "source_path": "$.sub.invoice_part2",
+        "start": 291,
+        "end": 304
+      }
+    ],
+    "DOCUMENT_DATE": [
+      {
+        "text": "12.04.2026",
+        "source_path": "$.invoice_part1",
+        "start": 72,
+        "end": 82
+      }
+    ],
+    "TRANSACTION_DATE": [],
+    "DATE": [],
+    "TAX_ID": [
+      {
+        "text": "DE100277165",
+        "source_path": "$.sub.invoice_part2",
+        "start": 162,
+        "end": 173
+      }
+    ],
+    "TAX_NUMBER": [
+      {
+        "text": "28/226/11746",
+        "source_path": "$.sub.invoice_part2",
+        "start": 202,
+        "end": 214
+      }
+    ]
+  }
+}

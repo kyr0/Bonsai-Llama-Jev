@@ -1,0 +1,6 @@
+{
+  "invoice_part1": "# Angebot\n\n**Angebot-Nr.:** PO-26-08021\n**Dokumentdatum:** 27.04.26\n**Gültig bis:** 27 / 05 / 2026\n\n### Anbieter\nLichtbogen Veranstaltungstechnik GmbH & Co. KG\nMönckebergstraße 65\n20095 Hamburg\nHamburg\nDeutschland\nKontakt: Laura Wolf\nUSt-IdNr.: DE100300922\n\n### Adressat\nWeitblick Forschung AG\nObernstraße 66\n28195 Bremen\nBremen\nDeutschland\nKundenkonto: KTO/700399",
+  "sub": {
+    "invoice_part2": "# Positionen zum Angebot\n\n1. **Netzwerkinstallation** — 5 Std. × 108,00 € = 540,00 €\n2. **Softwareentwicklung** — 4 Std. × 118,00 € = 472,00 €\n3. **KI-Integration und Tests** — 2 Std. × 145,00 € = 290,00 €\n4. **Workshop** — 12 Tag × 980,00 € = 11.760,00 €\n\nVoraussichtlicher Nettobetrag: **13.062,00 €**\nVorgesehener Leistungsbeginn: 01-05-2026\nGeplantes Lieferdatum: 09.05.2026\nInterne Steuernummer: 31/247/12037\nProjektverantwortlich: Laura Wolf\nAnbieter: Lichtbogen Veranstaltungstechnik GmbH & Co. KG"
+  }
+}

@@ -1,0 +1,342 @@
+{
+  "document_id": "de-business-037",
+  "document_type": "Versandanzeige",
+  "entities": [
+    {
+      "label": "DOCUMENT_DATE",
+      "text": "11.07.2026",
+      "source_path": "$.invoice_part1",
+      "start": 30,
+      "end": 40
+    },
+    {
+      "label": "ORDER_NUMBER",
+      "text": "AUF-2026-3036",
+      "source_path": "$.invoice_part1",
+      "start": 50,
+      "end": 63
+    },
+    {
+      "label": "ACCOUNT_ID",
+      "text": "KD-12628",
+      "source_path": "$.invoice_part1",
+      "start": 78,
+      "end": 86
+    },
+    {
+      "label": "TRANSACTION_DATE",
+      "text": "13. Juli 2026",
+      "source_path": "$.invoice_part1",
+      "start": 114,
+      "end": 127
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "Nordlicht Anlagenbau GmbH & Co. KG",
+      "source_path": "$.invoice_part1",
+      "start": 139,
+      "end": 173
+    },
+    {
+      "label": "POSTAL_ADDRESS",
+      "text": "Trierer Straße 56\n66111 Saarbrücken\nSaarland\nDeutschland",
+      "source_path": "$.invoice_part1",
+      "start": 174,
+      "end": 230
+    },
+    {
+      "label": "STREET_ADDRESS",
+      "text": "Trierer Straße 56",
+      "source_path": "$.invoice_part1",
+      "start": 174,
+      "end": 191
+    },
+    {
+      "label": "POSTAL_CODE",
+      "text": "66111",
+      "source_path": "$.invoice_part1",
+      "start": 192,
+      "end": 197
+    },
+    {
+      "label": "CITY",
+      "text": "Saarbrücken",
+      "source_path": "$.invoice_part1",
+      "start": 198,
+      "end": 209
+    },
+    {
+      "label": "STATE_OR_REGION",
+      "text": "Saarland",
+      "source_path": "$.invoice_part1",
+      "start": 210,
+      "end": 218
+    },
+    {
+      "label": "COUNTRY",
+      "text": "Deutschland",
+      "source_path": "$.invoice_part1",
+      "start": 219,
+      "end": 230
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "Prisma Laborservice AG",
+      "source_path": "$.invoice_part1",
+      "start": 243,
+      "end": 265
+    },
+    {
+      "label": "POSTAL_ADDRESS",
+      "text": "Bilker Straße 57\n40213 Düsseldorf\nNordrhein-Westfalen\nDeutschland",
+      "source_path": "$.invoice_part1",
+      "start": 266,
+      "end": 331
+    },
+    {
+      "label": "STREET_ADDRESS",
+      "text": "Bilker Straße 57",
+      "source_path": "$.invoice_part1",
+      "start": 266,
+      "end": 282
+    },
+    {
+      "label": "POSTAL_CODE",
+      "text": "40213",
+      "source_path": "$.invoice_part1",
+      "start": 283,
+      "end": 288
+    },
+    {
+      "label": "CITY",
+      "text": "Düsseldorf",
+      "source_path": "$.invoice_part1",
+      "start": 289,
+      "end": 299
+    },
+    {
+      "label": "STATE_OR_REGION",
+      "text": "Nordrhein-Westfalen",
+      "source_path": "$.invoice_part1",
+      "start": 300,
+      "end": 319
+    },
+    {
+      "label": "COUNTRY",
+      "text": "Deutschland",
+      "source_path": "$.invoice_part1",
+      "start": 320,
+      "end": 331
+    },
+    {
+      "label": "DELIVERY_DATE",
+      "text": "2026-07-13",
+      "source_path": "$.sub.invoice_part2",
+      "start": 53,
+      "end": 63
+    },
+    {
+      "label": "PERSON_NAME",
+      "text": "Robert Becker",
+      "source_path": "$.sub.invoice_part2",
+      "start": 77,
+      "end": 90
+    },
+    {
+      "label": "DATE",
+      "text": "21.06.26",
+      "source_path": "$.sub.invoice_part2",
+      "start": 103,
+      "end": 111
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "Nordlicht Anlagenbau GmbH & Co. KG",
+      "source_path": "$.sub.invoice_part2",
+      "start": 123,
+      "end": 157
+    },
+    {
+      "label": "TAX_ID",
+      "text": "DE100419707",
+      "source_path": "$.sub.invoice_part2",
+      "start": 169,
+      "end": 180
+    }
+  ],
+  "by_label": {
+    "COMPANY_NAME": [
+      {
+        "text": "Nordlicht Anlagenbau GmbH & Co. KG",
+        "source_path": "$.invoice_part1",
+        "start": 139,
+        "end": 173
+      },
+      {
+        "text": "Prisma Laborservice AG",
+        "source_path": "$.invoice_part1",
+        "start": 243,
+        "end": 265
+      },
+      {
+        "text": "Nordlicht Anlagenbau GmbH & Co. KG",
+        "source_path": "$.sub.invoice_part2",
+        "start": 123,
+        "end": 157
+      }
+    ],
+    "PERSON_NAME": [
+      {
+        "text": "Robert Becker",
+        "source_path": "$.sub.invoice_part2",
+        "start": 77,
+        "end": 90
+      }
+    ],
+    "POSTAL_ADDRESS": [
+      {
+        "text": "Trierer Straße 56\n66111 Saarbrücken\nSaarland\nDeutschland",
+        "source_path": "$.invoice_part1",
+        "start": 174,
+        "end": 230
+      },
+      {
+        "text": "Bilker Straße 57\n40213 Düsseldorf\nNordrhein-Westfalen\nDeutschland",
+        "source_path": "$.invoice_part1",
+        "start": 266,
+        "end": 331
+      }
+    ],
+    "STREET_ADDRESS": [
+      {
+        "text": "Trierer Straße 56",
+        "source_path": "$.invoice_part1",
+        "start": 174,
+        "end": 191
+      },
+      {
+        "text": "Bilker Straße 57",
+        "source_path": "$.invoice_part1",
+        "start": 266,
+        "end": 282
+      }
+    ],
+    "POSTAL_CODE": [
+      {
+        "text": "66111",
+        "source_path": "$.invoice_part1",
+        "start": 192,
+        "end": 197
+      },
+      {
+        "text": "40213",
+        "source_path": "$.invoice_part1",
+        "start": 283,
+        "end": 288
+      }
+    ],
+    "CITY": [
+      {
+        "text": "Saarbrücken",
+        "source_path": "$.invoice_part1",
+        "start": 198,
+        "end": 209
+      },
+      {
+        "text": "Düsseldorf",
+        "source_path": "$.invoice_part1",
+        "start": 289,
+        "end": 299
+      }
+    ],
+    "STATE_OR_REGION": [
+      {
+        "text": "Saarland",
+        "source_path": "$.invoice_part1",
+        "start": 210,
+        "end": 218
+      },
+      {
+        "text": "Nordrhein-Westfalen",
+        "source_path": "$.invoice_part1",
+        "start": 300,
+        "end": 319
+      }
+    ],
+    "COUNTRY": [
+      {
+        "text": "Deutschland",
+        "source_path": "$.invoice_part1",
+        "start": 219,
+        "end": 230
+      },
+      {
+        "text": "Deutschland",
+        "source_path": "$.invoice_part1",
+        "start": 320,
+        "end": 331
+      }
+    ],
+    "ACCOUNT_ID": [
+      {
+        "text": "KD-12628",
+        "source_path": "$.invoice_part1",
+        "start": 78,
+        "end": 86
+      }
+    ],
+    "INVOICE_NUMBER": [],
+    "INVOICE_DATE": [],
+    "DUE_DATE": [],
+    "SERVICE_DATE": [],
+    "DELIVERY_DATE": [
+      {
+        "text": "2026-07-13",
+        "source_path": "$.sub.invoice_part2",
+        "start": 53,
+        "end": 63
+      }
+    ],
+    "ORDER_NUMBER": [
+      {
+        "text": "AUF-2026-3036",
+        "source_path": "$.invoice_part1",
+        "start": 50,
+        "end": 63
+      }
+    ],
+    "DOCUMENT_DATE": [
+      {
+        "text": "11.07.2026",
+        "source_path": "$.invoice_part1",
+        "start": 30,
+        "end": 40
+      }
+    ],
+    "TRANSACTION_DATE": [
+      {
+        "text": "13. Juli 2026",
+        "source_path": "$.invoice_part1",
+        "start": 114,
+        "end": 127
+      }
+    ],
+    "DATE": [
+      {
+        "text": "21.06.26",
+        "source_path": "$.sub.invoice_part2",
+        "start": 103,
+        "end": 111
+      }
+    ],
+    "TAX_ID": [
+      {
+        "text": "DE100419707",
+        "source_path": "$.sub.invoice_part2",
+        "start": 169,
+        "end": 180
+      }
+    ],
+    "TAX_NUMBER": []
+  }
+}

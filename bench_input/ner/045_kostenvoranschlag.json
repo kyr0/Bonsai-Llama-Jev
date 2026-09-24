@@ -1,0 +1,6 @@
+{
+  "invoice_part1": "# Kostenvoranschlag\n\n**Kostenvoranschlag-Nr.:** AUF-2026-3044\n**Dokumentdatum:** 2026-08-20\n**Gültig bis:** 19.09.26\n\n### Anbieter\nMainblick Consulting AG\nBilker Straße 57\n40213 Düsseldorf\nNordrhein-Westfalen\nDeutschland\nKontakt: David Becker\nUSt-IdNr.: DE100483059\n\n### Adressat\nDatenhafen Analytics UG (haftungsbeschränkt)\nCharlottenstraße 58\n14467 Potsdam\nBrandenburg\nDeutschland\nKundenkonto: KD-13212",
+  "sub": {
+    "invoice_part2": "# Positionen zum Kostenvoranschlag\n\n1. **Systemwartung** — 4 Std. × 96,00 € = 384,00 €\n2. **Lizenzpaket Business** — 10 Stk. × 690,00 € = 6.900,00 €\n3. **Projektmanagement** — 8 Std. × 112,00 € = 896,00 €\n\nVoraussichtlicher Nettobetrag: **8.180,00 €**\nVorgesehener Leistungsbeginn: 25 / 08 / 2026\nGeplantes Lieferdatum: 04-09-2026\nInterne Steuernummer: 54 408 14268\nProjektverantwortlich: David Becker\nAnbieter: Mainblick Consulting AG"
+  }
+}

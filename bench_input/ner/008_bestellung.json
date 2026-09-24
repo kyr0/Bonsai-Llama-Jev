@@ -1,0 +1,6 @@
+{
+  "invoice_part1": "# Bestellung\n\nVorgangsnummer: **AB-60119**  \nErstellt am: 16. Februar 2026  \nKunden-/Lieferantenkonto: DEB 90217\n\n## Besteller\nKernpunkt Sicherheitstechnik GmbH\nSophienblatt 86b\n24103 Kiel\nSchleswig-Holstein\nDeutschland\nBearbeitung: David Becker\n\n## Auftragnehmer\nNeckar Data Systems UG (haftungsbeschränkt)\nPetersstraße 85b\n04109 Leipzig\nSachsen\nDeutschland",
+  "sub": {
+    "invoice_part2": "## Termine und Referenzen\n\nGewünschtes Lieferdatum: 2026-02-19\nLeistungsbeginn: 20.02.26\nAuftrag angenommen durch: Sophie Lorenz\nSteuer-ID Auftragnehmer: DE100190056\nSteuernummer Auftragnehmer: 177/5371/1119\n\nAuftragnehmer erneut zur Zuordnung: Neckar Data Systems UG (haftungsbeschränkt)\nBestellreferenz: AB-60119"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "invoice_part1": "# Retourenbestätigung\n\nBelegdatum: 11.02.2026\nAuftrag: BEST/2026/706\nKundennummer: CUST-202606\nLiefer-/Transaktionsdatum: 13. Februar 2026\n\nAbsender:\nElbstrand Logistik GmbH & Co. KG\nKasernenstraße 74a\n40213 Düsseldorf\nNordrhein-Westfalen\nDeutschland\n\nEmpfänger:\nFeldstern Handel AG\nDortustraße 75a\n14467 Potsdam\nBrandenburg\nDeutschland",
+  "sub": {
+    "invoice_part2": "## Sendungsdetails\n\nGeplante / bestätigte Lieferung: 2026-02-13\nDisposition: Felix Hartmann\nErfasst am: 19.01.26\nVersender: Elbstrand Logistik GmbH & Co. KG\nUSt-IdNr.: DE100182137\nRücksendung angenommen am 15 / 02 / 2026."
+  }
+}

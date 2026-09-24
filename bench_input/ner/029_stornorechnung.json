@@ -1,0 +1,6 @@
+{
+  "invoice_part1": "# Stornorechnung\n\n**Belegnummer:** RE-2026-1028\n**Rechnungsdatum:** 01 / 06 / 2026\n**Leistungsdatum:** 27-05-2026\n**Kundenkonto:** KD-12044\n\n## Aussteller\n\nWellenform Audio e.K.\nKontakt: Tobias Becker\nKarolinenstraße 55\n90402 Nürnberg\nBayern\nDeutschland\n\n## Empfänger\n\nElbstrand Logistik GmbH & Co. KG\nz. Hd.: Marlene Wolf\nTrierer Straße 56\n66111 Saarbrücken\nSaarland\nDeutschland\n\n---\nUSt-IdNr. DE100356355 · Steuernr. 408/6484/1476",
+  "sub": {
+    "invoice_part2": "## Abrechnung\n\n| Pos. | Leistung | Menge | Einzelpreis | Betrag |\n|---:|---|---:|---:|---:|\n| 1 | Projektmanagement | 8 Std. | 112,00 € | 896,00 € |\n| 2 | Ersatzteilmodul | 2 Stk. | 289,00 € | 578,00 € |\n| 3 | Vor-Ort-Service | 10 Std. | 105,00 € | 1.050,00 € |\n\n**Zwischensumme:** 2.524,00 €  \n**19 % USt.:** 479,56 €  \n**Gesamt:** 3.003,56 €\n\nDiese Stornorechnung hebt die Rechnung RE-2026-1028 vollständig auf.\n\nZahlungsziel: 22. Juni 2026\nAuftragsreferenz: AUF-2026-3028\nBitte bei Rückfragen Tobias Becker angeben.\n\nRechnungssteller: Wellenform Audio e.K."
+  }
+}

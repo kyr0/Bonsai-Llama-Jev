@@ -1,0 +1,6 @@
+{
+  "invoice_part1": "# Leistungsnachweis\n\nDokumentiert am: 30 / 08 / 2026\nAuftrag: BEST/2026/746\nKunden-ID: CUST-202646\nEinsatz-/Leistungsdatum: 23-08-2026\n\nDienstleister:\nKüstenCloud GmbH & Co. KG\nWallstraße 79a\n01067 Dresden\nSachsen\nDeutschland\nTechniker/in: Daniel Hartmann\n\nKunde:\nRosenfeld Gebäudetechnik AG\nSchlösserstraße 80a\n99084 Erfurt\nThüringen\nDeutschland",
+  "sub": {
+    "invoice_part2": "## Ausgeführte Arbeiten\n\n- Messung und Dokumentation\n- Fehleranalyse\n- Austausch einer Baugruppe\n\nAbnahme durch: Carolin Lorenz\nNächster empfohlener Termin: 26.02.2027\nSteuernummer Dienstleister: 606/7438/1782\nUSt-ID Dienstleister: DE100498897\nDienstleister: KüstenCloud GmbH & Co. KG"
+  }
+}

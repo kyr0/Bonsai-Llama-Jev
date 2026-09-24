@@ -1,0 +1,6 @@
+{
+  "invoice_part1": "# Wartungsprotokoll\n\nDokumentiert am: 15. August 2026\nAuftrag: AB-60731\nKunden-ID: DEB 91333\nEinsatz-/Leistungsdatum: 2026-08-11\n\nDienstleister:\nTaunus Werktechnik e.K.\nLautenschlagerstraße 46b\n70173 Stuttgart\nBaden-Württemberg\nDeutschland\nTechniker/in: Johanna Lorenz\n\nKunde:\nLichtbogen Veranstaltungstechnik GmbH & Co. KG\nGroße Bleiche 47b\n55116 Mainz\nRheinland-Pfalz\nDeutschland",
+  "sub": {
+    "invoice_part2": "## Ausgeführte Arbeiten\n\n- Firmware-/Softwareaktualisierung\n- Systemprüfung und Funktionskontrolle\n- Austausch einer Baugruppe\n\nAbnahme durch: Martin Becker\nNächster empfohlener Termin: 11.02.27\nSteuernummer Dienstleister: 573/7279/1731\nUSt-ID Dienstleister: DE100475140\nDienstleister: Taunus Werktechnik e.K."
+  }
+}

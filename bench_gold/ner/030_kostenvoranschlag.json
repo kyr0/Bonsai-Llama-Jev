@@ -1,0 +1,369 @@
+{
+  "document_id": "de-business-030",
+  "document_type": "Kostenvoranschlag",
+  "entities": [
+    {
+      "label": "ORDER_NUMBER",
+      "text": "PO-26-08029",
+      "source_path": "$.invoice_part1",
+      "start": 48,
+      "end": 59
+    },
+    {
+      "label": "DOCUMENT_DATE",
+      "text": "06-06-2026",
+      "source_path": "$.invoice_part1",
+      "start": 79,
+      "end": 89
+    },
+    {
+      "label": "DATE",
+      "text": "06.07.2026",
+      "source_path": "$.invoice_part1",
+      "start": 106,
+      "end": 116
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "Klarblick Steuerberatung AG",
+      "source_path": "$.invoice_part1",
+      "start": 131,
+      "end": 158
+    },
+    {
+      "label": "POSTAL_ADDRESS",
+      "text": "Obernstraße 66\n28195 Bremen\nBremen\nDeutschland",
+      "source_path": "$.invoice_part1",
+      "start": 159,
+      "end": 205
+    },
+    {
+      "label": "STREET_ADDRESS",
+      "text": "Obernstraße 66",
+      "source_path": "$.invoice_part1",
+      "start": 159,
+      "end": 173
+    },
+    {
+      "label": "POSTAL_CODE",
+      "text": "28195",
+      "source_path": "$.invoice_part1",
+      "start": 174,
+      "end": 179
+    },
+    {
+      "label": "CITY",
+      "text": "Bremen",
+      "source_path": "$.invoice_part1",
+      "start": 180,
+      "end": 186
+    },
+    {
+      "label": "STATE_OR_REGION",
+      "text": "Bremen",
+      "source_path": "$.invoice_part1",
+      "start": 187,
+      "end": 193
+    },
+    {
+      "label": "COUNTRY",
+      "text": "Deutschland",
+      "source_path": "$.invoice_part1",
+      "start": 194,
+      "end": 205
+    },
+    {
+      "label": "PERSON_NAME",
+      "text": "Katharina Wolf",
+      "source_path": "$.invoice_part1",
+      "start": 215,
+      "end": 229
+    },
+    {
+      "label": "TAX_ID",
+      "text": "DE100364274",
+      "source_path": "$.invoice_part1",
+      "start": 241,
+      "end": 252
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "Neckar Data Systems UG (haftungsbeschränkt)",
+      "source_path": "$.invoice_part1",
+      "start": 267,
+      "end": 310
+    },
+    {
+      "label": "POSTAL_ADDRESS",
+      "text": "Kröpeliner Straße 67\n18055 Rostock\nMecklenburg-Vorpommern\nDeutschland",
+      "source_path": "$.invoice_part1",
+      "start": 311,
+      "end": 380
+    },
+    {
+      "label": "STREET_ADDRESS",
+      "text": "Kröpeliner Straße 67",
+      "source_path": "$.invoice_part1",
+      "start": 311,
+      "end": 331
+    },
+    {
+      "label": "POSTAL_CODE",
+      "text": "18055",
+      "source_path": "$.invoice_part1",
+      "start": 332,
+      "end": 337
+    },
+    {
+      "label": "CITY",
+      "text": "Rostock",
+      "source_path": "$.invoice_part1",
+      "start": 338,
+      "end": 345
+    },
+    {
+      "label": "STATE_OR_REGION",
+      "text": "Mecklenburg-Vorpommern",
+      "source_path": "$.invoice_part1",
+      "start": 346,
+      "end": 368
+    },
+    {
+      "label": "COUNTRY",
+      "text": "Deutschland",
+      "source_path": "$.invoice_part1",
+      "start": 369,
+      "end": 380
+    },
+    {
+      "label": "ACCOUNT_ID",
+      "text": "KTO/700551",
+      "source_path": "$.invoice_part1",
+      "start": 394,
+      "end": 404
+    },
+    {
+      "label": "SERVICE_DATE",
+      "text": "10. Juni 2026",
+      "source_path": "$.sub.invoice_part2",
+      "start": 339,
+      "end": 352
+    },
+    {
+      "label": "DELIVERY_DATE",
+      "text": "2026-06-21",
+      "source_path": "$.sub.invoice_part2",
+      "start": 376,
+      "end": 386
+    },
+    {
+      "label": "TAX_NUMBER",
+      "text": "39 303 12813",
+      "source_path": "$.sub.invoice_part2",
+      "start": 409,
+      "end": 421
+    },
+    {
+      "label": "PERSON_NAME",
+      "text": "Katharina Wolf",
+      "source_path": "$.sub.invoice_part2",
+      "start": 445,
+      "end": 459
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "Klarblick Steuerberatung AG",
+      "source_path": "$.sub.invoice_part2",
+      "start": 470,
+      "end": 497
+    }
+  ],
+  "by_label": {
+    "COMPANY_NAME": [
+      {
+        "text": "Klarblick Steuerberatung AG",
+        "source_path": "$.invoice_part1",
+        "start": 131,
+        "end": 158
+      },
+      {
+        "text": "Neckar Data Systems UG (haftungsbeschränkt)",
+        "source_path": "$.invoice_part1",
+        "start": 267,
+        "end": 310
+      },
+      {
+        "text": "Klarblick Steuerberatung AG",
+        "source_path": "$.sub.invoice_part2",
+        "start": 470,
+        "end": 497
+      }
+    ],
+    "PERSON_NAME": [
+      {
+        "text": "Katharina Wolf",
+        "source_path": "$.invoice_part1",
+        "start": 215,
+        "end": 229
+      },
+      {
+        "text": "Katharina Wolf",
+        "source_path": "$.sub.invoice_part2",
+        "start": 445,
+        "end": 459
+      }
+    ],
+    "POSTAL_ADDRESS": [
+      {
+        "text": "Obernstraße 66\n28195 Bremen\nBremen\nDeutschland",
+        "source_path": "$.invoice_part1",
+        "start": 159,
+        "end": 205
+      },
+      {
+        "text": "Kröpeliner Straße 67\n18055 Rostock\nMecklenburg-Vorpommern\nDeutschland",
+        "source_path": "$.invoice_part1",
+        "start": 311,
+        "end": 380
+      }
+    ],
+    "STREET_ADDRESS": [
+      {
+        "text": "Obernstraße 66",
+        "source_path": "$.invoice_part1",
+        "start": 159,
+        "end": 173
+      },
+      {
+        "text": "Kröpeliner Straße 67",
+        "source_path": "$.invoice_part1",
+        "start": 311,
+        "end": 331
+      }
+    ],
+    "POSTAL_CODE": [
+      {
+        "text": "28195",
+        "source_path": "$.invoice_part1",
+        "start": 174,
+        "end": 179
+      },
+      {
+        "text": "18055",
+        "source_path": "$.invoice_part1",
+        "start": 332,
+        "end": 337
+      }
+    ],
+    "CITY": [
+      {
+        "text": "Bremen",
+        "source_path": "$.invoice_part1",
+        "start": 180,
+        "end": 186
+      },
+      {
+        "text": "Rostock",
+        "source_path": "$.invoice_part1",
+        "start": 338,
+        "end": 345
+      }
+    ],
+    "STATE_OR_REGION": [
+      {
+        "text": "Bremen",
+        "source_path": "$.invoice_part1",
+        "start": 187,
+        "end": 193
+      },
+      {
+        "text": "Mecklenburg-Vorpommern",
+        "source_path": "$.invoice_part1",
+        "start": 346,
+        "end": 368
+      }
+    ],
+    "COUNTRY": [
+      {
+        "text": "Deutschland",
+        "source_path": "$.invoice_part1",
+        "start": 194,
+        "end": 205
+      },
+      {
+        "text": "Deutschland",
+        "source_path": "$.invoice_part1",
+        "start": 369,
+        "end": 380
+      }
+    ],
+    "ACCOUNT_ID": [
+      {
+        "text": "KTO/700551",
+        "source_path": "$.invoice_part1",
+        "start": 394,
+        "end": 404
+      }
+    ],
+    "INVOICE_NUMBER": [],
+    "INVOICE_DATE": [],
+    "DUE_DATE": [],
+    "SERVICE_DATE": [
+      {
+        "text": "10. Juni 2026",
+        "source_path": "$.sub.invoice_part2",
+        "start": 339,
+        "end": 352
+      }
+    ],
+    "DELIVERY_DATE": [
+      {
+        "text": "2026-06-21",
+        "source_path": "$.sub.invoice_part2",
+        "start": 376,
+        "end": 386
+      }
+    ],
+    "ORDER_NUMBER": [
+      {
+        "text": "PO-26-08029",
+        "source_path": "$.invoice_part1",
+        "start": 48,
+        "end": 59
+      }
+    ],
+    "DOCUMENT_DATE": [
+      {
+        "text": "06-06-2026",
+        "source_path": "$.invoice_part1",
+        "start": 79,
+        "end": 89
+      }
+    ],
+    "TRANSACTION_DATE": [],
+    "DATE": [
+      {
+        "text": "06.07.2026",
+        "source_path": "$.invoice_part1",
+        "start": 106,
+        "end": 116
+      }
+    ],
+    "TAX_ID": [
+      {
+        "text": "DE100364274",
+        "source_path": "$.invoice_part1",
+        "start": 241,
+        "end": 252
+      }
+    ],
+    "TAX_NUMBER": [
+      {
+        "text": "39 303 12813",
+        "source_path": "$.sub.invoice_part2",
+        "start": 409,
+        "end": 421
+      }
+    ]
+  }
+}

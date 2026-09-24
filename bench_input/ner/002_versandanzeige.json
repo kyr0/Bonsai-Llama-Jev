@@ -1,0 +1,6 @@
+{
+  "invoice_part1": "# Versandanzeige\n\nBelegdatum: 17. Januar 2026\nAuftrag: PO-26-08001\nKundennummer: KTO/700019\nLiefer-/Transaktionsdatum: 2026-01-20\n\nAbsender:\nNordlicht Anlagenbau GmbH & Co. KG\nFriedrichstraße 19\n10117 Berlin\nBerlin\nDeutschland\n\nEmpfänger:\nPrisma Laborservice AG\nKönigstraße 20\n90402 Nürnberg\nBayern\nDeutschland",
+  "sub": {
+    "invoice_part2": "## Sendungsdetails\n\nGeplante / bestätigte Lieferung: 19.01.26\nDisposition: Katharina Wolf\nErfasst am: 30 / 12 / 2025\nVersender: Nordlicht Anlagenbau GmbH & Co. KG\nUSt-IdNr.: DE100142542\n"
+  }
+}

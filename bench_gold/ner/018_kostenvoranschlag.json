@@ -1,0 +1,369 @@
+{
+  "document_id": "de-business-018",
+  "document_type": "Kostenvoranschlag",
+  "entities": [
+    {
+      "label": "ORDER_NUMBER",
+      "text": "PO-26-08017",
+      "source_path": "$.invoice_part1",
+      "start": 48,
+      "end": 59
+    },
+    {
+      "label": "DOCUMENT_DATE",
+      "text": "07-04-2026",
+      "source_path": "$.invoice_part1",
+      "start": 79,
+      "end": 89
+    },
+    {
+      "label": "DATE",
+      "text": "07.05.2026",
+      "source_path": "$.invoice_part1",
+      "start": 106,
+      "end": 116
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "Orbis Büroservice UG (haftungsbeschränkt)",
+      "source_path": "$.invoice_part1",
+      "start": 131,
+      "end": 172
+    },
+    {
+      "label": "POSTAL_ADDRESS",
+      "text": "Bahnhofstraße 21\n66111 Saarbrücken\nSaarland\nDeutschland",
+      "source_path": "$.invoice_part1",
+      "start": 173,
+      "end": 228
+    },
+    {
+      "label": "STREET_ADDRESS",
+      "text": "Bahnhofstraße 21",
+      "source_path": "$.invoice_part1",
+      "start": 173,
+      "end": 189
+    },
+    {
+      "label": "POSTAL_CODE",
+      "text": "66111",
+      "source_path": "$.invoice_part1",
+      "start": 190,
+      "end": 195
+    },
+    {
+      "label": "CITY",
+      "text": "Saarbrücken",
+      "source_path": "$.invoice_part1",
+      "start": 196,
+      "end": 207
+    },
+    {
+      "label": "STATE_OR_REGION",
+      "text": "Saarland",
+      "source_path": "$.invoice_part1",
+      "start": 208,
+      "end": 216
+    },
+    {
+      "label": "COUNTRY",
+      "text": "Deutschland",
+      "source_path": "$.invoice_part1",
+      "start": 217,
+      "end": 228
+    },
+    {
+      "label": "PERSON_NAME",
+      "text": "Miriam Wolf",
+      "source_path": "$.invoice_part1",
+      "start": 238,
+      "end": 249
+    },
+    {
+      "label": "TAX_ID",
+      "text": "DE100269246",
+      "source_path": "$.invoice_part1",
+      "start": 261,
+      "end": 272
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "Routenwerk Transport GmbH",
+      "source_path": "$.invoice_part1",
+      "start": 287,
+      "end": 312
+    },
+    {
+      "label": "POSTAL_ADDRESS",
+      "text": "Königsallee 22\n40213 Düsseldorf\nNordrhein-Westfalen\nDeutschland",
+      "source_path": "$.invoice_part1",
+      "start": 313,
+      "end": 376
+    },
+    {
+      "label": "STREET_ADDRESS",
+      "text": "Königsallee 22",
+      "source_path": "$.invoice_part1",
+      "start": 313,
+      "end": 327
+    },
+    {
+      "label": "POSTAL_CODE",
+      "text": "40213",
+      "source_path": "$.invoice_part1",
+      "start": 328,
+      "end": 333
+    },
+    {
+      "label": "CITY",
+      "text": "Düsseldorf",
+      "source_path": "$.invoice_part1",
+      "start": 334,
+      "end": 344
+    },
+    {
+      "label": "STATE_OR_REGION",
+      "text": "Nordrhein-Westfalen",
+      "source_path": "$.invoice_part1",
+      "start": 345,
+      "end": 364
+    },
+    {
+      "label": "COUNTRY",
+      "text": "Deutschland",
+      "source_path": "$.invoice_part1",
+      "start": 365,
+      "end": 376
+    },
+    {
+      "label": "ACCOUNT_ID",
+      "text": "KTO/700323",
+      "source_path": "$.invoice_part1",
+      "start": 390,
+      "end": 400
+    },
+    {
+      "label": "SERVICE_DATE",
+      "text": "15. April 2026",
+      "source_path": "$.sub.invoice_part2",
+      "start": 336,
+      "end": 350
+    },
+    {
+      "label": "DELIVERY_DATE",
+      "text": "2026-04-20",
+      "source_path": "$.sub.invoice_part2",
+      "start": 374,
+      "end": 384
+    },
+    {
+      "label": "TAX_NUMBER",
+      "text": "27 219 11649",
+      "source_path": "$.sub.invoice_part2",
+      "start": 407,
+      "end": 419
+    },
+    {
+      "label": "PERSON_NAME",
+      "text": "Miriam Wolf",
+      "source_path": "$.sub.invoice_part2",
+      "start": 443,
+      "end": 454
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "Orbis Büroservice UG (haftungsbeschränkt)",
+      "source_path": "$.sub.invoice_part2",
+      "start": 465,
+      "end": 506
+    }
+  ],
+  "by_label": {
+    "COMPANY_NAME": [
+      {
+        "text": "Orbis Büroservice UG (haftungsbeschränkt)",
+        "source_path": "$.invoice_part1",
+        "start": 131,
+        "end": 172
+      },
+      {
+        "text": "Routenwerk Transport GmbH",
+        "source_path": "$.invoice_part1",
+        "start": 287,
+        "end": 312
+      },
+      {
+        "text": "Orbis Büroservice UG (haftungsbeschränkt)",
+        "source_path": "$.sub.invoice_part2",
+        "start": 465,
+        "end": 506
+      }
+    ],
+    "PERSON_NAME": [
+      {
+        "text": "Miriam Wolf",
+        "source_path": "$.invoice_part1",
+        "start": 238,
+        "end": 249
+      },
+      {
+        "text": "Miriam Wolf",
+        "source_path": "$.sub.invoice_part2",
+        "start": 443,
+        "end": 454
+      }
+    ],
+    "POSTAL_ADDRESS": [
+      {
+        "text": "Bahnhofstraße 21\n66111 Saarbrücken\nSaarland\nDeutschland",
+        "source_path": "$.invoice_part1",
+        "start": 173,
+        "end": 228
+      },
+      {
+        "text": "Königsallee 22\n40213 Düsseldorf\nNordrhein-Westfalen\nDeutschland",
+        "source_path": "$.invoice_part1",
+        "start": 313,
+        "end": 376
+      }
+    ],
+    "STREET_ADDRESS": [
+      {
+        "text": "Bahnhofstraße 21",
+        "source_path": "$.invoice_part1",
+        "start": 173,
+        "end": 189
+      },
+      {
+        "text": "Königsallee 22",
+        "source_path": "$.invoice_part1",
+        "start": 313,
+        "end": 327
+      }
+    ],
+    "POSTAL_CODE": [
+      {
+        "text": "66111",
+        "source_path": "$.invoice_part1",
+        "start": 190,
+        "end": 195
+      },
+      {
+        "text": "40213",
+        "source_path": "$.invoice_part1",
+        "start": 328,
+        "end": 333
+      }
+    ],
+    "CITY": [
+      {
+        "text": "Saarbrücken",
+        "source_path": "$.invoice_part1",
+        "start": 196,
+        "end": 207
+      },
+      {
+        "text": "Düsseldorf",
+        "source_path": "$.invoice_part1",
+        "start": 334,
+        "end": 344
+      }
+    ],
+    "STATE_OR_REGION": [
+      {
+        "text": "Saarland",
+        "source_path": "$.invoice_part1",
+        "start": 208,
+        "end": 216
+      },
+      {
+        "text": "Nordrhein-Westfalen",
+        "source_path": "$.invoice_part1",
+        "start": 345,
+        "end": 364
+      }
+    ],
+    "COUNTRY": [
+      {
+        "text": "Deutschland",
+        "source_path": "$.invoice_part1",
+        "start": 217,
+        "end": 228
+      },
+      {
+        "text": "Deutschland",
+        "source_path": "$.invoice_part1",
+        "start": 365,
+        "end": 376
+      }
+    ],
+    "ACCOUNT_ID": [
+      {
+        "text": "KTO/700323",
+        "source_path": "$.invoice_part1",
+        "start": 390,
+        "end": 400
+      }
+    ],
+    "INVOICE_NUMBER": [],
+    "INVOICE_DATE": [],
+    "DUE_DATE": [],
+    "SERVICE_DATE": [
+      {
+        "text": "15. April 2026",
+        "source_path": "$.sub.invoice_part2",
+        "start": 336,
+        "end": 350
+      }
+    ],
+    "DELIVERY_DATE": [
+      {
+        "text": "2026-04-20",
+        "source_path": "$.sub.invoice_part2",
+        "start": 374,
+        "end": 384
+      }
+    ],
+    "ORDER_NUMBER": [
+      {
+        "text": "PO-26-08017",
+        "source_path": "$.invoice_part1",
+        "start": 48,
+        "end": 59
+      }
+    ],
+    "DOCUMENT_DATE": [
+      {
+        "text": "07-04-2026",
+        "source_path": "$.invoice_part1",
+        "start": 79,
+        "end": 89
+      }
+    ],
+    "TRANSACTION_DATE": [],
+    "DATE": [
+      {
+        "text": "07.05.2026",
+        "source_path": "$.invoice_part1",
+        "start": 106,
+        "end": 116
+      }
+    ],
+    "TAX_ID": [
+      {
+        "text": "DE100269246",
+        "source_path": "$.invoice_part1",
+        "start": 261,
+        "end": 272
+      }
+    ],
+    "TAX_NUMBER": [
+      {
+        "text": "27 219 11649",
+        "source_path": "$.sub.invoice_part2",
+        "start": 407,
+        "end": 419
+      }
+    ]
+  }
+}

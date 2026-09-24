@@ -1,0 +1,6 @@
+{
+  "invoice_part1": "# Zahlungsavis\n\nAvisdatum: 18. März 2026\nZahlender Geschäftspartner: Codegarten GmbH & Co. KG\nKonto-ID: KTO/700247\nTransaktionsdatum: 2026-03-21\n\nZahlungsempfänger:\nMosaik Software e.K.\nLudwigsstraße 64\n55116 Mainz\nRheinland-Pfalz\nDeutschland",
+  "sub": {
+    "invoice_part2": "## Zugeordnete Belege\n\n- Rechnung R26/04013 vom 18. März 2026\n- Rechnung RG-03-202614 vom 2026-03-10\n\nBearbeiter: Clara Wolf\nReferenzauftrag: PO-26-08013\nSteuerliche ID Empfänger: DE100237570"
+  }
+}

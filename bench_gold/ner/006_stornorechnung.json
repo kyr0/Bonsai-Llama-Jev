@@ -1,0 +1,304 @@
+{
+  "document_id": "de-business-006",
+  "document_type": "Stornorechnung",
+  "entities": [
+    {
+      "label": "INVOICE_NUMBER",
+      "text": "R26/04005",
+      "source_path": "$.invoice_part1",
+      "start": 50,
+      "end": 59
+    },
+    {
+      "label": "INVOICE_DATE",
+      "text": "06-02-2026",
+      "source_path": "$.invoice_part1",
+      "start": 76,
+      "end": 86
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "Isar Automation GmbH",
+      "source_path": "$.invoice_part1",
+      "start": 93,
+      "end": 113
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "NovaGrid Energie e.K.",
+      "source_path": "$.invoice_part1",
+      "start": 136,
+      "end": 157
+    },
+    {
+      "label": "POSTAL_ADDRESS",
+      "text": "Ludwigsstraße 64\n55116 Mainz\nRheinland-Pfalz\nDeutschland",
+      "source_path": "$.invoice_part1",
+      "start": 158,
+      "end": 214
+    },
+    {
+      "label": "STREET_ADDRESS",
+      "text": "Ludwigsstraße 64",
+      "source_path": "$.invoice_part1",
+      "start": 158,
+      "end": 174
+    },
+    {
+      "label": "POSTAL_CODE",
+      "text": "55116",
+      "source_path": "$.invoice_part1",
+      "start": 175,
+      "end": 180
+    },
+    {
+      "label": "CITY",
+      "text": "Mainz",
+      "source_path": "$.invoice_part1",
+      "start": 181,
+      "end": 186
+    },
+    {
+      "label": "STATE_OR_REGION",
+      "text": "Rheinland-Pfalz",
+      "source_path": "$.invoice_part1",
+      "start": 187,
+      "end": 202
+    },
+    {
+      "label": "COUNTRY",
+      "text": "Deutschland",
+      "source_path": "$.invoice_part1",
+      "start": 203,
+      "end": 214
+    },
+    {
+      "label": "PERSON_NAME",
+      "text": "Lukas Hartmann",
+      "source_path": "$.invoice_part1",
+      "start": 232,
+      "end": 246
+    },
+    {
+      "label": "ACCOUNT_ID",
+      "text": "KTO/700095",
+      "source_path": "$.invoice_part1",
+      "start": 262,
+      "end": 272
+    },
+    {
+      "label": "SERVICE_DATE",
+      "text": "31. Januar 2026",
+      "source_path": "$.invoice_part1",
+      "start": 294,
+      "end": 309
+    },
+    {
+      "label": "TAX_ID",
+      "text": "DE100174218",
+      "source_path": "$.invoice_part1",
+      "start": 331,
+      "end": 342
+    },
+    {
+      "label": "TAX_NUMBER",
+      "text": "15 135 10485",
+      "source_path": "$.invoice_part1",
+      "start": 345,
+      "end": 357
+    },
+    {
+      "label": "INVOICE_NUMBER",
+      "text": "R26/04005",
+      "source_path": "$.sub.invoice_part2",
+      "start": 427,
+      "end": 436
+    },
+    {
+      "label": "DUE_DATE",
+      "text": "2026-03-06",
+      "source_path": "$.sub.invoice_part2",
+      "start": 469,
+      "end": 479
+    },
+    {
+      "label": "ORDER_NUMBER",
+      "text": "PO-26-08005",
+      "source_path": "$.sub.invoice_part2",
+      "start": 498,
+      "end": 509
+    },
+    {
+      "label": "PERSON_NAME",
+      "text": "Anna Wolf",
+      "source_path": "$.sub.invoice_part2",
+      "start": 531,
+      "end": 540
+    },
+    {
+      "label": "COMPANY_NAME",
+      "text": "Isar Automation GmbH",
+      "source_path": "$.sub.invoice_part2",
+      "start": 569,
+      "end": 589
+    }
+  ],
+  "by_label": {
+    "COMPANY_NAME": [
+      {
+        "text": "Isar Automation GmbH",
+        "source_path": "$.invoice_part1",
+        "start": 93,
+        "end": 113
+      },
+      {
+        "text": "NovaGrid Energie e.K.",
+        "source_path": "$.invoice_part1",
+        "start": 136,
+        "end": 157
+      },
+      {
+        "text": "Isar Automation GmbH",
+        "source_path": "$.sub.invoice_part2",
+        "start": 569,
+        "end": 589
+      }
+    ],
+    "PERSON_NAME": [
+      {
+        "text": "Lukas Hartmann",
+        "source_path": "$.invoice_part1",
+        "start": 232,
+        "end": 246
+      },
+      {
+        "text": "Anna Wolf",
+        "source_path": "$.sub.invoice_part2",
+        "start": 531,
+        "end": 540
+      }
+    ],
+    "POSTAL_ADDRESS": [
+      {
+        "text": "Ludwigsstraße 64\n55116 Mainz\nRheinland-Pfalz\nDeutschland",
+        "source_path": "$.invoice_part1",
+        "start": 158,
+        "end": 214
+      }
+    ],
+    "STREET_ADDRESS": [
+      {
+        "text": "Ludwigsstraße 64",
+        "source_path": "$.invoice_part1",
+        "start": 158,
+        "end": 174
+      }
+    ],
+    "POSTAL_CODE": [
+      {
+        "text": "55116",
+        "source_path": "$.invoice_part1",
+        "start": 175,
+        "end": 180
+      }
+    ],
+    "CITY": [
+      {
+        "text": "Mainz",
+        "source_path": "$.invoice_part1",
+        "start": 181,
+        "end": 186
+      }
+    ],
+    "STATE_OR_REGION": [
+      {
+        "text": "Rheinland-Pfalz",
+        "source_path": "$.invoice_part1",
+        "start": 187,
+        "end": 202
+      }
+    ],
+    "COUNTRY": [
+      {
+        "text": "Deutschland",
+        "source_path": "$.invoice_part1",
+        "start": 203,
+        "end": 214
+      }
+    ],
+    "ACCOUNT_ID": [
+      {
+        "text": "KTO/700095",
+        "source_path": "$.invoice_part1",
+        "start": 262,
+        "end": 272
+      }
+    ],
+    "INVOICE_NUMBER": [
+      {
+        "text": "R26/04005",
+        "source_path": "$.invoice_part1",
+        "start": 50,
+        "end": 59
+      },
+      {
+        "text": "R26/04005",
+        "source_path": "$.sub.invoice_part2",
+        "start": 427,
+        "end": 436
+      }
+    ],
+    "INVOICE_DATE": [
+      {
+        "text": "06-02-2026",
+        "source_path": "$.invoice_part1",
+        "start": 76,
+        "end": 86
+      }
+    ],
+    "DUE_DATE": [
+      {
+        "text": "2026-03-06",
+        "source_path": "$.sub.invoice_part2",
+        "start": 469,
+        "end": 479
+      }
+    ],
+    "SERVICE_DATE": [
+      {
+        "text": "31. Januar 2026",
+        "source_path": "$.invoice_part1",
+        "start": 294,
+        "end": 309
+      }
+    ],
+    "DELIVERY_DATE": [],
+    "ORDER_NUMBER": [
+      {
+        "text": "PO-26-08005",
+        "source_path": "$.sub.invoice_part2",
+        "start": 498,
+        "end": 509
+      }
+    ],
+    "DOCUMENT_DATE": [],
+    "TRANSACTION_DATE": [],
+    "DATE": [],
+    "TAX_ID": [
+      {
+        "text": "DE100174218",
+        "source_path": "$.invoice_part1",
+        "start": 331,
+        "end": 342
+      }
+    ],
+    "TAX_NUMBER": [
+      {
+        "text": "15 135 10485",
+        "source_path": "$.invoice_part1",
+        "start": 345,
+        "end": 357
+      }
+    ]
+  }
+}
